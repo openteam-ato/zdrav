@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang='ru'>
+<head>
+  <%= favicon_link_tag %>
+  <meta charset='UTF-8'>
+  <title><%= content_for?(:page_title) ? yield(:page_title) : "#{@page_title} | #{strip_tags(@site_name.content.body)}".squish %></title>
+
+  <%= stylesheet_link_tag    'application', :media => 'all' %>
+  <%= javascript_include_tag 'application' %>
+
+  <!--[if lte IE 7]>
+  <%= stylesheet_link_tag    "stop_ie/application" %>
+  <%= javascript_include_tag "stop_ie/application" %>
+  <![endif]-->
+
+  <%= csrf_meta_tags %>
+
+  <% if entry_date %>
+    <meta name='entry_date' content='<%= entry_date %>'>
+  <% end %>
+</head>
+<body>
+  <%= yield %>
+</body>
+</html>

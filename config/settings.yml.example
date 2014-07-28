@@ -1,0 +1,14 @@
+app:
+  secret:       SECRET
+
+errors:
+  key:          KEY
+  url:          http://errors
+
+sso:
+  key:          KEY
+  secret:       SECRET
+  url:          http://esp-sso
+
+storage:
+  url:         http://esp-storage
