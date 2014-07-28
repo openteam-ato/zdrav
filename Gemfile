@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 group :assets do
+  gem 'bootstrap-sass', '~> 3.2.0'
   gem 'coffee-rails'
   gem 'compass-rails'
   gem 'jquery-rails', '= 2.1.4'
