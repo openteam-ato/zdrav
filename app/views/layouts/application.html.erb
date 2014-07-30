@@ -1,10 +1,12 @@
 <!DOCTYPE HTML>
 <html lang='ru'>
 <head>
-  <%= favicon_link_tag %>
-  <meta charset='UTF-8'>
   <title><%= content_for?(:page_title) ? yield(:page_title) : "#{@page_title} | #{strip_tags(@site_name.content.body)}".squish %></title>
 
+  <meta charset='UTF-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+
+  <%= favicon_link_tag %>
   <%= stylesheet_link_tag    'application', :media => 'all' %>
   <%= javascript_include_tag 'application' %>
 
@@ -20,7 +22,9 @@
   <% end %>
 </head>
 <body>
-  <h1>Департамента здравоохранения Томской области</h1>
-  <%= yield %>
+  <div class='container'>
+    <h1>Департамента здравоохранения Томской области</h1>
+    <%= yield %>
+  </div>
 </body>
 </html>
