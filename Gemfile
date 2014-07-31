@@ -30,7 +30,7 @@ group :development do
   gem 'brakeman', :require => false
   gem 'capistrano-unicorn', '~> 0.1.7', :require => false
   gem 'openteam-capistrano'
-  gem 'quiet_assets'
+  gem 'quiet_assets', :require => false
   gem 'thin'
 end
 
