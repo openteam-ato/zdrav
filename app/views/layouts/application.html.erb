@@ -4,6 +4,7 @@
   <title><%= content_for?(:page_title) ? yield(:page_title) : "#{@page_title} | #{strip_tags(@site_name.content.body)}".squish %></title>
 
   <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 
   <%= favicon_link_tag %>
@@ -22,9 +23,39 @@
   <% end %>
 </head>
 <body>
-  <div class='container'>
-    <h1>Департамента здравоохранения Томской области</h1>
-    <%= yield %>
+  <div class='container header'>
+    <div class='row'>
+      <div class='logotype col-lg-2 col-md-2 col-sm-2'>
+        <a href='/'>Департамент здравоохранения Томской области</a>
+      </div>
+      <div class='sitename col-lg-8 col-md-8 col-sm-10'>
+        <h1><a href='/'>Департамент здравоохранения Томской области</a></h1>
+      </div>
+      <div class='clearfix visible-sm-block'></div>
+      <div class='sitemap col-lg-2 col-md-2 col-sm-6 col-xs-6'>
+        <a href='/ru/sitemap'><span class='fa fa-sitemap'></span> Карта сайта</a>
+      </div>
+      <div class='search_form col-sm-6 col-xs-6'>
+        <%= simple_form_for :parts_params, :url => '/ru/search', :method => :get do |form| %>
+          <%= form.simple_fields_for :search do |search| %>
+            <%= search.input :q, :label => false, :input_html => { :value => params[:parts_params].try(:[], 'search').try(:[], 'q'), :placeholder => 'Поиск' }%>
+          <% end %>
+          <div class='action'>
+            <%= form.button :submit, 'Искать', :name => nil %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class='main_menu_wrapper'>
+    <%#= render "regions/main_#{@main_navigation.type.underscore}", :object => @main_navigation.content if @main_navigation %>
+    <%#= render "regions/main_submenu_#{@main_navigation.type.underscore}", :object => @main_navigation.content if @main_navigation %>
+  </div>
+  <%= yield %>
+  <div class='footer_wrapper'>
+  </div>
+  <div class='developers_tools'>
+    <%= link_to 'JSON from CMS', @link_to_json, :target => '_blank' if Rails.env.development? %>
   </div>
 </body>
 </html>

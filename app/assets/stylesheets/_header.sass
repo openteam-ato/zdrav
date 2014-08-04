@@ -1,0 +1,128 @@
+@import 'compass/utilities'
+
+.header
+  position: relative
+
+  .logotype
+    padding-top: 10px
+    padding-bottom: 10px
+
+    a
+      +clearfix
+      display: block
+      width: 182px
+      height: 120px
+      background: transparent image_url('logotype.png') no-repeat left top
+      text-indent: -999em
+
+      @media (max-width: $screen-xs-max)
+        margin: 0 auto
+
+  .sitename
+
+    h1
+      line-height: 1.4
+      margin-top: 25px
+
+      a
+        color: inherit
+
+        &:hover
+          text-decoration: none
+
+      @media (max-width: $screen-xs-max)
+        font-size: 24px
+        text-align: center
+        margin-top: 0
+
+      @media (min-width: $screen-sm-min)
+        font-size: 26px
+        text-align: left
+        margin-left: 70px
+        margin-top: 25px
+
+      @media (min-width: $screen-md-min)
+        font-size: 26px
+        text-align: left
+        margin-left: 40px
+
+      @media (min-width: $screen-lg-min)
+        font-size: 30px
+        text-align: left
+        margin-left: 20px
+
+  .sitemap
+    text-align: right
+    padding-top: 10px
+
+    @media (max-width: $screen-xs-max)
+      text-align: left
+      padding-top: 0
+      margin-top: 5px
+      margin-bottom: 10px
+
+    @media (min-width: $screen-sm-min)
+      text-align: left
+      padding-top: 0
+      margin-top: 5px
+      margin-bottom: 10px
+
+  .search_form
+    position: absolute
+    right: 10px
+    bottom: 10px
+
+    @media (max-width: $screen-xs-max)
+      position: static
+      right: auto
+      bottom: auto
+      text-align: right
+      margin-bottom: 10px
+
+    @media (min-width: $screen-sm-min)
+      position: static
+      right: auto
+      bottom: auto
+      text-align: right
+      margin-bottom: 10px
+
+    @media (min-width: $screen-md-min)
+      position: absolute
+      right: 10px
+      bottom: 10px
+      margin-bottom: 0
+
+    .input
+      +inline-block
+
+      input
+        width: 240px
+        border: 1px solid #cdcdcd
+        padding-left: 5px
+        padding-right: 5px
+
+        @media (max-width: $screen-xs-max)
+          width: 100%
+
+        @media (min-width: $screen-sm-min)
+          width: 200px
+
+        @media (min-width: $screen-md-min)
+          width: 240px
+
+    .action
+      +inline-block
+
+      @media (max-width: $screen-xs-max)
+        display: none
+
+      @media (min-width: $screen-sm-min)
+        +inline-block
+
+      input
+        border: 1px solid #c1c1c1
+        background-color: #f3f3f3
+        +background(linear-gradient(top, #eeeeee, #e0e0e0))
+
+        &:active
+          +background(linear-gradient(top, #e0e0e0, #eeeeee))

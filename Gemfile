@@ -4,6 +4,7 @@ group :assets do
   gem 'bootstrap-sass', '~> 3.2.0'
   gem 'coffee-rails'
   gem 'compass-rails'
+  gem 'font-awesome-sass'
   gem 'jquery-rails', '= 2.1.4'
   gem 'sass-rails'
   gem 'turbo-sprockets-rails3'
@@ -22,6 +23,7 @@ group :default do
   gem 'rails', '~> 3.2.12'
   gem 'russian'
   gem 'simple-rss'
+  gem 'simple_form'
   gem 'stop_ie'
   gem 'uuid'
 end
@@ -30,7 +32,7 @@ group :development do
   gem 'brakeman', :require => false
   gem 'capistrano-unicorn', '~> 0.1.7', :require => false
   gem 'openteam-capistrano'
-  gem 'quiet_assets', :require => false
+  gem 'quiet_assets' #, :require => false
   gem 'thin'
 end
 
