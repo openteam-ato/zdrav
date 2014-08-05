@@ -1,39 +1,24 @@
-<div class="main_menu">
-  <div class="inner">
-    <ul>
-      <% object.values.first['children'].each do |name, item| %>
-        <li <%= 'class=active' if item['selected'] && item['children'] %>>
-          <%= render_link_for_navigation item %>
-
-          <% if item['children'] %>
-            <div class="submenu_floated">
-              <div>
-                <% i = -1 %>
-                <% count = item['children'].count %>
-                <% first_group, second_group = item['children'].partition{ i += 1; i < (count/2.0).ceil } %>
-
-                <ul>
-                  <% first_group.each do |name, item| %>
-                    <li>
-                      <%= render_link_for_navigation item %>
-                    </li>
-                  <% end %>
-                </ul>
-
-                <ul>
-                  <% second_group.each do |name, item| %>
-                    <li>
-                      <%= render_link_for_navigation item %>
-                    </li>
-                  <% end %>
-                </ul>
-
-              </div>
-            </div>
-          <% end %>
-
-        </li>
-      <% end if object.values.first['children'] %>
-    </ul>
-  </div>
-</div>
+<ul>
+  <% object.values.first['children'].each do |name, item| %>
+    <li class="<%= name %><%= ' active' if item['selected'] && item['children'] %>">
+      <%= render_link_for_navigation item %>
+      <% if item['children'] %>
+        <div class='submenu'>
+          <% i = -1 %>
+          <% count = item['children'].count %>
+          <% first_group, second_group = item['children'].partition{ i += 1; i < (count/2.0).ceil } %>
+          <ul>
+            <% first_group.each do |name, item| %>
+              <li><%= render_link_for_navigation item %></li>
+            <% end %>
+          </ul>
+          <ul>
+            <% second_group.each do |name, item| %>
+              <li><%= render_link_for_navigation item %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </li>
+  <% end if object.values.first['children'] %>
+</ul>
