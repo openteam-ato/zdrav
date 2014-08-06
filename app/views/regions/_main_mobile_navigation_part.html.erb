@@ -1,0 +1,20 @@
+<div class='dropdown'>
+  <a class='btn btn-default dropdown-toggle' type='button' id='dropdown_for_mobile' data-toggle='dropdown'>
+    Меню сайта
+    <span class='caret'></span>
+  </a>
+  <ul class='dropdown-menu' role='menu' aria-labelledby='dropdown_for_mobile'>
+    <% counter = 0 %>
+    <% object.values.first['children'].each do |name, item| %>
+      <li role='presentation'>
+        <%= render_link_for_navigation item %>
+      </li>
+      <% item['children'].each do |name, item| %>
+        <li role='presentation'>
+          <%= render_link_for_navigation item %>
+        </li>
+      <% end %>
+      <li role='presentation' class='divider'></li>
+    <% end if object.values.first['children'] %>
+  </ul>
+</div>

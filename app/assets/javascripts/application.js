@@ -5,5 +5,6 @@
  * the compiled file.
  *
  * = require jquery
+ * = require bootstrap/dropdown
  * = require main
  */
