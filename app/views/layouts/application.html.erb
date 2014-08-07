@@ -24,48 +24,58 @@
 </head>
 <body>
 
-  <div class='container header'>
-    <div class='row'>
-      <div class='logotype col-lg-2 col-md-2 col-sm-2'>
+  <div class='header container'>
+    <div class='desktop row visible-lg visible-md'>
+      <div class='logotype col-lg-2 col-md-2'>
         <a href='/'>Департамент здравоохранения Томской области</a>
       </div>
-      <div class='sitename col-lg-8 col-md-8 col-sm-10'>
+      <div class='sitename col-lg-8 col-md-8'>
         <h1><a href='/'>Департамент здравоохранения Томской области</a></h1>
       </div>
-      <div class='clearfix visible-sm-block'></div>
-      <div class='main_dropdown_menu hidden-lg hidden-md col-sm-4 col-xs-4'>
-        <%= render "regions/main_mobile_#{@main_navigation.type.underscore}", :object => @main_navigation.content if @main_navigation %>
-      </div>
-      <div class='sitemap col-lg-2 col-md-2 col-sm-4 col-xs-4'>
+      <div class='sitemap col-lg-2 col-md-2'>
         <p><span class='fa fa-sitemap'></span> <a href='/ru/sitemap'>Карта сайта</a></p>
       </div>
-      <div class='search_form col-sm-4 col-xs-4'>
-        <%= simple_form_for :parts_params, :url => '/ru/search', :method => :get do |form| %>
-          <%= form.simple_fields_for :search do |search| %>
-            <%= search.input :q, :label => false, :input_html => { :value => params[:parts_params].try(:[], 'search').try(:[], 'q'), :placeholder => 'Поиск' }%>
-          <% end %>
-          <div class='action'>
-            <%= form.button :submit, 'Искать', :name => nil %>
-          </div>
-        <% end %>
+      <div class='search_form col-md-4'>
+        <%= render :partial => 'search_form' %>
+      </div>
+    </div>
+    <div class='modile_top row visible-sm visible-xs'>
+      <div class='logotype col-sm-2 col-xs-12'>
+        <a href='/'>Департамент здравоохранения Томской области</a>
+      </div>
+      <div class='sitename col-sm-10 col-xs-12'>
+        <h1><a href='/'>Департамент здравоохранения Томской области</a></h1>
       </div>
     </div>
   </div>
 
-  <div class='main_menu_wrapper hidden-sm hidden-xs'>
+  <div class='main_menu_wrapper visible-lg visible-md'>
     <div class='container'>
-    <div class='row'>
-      <div class='main_menu col-md-12'>
-        <%= render "regions/main_#{@main_navigation.type.underscore}", :object => @main_navigation.content if @main_navigation %>
+      <div class='row'>
+        <div class='main_menu col-md-12'>
+          <%= render "regions/main_#{@main_navigation.type.underscore}", :object => @main_navigation.content if @main_navigation %>
+        </div>
       </div>
     </div>
+  </div>
+
+  <div class='main_menu_wrapper visible-sm visible-xs'>
+    <div class='container'>
+      <div class='row'>
+        <div class='main_dropdown_menu col-sm-4 col-xs-4'>
+          <%= render "regions/main_mobile_#{@main_navigation.type.underscore}", :object => @main_navigation.content if @main_navigation %>
+        </div>
+        <div class='sitemap col-sm-4 col-xs-4'>
+          <p><span class='fa fa-sitemap hidden-xs'></span> <a href='/ru/sitemap'>Карта сайта</a></p>
+        </div>
+        <div class='search_form col-sm-4 col-xs-4'>
+          <%= render :partial => 'search_form' %>
+        </div>
+      </div>
     </div>
   </div>
 
   <%= yield %>
-
-  <div class='footer_wrapper'>
-  </div>
 
   <% if Rails.env.development? %>
     <div class='developers_tools'>
