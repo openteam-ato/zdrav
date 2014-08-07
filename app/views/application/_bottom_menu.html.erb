@@ -1,0 +1,9 @@
+<div class='bottom_menu_wrapper hidden-sm hidden-xs'>
+  <div class='container'>
+    <div class='row'>
+      <div class='bottom_menu col-md-12'>
+        <%= render "regions/bottom_#{@main_navigation.type.underscore}", :object => @main_navigation.content if @main_navigation %>
+      </div>
+    </div>
+  </div>
+</div>

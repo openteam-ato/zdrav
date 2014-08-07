@@ -1,0 +1,20 @@
+<ul>
+  <li class='first'>
+    <% object.values.first['children'].each do |name, item| %>
+      <div>
+        <p><%= render_link_for_navigation item %></p>
+      </div>
+    <% end %>
+  </li>
+  <li class='second'>
+    <% object.values.first['children'].each do |name, item| %>
+      <div>
+        <ul>
+          <% item['children'].each do |name, item| %>
+            <li><%= render_link_for_navigation item %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </li>
+</ul>

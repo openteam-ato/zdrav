@@ -4,7 +4,6 @@
     <span class='caret hidden-xs'></span>
   </a>
   <ul class='dropdown-menu' role='menu' aria-labelledby='dropdown_for_mobile'>
-    <% counter = 0 %>
     <% object.values.first['children'].each do |name, item| %>
       <li role='presentation'>
         <%= render_link_for_navigation item %>

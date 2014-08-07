@@ -2,22 +2,17 @@
 <html lang='ru'>
 <head>
   <title><%= content_for?(:page_title) ? yield(:page_title) : "#{@page_title} | #{strip_tags(@site_name.content.body)}".squish %></title>
-
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-
   <%= favicon_link_tag %>
   <%= stylesheet_link_tag    'application', :media => 'all' %>
   <%= javascript_include_tag 'application' %>
-
   <!--[if lte IE 7]>
   <%= stylesheet_link_tag    "stop_ie/application" %>
   <%= javascript_include_tag "stop_ie/application" %>
   <![endif]-->
-
   <%= csrf_meta_tags %>
-
   <% if entry_date %>
     <meta name='entry_date' content='<%= entry_date %>'>
   <% end %>
@@ -26,6 +21,7 @@
   <%= render :partial => 'header' %>
   <%= render :partial => 'main_menu' %>
   <%= yield %>
+  <%= render :partial => 'bottom_menu' %>
   <%= render :partial => 'footer' %>
   <%= render :partial => 'developers_tools' %>
 </body>
