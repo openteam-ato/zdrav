@@ -1,0 +1,24 @@
+<div class='main_menu_wrapper visible-lg visible-md'>
+  <div class='container'>
+    <div class='row'>
+      <div class='main_menu col-md-12'>
+        <%= render "regions/main_#{@main_navigation.type.underscore}", :object => @main_navigation.content if @main_navigation %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='main_menu_wrapper visible-sm visible-xs'>
+  <div class='container'>
+    <div class='row'>
+      <div class='main_dropdown_menu col-sm-4 col-xs-4'>
+        <%= render "regions/main_mobile_#{@main_navigation.type.underscore}", :object => @main_navigation.content if @main_navigation %>
+      </div>
+      <div class='sitemap col-sm-4 col-xs-4'>
+        <p><span class='fa fa-sitemap hidden-xs'></span> <a href='/ru/sitemap'>Карта сайта</a></p>
+      </div>
+      <div class='search_form col-sm-4 col-xs-4'>
+        <%= render :partial => 'search_form' %>
+      </div>
+    </div>
+  </div>
+</div>

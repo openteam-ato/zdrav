@@ -23,85 +23,10 @@
   <% end %>
 </head>
 <body>
-
-  <div class='header container'>
-    <div class='desktop row visible-lg visible-md'>
-      <div class='logotype col-lg-2 col-md-2'>
-        <a href='/'>Департамент здравоохранения Томской области</a>
-      </div>
-      <div class='sitename col-lg-8 col-md-8'>
-        <h1><a href='/'>Департамент здравоохранения Томской области</a></h1>
-      </div>
-      <div class='sitemap col-lg-2 col-md-2'>
-        <p><span class='fa fa-sitemap'></span> <a href='/ru/sitemap'>Карта сайта</a></p>
-      </div>
-      <div class='search_form col-md-4'>
-        <%= render :partial => 'search_form' %>
-      </div>
-    </div>
-    <div class='modile_top row visible-sm visible-xs'>
-      <div class='logotype col-sm-2 col-xs-12'>
-        <a href='/'>Департамент здравоохранения Томской области</a>
-      </div>
-      <div class='sitename col-sm-10 col-xs-12'>
-        <h1><a href='/'>Департамент здравоохранения Томской области</a></h1>
-      </div>
-    </div>
-  </div>
-
-  <div class='main_menu_wrapper visible-lg visible-md'>
-    <div class='container'>
-      <div class='row'>
-        <div class='main_menu col-md-12'>
-          <%= render "regions/main_#{@main_navigation.type.underscore}", :object => @main_navigation.content if @main_navigation %>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class='main_menu_wrapper visible-sm visible-xs'>
-    <div class='container'>
-      <div class='row'>
-        <div class='main_dropdown_menu col-sm-4 col-xs-4'>
-          <%= render "regions/main_mobile_#{@main_navigation.type.underscore}", :object => @main_navigation.content if @main_navigation %>
-        </div>
-        <div class='sitemap col-sm-4 col-xs-4'>
-          <p><span class='fa fa-sitemap hidden-xs'></span> <a href='/ru/sitemap'>Карта сайта</a></p>
-        </div>
-        <div class='search_form col-sm-4 col-xs-4'>
-          <%= render :partial => 'search_form' %>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <%= render :partial => 'header' %>
+  <%= render :partial => 'main_menu' %>
   <%= yield %>
-
-  <div class='footer_wrapper'>
-    <div class='container'>
-      <div class='row'>
-        <div class='contacts col-lg-9 col-xs-12'>
-          <h4>Контакты</h4>
-          <p>Департамент здравоохранения Томской области</p>
-          <p>Адрес: 634041, г. Томск, пр. Кирова, 41</p>
-          <p>Телефон: 8(3822) 51-30-57, факс: 8(3822) 51-60-35</p>
-          <p>E-mail: <a href='mailto:ozo@dzato.tomsk.ru'>ozo@dzato.tomsk.ru</a></p>
-          <p>Режим работы: пн-пт 09:00-18:00, обед 12:30-13:30, сб, вс &ndash; выходные</p>
-        </div>
-        <div class='copyrights col-lg-3 col-xs-12'>
-          <ul>
-            <li>Разработка: <a href='http://znaigorod.ru'>znaigorod</a></li>
-            <li>Дизайн: <a href='http://openteam.ru'>openteam</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <% if Rails.env.development? %>
-    <div class='developers_tools'>
-      <%= link_to 'JSON from CMS', @link_to_json, :target => '_blank' %>
-    </div>
-  <% end %>
+  <%= render :partial => 'footer' %>
+  <%= render :partial => 'developers_tools' %>
 </body>
 </html>
