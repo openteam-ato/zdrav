@@ -1,6 +1,6 @@
 <ul>
   <li class='first'>
-    <% object.values.first['children'].each do |name, item| %>
+    <% object.values.first['children'].delete_if{ |key, value| key.eql?('novosti') }.each do |name, item| %>
       <div>
         <p><%= render_link_for_navigation item %></p>
       </div>
