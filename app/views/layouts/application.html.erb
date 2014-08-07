@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang='ru'>
 <head>
-  <title><%= content_for?(:page_title) ? yield(:page_title) : "#{@page_title} | #{strip_tags(@site_name.content.body)}".squish %></title>
+  <title><%= content_for?(:page_title) ? yield(:page_title) : "#{@page_title} — #{strip_tags(@site_name.content.body)}".squish %></title>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
