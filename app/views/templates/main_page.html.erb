@@ -4,6 +4,17 @@
   <div class='col-xs-3'>
     <div class='left'>
       <%= content_tag :div, render_partial_for_region(@quick_links), :class => :quick_links if @quick_links.present? %>
+      <div class='gallery_of_honor'>
+        <h3><a href='#'>Галерея почета</a></h3>
+        <p class='photo'>
+          <%= link_to '#' do %>
+            <%= image_tag 'stub_gallery_of_honor_lg.jpg', :width => '220', :height => '330', :alt => 'Тимошина Елена Леонтьевна', :class => 'visible-lg-inline' %>
+            <%= image_tag 'stub_gallery_of_honor_md.jpg', :width => '170', :height => '255', :alt => 'Тимошина Елена Леонтьевна', :class => 'visible-md-inline' %>
+          <% end %>
+        </p>
+        <p class='name'>Тимошина Елена Леонтьевна</p>
+        <p class='post'>Заместитель начальника департамента по развитию здравоохранения</p>
+      </div>
     </div>
   </div>
 
