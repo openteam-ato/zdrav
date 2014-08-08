@@ -6,14 +6,28 @@
       <%= content_tag :div, render_partial_for_region(@quick_links), :class => :quick_links if @quick_links.present? %>
       <div class='gallery_of_honor'>
         <h3><a href='#'>Галерея почета</a></h3>
-        <p class='photo'>
+        <div class='photo'>
           <%= link_to '#' do %>
             <%= image_tag 'stub_gallery_of_honor_lg.jpg', :width => '220', :height => '330', :alt => 'Тимошина Елена Леонтьевна', :class => 'visible-lg-inline' %>
             <%= image_tag 'stub_gallery_of_honor_md.jpg', :width => '170', :height => '255', :alt => 'Тимошина Елена Леонтьевна', :class => 'visible-md-inline' %>
           <% end %>
-        </p>
-        <p class='name'>Тимошина Елена Леонтьевна</p>
-        <p class='post'>Заместитель начальника департамента по развитию здравоохранения</p>
+        </div>
+        <div class='name'>Тимошина Елена Леонтьевна</div>
+        <div class='post'>Заместитель начальника департамента по развитию здравоохранения</div>
+      </div>
+      <div class='thanks_patients'>
+        <h3><a href='#'>Благодарности пациентов</a></h3>
+        <div class="thanks">
+          <div class='add'><a href='#'>Добавить</a></div>
+          <div class='note'><span>Примечание:</span> стилистика и пунктуация писем полностью сохранена, послания печатаются без сокращений</div>
+          <div class='text'>
+            <p><strong>Начальнику департамента Холопову Александру Владимировичу.</strong></p>
+            <p>Здравствуйте Александр Владимирович!</p>
+            <p>Разрешите накануне&nbsp;"Дня Медика"&nbsp;поздравить Вас лично и в Вашем лице - весь мед. персонал Томской области с&nbsp;профессиональным праздником!!!</p>
+            <p>Разрешите так же сердечно пожелать всем&nbsp;работникам отрасли&nbsp;быть здоровыми, бодрыми, иметь семейное...</p>
+          </div>
+          <div class='more'><a href='#'>Читать полностью</a></div>
+        </div>
       </div>
     </div>
   </div>
