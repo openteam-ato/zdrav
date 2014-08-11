@@ -104,3 +104,90 @@
 
         p
           margin-bottom: 0
+
+  .actual
+    position: relative
+
+    .scroller
+      height: 316px
+      overflow: hidden
+      border: 2px solid #cdcdcd
+
+    ul
+      margin-bottom: 0
+
+      $height_li: 78px
+
+      li
+        height: $height_li
+
+
+        @media (min-width: $screen-md-min)
+          width: 247px
+
+        @media (min-width: $screen-lg-min)
+          width: 404px
+
+        a
+          height: $height_li
+          width: 404px
+          color: inherit
+          position: relative
+          display: table-cell
+          vertical-align: middle
+          text-decoration: none
+          background-color: #fff
+          +background(linear-gradient(top, #f1f1f1, #ffffff, #f1f1f1))
+          border-bottom: 1px solid #cdcdcd
+          border-right: 1px solid #cdcdcd
+          padding-right: 15px
+          padding-left: 15px
+
+          &.last_child
+            border-bottom: none
+
+        &.hover a
+          color: #fff
+          background-color: #005e8e
+          +background(linear-gradient(top, #00507b, #005b8a, #00517c))
+
+          &:after
+            display: block
+            position: absolute
+            content: ''
+            width: 0
+            height: 0
+            top: 0
+            border-style: solid
+            border-width: 40px 0 40px 10px
+            border-color: transparent transparent transparent #005b8a
+            z-index: 1
+
+            @media (min-width: $screen-md-min)
+              right: -10px
+
+            @media (min-width: $screen-lg-min)
+              right: -4px
+
+        img
+          display: none
+
+      &.without_scroll
+        li
+          @media (min-width: $screen-md-min)
+            width: 254px
+
+          @media (min-width: $screen-lg-min)
+            width: 404px
+
+          &.hover a
+            &:after
+              @media (min-width: $screen-lg-min)
+                right: -10px
+
+    .images
+      a
+        display: block
+        position: absolute
+        top: 2px
+        right: 2px

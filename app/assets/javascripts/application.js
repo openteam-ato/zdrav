@@ -6,5 +6,7 @@
  *
  * = require jquery
  * = require bootstrap/dropdown
+ * = require vendor/jscrollpane
+ * = require actual
  * = require main
  */

@@ -1,0 +1,61 @@
+.jspScrollable
+  border: none
+
+  .jspContainer
+    overflow: hidden
+    position: relative
+
+  .jspPane
+    position: absolute
+    outline: none
+    border: none
+    +box-shadow(none)
+
+  .jspVerticalBar
+    position: absolute
+    top: 0
+    left: 0
+    width: 9px
+    height: 100%
+    background-color: #fff
+    border-right: 2px solid #cdcdcd
+
+  .jspVerticalBar *
+    margin: 0
+    padding: 0
+
+  .jspCap
+    height: 2px
+
+  .jspTrack
+    background-color: #fff
+    position: relative
+
+  .jspDrag
+    background-color: #cdcdcd
+    position: relative
+    top: 0
+    left: 0
+    cursor: pointer
+    margin: 0 2px
+
+    .jspDragTop
+      width: 100%
+      height: 2px
+      position: absolute
+      top: 0
+      left: 0
+      background-color: #ccc
+
+    .jspDragBottom
+      width: 100%
+      height: 2px
+      position: absolute
+      bottom: 0
+      left: 0
+      background-color: #ccc
+
+  .jspCorner
+    background: #eeeef4
+    float: left
+    height: 100%

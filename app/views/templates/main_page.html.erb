@@ -1,7 +1,7 @@
 <% content_for :page_title, strip_tags(@site_name.content.body).squish %>
 
 <div class='main_page row'>
-  <div class='col-xs-3'>
+  <div class='col-xs-3 visible-lg-block visible-md-block'>
     <div class='left'>
       <%= content_tag :div, render_partial_for_region(@quick_links), :class => :quick_links if @quick_links.present? %>
       <div class='gallery_of_honor'>
@@ -32,9 +32,9 @@
     </div>
   </div>
 
-  <div class='col-xs-9'>
+  <div class='col-xs-9 visible-lg-block visible-md-block visible-xs-block'>
     <div class='right'>
-      STUB RIGHT
+      <%= render_partial_for_region(@actual, 'actual') if @actual.present? %>
     </div>
   </div>
 </div>
