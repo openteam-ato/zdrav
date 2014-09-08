@@ -37,7 +37,6 @@
       <%= render_partial_for_region(@actual, 'actual') if @actual.present? %>
 
       <div class="news visible-lg-block visible-md-block">
-
         <ul class="tabs" role="tablist">
           <li class="active">
             <%= link_to 'Новости', '#main-page-news', :data => { :toggle => :tab } %>
@@ -56,6 +55,8 @@
         </div>
       </div>
 
+      <%= render_partial_for_region(@pay_attention, 'pay_attention') if @pay_attention.present? %>
     </div>
+
   </div>
 </div>

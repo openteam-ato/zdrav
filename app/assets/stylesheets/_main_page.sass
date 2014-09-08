@@ -216,3 +216,34 @@
       color: #000
       padding: 8px 25px
       text-decoration: none
+
+.attention
+  border: 1px solid #ff0b7d
+  padding: 25px 15px 0
+  position: relative
+
+  .title
+    background: #ff0b7d
+    color: #fff
+    left: -10px
+    padding: 6px 15px
+    position: absolute
+    text-transform: uppercase
+    top: -15px
+
+    &:before
+      content: ''
+      border-color: #c32b74 #c32b74 transparent transparent
+      border-style: solid
+      border-width: 5px 5px
+      bottom: -10px
+      height: 0
+      left: 0
+      position: absolute
+      width: 0
+
+  ol
+    margin: 10px 0 10px 20px
+
+    li
+      list-style-type: decimal
