@@ -35,6 +35,27 @@
   <div class='col-xs-9 visible-lg-block visible-md-block visible-xs-block'>
     <div class='right'>
       <%= render_partial_for_region(@actual, 'actual') if @actual.present? %>
+
+      <div class="news visible-lg-block visible-md-block">
+
+        <ul class="tabs" role="tablist">
+          <li class="active">
+            <%= link_to 'Новости', '#main-page-news', :data => { :toggle => :tab } %>
+          </li>
+          <li>
+            <%= link_to 'Анонсы', '#main-page-announcements', :data => { :toggle => :tab } %>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane active" id="main-page-news">
+            <%= render_partial_for_region(@news, 'news') if @news.present? %>
+          </div>
+          <div class="tab-pane" id="main-page-announcements">
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

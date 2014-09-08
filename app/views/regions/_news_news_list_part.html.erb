@@ -1,0 +1,16 @@
+<% if object.items.any? %>
+  <ul>
+    <% object.items.group_by(&:since).each do |date, items| %>
+      <span class="date"><%= l Date.parse(date) %></span>
+
+      <% items.each do |item| %>
+        <li>
+          <%= link_to item.title, item.link, :title => item.title %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <%= link_to object.title, object.collection_link %>
+  <%= link_to "RSS", object.rss_link, :class => 'rss' %>
+<% end %>
