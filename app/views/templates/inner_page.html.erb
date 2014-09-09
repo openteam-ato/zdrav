@@ -1,19 +1,10 @@
 <div class='content row'>
-  <div class='col-xs-4'>
+  <div class='col-xs-3'>
     <div class='left'>
-      STUB LEFT
     </div>
   </div>
 
-  <div class='col-xs-4'>
-    <div class='center'>
-      STUB CENTER
-    </div>
-  </div>
-
-  <div class='col-xs-4'>
-    <div class='right'>
-      STUB RIGHT
-    </div>
+  <div class='col-xs-9'>
+    <%= render :partial => 'regions/news_list', :locals => { :object => @content_first.content } if @content_first.present? %>
   </div>
 </div>

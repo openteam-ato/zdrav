@@ -48,7 +48,7 @@
 
         <div class="tab-content">
           <div class="tab-pane active" id="main-page-news">
-            <%= render_partial_for_region(@news) if @news.present? %>
+            <%= render :partial => 'regions/news_list_part', :locals => { :object => @news.content } if @news.present? %>
           </div>
           <div class="tab-pane" id="main-page-announcements">
             <%= render :partial => 'regions/news_list_part', :locals => { :object => @announcements.content } if @announcements.present? %>

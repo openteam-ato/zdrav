@@ -1,0 +1,16 @@
+<div class="page-header purple">
+  <%= object.title %>
+</div>
+
+<% if object.items.any? %>
+  <ul>
+    <% object.items.each do |item| %>
+      <li>
+        <div class="date"><%= l Date.parse(item.since) %></div>
+        <%= link_to item.title, item.link, :title => item.title %>
+
+        <%= item.annotation.to_s.as_html %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
