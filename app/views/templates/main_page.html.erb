@@ -55,6 +55,8 @@
         </div>
       </div>
 
+      <%= render_partial_for_region(@banners, 'banners') if @banners.present? %>
+
       <%= render_partial_for_region(@pay_attention, 'pay_attention') if @pay_attention.present? %>
     </div>
 

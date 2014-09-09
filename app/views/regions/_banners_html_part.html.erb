@@ -1,0 +1,13 @@
+<div class="banners visible-lg-block visible-md-block">
+  <div class="inner">
+    <div class="js-banners">
+      <%= raw object.body.gsub('<span class="nobr">data-ratio</span>', 'data-ratio').gsub('&#160;', ' ') %>
+    </div>
+  </div>
+
+  <a class="js-banners-prev banners-prev" href="#"></a>
+  <a class="js-banners-next banners-next" href="#"></a>
+
+  <div class="banners-pagination js-banners-pagination pull-right"></div>
+</div>
+

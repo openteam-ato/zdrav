@@ -199,6 +199,73 @@
       color: #9a9a9a
       font-size: 10px
 
+  .banners
+    margin: 25px auto 45px auto
+    position: relative
+    width: 705px
+
+    .inner
+      +clearfix
+      position: relative
+
+    ul
+      width: 20000em
+      position: relative
+      list-style: none
+      padding: 0
+      margin: 0
+
+    li
+      float: left
+      border: 1px solid #cdcdcd
+      height: 230px
+      width: 166px
+      margin: 0 5px
+
+      img
+        height: 228px
+        width: 164px
+
+    .banners-prev, .banners-next
+      border: 1px solid #cdcdcd
+      height: 60px
+      position: absolute
+      top: 86px
+      width: 25px
+
+    .banners-prev
+      left: -25px
+      background: #f0f0f0 image_url('banners-btn.png') no-repeat 5px 18px
+
+      &:hover
+        background: #fff image_url('banners-btn.png') no-repeat 5px -33px
+        border-color: #00517c
+
+    .banners-next
+      right: -25px
+      background: #f0f0f0 image_url('banners-btn.png') no-repeat -47px 18px
+
+      &:hover
+        background: #fff image_url('banners-btn.png') no-repeat -47px -33px
+        border-color: #00517c
+
+    .banners-pagination
+      margin: 8px 5px
+
+      .square
+        +inline-block
+        background: #fafafa
+        height: 15px
+        width: 15px
+        border: 1px solid #cdcdcd
+
+        &.active
+          background: #00517c
+          border-color: #00517c
+
+  .attention
+    margin: 25px 0
+
 .tabs
   border-bottom: 1px solid #00517c
 
