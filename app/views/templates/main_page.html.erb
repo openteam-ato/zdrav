@@ -48,16 +48,23 @@
 
         <div class="tab-content">
           <div class="tab-pane active" id="main-page-news">
-            <%= render_partial_for_region(@news, 'news') if @news.present? %>
+            <%= render_partial_for_region(@news) if @news.present? %>
           </div>
           <div class="tab-pane" id="main-page-announcements">
+            <%= render :partial => 'regions/news_list_part', :locals => { :object => @announcements.content } if @announcements.present? %>
           </div>
         </div>
       </div>
 
       <%= render_partial_for_region(@banners, 'banners') if @banners.present? %>
 
-      <%= render_partial_for_region(@pay_attention, 'pay_attention') if @pay_attention.present? %>
+      <% if @pay_attention.present? %>
+      <div class="attention visible-lg-block visible-md-block">
+        <span class="title"><%= @pay_attention.part_title %></span>
+
+        <%= render :partial => 'regions/html_part', :locals => { :object => @pay_attention.content } %>
+      </div>
+      <% end %>
     </div>
 
   </div>

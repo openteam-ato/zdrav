@@ -1,7 +1,7 @@
 <% if object.items.any? %>
   <ul>
-    <% object.items.group_by(&:since).each do |date, items| %>
-      <span class="date"><%= l Date.parse(date) %></span>
+    <% object.items.group_by{ |i| i.since.to_date }.each do |date, items| %>
+      <span class="date"><%= l date %></span>
 
       <% items.each do |item| %>
         <li>
@@ -12,5 +12,5 @@
   </ul>
 
   <%= link_to object.title, object.collection_link %>
-  <%= link_to "RSS", object.rss_link, :class => 'rss' %>
+  <%= link_to "rss", object.rss_link, :class => 'rss' %>
 <% end %>
