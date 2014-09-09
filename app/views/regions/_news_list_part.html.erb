@@ -1,13 +1,10 @@
 <% if object.items.any? %>
   <ul>
-    <% object.items.group_by{ |i| i.since.to_date }.each do |date, items| %>
-      <span class="date"><%= l date %></span>
-
-      <% items.each do |item| %>
-        <li>
-          <%= link_to item.title, item.link, :title => item.title %>
-        </li>
-      <% end %>
+    <% object.items.each do |item| %>
+      <li>
+        <div class="date"><%= l Date.parse(item.since) %></div>
+        <%= link_to item.title, item.link, :title => item.title %>
+      </li>
     <% end %>
   </ul>
 
