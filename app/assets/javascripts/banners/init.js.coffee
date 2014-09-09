@@ -2,10 +2,12 @@
   if $('.js-banners ul li').length > 4
 
     carousel = $('.js-banners').jcarousel({
-      auto: 20,
       wrap: 'circular',
       scroll: 1
     })
+
+    carousel.jcarouselAutoscroll
+      interval: 5000
 
     $('.js-banners-prev').jcarouselControl
       target: "-=1"
