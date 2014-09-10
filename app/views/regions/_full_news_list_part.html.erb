@@ -20,6 +20,12 @@
               <%= item.annotation.html_safe %>
             </div>
           <% end %>
+
+          <% if item.source.present? %>
+            <div class="source">
+              Источник: <%= link_to object.source, object.source_link %>
+          </div>
+          <% end %>
         </li>
       <% end %>
     </ul>
