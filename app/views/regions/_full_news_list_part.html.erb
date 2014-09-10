@@ -3,7 +3,7 @@
 </div>
 
 <% if object.items.any? %>
-  <div class="news">
+  <div class="news col-xs-9">
     <ul>
       <% object.items.each do |item| %>
         <li>
@@ -30,5 +30,14 @@
 
       <%= paginate @array, :outer_window => 3 %>
     <% end %>
+  </div>
+
+  <% archive_html = archive_links([@content_first]) %>
+  <% unless archive_html.blank? %>
+    <div class="col-xs-3">
+      <%= content_tag :div, archive_html, :class => "js-archive archive" %>
+    </div>
+  <% end %>
+
   </div>
 <% end %>

@@ -5,6 +5,7 @@
  * = require vendor/jscrollpane
  * = require vendor/jcarousel
  * = require actual
+ * = require archive_collapser
  * = require banners
  * = require main
  */
