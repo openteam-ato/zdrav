@@ -1,0 +1,33 @@
+.content .subnavigation
+  > ul
+    font-size: 14px
+    border: 1px solid #d9d9d9
+    +border-radius(3px)
+    margin-bottom: 20px
+
+    li
+      border-bottom: 1px solid #d9d9d9
+      padding: 5px 15px 7px
+
+      &:last-child
+        border-bottom: 0
+
+      &.selected
+        > a
+          color: inherit
+          text-decoration: none
+
+    .has_children
+      ul
+        display: none
+
+      &.selected
+        padding-bottom: 0
+
+        ul
+          display: block
+          border-top: 1px solid #d9d9d9
+          margin: 6px -15px 0
+
+          li
+            padding-left: 30px

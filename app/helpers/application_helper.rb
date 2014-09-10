@@ -5,7 +5,10 @@ module ApplicationHelper
     return '' if hash.nil? || hash.empty?
     content_tag :ul do
       hash.map do |key, value|
-        content_tag :li, :class => value['selected'] ? 'selected' : nil do
+        css_class = []
+        css_class << 'selected' if value['selected']
+        css_class << 'has_children' if value['children']
+        content_tag :li, :class => css_class.any? ? css_class.join(' ') : nil do
           render_link_for_navigation(value) + render_navigation(value['children'])
         end
       end.join.html_safe
