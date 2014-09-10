@@ -1,0 +1,53 @@
+<div class="page-header purple">
+  <%= object.title %>
+</div>
+
+<div class="news-item col-xs-9">
+  <div class="date">
+    <%= l Date.parse(object.since) %>
+  </div>
+
+  <div class="annotation">
+    <%= raw object.annotation %>
+  </div>
+
+  <% unless object.images.blank? %>
+    <div class="annotation-image pull-left">
+      <%= image_tag object.images.first.thumbnail.url,
+          :alt => object.images.first.description,
+          :width => object.images.first.thumbnail.width,
+          :height => object.images.first.thumbnail.height %>
+    </div>
+  <% end %>
+
+  <%= raw object.body %>
+
+  <% if object.source.present? %>
+    <div class="source">
+      Источник: <%= link_to object.source, object.source_link %>
+    </div>
+  <% end %>
+
+  <% if !object.images.blank? && object.images.count > 1 %>
+    <div class="galleria-wrapper">
+      <div id="galleria">
+        <% object.images.each do |image| %>
+          <%= galleria_link(image) %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="more-like-this col-xs-3">
+  <h4>Другие новости</h4>
+
+  <ul>
+    <% object.more_like_this.each do |item| %>
+      <li>
+        <div class="date"><%= l Date.parse(item.since) %></div>
+        <%= link_to item.title, item.link, :title => item.title %>
+      </li>
+    <% end %>
+  </ul>
+</div>

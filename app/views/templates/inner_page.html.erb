@@ -6,6 +6,6 @@
   </div>
 
   <div class='col-xs-9'>
-    <%= render :partial => 'regions/news_list', :locals => { :object => @content_first.content } if @content_first.present? %>
+    <%= render_partial_for_region(@content_first, 'full') if @content_first.present? %>
   </div>
 </div>
