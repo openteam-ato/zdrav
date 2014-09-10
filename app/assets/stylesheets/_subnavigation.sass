@@ -9,6 +9,9 @@
       border-bottom: 1px solid #d9d9d9
       padding: 5px 15px 7px
 
+      a
+        display: block
+
       &:last-child
         border-bottom: 0
 
@@ -18,11 +21,30 @@
           text-decoration: none
 
     .has_children
+
+      > a
+        position: relative
+
+        &:after
+          right: 0
+          bottom: 0
+          border: solid transparent
+          content: ''
+          width: 0
+          position: absolute
+          border-top-color: #015fa9
+          border-width: 5px
+
       ul
         display: none
 
       &.selected
         padding-bottom: 0
+
+        > a:after
+          bottom: 5px
+          border-top-color: transparent
+          border-bottom-color: #000
 
         ul
           display: block
