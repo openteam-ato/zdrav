@@ -1,6 +1,6 @@
 <ul>
   <% object.values.first['children'].each do |name, item| %>
-    <li class="<%= name.gsub('-', '_') %><%= ' active' if item['selected'] && item['children'] %>">
+    <li class="<%= name.gsub('-', '_') %><%= ' selected' if item['selected'] && item['children'] %>">
       <%= render_link_for_navigation item %>
       <% if item['children'] %>
         <div class='submenu'>

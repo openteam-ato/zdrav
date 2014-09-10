@@ -78,7 +78,7 @@
         &.dlya_naseleniya:after
           background-color: #ff0a7f
 
-        &.press_tsentr:after
+        &.press_centr:after
           background-color: #ff0a7f
 
         &.dokumenty:after
@@ -109,6 +109,50 @@
             width: 1px
             height: 100%
             background: #c2c2c2
+
+        &.selected
+          &:hover > a:before
+            display: none
+
+          > a
+            position: relative
+
+            &:after,
+            &:before
+              bottom: -5px
+              left: 50%
+              border: solid transparent
+              content: ''
+              height: 0
+              width: 0
+              position: absolute
+              pointer-events: none
+
+            &:after
+              border-bottom-color: #fff
+              border-width: 10px
+              margin-left: -10px
+              z-index: 10
+
+            &:before
+              border-bottom-color: #c2e1f5
+              border-width: 13px
+              margin-left: -13px
+
+          &.departament > a:before
+            border-bottom-color: #69c300
+
+          &.zdravoohranenie_v_tomskoy_oblasti > a:before
+            border-bottom-color: #facb00
+
+          &.dlya_naseleniya > a:before
+            border-bottom-color: #ff0a7f
+
+          &.press_centr > a:before
+            border-bottom-color: #ff0a7f
+
+          &.dokumenty > a:before
+            border-bottom-color: #ff0a7f
 
     .submenu
       display: none
