@@ -1,9 +1,10 @@
 .content
 
   .page-header
+    border-bottom: 3px solid #eee
+    color: #1c5379
     font-size: 20px
     margin: 0 0 15px
-    border-bottom: 3px solid #eee
 
     &.green
       border-bottom-color: #69c300
@@ -26,7 +27,7 @@
     text-align: right
     background-color: pink
 
-  .news
+  .news, .announcements
     padding: 0 15px 0 0
 
     li
@@ -96,6 +97,19 @@
 
     li
       margin: 15px 0
+
+  .announcements
+    padding: 0 15px 0 0
+
+    li
+      +clearfix
+
+    .info
+      padding: 5px 0 0 0
+
+    .date
+      color: #000
+      font-weight: bold
 
   .date
     color: #9a9a9a

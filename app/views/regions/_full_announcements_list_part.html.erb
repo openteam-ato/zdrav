@@ -1,0 +1,40 @@
+<div class='page-header <%= header_css_class %>'>
+  <%= object.title %>
+</div>
+
+<% if object.items.any? %>
+  <div class="announcements col-xs-12">
+    <ul>
+      <% object.items.each do |item| %>
+        <li>
+          <div class="info col-xs-2">
+            <div class="date">
+              <%= l item.since.to_date, :format => '%d %B %Y' %>
+            </div>
+
+            <div class="time">
+              <%= l item.since.to_time, :format => '%H:%M' %>
+            </div>
+          </div>
+
+          <div class="announcement col-xs-10">
+            <%= link_to item.title, item.link, :title => item.title %>
+
+            <% if item.annotation %>
+              <div class="annotation">
+                <%= item.annotation.html_safe %>
+              </div>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+
+    <% if object.pagination %>
+      <% @array = object.items %>
+      <% @array = Kaminari.paginate_array(@array, :total_count => object.pagination.total_count).page(object.pagination.current_page).per(object.pagination.per_page) %>
+
+      <%= paginate @array, :outer_window => 3 %>
+    <% end %>
+  </div>
+<% end %>
