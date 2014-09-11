@@ -1,0 +1,16 @@
+<%= link_to paper.link ? paper.link : paper.attachment_url, :class => "icon #{extension(paper.attachment_url)}" do %>
+  <%= paper.title %>
+<% end %>
+
+<p class="text-muted">
+  <%= paper.authority %>,
+
+  <% if paper.approved_on %>
+    <span class="kind"><%= paper.kind %></span>
+    <%= "#{t('paper_of')} #{l(paper.approved_on.to_date)}" %>
+    <%= "№ #{paper.number}" if paper.number %>
+  <% else %>
+    <span class="kind"><%= paper.kind %></span>,
+    <%= "#{t('published_on')} #{l(paper.published_on.to_date)}" %>
+  <% end %>
+</p>

@@ -60,3 +60,24 @@
 
       &:active
         +background(linear-gradient(top, #e0e0e0, #eeeeee))
+
+.documents-form
+  .input
+    +inline-block
+    border: 1px solid #cdcdcd
+    outline: none
+    padding: 2.5px 5px
+    width: 50%
+
+    &:focus
+      border-color: #999
+
+  .submit
+    +inline-block
+    background-color: #f3f3f3
+    border: 1px solid #c1c1c1
+    outline: none
+    +background(linear-gradient(top, #eeeeee, #e0e0e0))
+
+    &:active
+      +background(linear-gradient(top, #e0e0e0, #eeeeee))

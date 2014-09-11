@@ -4,3 +4,28 @@ ru:
       previous: '&larr;'
       next: '&rarr;'
       truncate: ...
+
+  asserts: утверждает
+  cancels: отменяет
+  changes: изменяет
+
+  canceled: утратил силу
+
+  paper_of: от
+  published_on: опубликовано
+
+  rss_documents: RSS нормативных документов
+
+  find: Искать
+
+  documents:
+    one: "%{count} документ"
+    few: "%{count} документа"
+    many: "%{count} документов"
+    other: "%{count} документы"
+
+  projects:
+    one: "%{count} проект"
+    few: "%{count} проекта"
+    many: "%{count} проектов"
+    other: "%{count} проекты"

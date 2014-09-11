@@ -1,0 +1,18 @@
+<h1 class='page-header <%= header_css_class %>'><%= object.title %></h1>
+
+<div class="row documents col-xs-12">
+
+  <div class="col-xs-9">
+    <strong><%= object.authority %></strong>, <%= object.kind.mb_chars.downcase %><%= " №#{object.number}" if object.number %>
+
+    <% if object.approved_on? %>
+      <p>Утверждён: <%= l object.approved_on.to_date %></p>
+    <% else %>
+      <p>Опубликован: <%= l object.published_on.to_date %></p>
+    <% end %>
+  </div>
+
+  <div class="col-xs-3">
+    <%= link_to "Скачать #{object.kind.mb_chars.downcase}".html_safe, object.attachment_url, :class => "icon #{extension(object.attachment_url)}" %>
+  </div>
+</div>
