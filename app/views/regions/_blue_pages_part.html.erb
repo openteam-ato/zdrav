@@ -16,7 +16,7 @@
           <div class='value'><%= object.phones %></div>
         </div>
       <% end %>
-      <% if object.emails.any? %>
+      <% if object.emails.present? %>
         <div class='contact'>
           <div class='label'>Email</div>
           <div class='value'><%= object.emails.map{ |email| mail_to email }.join(', ').html_safe %></div>
@@ -27,5 +27,30 @@
   </div>
 
   <div class='col-xs-3'>
+    <% chief = object.items.first %>
+    <div class='department-chief'>
+      <div class='position'>
+        <%= chief.title %>
+      </div>
+      <div class='photo'>
+        <%= link_to image_tag(resized_image_url(chief.image_url, 188, 324), :size => '188x324', :alt => chief.person), chief.link %>
+      </div>
+      <div class='person'>
+        <%= link_to chief.person, chief.link %>
+      </div>
+      <div class='phones'>
+        <%= chief.phones %>
+      </div>
+      <% if chief.address.present? && chief.address != object.address %>
+        <div class='address'>
+          <%= chief.address %>
+        </div>
+      <% end %>
+      <% if chief.emails.present? %>
+        <div class='email'>
+          Email: <%= chief.emails.map{ |email| mail_to email }.join(', ').html_safe %>
+      </div>
+    <% end %>
+    </div>
   </div>
 </div>

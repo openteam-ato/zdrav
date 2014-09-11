@@ -29,6 +29,18 @@ ul
   li
     list-style-type: none
 
+=unorder_list_style
+  ul li
+    position: relative
+    padding-left: 15px
+
+    &:before
+      display: block
+      content: '–'
+      position: absolute
+      left: 0
+      top: 0
+
 .rss
   +inline-block
   background: image_url('rss.png') no-repeat
