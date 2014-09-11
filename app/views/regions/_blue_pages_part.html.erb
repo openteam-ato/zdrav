@@ -1,1 +1,31 @@
-<h1 class='page-header <%= header_css_class %>'><%= part_title %></h1>
+<h1 class='page-header <%= header_css_class %>'><%= part_title.presence || object.title %></h1>
+
+<div class='department row'>
+  <div class='col-xs-9'>
+    <div class='department-contacts'>
+      <%= render_partial_for_region(@regulation, 'regulation') if @regulation.present? %>
+      <% if object.address.present? %>
+        <div class='contact'>
+          <div class='label'>Адрес</div>
+          <div class='value'><%= object.address %></div>
+        </div>
+      <% end %>
+      <% if object.phones.present? %>
+        <div class='contact'>
+          <div class='label'>Телефон</div>
+          <div class='value'><%= object.phones %></div>
+        </div>
+      <% end %>
+      <% if object.emails.any? %>
+        <div class='contact'>
+          <div class='label'>Email</div>
+          <div class='value'><%= object.emails.map{ |email| mail_to email }.join(', ').html_safe %></div>
+        </div>
+      <% end %>
+      <%= content_tag :div, object.dossier.html_safe, :class => :dossier if object.dossier.present? %>
+    </div>
+  </div>
+
+  <div class='col-xs-3'>
+  </div>
+</div>

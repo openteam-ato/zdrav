@@ -1,0 +1,5 @@
+<div class='regulation'>
+  <% object.gallery_pictures.each do |item| %>
+    <%= link_to item.description, item.picture_url, :class => 'icon pdf' %>
+  <% end %>
+</div>

@@ -1,5 +1,16 @@
 .content
 
+  ul li
+    position: relative
+    padding-left: 15px
+
+    &:before
+      display: block
+      content: '–'
+      position: absolute
+      left: 0
+      top: 0
+
   .breadcrumbs
     font-size: 11px
     margin-bottom: 10px
@@ -19,18 +30,6 @@
 
     &.purple
       border-bottom-color: #ff0a7f
-
-  .left
-    text-align: left
-    background-color: pink
-
-  .center
-    text-align: center
-    background-color: pink
-
-  .right
-    text-align: right
-    background-color: pink
 
   .news, .announcements
     padding: 0 15px 0 0
