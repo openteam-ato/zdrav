@@ -1,0 +1,12 @@
+<h1 class='page-header <%= header_css_class %>'><%= object.title %></h1>
+
+<div class="galleria-wrapper">
+  <div id="galleria" class="js-galleria">
+    <% object.images.each do |picture| %>
+      <%= galleria_link(picture) %>
+
+      <p><%= picture.description %></p>
+    <% end  %>
+  </div>
+
+</div>

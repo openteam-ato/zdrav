@@ -1,0 +1,215 @@
+/*
+ * Galleria TGR Theme
+ * Copyright (c) 2012, OpenTeam
+ * Licensed under the MIT license.
+
+.galleria_wrapper
+  +clearfix
+  width: 100%
+
+#galleria
+  +clearfix
+  margin: 23px 0 0 0
+  padding: 0 0 25px 0
+  width: 100%
+
+  .galleria-container
+    +clearfix
+    background: transparent
+    height: auto !important
+    position: relative
+    width: 848px
+
+    .galleria-stage
+      +clearfix
+      border: 1px solid #858482
+      float: left
+      height: 425px
+      margin: 0 21px 0 0
+      width: 635px
+
+      .galleria-loader
+        display: none
+
+      .galleria-counter
+        display: none !important
+
+      .galleria-image-nav
+        height: 62px
+        left: 0
+        margin-top: -62px
+        position: absolute
+        top: 50%
+        width: 699px
+
+        div
+          background-image: image_url('galleria/classic-map_v2.png')
+          background-repeat: no-repeat
+
+        .galleria-image-nav-left
+          opacity: .3
+          filter: alpha(opacity = 50)
+          cursor: pointer
+          width: 62px
+          height: 124px
+          position: absolute
+          left: 10px
+          z-index: 2
+          background-position: 0 46px
+
+        .galleria-image-nav-right
+          opacity: .3
+          filter: alpha(opacity = 50)
+          cursor: pointer
+          width: 62px
+          height: 124px
+          position: absolute
+          left: 10px
+          z-index: 2
+          background-position: 0 46px
+          left: auto
+          right: 10px
+          background-position: -254px 46px
+          z-index: 2
+
+        .galleria-image-nav-left:hover, .galleria-image-nav-right:hover
+          opacity: 1
+          filter: alpha(opacity = 100)
+
+    .galleria-thumbnails-container
+      +clearfix
+      background: #d9d9d9
+      bottom: 0
+      height: 425px !important
+      left: auto
+      position: absolute
+      right: 0
+      top: 0
+      width: 200px
+      z-index: 2
+
+      .galleria-thumb-nav-up, .galleria-thumb-nav-down
+        position: absolute
+        height: 30px
+        left: 0
+        z-index: 3
+        width: 100%
+
+        &:hover
+          cursor: pointer
+
+      .galleria-thumb-nav-up, .galleria-thumb-nav-down
+        background: #fff image_url('galleria/buttons.png') no-repeat 0 0
+
+      .galleria-thumb-nav-up
+        top: 0
+
+        &:hover
+          background-position: -340px 0
+
+      .galleria-thumb-nav-down
+        background-position: 0 -99px
+        margin: 40px 0 0 0
+
+        &:hover
+          background-position: -340px -99px
+
+      .galleria-thumbnails-list
+
+        .galleria-thumbnails
+          height: auto !important
+          width: 200px !important
+
+          .galleria-image
+            border: 3px solid #d9d9d9
+            cursor: pointer
+            height: 116px !important
+            margin: 5px auto
+            width: 175px !important
+
+            img
+              height: 116px
+              margin: 0 auto
+              width: 175px
+
+            &.last
+              margin: 0 auto
+
+          .active
+            border: 3px solid #dd2182
+            height: 116px !important
+            width: 175px !important
+
+    .galleria-info
+      +clearfix
+      clear: both
+      width: 699px
+
+      .galleria-info-link
+        display: none
+
+      .galleria-info-text
+        +clearfix
+
+        .galleria-info-title
+          color: #333
+          font-size: 11px
+          line-height: 14px
+          padding: 10px 7px 0
+          width: 685px
+
+    .galleria-tooltip
+      display: none
+
+    .galleria-fullscreen
+      background-image: image_url('galleria/classic-map_v2.png')
+      background-color: #000
+      background-position: -829px -6px
+      cursor: pointer
+      filter: alpha(opacity = 70)
+      height: 20px
+      left: 15px
+      opacity: .7
+      position: absolute
+      top: 15px
+      width: 20px
+      z-index: 2
+
+    .galleria-fullscreen:hover, .fullscreen .galleria-fullscreen:hover
+      opacity: 1
+      filter: alpha(opacity = 100)
+
+  .fullscreen
+    background: rgba(00, 00, 00, 0.8)
+    bottom: 0
+
+    .galleria-fullscreen
+      background-color: #000
+      background-position: -829px -6px
+      background-position: -892px -6px
+      cursor: pointer
+      filter: alpha(opacity = 70)
+      height: 20px
+      left: 15px
+      opacity: .7
+      position: absolute
+      top: 15px
+      width: 20px
+      z-index: 2
+
+    .galleria-stage
+      border: none
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      right: 220px
+      height: auto !important
+      width: auto !important
+
+      .galleria-image-nav
+        width: 100%
+
+    .galleria-thumbnails-container
+      height: auto !important
+      bottom: 0

@@ -1,0 +1,40 @@
+<h1 class='page-header <%= header_css_class %>'><%= object.title %></h1>
+
+<% if object.items.any? %>
+  <div class="row fotoreports col-xs-9">
+    <ul>
+      <% object.items.each do |item| %>
+        <li class="media">
+          <div class="pull-left">
+            <% if item.images.any? && item.images.first  %>
+              <% image = item.images.first.thumbnail ? item.images.first.thumbnail : item.images.first %>
+              <%= image_tag image.url, :title => image.description, :width => image.width, :height => image.height, :class => 'media-object' %>
+            <% end %>
+          </div>
+
+          <div class="media-body">
+            <%= link_to item.title, item.link, :title => item.title %>
+
+            <p class="text-muted">Фотографий: <%= item.images.size %></p>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+
+    <% if object.pagination %>
+      <% @array = object.items %>
+      <% @array = Kaminari.paginate_array(@array, :total_count => object.pagination.total_count).page(object.pagination.current_page).per(object.pagination.per_page) %>
+
+      <%= paginate @array, :outer_window => 3 %>
+    <% end %>
+  </div>
+
+  <% archive_html = archive_links([@content_first]) %>
+  <% unless archive_html.blank? %>
+    <div class="col-xs-3">
+      <%= content_tag :div, archive_html, :class => "js-archive archive" %>
+    </div>
+  <% end %>
+
+  </div>
+<% end %>

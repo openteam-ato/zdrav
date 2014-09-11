@@ -1,7 +1,7 @@
 <h1 class='page-header <%= header_css_class %>'><%= object.title %></h1>
 
 <% if object.items.any? %>
-  <div class="news col-xs-9">
+  <div class="row news col-xs-9">
     <ul>
       <% object.items.each do |item| %>
         <li>
@@ -22,7 +22,7 @@
           <% if item.source.present? %>
             <div class="source">
               Источник: <%= link_to object.source, object.source_link %>
-          </div>
+            </div>
           <% end %>
         </li>
       <% end %>
