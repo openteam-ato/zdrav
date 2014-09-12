@@ -7,6 +7,7 @@ group :assets do
   gem 'font-awesome-sass'
   gem 'jquery-rails', '= 2.1.4'
   gem 'sass-rails'
+  gem 'sass', '~> 3.2.15'
   gem 'turbo-sprockets-rails3'
   gem 'uglifier'
 end

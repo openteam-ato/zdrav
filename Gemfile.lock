@@ -75,18 +75,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    compass (1.0.1)
+    compass (0.12.7)
       chunky_png (~> 1.2)
-      compass-core (~> 1.0.1)
-      compass-import-once (~> 1.0.5)
-      rb-fsevent (>= 0.9.3)
-      rb-inotify (>= 0.9)
-      sass (>= 3.3.13, < 3.5)
-    compass-core (1.0.1)
-      multi_json (~> 1.0)
-      sass (>= 3.3.0, < 3.5)
-    compass-import-once (1.0.5)
-      sass (>= 3.2, < 3.5)
+      fssm (>= 0.2.7)
+      sass (~> 3.2.19)
     compass-rails (2.0.0)
       compass (>= 0.12.2)
     configliere (0.4.18)
@@ -110,9 +102,9 @@ GEM
     eventmachine (1.0.3)
     execjs (2.0.2)
     fastercsv (1.5.5)
-    ffi (1.9.3)
     font-awesome-sass (4.1.0)
       sass (~> 3.2)
+    fssm (0.2.10)
     gilenson (1.2.2)
     haml (4.0.5)
       tilt
@@ -183,9 +175,6 @@ GEM
       thor (>= 0.14.6, < 2.0)
     raindrops (0.12.0)
     rake (10.3.2)
-    rb-fsevent (0.9.4)
-    rb-inotify (0.9.5)
-      ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
     ruby2ruby (2.1.2)
@@ -197,7 +186,7 @@ GEM
       i18n (>= 0.5.0)
     rvm-capistrano (1.5.1)
       capistrano (~> 2.15.4)
-    sass (3.4.3)
+    sass (3.2.19)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -270,6 +259,7 @@ DEPENDENCIES
   rack-utf8_sanitizer
   rails (~> 3.2.12)
   russian
+  sass (~> 3.2.15)
   sass-rails
   simple-rss
   simple_form
