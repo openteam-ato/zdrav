@@ -1,6 +1,6 @@
 <h1 class='page-header <%= header_css_class %>'><%= object.title %></h1>
 
-<div class="row documents col-xs-12">
+<div class="documents col-xs-12">
   <%= form_tag object.action, :method => :get, :class => 'documents-form' do %>
     <%= text_field_tag 'parts_params[documents][keywords]', object.keywords, :class => 'input', :placeholder => 'Поиск' %>
     <%= submit_tag t('find'), :class => 'submit' %>
