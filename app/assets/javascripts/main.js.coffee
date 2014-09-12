@@ -4,5 +4,6 @@ $ ->
   init_banners() if $('.js-banners').length
   init_archive_collapser() if $('.js-archive').length
   init_galleria() if $('.js-galleria').length
+  init_iframe_resize() if $('#autoIframe').length
 
   return

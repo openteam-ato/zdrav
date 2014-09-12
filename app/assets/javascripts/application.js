@@ -9,5 +9,6 @@
  * = require archive_collapser
  * = require banners
  * = require fotoreports
+ * = require iframe_resizer
  * = require main
  */
