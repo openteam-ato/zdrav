@@ -1,5 +1,7 @@
 <h1 class='page-header <%= header_css_class %>'><%= part_title.presence || object.title %></h1>
 
+<% chief = object.items.shift %>
+
 <div class='department row'>
   <div class='col-xs-9'>
     <div class='department-contacts'>
@@ -22,12 +24,21 @@
           <div class='value'><%= object.emails.map{ |email| mail_to email }.join(', ').html_safe %></div>
         </div>
       <% end %>
-      <%= content_tag :div, object.dossier.html_safe, :class => :dossier if object.dossier.present? %>
     </div>
+    <div class='department-structure'>
+      <h3><%= @page_title %></h3>
+      <% object.items.each do |employee| %>
+        <div class='employee'>
+          <%= employee.person %>
+        </div>
+      <% end %>
+    </div>
+    <div class='department-subdivisions'>
+    </div>
+    <%= content_tag :div, object.dossier.html_safe, :class => :dossier if object.dossier.present? %>
   </div>
 
   <div class='col-xs-3'>
-    <% chief = object.items.first %>
     <div class='department-chief'>
       <div class='position'>
         <%= chief.title %>
@@ -38,19 +49,19 @@
       <div class='person'>
         <%= link_to chief.person, chief.link %>
       </div>
-      <div class='phones'>
-        <%= chief.phones %>
-      </div>
-      <% if chief.address.present? && chief.address != object.address %>
-        <div class='address'>
-          <%= chief.address %>
+      <% if chief.phones.present? || (chief.address.present? && chief.address != object.address) || chief.emails.present? %>
+        <div class='contacts'>
+          <% if chief.phones.present? %>
+            <div class='phones'><%= chief.phones %></div>
+          <% end %>
+          <% if chief.address.present? && chief.address != object.address %>
+            <div class='address'><%= chief.address %></div>
+          <% end %>
+          <% if chief.emails.present? %>
+            <div class='email'>Email: <%= chief.emails.map{ |email| mail_to email }.join(', ').html_safe %></div>
+          <% end %>
         </div>
       <% end %>
-      <% if chief.emails.present? %>
-        <div class='email'>
-          Email: <%= chief.emails.map{ |email| mail_to email }.join(', ').html_safe %>
-      </div>
-    <% end %>
     </div>
   </div>
 </div>
