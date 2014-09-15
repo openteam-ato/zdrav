@@ -1,6 +1,15 @@
 Zdrav::Application.routes.draw do
   mount ElVfsClient::Engine => '/'
 
+  devise_for :users, :path => 'auth',
+    :controllers => {:omniauth_callbacks => 'sso_auth/omniauth_callbacks'},
+    :skip => [:sessions]
+
+  devise_scope :users do
+    get 'sign_out' => 'sso-auth/sessions#destroy', :as => :destroy_user_session
+    get 'sign_in' => redirect('/auth/auth/identity'), :as => :new_user_session
+  end
+
   namespace :manage do
     resources :thanks, :except => :show
 
@@ -11,7 +20,7 @@ Zdrav::Application.routes.draw do
 
   get "/ru/dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov" => 'thanks#index', :as => :thanks
 
-  get '/(*path)', :to => 'main#index'
+  get '/ru/(*path)', :to => 'main#index'
 
   root :to => 'main#index'
 end
