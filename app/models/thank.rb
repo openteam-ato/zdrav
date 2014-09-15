@@ -4,5 +4,12 @@ class Thank < ActiveRecord::Base
   extend Enumerize
   enumerize :state, :in => [:draft, :published], :default => :draft, :predicates => true
 
-  scope :published, where(:state => :published)
+  scope :by_state, ->(state) { where(:state => state).ordered }
+  scope :ordered,   ->{ order('created_at desc') }
+  scope :published, by_state(:published)
+
+  def change!
+    self.state = (state.draft? ? :published : :draft)
+    self.save
+  end
 end

@@ -301,6 +301,7 @@ DEPENDENCIES
   esp-commons
   font-awesome-sass
   gilenson
+  has_scope
   hashie
   hirb
   inherited_resources

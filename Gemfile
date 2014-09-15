@@ -19,6 +19,7 @@ group :default do
   gem 'enumerize'
   gem 'esp-commons'
   gem 'gilenson'
+  gem 'has_scope'
   gem 'hashie'
   gem 'inherited_resources'
   gem 'kaminari'
