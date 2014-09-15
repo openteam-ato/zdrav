@@ -21,6 +21,10 @@ ru:
   save:    Сохранить
   confirm: Вы уверены?
 
+  change:
+    draft:     Опубликовать
+    published: В неопубликованные
+
   find: Искать
 
   documents:
@@ -34,3 +38,9 @@ ru:
     few: "%{count} проекта"
     many: "%{count} проектов"
     other: "%{count} проекты"
+
+  enumerize:
+    thank:
+      state:
+        draft:     Не опубликовано
+        published: Опубликовано

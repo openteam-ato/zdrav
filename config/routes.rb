@@ -19,6 +19,7 @@ Zdrav::Application.routes.draw do
   namespace :manage do
     resources :thanks, :except => :show do
       get ':by_state' => 'thanks#index', :on => :collection, :as => :by_state, :constraints => { :by_state => :draft }
+      put 'change' => 'thanks#change', :on => :member, :as => :change
     end
 
     root :to => 'thanks#index'

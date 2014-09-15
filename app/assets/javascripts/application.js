@@ -8,6 +8,7 @@
  * = require vendor/galleria
  * = require actual
  * = require archive_collapser
+ * = require ajaxed
  * = require banners
  * = require fotoreports
  * = require iframe_resizer
