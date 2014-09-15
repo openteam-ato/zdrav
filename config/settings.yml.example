@@ -1,6 +1,9 @@
 app:
   secret:       SECRET
 
+devise:
+  secret:     	SECRET
+
 errors:
   key:          KEY
   url:          http://errors
@@ -11,4 +14,9 @@ sso:
   url:          http://esp-sso
 
 storage:
-  url:         http://esp-storage
+  url:          http://esp-storage
+
+sso:
+  url:          http://esp-sso
+  key:          KEY
+  secret:       SECRET

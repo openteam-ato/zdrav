@@ -1,0 +1,8 @@
+<%= simple_form_for [:manage, @thank],
+                    :defaults => { :input_html => { :class => 'form-control' }, :wrapper_html => { :class => 'form-group' } } do |f| %>
+
+  <%= f.input :fullname %>
+  <%= f.input :email %>
+  <%= f.input :message %>
+  <%= f.submit I18n.t('save'), :class => 'button' %>
+<% end %>

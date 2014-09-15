@@ -1,13 +1,3 @@
-<%= content_for :app_page_title do %>
-  <%= content_for?(:page_title) ? yield(:page_title) : "#{@page_title} — #{strip_tags(@site_name.content.body)}".squish %>
-<% end %>
-
-<%= content_for :entry_date do %>
-  <% if entry_date %>
-    <meta name='entry_date' content='<%= entry_date %>'>
-  <% end %>
-<% end %>
-
 <%= content_for :content do %>
   <%= render :partial => 'header' %>
   <%= render :partial => 'main_menu' %>

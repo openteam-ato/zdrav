@@ -16,6 +16,11 @@ ru:
 
   rss_documents: RSS нормативных документов
 
+  destroy: Удалить
+  edit:    Редактировать
+  save:    Сохранить
+  confirm: Вы уверены?
+
   find: Искать
 
   documents:

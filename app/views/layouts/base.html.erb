@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang='ru'>
+<head>
+  <title><%= yield :app_page_title %></title>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <%= favicon_link_tag %>
+  <%= stylesheet_link_tag    'application', :media => 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <!--[if lte IE 7]>
+  <%= stylesheet_link_tag    "stop_ie/application" %>
+  <%= javascript_include_tag "stop_ie/application" %>
+  <![endif]-->
+  <%= csrf_meta_tags %>
+  <%= yield :entry_date %>
+</head>
+<body>
+  <%= yield :content %>
+</body>
+</html>
