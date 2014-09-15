@@ -10,15 +10,15 @@ Zdrav::Application.routes.draw do
     get 'sign_in' => redirect('/auth/auth/identity'), :as => :new_user_session
   end
 
+  scope 'ru' do
+    get 'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov' => 'thanks#index', :as => :thanks
+  end
+
   namespace :manage do
     resources :thanks, :except => :show
 
     root :to => 'thanks#index'
   end
-
-  resources :thanks, :only => :index
-
-  get "/ru/dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov" => 'thanks#index', :as => :thanks
 
   get '/ru/(*path)', :to => 'main#index'
 

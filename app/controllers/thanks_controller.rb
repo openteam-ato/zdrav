@@ -1,14 +1,17 @@
-class ThanksController < ApplicationController
-  inherit_resources
-
+class ThanksController < MainController
   layout 'public'
 
-  actions :index
-
   def index
-    index!{
-      @page_title = 'foo'
-      @site_name = 'bar'
-    }
+    render :file => "#{Rails.root}/public/404", :formats => [:html], :layout => false and return if request_status == 404
+
+    page_regions.each do |region|
+      eval "@#{region} = page.regions.#{region}"
+    end
+
+    @thanks = Thank.all
+
+    @page_title = page.title
+    @page_meta = page.meta
+    @link_to_json = remote_url
   end
 end
