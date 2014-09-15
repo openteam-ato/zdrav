@@ -20,3 +20,7 @@ sso:
   url:          http://esp-sso
   key:          KEY
   secret:       SECRET
+
+recaptcha:
+  private:      SECRET
+  public:       SECRET

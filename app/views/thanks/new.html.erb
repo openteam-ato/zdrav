@@ -4,5 +4,7 @@
   <%= f.input :fullname %>
   <%= f.input :email %>
   <%= f.input :message %>
+  <%= recaptcha_tags :display => { :theme => 'white' }, :ajax => true %>
+
   <%= f.submit I18n.t('save'), :class => 'button' %>
 <% end %>

@@ -8,6 +8,8 @@ class Thank < ActiveRecord::Base
   scope :ordered,   ->{ order('created_at desc') }
   scope :published, by_state(:published)
 
+  validates_presence_of :fullname, :message
+
   def change!
     self.state = (state.draft? ? :published : :draft)
     self.save

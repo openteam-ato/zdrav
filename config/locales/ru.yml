@@ -25,6 +25,9 @@ ru:
     draft:     Опубликовать
     published: В неопубликованные
 
+  recaptcha:
+    failure: Текст с картинки введен неправильно
+
   find: Искать
 
   documents:

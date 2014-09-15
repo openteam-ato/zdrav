@@ -26,6 +26,7 @@ group :default do
   gem 'openteam-commons'
   gem 'rack-utf8_sanitizer'
   gem 'rails',                    '~> 3.2.12'
+  gem 'recaptcha',                :require => 'recaptcha/rails'
   gem 'russian'
   gem 'simple-rss'
   gem 'simple_form'
