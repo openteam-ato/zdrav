@@ -16,6 +16,7 @@ group :default do
   gem 'curb'
   gem 'devise',                   '= 2.2.4'
   gem 'el_vfs_client'
+  gem 'enumerize'
   gem 'esp-commons'
   gem 'gilenson'
   gem 'hashie'

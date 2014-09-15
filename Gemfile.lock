@@ -99,6 +99,8 @@ GEM
       configliere
       curb
       rails
+    enumerize (0.8.0)
+      activesupport (>= 3.2)
     erubis (2.7.0)
     esp-commons (0.5.3)
       active_attr
@@ -295,6 +297,7 @@ DEPENDENCIES
   curb
   devise (= 2.2.4)
   el_vfs_client
+  enumerize
   esp-commons
   font-awesome-sass
   gilenson

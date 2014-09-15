@@ -8,7 +8,7 @@ class ThanksController < MainController
       eval "@#{region} = page.regions.#{region}"
     end
 
-    @thanks = Thank.all
+    @thanks = Thank.published
 
     @page_title = page.title
     @page_meta = page.meta

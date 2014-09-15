@@ -4,6 +4,7 @@ class CreateThanks < ActiveRecord::Migration
       t.string :fullname
       t.string :email
       t.text :message
+      t.string :state
 
       t.timestamps
     end
