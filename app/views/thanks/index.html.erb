@@ -1,17 +1,3 @@
-<div class='content row'>
-  <div class='col-xs-3'>
-    <div class='subnavigation'>
-      <%= render_partial_for_region(@subnavigation, 'sub') if @subnavigation.present? %>
-    </div>
-  </div>
-
-  <div class='col-xs-9'>
-    <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
-    <%= render_partial_for_region(@content_first, 'full') if @content_first.present? %>
-    <%= render_partial_for_region(@content_second) if @content_second.present? %>
-
-    <ul>
-      <%= render @thanks %>
-    </ul>
-  </div>
-</div>
+<ul>
+  <%= render @thanks %>
+</ul>

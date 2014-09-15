@@ -11,7 +11,9 @@ Zdrav::Application.routes.draw do
   end
 
   scope 'ru' do
-    get 'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov' => 'thanks#index', :as => :thanks
+    get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                      => 'thanks#index',  :as => :thanks
+    get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov/dobavit-blagodarnost' => 'thanks#new',    :as => :new_thank
+    post 'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                      => 'thanks#create', :as => :create_thank
   end
 
   namespace :manage do

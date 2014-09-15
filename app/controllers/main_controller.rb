@@ -2,23 +2,27 @@ class MainController < ApplicationController
 
   helper_method :cms_address
 
+  before_filter :prepare_cms, :only => [:index, :new]
+
   def index
-    render :file => "#{Rails.root}/public/404", :formats => [:html], :layout => false and return if request_status == 404
-
-    page_regions.each do |region|
-      eval "@#{region} = page.regions.#{region}"
-    end
-
-    @page_title = page.title
-    @page_meta = page.meta
-    @link_to_json = remote_url
-
     respond_to  do |format|
       format.html { render "templates/#{page.template}" }
     end
   end
 
   private
+    def prepare_cms
+      render :file => "#{Rails.root}/public/404", :formats => [:html], :layout => false and return if request_status == 404
+
+      page_regions.each do |region|
+        eval "@#{region} = page.regions.#{region}"
+      end
+
+      @page_title = page.title
+      @page_meta = page.meta
+      @link_to_json = remote_url
+    end
+
     def cms_address
       "#{Settings['cms.url']}/nodes/#{Settings['cms.site_slug']}"
     end
