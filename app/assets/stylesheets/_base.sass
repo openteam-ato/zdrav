@@ -41,6 +41,12 @@ ul
       left: 0
       top: 0
 
+.list-bordered
+  li
+    border-bottom: 1px solid #e0e0e0
+    margin: 10px 0 0 0
+    padding: 0 0 10px 0
+
 table
   .caption
     background: #f2f2f2
@@ -56,6 +62,36 @@ table
     border-right: 1px solid #f2f2f2
     border-bottom: 1px solid #f2f2f2
     vertical-align: middle !important
+
+.docs
+  background: #fff  image_url('regulation.png') no-repeat center top
+  padding: 90px 0 0 25px
+  width: 170px
+
+  a
+    +inline-block
+    margin: 5px 0
+
+.slider
+  border-bottom: 1px solid #8ac22b
+  border-top: 1px solid #8ac22b
+  display: block
+  font-size: 14px
+  margin: 15px 0
+  padding: 10px 0
+  text-decoration: none
+
+  &.open
+    &:after
+      content: '\2013'
+      color: #8ac22b
+
+  &:after
+    content: '\2B'
+    color: #8ac22b
+    height: 16px
+    margin: 0 0 0 5px
+    width: 16px
 
 .rss
   +inline-block
