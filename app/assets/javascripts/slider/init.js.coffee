@@ -3,7 +3,8 @@
     $this = $(this)
 
     $this.toggleClass('open')
-    $this.siblings('.collapse').toggleClass('in')
+    $this.siblings('.collapse').slideToggle 'fast', ->
+      $(this).toggleClass('in')
 
     false
 

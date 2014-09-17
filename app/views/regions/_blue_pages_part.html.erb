@@ -39,11 +39,12 @@
         </div>
       <% end %>
     </div>
-
     <% if object.dossier.present? %>
       <div class='department-dossier'>
-        <h3>Цели и задачи департамента</h3>
-        <%= object.dossier.html_safe %>
+        <a href='#collapse' class='js-slider slider'>Цели и задачи департамента</a>
+        <div id='collapse' class='collapse'>
+          <%= object.dossier.html_safe %>
+        </div>
       </div>
     <% end %>
   </div>
