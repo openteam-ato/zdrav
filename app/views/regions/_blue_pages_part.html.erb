@@ -24,6 +24,12 @@
           <div class='value'><%= object.emails.map{ |email| mail_to email }.join(', ').html_safe %></div>
         </div>
       <% end %>
+      <% if object.mode.present? %>
+        <div class='contact'>
+          <div class='label'>Режим работы</div>
+          <div class='value'><%= object.mode %></div>
+        </div>
+      <% end %>
     </div>
     <div class='department-structure'>
       <h3><%= @page_title %></h3>
@@ -33,9 +39,13 @@
         </div>
       <% end %>
     </div>
-    <div class='department-subdivisions'>
-    </div>
-    <%= content_tag :div, object.dossier.html_safe, :class => :dossier if object.dossier.present? %>
+
+    <% if object.dossier.present? %>
+      <div class='department-dossier'>
+        <h3>Цели и задачи департамента</h3>
+        <%= object.dossier.html_safe %>
+      </div>
+    <% end %>
   </div>
 
   <div class='col-xs-3'>

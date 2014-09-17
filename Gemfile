@@ -36,11 +36,12 @@ group :default do
 end
 
 group :development do
-  gem 'brakeman', :require => false
+  gem 'brakeman',                 :require => false
   gem 'capistrano-unicorn',       '~> 0.1.7', :require => false
   gem 'hirb'
   gem 'openteam-capistrano'
-  gem 'quiet_assets' #, :require => false
+  gem 'quiet_assets' #,             :require => false
+  gem 'sqlite3'
   gem 'thin'
 end
 
