@@ -8,9 +8,11 @@
  * = require vendor/jscrollpane
  * = require vendor/jcarousel
  * = require vendor/galleria
+ * = require vendor/colorbox
  * = require actual
  * = require archive_collapser
  * = require ajaxed
+ * = require colorbox
  * = require banners
  * = require fotoreports
  * = require iframe_resizer

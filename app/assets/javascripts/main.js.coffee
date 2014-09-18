@@ -7,5 +7,6 @@ $ ->
   init_galleria() if $('.js-galleria').length
   init_iframe_resize() if $('#autoIframe').length
   init_slider() if $('.js-slider').length
+  init_colorbox() if $('a.colorbox').length
 
   return
