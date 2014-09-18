@@ -2,9 +2,15 @@
   $('.js-slider').on 'click', ->
     $this = $(this)
 
-    $this.toggleClass('open')
-    $this.siblings('.collapse').slideToggle 'fast', ->
-      $(this).toggleClass('in')
+    if $this.hasClass('open')
+      $this.siblings('.collapse').slideUp 'fast', ->
+        $this.removeClass('open')
+        $(this).removeClass('in')
+    else
+      $this.addClass('open')
+      $this.siblings('.collapse').slideDown 'fast', ->
+        $(this).addClass('in')
 
     false
 
+  return
