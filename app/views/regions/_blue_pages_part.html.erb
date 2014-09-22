@@ -59,8 +59,8 @@
                 <% end %>
                 <% if subdivision.subdivisions.any? %>
                   <ul class='children'>
-                    <% subdivision.subdivisions.each do |child| %>
-                      <li><%= link_to child.title, '#' %></li>
+                    <% subdivision.subdivisions.each do |item| %>
+                      <li><%= item.path.present? ? link_to(item.title, item.path) : item.title %></li>
                     <% end %>
                   </ul>
                 <% end %>
@@ -71,9 +71,9 @@
       </div>
       <div class='subdivisions-without-tree'>
         <h3>Подразделения</h3>
-        <% object.subdivisions.each do |subdivision| %>
-          <% unless subdivision.title.scan(/заместитель|бухгалтерия/i).any? %>
-            <div class='title'><%= link_to subdivision.title, '#' %></div>
+        <% object.subdivisions.each do |item| %>
+          <% unless item.title.scan(/заместитель|бухгалтерия/i).any? %>
+            <div class='title'><%= item.path.present? ? link_to(item.title, item.path) : item.title %></div>
           <% end %>
         <% end %>
       </div>
@@ -114,6 +114,12 @@
           <% end %>
           <% if chief.emails.present? %>
             <div class='email'>Email: <%= chief.emails.map{ |email| mail_to email }.join(', ').html_safe %></div>
+          <% end %>
+          <% if chief.reception.present? %>
+            <div class='reception'><%= chief.reception %></div>
+          <% end %>
+          <% if chief.appointments.present? %>
+            <div class='appointments'><%= chief.appointments %></div>
           <% end %>
         </div>
       <% end %>
