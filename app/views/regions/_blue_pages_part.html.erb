@@ -31,14 +31,54 @@
         </div>
       <% end %>
     </div>
+
     <div class='department-structure'>
-      <h3><%= @page_title %></h3>
-      <% object.items.each do |employee| %>
-        <div class='employee'>
-          <%= employee.person %>
-        </div>
-      <% end %>
+      <div class='subdivisions-with-tree'>
+        <h3><%= @page_title %></h3>
+        <% object.subdivisions.each do |subdivision| %>
+          <% if subdivision.title.scan(/заместитель|бухгалтерия/i).any? %>
+            <div class='subdivision'>
+              <div class='image'>
+                <% if subdivision.items.first.image_url.present? %>
+                  <%= image_tag(resized_image_url(subdivision.items.first.image_url, 100, 150), :size => '100x150', :alt => subdivision.items.first.person) %>
+                <% else %>
+                  <%= image_tag('person-stub-md.jpg', :size => '100x150', :alt => subdivision.items.first.person) %>
+                <% end %>
+              </div>
+              <div class='person'>
+                <div class='name'><%= subdivision.items.first.person %></div>
+                <div class='post'><%= subdivision.items.first.title %></div>
+                <% if subdivision.items.first.address.present? %>
+                  <div class='address'><%= subdivision.items.first.address %></div>
+                <% end %>
+                <% if subdivision.items.first.phones.present? %>
+                  <div class='phones'><%= subdivision.items.first.phones %></div>
+                <% end %>
+                <% if subdivision.items.first.emails.present? %>
+                  <div class='email'>Email: <%= subdivision.items.first.emails.map{ |email| mail_to email }.join(', ').html_safe %></div>
+                <% end %>
+                <% if subdivision.subdivisions.any? %>
+                  <ul class='children'>
+                    <% subdivision.subdivisions.each do |child| %>
+                      <li><%= link_to child.title, '#' %></li>
+                    <% end %>
+                  </ul>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class='subdivisions-without-tree'>
+        <h3>Подразделения</h3>
+        <% object.subdivisions.each do |subdivision| %>
+          <% unless subdivision.title.scan(/заместитель|бухгалтерия/i).any? %>
+            <div class='title'><%= link_to subdivision.title, '#' %></div>
+          <% end %>
+        <% end %>
+      </div>
     </div>
+
     <% if object.dossier.present? %>
       <div class='department-dossier'>
         <a href='#collapse' class='js-slider slider'>Цели и задачи департамента</a>
@@ -55,7 +95,11 @@
         <%= chief.title %>
       </div>
       <div class='photo'>
-        <%= link_to image_tag(resized_image_url(chief.image_url, 188, 324), :size => '188x324', :alt => chief.person), chief.link %>
+        <% if chief.image_url.present? %>
+          <%= link_to image_tag(resized_image_url(chief.image_url, 188, 324), :size => '188x324', :alt => chief.person), chief.link %>
+        <% else %>
+          <%= link_to image_tag('person-stub-lg.jpg', :size => '188x324', :alt => chief.person), chief.link %>
+        <% end %>
       </div>
       <div class='person'>
         <%= link_to chief.person, chief.link %>

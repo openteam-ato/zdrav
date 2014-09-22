@@ -44,8 +44,77 @@
     h3:after
       content: ':'
 
-    .employee
-      border-bottom: 1px solid #e0e0e0
+    .subdivisions-with-tree
+
+      .subdivision
+        +clearfix
+        border-bottom: 1px solid #e0e0e0
+        padding-bottom: 15px
+        margin-bottom: 15px
+
+        &:last-child
+          border-color: #8ac22b
+          padding-bottom: 20px
+
+        .image
+          float: left
+
+        .person
+          margin-left: 115px
+
+          .name
+            font-size: 14px
+
+          .post
+            color: #7f7f7f
+            margin-bottom: 5px
+
+          .children
+            position: relative
+            margin: 10px 0 0 0
+
+            &:before
+              display: block
+              content: ''
+              width: 15px
+              height: 1px
+              position: absolute
+              top: 0
+              left: -15px
+              background-color: #898989
+
+            li
+              font-size: 14px
+              position: relative
+              padding: 5px 0 5px 20px
+
+              &:before
+                display: block
+                content: ''
+                width: 1px
+                height: 100%
+                position: absolute
+                top: 0
+                left: 0
+                background-color: #898989
+
+              &:last-child:before
+                height: 15px
+
+              &:after
+                display: block
+                content: ''
+                width: 15px
+                height: 1px
+                position: absolute
+                top: 15px
+                left: 0
+                background-color: #898989
+
+    .subdivisions-without-tree
+      .title
+        font-size: 14px
+        margin: 5px 0
 
   .department-chief
     text-align: center
