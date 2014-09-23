@@ -1,0 +1,11 @@
+<div class='name'><%= employee.person.squish %></div>
+<div class='post'><%= employee.title %></div>
+<% if employee.address.present? %>
+  <div class='address'><%= employee.address %></div>
+<% end %>
+<% if employee.phones.present? %>
+  <div class='phones'><%= employee.phones %></div>
+<% end %>
+<% if employee.emails.present? %>
+  <div class='email'>Email: <%= employee.emails.map{ |email| mail_to email }.join(', ').html_safe %></div>
+<% end %>

@@ -1,1 +1,90 @@
-_blue_pages_part.html.erb
+<h1 class='page-header <%= header_css_class %>'><%= part_title.presence || object.title %></h1>
+
+<div class='department row'>
+  <div class='col-xs-12'>
+
+    <div class='department-contacts'>
+      <%= render_partial_for_region(@regulation, 'regulation') if @regulation.present? %>
+      <% if object.address.present? %>
+        <div class='contact'>
+          <div class='label'>Адрес</div>
+          <div class='value'><%= object.address %></div>
+        </div>
+      <% end %>
+      <% if object.phones.present? %>
+        <div class='contact'>
+          <div class='label'>Телефон</div>
+          <div class='value'><%= object.phones %></div>
+        </div>
+      <% end %>
+      <% if object.emails.present? %>
+        <div class='contact'>
+          <div class='label'>Email</div>
+          <div class='value'><%= object.emails.map{ |email| mail_to email }.join(', ').html_safe %></div>
+        </div>
+      <% end %>
+      <% if object.mode.present? %>
+        <div class='contact'>
+          <div class='label'>Режим работы</div>
+          <div class='value'><%= object.mode %></div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class='department-chief'>
+      <% chief = object.items.shift %>
+      <% if chief.image_url.present? %>
+        <div class='image'>
+          <%= link_to image_tag(resized_image_url(chief.image_url, 120, 180), :size => '120x180', :alt => chief.person.squish), chief.image_url, :class => :colorbox %>
+        </div>
+      <% end %>
+      <%= render :partial => 'employee', :locals => { :employee => chief } %>
+    </div>
+
+    <% if object.items.any? %>
+      <div class='employees'>
+        <h3>Сотрудники</h3>
+        <% object.items.each do |employee| %>
+          <div class='employee'>
+            <%= render :partial => 'employee', :locals => { :employee => employee } %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if object.dossier.present? %>
+      <div class='department-dossier'>
+        <a href='#collapse' class='js-slider slider'>Цели и задачи</a>
+        <div id='collapse' class='collapse'>
+          <%= object.dossier.html_safe %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if object.subdivisions.present? %>
+      <% object.subdivisions.each do |subdivision| %>
+        <div class='subdivision'>
+          <h3><%= subdivision.title %></h3>
+          <% if subdivision.items.any? %>
+            <div class='employees'>
+              <% subdivision.items.each do |employee| %>
+                <div class='employee'>
+                  <%= render :partial => 'employee', :locals => { :employee => employee } %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+          <% if subdivision.dossier.present? %>
+            <div class='department-dossier'>
+              <a href='#collapse' class='js-slider slider'>Цели и задачи</a>
+              <div id='collapse' class='collapse'>
+                <%= subdivision.dossier.html_safe %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>

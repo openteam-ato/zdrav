@@ -36,18 +36,65 @@
         float: left
         width: 380px
 
+  .department-chief
+    +clearfix
+
+    .image
+      float: left
+      margin: 5px 15px 0 0
+
+    .name
+      font-size: 18px
+
+    .post
+      color: #808080
+      margin-bottom: 5px
+
+  .employees
+    border-top: 1px solid #8ac22b
+    margin-top: 15px
+
+    .employee
+      margin-top: 15px
+      border-bottom: 1px solid #e0e0e0
+      margin-bottom: 15px
+      padding-bottom: 15px
+
+      &:last-child
+        border-bottom: 0
+        margin-bottom: 0
+        padding-bottom: 0
+
+      .name
+        font-size: 14px
+
+      .post
+        color: #808080
+        margin-bottom: 5px
+
+      .phones,
+      .email
+        +inline-block
+        margin-right: 15px
+
+  .subdivision
+    border-top: 1px solid #8ac22b
+    margin-top: 15px
+
+    .employees
+      border-top: 0
+
   .department-dossier
-    margin-bottom: 20px
+    margin-bottom: 15px
     +unorder_list_style
 
   .department-structure
-    h3:after
-      content: ':'
 
     .subdivisions-with-tree
 
       .subdivision
         +clearfix
+        border-top: 0
         border-bottom: 1px solid #e0e0e0
         padding-bottom: 15px
         margin-bottom: 15px
@@ -120,6 +167,9 @@
     font-size: 14px
     font-family: Georgia, Times, 'Times New Roman', serif
     font-style: italic
+
+    h3
+      margin-top: 0
 
   .chief-functions
     +unorder_list_style

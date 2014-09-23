@@ -48,17 +48,7 @@
                 <% end %>
               </div>
               <div class='person'>
-                <div class='name'><%= subdivision.items.first.person.squish %></div>
-                <div class='post'><%= subdivision.items.first.title %></div>
-                <% if subdivision.items.first.address.present? %>
-                  <div class='address'><%= subdivision.items.first.address %></div>
-                <% end %>
-                <% if subdivision.items.first.phones.present? %>
-                  <div class='phones'><%= subdivision.items.first.phones %></div>
-                <% end %>
-                <% if subdivision.items.first.emails.present? %>
-                  <div class='email'>Email: <%= subdivision.items.first.emails.map{ |email| mail_to email }.join(', ').html_safe %></div>
-                <% end %>
+                <%= render :partial => 'employee', :locals => { :employee => subdivision.items.first } %>
                 <% if subdivision.subdivisions.any? %>
                   <ul class='children'>
                     <% subdivision.subdivisions.each do |item| %>
