@@ -1,0 +1,63 @@
+<h1 class='page-header <%= header_css_class %>'><%= object.title %></h1>
+
+<div class='department row'>
+  <div class='col-xs-9'>
+    <% if @content_second && @content_second.response_status == 200 %>
+      <div class='hello'>
+        <%= @content_second.content.body.html_safe %>
+      </div>
+    <% end %>
+    <% if object.dossier.present? %>
+      <div class='chief-dossier'>
+        <a href='#collapse' class='js-slider slider'>Биография</a>
+        <div id='collapse' class='collapse'>
+          <%= object.dossier.html_safe %>
+        </div>
+      </div>
+    <% end %>
+    <% if @content_third && @content_third.response_status == 200 %>
+      <div class='chief-functions'>
+        <a href='#collapse' class='js-slider slider'><%= @content_third.part_title %></a>
+        <div id='collapse' class='collapse'>
+          <%= @content_third.content.body.html_safe %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class='col-xs-3'>
+    <div class='subdivision-chief'>
+      <div class='photo'>
+        <% if object.image_url.present? %>
+          <%= link_to image_tag(resized_image_url(object.image_url, 188, 324), :size => '188x324', :alt => object.person), object.image_url, :class => :colorbox %>
+        <% else %>
+          <%= image_tag('person-stub-lg.jpg', :size => '188x324', :alt => object.person) %>
+        <% end %>
+      </div>
+      <div class='person'>
+        <%= object.surname %>
+        <%= object.name %>
+        <%= object.patronymic %>
+      </div>
+      <% if object.phones.present? || (object.address.present? && object.address != object.address) || object.emails.present? %>
+        <div class='contacts'>
+          <% if object.phones.present? %>
+            <div class='phones'><%= object.phones %></div>
+          <% end %>
+          <% if object.address.present? && object.address != object.address %>
+            <div class='address'><%= object.address %></div>
+          <% end %>
+          <% if object.emails.present? %>
+            <div class='email'>Email: <%= object.emails.map{ |email| mail_to email }.join(', ').html_safe %></div>
+          <% end %>
+          <% if object.reception.present? %>
+            <div class='reception'><%= object.reception %></div>
+          <% end %>
+          <% if object.appointments.present? %>
+            <div class='appointments'><%= object.appointments %></div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
