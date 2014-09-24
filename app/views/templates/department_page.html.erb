@@ -2,6 +2,11 @@
   <div class='col-xs-3'>
     <div class='subnavigation'>
       <%= render_partial_for_region(@subnavigation, 'sub') if @subnavigation.present? %>
+      <% if @left_side_links.present? %>
+        <div class='left_side_links'>
+          <%= render_partial_for_region(@left_side_links) %>
+        </div>
+      <% end %>
     </div>
   </div>
 

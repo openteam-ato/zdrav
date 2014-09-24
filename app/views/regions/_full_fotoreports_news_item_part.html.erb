@@ -4,8 +4,7 @@
   <div id="galleria" class="js-galleria">
     <% object.images.each do |picture| %>
       <%= galleria_link(picture) %>
-
-      <p><%= picture.description %></p>
+      <%= simple_format picture.description %>
     <% end  %>
   </div>
 
