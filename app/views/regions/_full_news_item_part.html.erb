@@ -1,16 +1,25 @@
 <h1 class='page-header <%= header_css_class %>'><%= object.title %></h1>
 
-<div class="news-item col-xs-9">
-  <div class="date">
-    <%= l Date.parse(object.since) %>
-  </div>
+<div class='news-item col-xs-9'>
+  <% if object.event_entry_properties.present? %>
+    <div class='interval'><%= interval_for(object.event_entry_properties.first) %></div>
+    <% if object.event_entry_properties.first.location.present? %>
+      <div class='location'><%= object.event_entry_properties.first.location %></div>
+    <% end %>
+  <% else %>
+    <div class='date'>
+      <%= I18n.l Date.parse(object.since) %>
+    </div>
+  <% end %>
 
-  <div class="annotation">
-    <%= raw object.annotation %>
-  </div>
+  <% if object.annotation.present? %>
+    <div class='annotation'>
+      <%= object.annotation.html_safe %>
+    </div>
+  <% end %>
 
   <% unless object.images.blank? %>
-    <div class="annotation-image pull-left">
+    <div class='annotation-image pull-left'>
       <%= image_tag object.images.first.thumbnail.url,
           :alt => object.images.first.description,
           :width => object.images.first.thumbnail.width,
@@ -18,17 +27,17 @@
     </div>
   <% end %>
 
-  <%= raw object.body %>
+  <%= object.body.html_safe %>
 
   <% if object.source.present? %>
-    <div class="source">
+    <div class='source'>
       Источник: <%= link_to object.source, object.source_link %>
     </div>
   <% end %>
 
   <% if !object.images.blank? && object.images.count > 1 %>
-    <div class="galleria-wrapper">
-      <div id="galleria">
+    <div class='galleria-wrapper'>
+      <div id='galleria'>
         <% object.images.each do |image| %>
           <%= galleria_link(image) %>
         <% end %>
@@ -37,13 +46,13 @@
   <% end %>
 </div>
 
-<div class="more-like-this col-xs-3">
+<div class='more-like-this col-xs-3'>
   <h4>Другие новости</h4>
 
   <ul>
     <% object.more_like_this.each do |item| %>
       <li>
-        <div class="date"><%= l Date.parse(item.since) %></div>
+        <div class='date'><%= l Date.parse(item.since) %></div>
         <%= link_to item.title, item.link, :title => item.title %>
       </li>
     <% end %>

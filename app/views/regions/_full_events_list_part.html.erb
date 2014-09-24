@@ -5,24 +5,11 @@
     <ul>
       <% object.items.each do |item| %>
         <li>
-          <div class='info col-xs-2'>
-            <div class='date'>
-              <%= I18n.l(DateTime.parse(item.since), :format => '%d %B %Y') %>
-            </div>
-            <div class='time'>
-              <%= I18n.l(DateTime.parse(item.since), :format => '%H:%M') %>
-            </div>
-          </div>
-
-          <div class='announcement col-xs-10'>
-            <%= link_to item.title, item.link, :title => item.title %>
-
-            <% if item.annotation %>
-              <div class='annotation'>
-                <%= item.annotation.html_safe %>
-              </div>
-            <% end %>
-          </div>
+          <div class='title'><%= link_to item.title, item.link %></div>
+          <div class='interval'><%= interval_for(item.event_entry_properties.first) %></div>
+          <% if item.event_entry_properties.first.location.present? %>
+            <div class='location'><%= item.event_entry_properties.first.location %></div>
+          <% end %>
         </li>
       <% end %>
     </ul>
