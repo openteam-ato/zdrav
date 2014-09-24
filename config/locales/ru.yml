@@ -30,6 +30,12 @@ ru:
 
   find: Искать
 
+  photos:
+    one: "%{count} фотография"
+    few: "%{count} фотографии"
+    many: "%{count} фотографий"
+    other: "%{count} фотографии"
+
   documents:
     one: "%{count} документ"
     few: "%{count} документа"
