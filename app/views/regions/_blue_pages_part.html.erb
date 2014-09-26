@@ -54,7 +54,7 @@
 
     <% if object.dossier.present? %>
       <div class='department-dossier'>
-        <a href='#collapse' class='js-slider slider'>Цели и задачи</a>
+        <a href='#collapse' class='js-slider slider'>Об учреждении</a>
         <div id='collapse' class='collapse'>
           <%= object.dossier.html_safe %>
         </div>
@@ -76,7 +76,7 @@
           <% end %>
           <% if subdivision.dossier.present? %>
             <div class='department-dossier'>
-              <a href='#collapse' class='js-slider slider'>Цели и задачи</a>
+              <a href='#collapse' class='js-slider slider'>Об учреждении</a>
               <div id='collapse' class='collapse'>
                 <%= subdivision.dossier.html_safe %>
               </div>
