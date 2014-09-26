@@ -29,7 +29,7 @@ module ApplicationHelper
       render :partial => "regions/#{template}",
       :locals => { :part_title => region.part_title, :object => region.content, :response_status => region.response_status }
     else
-      render :partial => 'regions/error', :locals => { :region => region }
+      render :partial => "regions/error_#{region.response_status}", :locals => { :region => region }
     end
   end
 
