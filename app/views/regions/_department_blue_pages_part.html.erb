@@ -52,7 +52,7 @@
                 <% if subdivision.subdivisions.any? %>
                   <ul class='children'>
                     <% subdivision.subdivisions.each do |item| %>
-                      <li><%= link_to(item.title, "#{request.fullpath}/#{Russian::translit(item.title).downcase.gsub(/\s+/, '-')}") %></li>
+                      <li><%= link_to(item.title, "#{request.fullpath}/#{item.title.slugged}") %></li>
                     <% end %>
                   </ul>
                 <% end %>

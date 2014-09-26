@@ -1,1 +1,18 @@
 <h1 class='page-header <%= header_css_class %>'><%= object.title %></h1>
+
+<div class='health-facilities row'>
+  <div class='col-xs-12'>
+    <% if @content_second.present? && @content_second.template == 'html_part' && @content_second.content.try(&:body).empty? %>
+      <% object.subdivisions.each do |category| %>
+        <h2><%= get_link(@content_third, category) %></h2>
+        <% category.subdivisions.each do |subdivision| %>
+          <h3><%= get_link(@content_third, subdivision) %></h3>
+        <% end %>
+      <% end %>
+    <% else %>
+      <% object.subdivisions.each do |subdivision| %>
+        <h3><%= get_link(@content_third, subdivision) %></h3>
+      <% end %>
+    <% end %>
+  </div>
+</div>
