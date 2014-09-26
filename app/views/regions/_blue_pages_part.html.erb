@@ -31,17 +31,17 @@
       <% end %>
     </div>
 
-    <div class='department-chief'>
-      <% chief = object.items.shift %>
-      <% if chief.image_url.present? %>
-        <div class='image'>
-          <%= link_to image_tag(resized_image_url(chief.image_url, 120, 180), :size => '120x180', :alt => chief.person.squish), chief.image_url, :class => :colorbox %>
-        </div>
-      <% end %>
-      <%= render :partial => 'employee', :locals => { :employee => chief } %>
-    </div>
+    <% if object.items.present? %>
+      <div class='department-chief'>
+        <% chief = object.items.shift %>
+        <% if chief.image_url.present? %>
+          <div class='image'>
+            <%= link_to image_tag(resized_image_url(chief.image_url, 120, 180), :size => '120x180', :alt => chief.person.squish), chief.image_url, :class => :colorbox %>
+          </div>
+        <% end %>
+        <%= render :partial => 'employee', :locals => { :employee => chief } %>
+      </div>
 
-    <% if object.items.any? %>
       <div class='employees'>
         <h3>Сотрудники</h3>
         <% object.items.each do |employee| %>
