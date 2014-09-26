@@ -1,0 +1,16 @@
+<% if object.items.any? %>
+  <ul>
+    <% object.items.each do |item| %>
+      <li>
+        <div class='title'><%= link_to item.title, item.link %></div>
+        <div class='interval'><%= interval_for(item.event_entry_properties.first) %></div>
+        <% if item.event_entry_properties.first.location.present? %>
+          <div class='location'><%= item.event_entry_properties.first.location %></div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= link_to object.title, object.collection_link %>
+  <%= link_to "rss", object.rss_link, :class => 'rss' %>
+<% end %>
