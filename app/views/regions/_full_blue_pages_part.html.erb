@@ -10,8 +10,10 @@
         <% end %>
       <% end %>
     <% else %>
-      <% object.subdivisions.each do |subdivision| %>
-        <h3><%= get_link(@content_third, subdivision) %></h3>
+      <% if object.subdivisions.present? %>
+        <% object.subdivisions.each do |subdivision| %>
+          <h3><%= get_link(@content_third, subdivision) %></h3>
+        <% end %>
       <% end %>
     <% end %>
   </div>
