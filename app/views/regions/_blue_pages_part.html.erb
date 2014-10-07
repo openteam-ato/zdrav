@@ -42,14 +42,15 @@
         <%= render :partial => 'employee', :locals => { :employee => chief } %>
       </div>
 
-      <div class='employees'>
-        <h3>Сотрудники</h3>
-        <% object.items.each do |employee| %>
-          <div class='employee'>
-            <%= render :partial => 'employee', :locals => { :employee => employee } %>
-          </div>
-        <% end %>
-      </div>
+      <% if object.items.any? %>
+        <div class='employees'>
+          <% object.items.each do |employee| %>
+            <div class='employee'>
+              <%= render :partial => 'employee', :locals => { :employee => employee } %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
 
     <% if object.dossier.present? %>
