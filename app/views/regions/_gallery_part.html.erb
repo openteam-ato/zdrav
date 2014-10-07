@@ -1,0 +1,8 @@
+<div class='galleria-wrapper'>
+  <div id='galleria' class='js-galleria'>
+    <% object.gallery_pictures.each do |picture| %>
+      <%= galleria_link(picture) %>
+      <%= simple_format picture.description %>
+    <% end  %>
+  </div>
+</div>
