@@ -13,7 +13,7 @@
       $('h2', wrapper).removeClass('open')
       link.next('.collapsible').slideToggle 'fast', ->
         link.toggleClass('open')
-        # $.scrollTo(link, 500, { offset: -15 }) # uncomment if needed auto scroll
+        $.scrollTo(link, 500, { offset: -15 })
         return
     return
 
