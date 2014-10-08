@@ -9,9 +9,11 @@
  * = require vendor/jcarousel
  * = require vendor/galleria
  * = require vendor/colorbox
+ * = require vendor/scroll_to
  * = require actual
  * = require archive_collapser
  * = require ajaxed
+ * = require collapse
  * = require colorbox
  * = require banners
  * = require fotoreports
