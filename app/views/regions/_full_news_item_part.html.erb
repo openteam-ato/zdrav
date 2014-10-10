@@ -1,6 +1,6 @@
 <h1 class='page-header <%= header_css_class %>'><%= object.title %></h1>
 
-<div class='news-item col-xs-9'>
+<%= content_tag :div, :class => object.more_like_this.present? ? 'news-item col-xs-9' : 'news-item col-xs-12' do %>
   <% if object.event_entry_properties.present? %>
     <div class='interval'><%= interval_for(object.event_entry_properties.first) %></div>
     <% if object.event_entry_properties.first.location.present? %>
@@ -44,17 +44,19 @@
       </div>
     </div>
   <% end %>
-</div>
+<% end %>
 
-<div class='more-like-this col-xs-3'>
-  <h4>Другие новости</h4>
+<% if object.more_like_this.present? %>
+  <div class='more-like-this col-xs-3'>
+    <h4>Другие новости</h4>
 
-  <ul>
-    <% object.more_like_this.each do |item| %>
-      <li>
-        <div class='date'><%= l Date.parse(item.since) %></div>
-        <%= link_to item.title, item.link, :title => item.title %>
-      </li>
-    <% end %>
-  </ul>
-</div>
+    <ul>
+      <% object.more_like_this.each do |item| %>
+        <li>
+          <div class='date'><%= l Date.parse(item.since) %></div>
+          <%= link_to item.title, item.link, :title => item.title %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
