@@ -1,11 +1,11 @@
 <h1 class='page-header <%= header_css_class %>'><%= object.title %></h1>
 
-<% if object.items.any? %>
-  <div class="row news col-xs-9">
+<div class='row news col-xs-9'>
+  <% if object.items.any? %>
     <ul>
       <% object.items.each do |item| %>
         <li>
-          <div class="date"><%= l Date.parse(item.since) %></div>
+          <div class='date'><%= l Date.parse(item.since) %></div>
           <%= link_to item.title, item.link, :title => item.title %>
 
           <% if item.images.any? && item.images.first  %>
@@ -14,34 +14,30 @@
           <% end %>
 
           <% if item.annotation %>
-            <div class="annotation">
-              <%= item.annotation.html_safe %>
-            </div>
+            <div class='annotation'><%= item.annotation.html_safe %></div>
           <% end %>
 
           <% if item.source.present? %>
-            <div class="source">
-              Источник: <%= link_to object.source, object.source_link %>
-            </div>
+            <div class='source'>Источник: <%= link_to object.source, object.source_link %></div>
           <% end %>
         </li>
       <% end %>
     </ul>
-
-    <% if object.pagination %>
-      <% @array = object.items %>
-      <% @array = Kaminari.paginate_array(@array, :total_count => object.pagination.total_count).page(object.pagination.current_page).per(object.pagination.per_page) %>
-
-      <%= paginate @array, :outer_window => 3 %>
-    <% end %>
-  </div>
-
-  <% archive_html = archive_links([@content_first]) %>
-  <% unless archive_html.blank? %>
-    <div class="col-xs-3">
-      <%= content_tag :div, archive_html, :class => "js-archive archive" %>
-    </div>
+  <% else %>
+    <h4>Информация отсутствует</h4>
   <% end %>
 
+  <% if object.pagination %>
+    <% @array = object.items %>
+    <% @array = Kaminari.paginate_array(@array, :total_count => object.pagination.total_count).page(object.pagination.current_page).per(object.pagination.per_page) %>
+
+    <%= paginate @array, :outer_window => 3 %>
+  <% end %>
+</div>
+
+<% archive_html = archive_links([@content_first]) %>
+<% unless archive_html.blank? %>
+  <div class='col-xs-3'>
+    <%= content_tag :div, archive_html, :class => 'js-archive archive' %>
   </div>
 <% end %>

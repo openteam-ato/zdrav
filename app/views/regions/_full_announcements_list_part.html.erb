@@ -1,7 +1,7 @@
 <h1 class='page-header <%= header_css_class %>'><%= object.title %></h1>
 
-<% if object.items.any? %>
-  <div class='announcements col-xs-12'>
+<div class='announcements col-xs-12'>
+  <% if object.items.any? %>
     <ul>
       <% object.items.each do |item| %>
         <li>
@@ -26,12 +26,14 @@
         </li>
       <% end %>
     </ul>
+  <% else %>
+    <h4>Информация отсутствует</h4>
+  <% end %>
 
-    <% if object.pagination %>
-      <% @array = object.items %>
-      <% @array = Kaminari.paginate_array(@array, :total_count => object.pagination.total_count).page(object.pagination.current_page).per(object.pagination.per_page) %>
+  <% if object.pagination %>
+    <% @array = object.items %>
+    <% @array = Kaminari.paginate_array(@array, :total_count => object.pagination.total_count).page(object.pagination.current_page).per(object.pagination.per_page) %>
 
-      <%= paginate @array, :outer_window => 3 %>
-    <% end %>
-  </div>
-<% end %>
+    <%= paginate @array, :outer_window => 3 %>
+  <% end %>
+</div>
