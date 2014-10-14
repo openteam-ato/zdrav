@@ -3,7 +3,7 @@
 class String
 
   def slugged
-    Russian::transliterate(self).downcase.gsub(/\s+/, '-').gsub(/«|»/, '')
+    Russian::transliterate(self).downcase.gsub(/\s+/, '-').gsub(/«|»|,/, '')
   end
 
 end

@@ -38,7 +38,7 @@
     </div>
   <% end %>
 
-  <% if !object.images.blank? && object.images.count > 1 %>
+  <% if object.images.present? %>
     <div class='galleria-wrapper'>
       <div id='galleria'>
         <% object.images.each do |image| %>
