@@ -19,11 +19,14 @@
   <% end %>
 
   <% unless object.images.blank? %>
+    <% image = object.images.shift %>
     <div class='annotation-image pull-left'>
-      <%= image_tag object.images.first.thumbnail.url,
-          :alt => object.images.first.description,
-          :width => object.images.first.thumbnail.width,
-          :height => object.images.first.thumbnail.height %>
+      <%= link_to image.url, :class => :colorbox, :rel => :colorbox do %>
+        <%= image_tag image.thumbnail.url,
+            :alt => image.description.presence || strip_tags(object.title),
+            :width => image.thumbnail.width,
+            :height => image.thumbnail.height %>
+      <% end %>
     </div>
   <% end %>
 
@@ -39,7 +42,12 @@
     <div class='galleria-wrapper'>
       <div id='galleria'>
         <% object.images.each do |image| %>
-          <%= galleria_link(image) %>
+          <%= link_to image.url, :class => :colorbox, :rel => :colorbox do %>
+            <%= image_tag image.thumbnail.url,
+                :alt => image.description.presence || strip_tags(object.title),
+                :width => image.thumbnail.width,
+                :height => image.thumbnail.height %>
+          <% end %>
         <% end %>
       </div>
     </div>

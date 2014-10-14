@@ -6,11 +6,11 @@
       <% object.items.each do |item| %>
         <li>
           <div class='date'><%= l Date.parse(item.since) %></div>
-          <%= link_to item.title, item.link, :title => item.title %>
+          <h5><%= link_to item.title, item.link, :title => item.title %></h5>
 
           <% if item.images.any? && item.images.first  %>
             <% image = item.images.first.thumbnail ? item.images.first.thumbnail : item.images.first %>
-            <%= image_tag image.url, :title => image.description, :width => image.width, :height => image.height %>
+            <%= image_tag image.url, :title => image.description, :width => image.width, :height => image.height, :alt => image.description.presence || strip_tags(item.title) %>
           <% end %>
 
           <% if item.annotation %>
