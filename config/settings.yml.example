@@ -24,3 +24,8 @@ sso:
 recaptcha:
   private:      SECRET
   public:       SECRET
+
+mail:
+  idea:
+    sender:     sender@mail
+    recipient:  recipient@mail
