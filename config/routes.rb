@@ -10,10 +10,13 @@ Zdrav::Application.routes.draw do
     get 'sign_in' => redirect('/auth/auth/identity'), :as => :new_user_session
   end
 
-  scope 'ru' do
-    get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                      => 'thanks#index',  :as => :thanks
-    get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov/dobavit-blagodarnost' => 'thanks#new',    :as => :new_thank
-    post 'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                      => 'thanks#create', :as => :create_thank
+  scope  'ru' do
+    get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                       => 'thanks#index',  :as => :thanks
+    get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov/dobavit-blagodarnost'  => 'thanks#new',    :as => :new_thank
+    post 'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                       => 'thanks#create', :as => :create_thank
+
+    get  'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/birzha-idey'                          => 'idea#show'
+    post 'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/birzha-idey'                          => 'idea#create'
   end
 
   namespace :manage do

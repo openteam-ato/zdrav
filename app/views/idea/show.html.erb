@@ -1,0 +1,33 @@
+<div class='content row'>
+  <div class='col-xs-3'>
+    <div class='subnavigation'>
+      <%= render_partial_for_region(@subnavigation, 'sub') if @subnavigation.present? %>
+      <% if @left_side_links.present? %>
+        <div class='left_side_links'>
+          <%= render_partial_for_region(@left_side_links) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='col-xs-9'>
+    <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
+    <%= render_partial_for_region(@content_first, 'full') if @content_first.present? %>
+    <%= simple_form_for :idea, :html => { novalidate: false } do |f| %>
+      <% if flash[:notice] %>
+        <p class='notice text-success'><%= flash[:notice] %></p>
+      <% end %>
+      <%= f.input :author, :placeholder => 'Фамилия, имя, отчество', :input_html => { :value => params['idea'].try(:[], 'author') } %>
+      <%= f.input :email, :placeholder => 'Адрес электронной почты', :input_html => { :value => params['idea'].try(:[], 'email') } %>
+      <%= f.input :idea, :as => :text, :input_html => { :value => params['idea'].try(:[], 'idea') } %>
+      <%= recaptcha_tags :display => { :theme => 'clean' }, :ajax => true %>
+      <% if flash[:alert] %>
+        <p class='recaptcha-alert text-danger'><%= flash[:alert] %></p>
+      <% end %>
+      <div class='actions'>
+        <%= f.button :submit, 'Отправить', class: 'submit' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

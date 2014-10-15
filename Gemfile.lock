@@ -31,6 +31,7 @@ GEM
     activesupport (3.2.19)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
+    addressable (2.3.6)
     airbrake (4.0.0)
       builder
       multi_json
@@ -142,6 +143,10 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.8.1)
+    launchy (2.4.2)
+      addressable (~> 2.3)
+    letter_opener (1.2.0)
+      launchy (~> 2.2)
     macaddr (1.6.1)
       systemu (~> 2.5.0)
     mail (2.5.4)
@@ -309,6 +314,7 @@ DEPENDENCIES
   inherited_resources
   jquery-rails (= 2.1.4)
   kaminari
+  letter_opener
   openteam-capistrano
   openteam-commons
   pg
