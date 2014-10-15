@@ -26,6 +26,14 @@ recaptcha:
   public:       SECRET
 
 mail:
+  domain:       domain
+  smtp:         smtp
+  port:         25
+  login:        login
+  password:     password
+  from:         from@mail
+  to:           to@mail
+
   idea:
     sender:     sender@mail
     recipient:  recipient@mail
