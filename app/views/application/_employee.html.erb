@@ -1,5 +1,9 @@
-<div class='name'><%= employee.person.squish %></div>
-<div class='post'><%= employee.title %></div>
+<% if employee.person.present? %>
+  <div class='name'><%= employee.person.squish %></div>
+  <div class='post'><%= employee.title %></div>
+<% else %>
+  <div class='name'><%= employee.title %></div>
+<% end %>
 <% if employee.address.present? %>
   <div class='address'><%= employee.address %></div>
 <% end %>
