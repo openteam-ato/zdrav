@@ -17,6 +17,12 @@
           <div class='value'><%= object.phones %></div>
         </div>
       <% end %>
+      <% if object.url.present? %>
+        <div class='contact'>
+          <div class='label'>Сайт</div>
+          <div class='value'><%= link_to object.url, object.url, :target => '_blank' %></div>
+        </div>
+      <% end %>
       <% if object.emails.present? %>
         <div class='contact'>
           <div class='label'>Email</div>
