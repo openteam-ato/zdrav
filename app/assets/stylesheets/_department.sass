@@ -90,6 +90,14 @@
     margin-bottom: 15px
     +unorder_list_style
 
+    ol > li > ol > li,
+    ul > li > ol > li
+      list-style-type: decimal
+      padding-left: 0
+
+      &:before
+        display: none
+
     .slider
       border-top: 0
       margin-top: 0
