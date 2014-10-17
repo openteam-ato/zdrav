@@ -77,7 +77,7 @@
       <% object.subdivisions.each do |subdivision| %>
         <div class='subdivision'>
           <h3><%= subdivision.title %></h3>
-          <% if subdivision.items.any? %>
+          <% if subdivision.items.present? %>
             <div class='employees'>
               <% subdivision.items.each do |employee| %>
                 <div class='employee'>
