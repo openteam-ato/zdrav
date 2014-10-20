@@ -1,8 +1,9 @@
 <div class='row'>
   <div class='col-sm-12'>
-    <h2>Земский доктор</h2>
-    <%= link_to 'Добавить', new_manage_doctor_path, :class => 'btn btn-primary' %>
+    <h3>Земский доктор</h3>
+    <p><%= link_to 'Добавить', new_manage_doctor_path, :class => 'btn btn-primary' %></p>
     <% collection.each do |doctor| %>
+      <p><%= link_to [doctor.name, doctor.post].join(', '), [:manage, doctor] %></p>
     <% end %>
   </div>
 </div>

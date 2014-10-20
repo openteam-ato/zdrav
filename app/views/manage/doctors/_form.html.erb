@@ -1,7 +1,14 @@
 <%= simple_form_for [:manage, resource], :defaults => { :input_html => { :class => 'form-control' }, :wrapper_html => { :class => 'form-group' } } do |f| %>
   <%= f.input :name, :as => :string %>
   <%= f.input :post, :as => :string %>
-  <%= javascript_include_tag 'esp-ckeditor' %>
   <%= f.input :description, :as => :ckeditor %>
-  <%= f.button :submit %>
+  <div class='actions'>
+    <%= f.submit 'Сохранить', :class => 'btn btn-primary' %>
+    <% unless resource.new_record? %>
+      <%= link_to 'Отмена', [:manage, resource], :class => 'btn btn-default' %>
+      <%= link_to 'Удалить', [:manage, resource], :method => :delete, :confirm => 'Точно хотите удалить?', :class => 'floatr btn btn-danger' %>
+    <% else %>
+      <%= link_to 'Отмена', manage_doctors_path, :class => 'btn btn-default' %>
+    <% end %>
+  </div>
 <% end %>

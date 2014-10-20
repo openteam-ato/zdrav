@@ -1,0 +1,13 @@
+<h3>
+  <%= resource.name %>
+  <%= link_to content_tag(:i, '', :class => 'fa fa-pencil'), edit_manage_doctor_path(resource) %>
+  <%= link_to content_tag(:i, '', :class => 'fa fa-chevron-left'), manage_doctors_path %>
+</h3>
+
+<% if resource.post? %>
+  <p><%= resource.post %></p>
+<% end %>
+
+<% if resource.description? %>
+  <%= resource.description.html_safe %>
+<% end %>

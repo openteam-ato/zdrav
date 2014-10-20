@@ -53,3 +53,10 @@ ru:
       state:
         draft:     Не опубликовано
         published: Опубликовано
+
+  activerecord:
+    attributes:
+      doctor:
+        name: Ф.И.О.
+        post: Должность
+        description: Описание
