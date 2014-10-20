@@ -1,0 +1,7 @@
+<%= simple_form_for [:manage, resource], :defaults => { :input_html => { :class => 'form-control' }, :wrapper_html => { :class => 'form-group' } } do |f| %>
+  <%= f.input :name, :as => :string %>
+  <%= f.input :post, :as => :string %>
+  <%= javascript_include_tag 'esp-ckeditor' %>
+  <%= f.input :description, :as => :ckeditor %>
+  <%= f.button :submit %>
+<% end %>

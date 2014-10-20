@@ -25,6 +25,8 @@ Zdrav::Application.routes.draw do
       put 'change' => 'thanks#change', :on => :member, :as => :change
     end
 
+    resources :doctors
+
     root :to => 'thanks#index'
   end
 

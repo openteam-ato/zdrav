@@ -1,6 +1,16 @@
+<%= content_for :app_page_title, 'Управление — Департамент здравоохранения Томской области' %>
+
 <%= content_for :content do %>
   <%= render :partial => 'header' %>
-  <%= render :partial => 'main_menu' %>
+  <div class='main_menu_wrapper visible-lg-block visible-md-block'>
+    <div class='container'>
+      <div class='row'>
+        <div class='main_menu col-md-12'>
+          <%= render_navigation %>
+        </div>
+      </div>
+    </div>
+  </div>
   <%= render :partial => 'content' %>
 <% end %>
 

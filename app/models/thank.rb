@@ -15,3 +15,16 @@ class Thank < ActiveRecord::Base
     self.save
   end
 end
+
+# == Schema Information
+#
+# Table name: thanks
+#
+#  id         :integer          not null, primary key
+#  fullname   :string(255)
+#  email      :string(255)
+#  message    :text
+#  state      :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#

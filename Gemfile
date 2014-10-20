@@ -17,6 +17,7 @@ group :default do
   gem 'devise',                   '= 2.2.4'
   gem 'el_vfs_client'
   gem 'enumerize'
+  gem 'esp-ckeditor'
   gem 'esp-commons'
   gem 'gilenson'
   gem 'has_scope'
@@ -28,6 +29,7 @@ group :default do
   gem 'rails',                    '~> 3.2.12'
   gem 'recaptcha',                :require => 'recaptcha/rails'
   gem 'russian'
+  gem 'simple-navigation'
   gem 'simple-rss'
   gem 'simple_form'
   gem 'sso-auth',                 '= 0.0.6'
@@ -36,6 +38,7 @@ group :default do
 end
 
 group :development do
+  gem 'annotate',                 :require => false
   gem 'brakeman',                 :require => false
   gem 'capistrano-unicorn',       '~> 0.1.7', :require => false
   gem 'hirb'

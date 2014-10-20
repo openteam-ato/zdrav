@@ -5,6 +5,7 @@
  * = require bootstrap/dropdown
  * = require bootstrap/tab
  * = require bootstrap/transition
+ * = require esp-ckeditor
  * = require vendor/jscrollpane
  * = require vendor/jcarousel
  * = require vendor/galleria
