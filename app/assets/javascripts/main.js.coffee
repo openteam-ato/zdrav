@@ -9,5 +9,6 @@ $ ->
   init_slider() if $('.js-slider').length
   init_collapse() if $('.need-collapse').length
   init_colorbox() if $('a.colorbox').length
+  init_delete_file() if $('.delete_file').length
 
   return

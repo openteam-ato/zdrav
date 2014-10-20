@@ -59,4 +59,5 @@ ru:
       doctor:
         name: Ф.И.О.
         post: Должность
+        photo: Фотография
         description: Описание

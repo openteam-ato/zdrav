@@ -1,6 +1,19 @@
-<%= simple_form_for [:manage, resource], :defaults => { :input_html => { :class => 'form-control' }, :wrapper_html => { :class => 'form-group' } } do |f| %>
+<%= simple_form_for [:manage, resource],
+  :html => { :multipart => true },
+  :defaults => { :input_html => { :class => 'form-control' },
+                 :wrapper_html => { :class => 'form-group' } } do |f| %>
   <%= f.input :name, :as => :string %>
   <%= f.input :post, :as => :string %>
+  <% if resource.photo_url? %>
+    <p>
+      <%= link_to f.object.photo_url, :target => '_blank', :class => 'colorbox' do %>
+        <%= image_tag resized_image_url(f.object.photo_url, '100', '150'), :size => '100x150', :alt => '' %>
+      <% end %>
+    </p>
+    <p><%= link_to t('commons.delete'), '#', :class => 'delete_file' %></p>
+  <% else %>
+    <%= f.input :photo %>
+  <% end %>
   <%= f.input :description, :as => :ckeditor %>
   <div class='actions'>
     <%= f.submit 'Сохранить', :class => 'btn btn-primary' %>

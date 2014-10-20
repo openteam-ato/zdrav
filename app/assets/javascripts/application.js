@@ -13,6 +13,7 @@
  * = require vendor/scroll_to
  * = require actual
  * = require archive_collapser
+ * = require delete_file
  * = require ajaxed
  * = require collapse
  * = require colorbox

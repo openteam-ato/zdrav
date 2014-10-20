@@ -76,6 +76,10 @@ GEM
       capistrano
     chronic (0.10.2)
     chunky_png (1.3.1)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.4)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -193,6 +197,16 @@ GEM
       unicorn
       whenever
     orm_adapter (0.5.0)
+    paperclip (4.2.0)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
+    paperclip-elvfs (0.0.5.2)
+      curb
+      paperclip
+    paperclip-meta (1.0.0)
+      paperclip (>= 3.0.2, < 5.0)
     pg (0.17.1)
     polyglot (0.3.5)
     quiet_assets (1.0.2)
@@ -325,6 +339,8 @@ DEPENDENCIES
   letter_opener
   openteam-capistrano
   openteam-commons
+  paperclip-elvfs
+  paperclip-meta
   pg
   quiet_assets
   rack-utf8_sanitizer

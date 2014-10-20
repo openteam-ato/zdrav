@@ -25,6 +25,8 @@ group :default do
   gem 'inherited_resources'
   gem 'kaminari'
   gem 'openteam-commons'
+  gem 'paperclip-elvfs'
+  gem 'paperclip-meta'
   gem 'rack-utf8_sanitizer'
   gem 'rails',                    '~> 3.2.12'
   gem 'recaptcha',                :require => 'recaptcha/rails'
