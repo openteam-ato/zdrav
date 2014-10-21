@@ -13,6 +13,7 @@ group :assets do
 end
 
 group :default do
+  gem 'attribute_normalizer'
   gem 'curb'
   gem 'devise',                   '= 2.2.4'
   gem 'el_vfs_client'

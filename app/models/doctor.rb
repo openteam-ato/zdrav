@@ -7,6 +7,9 @@ class Doctor < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
 
   scope :ordered, -> { order('name') }
+
+  normalize_attributes :name, :post
+  normalize_attribute :description, :with => [:strip_empty_html, :strip, :blank]
 end
 
 # == Schema Information
