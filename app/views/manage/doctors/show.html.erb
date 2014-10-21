@@ -1,19 +1,23 @@
-<h3>
-  <%= resource.name %>
-  <%= link_to content_tag(:i, '', :class => 'fa fa-pencil'), edit_manage_doctor_path(resource) %>
-  <%= link_to content_tag(:i, '', :class => 'fa fa-chevron-left'), manage_doctors_path %>
-</h3>
+<div class="content">
+  <h3>
+    <%= resource.name %>
+    <%= link_to content_tag(:i, '', :class => 'fa fa-pencil'), edit_manage_doctor_path(resource) %>
+    <%= link_to content_tag(:i, '', :class => 'fa fa-chevron-left'), manage_doctors_path %>
+  </h3>
 
-<% if resource.post? %>
-  <p><%= resource.post %></p>
-<% end %>
-
-<% if resource.photo_url? %>
-  <%= link_to resource.photo_url, :target => '_blank', :class => 'colorbox floatr' do %>
-    <%= image_tag resized_image_url(resource.photo_url, '200', '300'), :size => '200x300', :alt => resource.name %>
+  <% if resource.post? %>
+    <p><%= resource.post %></p>
   <% end %>
-<% end %>
 
-<% if resource.description? %>
-  <%= resource.description.html_safe %>
-<% end %>
+  <% if resource.photo_url? %>
+    <%= link_to resource.photo_url, :target => '_blank', :class => 'colorbox floatr' do %>
+      <%= image_tag resized_image_url(resource.photo_url, '200', '300'), :size => '200x300', :alt => resource.name %>
+    <% end %>
+  <% end %>
+
+  <% if resource.description? %>
+    <div class='html-part'>
+      <%= resource.description.html_safe %>
+    </div>
+  <% end %>
+</div>
