@@ -1,0 +1,35 @@
+<div class='content row'>
+  <div class='col-xs-3'>
+    <div class='subnavigation'>
+      <%= render_partial_for_region(@subnavigation, 'sub') if @subnavigation.present? %>
+      <% if @left_side_links.present? %>
+        <div class='left_side_links'>
+          <%= render_partial_for_region(@left_side_links) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='col-xs-9'>
+    <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
+    <% if @right_side_links.present? %>
+      <% if @content_first.present? %>
+        <h1 class='page-header <%= header_css_class %>'><%= @content_first.part_title %></h1>
+      <% end %>
+      <div class='row'>
+        <div class='col-xs-9'>
+          <%= render_partial_for_region(@content_first) %>
+          <%= render_partial_for_region(@content_second) if @content_second.present? %>
+          <%= render_partial_for_region(@content_third) if @content_third.present? && @content_third.template != 'navigation_part' %>
+        </div>
+        <div class='col-xs-3'>
+          <%= render_partial_for_region(@right_side_links, 'right') %>
+        </div>
+      </div>
+    <% else %>
+      <%= render_partial_for_region(@content_first, 'full') if @content_first.present? %>
+      <%= render_partial_for_region(@content_second) if @content_second.present? %>
+      <%= render_partial_for_region(@content_third) if @content_third.present? && @content_third.template != 'navigation_part' %>
+    <% end %>
+  </div>
+</div>
