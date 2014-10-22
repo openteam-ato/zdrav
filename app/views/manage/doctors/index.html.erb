@@ -8,9 +8,9 @@
           <div class='photo'>
             <%= link_to [:manage, doctor] do %>
               <% if doctor.photo_url? %>
-                <%= image_tag(resized_image_url(doctor.photo_url, '100', '150'), :size => '100x150', :alt => doctor.name) %>
+                <%= image_tag(resized_image_url(doctor.photo_url, '100', '100'), :size => '100x100', :alt => doctor.name) %>
               <% else %>
-                <%= image_tag 'person-stub-md.jpg', :size => '100x150', :alt => '' %>
+                <%= image_tag 'person-stub-100x100.jpg', :size => '100x100', :alt => '' %>
               <% end %>
             <% end %>
           </div>
