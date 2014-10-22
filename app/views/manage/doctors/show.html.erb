@@ -20,4 +20,5 @@
       <%= resource.description.as_html %>
     </div>
   <% end %>
+  <p><%= link_to "Редактировать #{content_tag(:i, '', :class => 'fa fa-pencil')}".html_safe, edit_manage_doctor_path(resource) %></p>
 </div>

@@ -16,9 +16,10 @@
           </div>
           <p><%= link_to [doctor.name, doctor.post].join(', '), [:manage, doctor] %></p>
           <%= doctor.description.html_safe.scan(/<p>.*<\/p>/).flatten[0..1].join.as_html if doctor.description.present? %>
-          </div>
-          <hr />
-        <% end %>
-      </div>
+        </div>
+        <hr />
+      <% end %>
+      <p><%= link_to 'Добавить', new_manage_doctor_path, :class => 'btn btn-primary' %></p>
     </div>
+  </div>
 </div>
