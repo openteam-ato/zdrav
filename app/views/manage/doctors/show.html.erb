@@ -17,7 +17,7 @@
 
   <% if resource.description? %>
     <div class='html-part'>
-      <%= resource.description.html_safe %>
+      <%= resource.description.as_html %>
     </div>
   <% end %>
 </div>
