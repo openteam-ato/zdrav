@@ -1,0 +1,44 @@
+<div class='content row'>
+  <div class='col-xs-3'>
+    <div class='subnavigation'>
+      <%= render_partial_for_region(@subnavigation, 'sub') if @subnavigation.present? %>
+      <% if @left_side_links.present? %>
+        <div class='left_side_links'>
+          <%= render_partial_for_region(@left_side_links) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='col-xs-9'>
+    <%= render_partial_for_region(@breadcrumbs, 'full', { :current => resource.name }) if @breadcrumbs.present? %>
+    <h1 class='page-header <%= header_css_class %>'><%= [resource.name, resource.post].join(', ') %></h1>
+
+    <div class='row'>
+      <div class='col-xs-9'>
+        <div class='html-part'>
+          <% if resource.photo_url? %>
+          <div class='floatl'>
+            <%= link_to resource.photo_url, :class => :colorbox, :rel => :colorbox do %>
+              <%= image_tag resized_image_url(resource.photo_url, '150', '225'), :size => '150x225', :alt => resource.name %>
+            <% end %>
+          </div>
+          <% end %>
+          <%= resource.description.as_html %>
+        </div>
+      </div>
+      <div class='col-xs-3'>
+        <div class='right-side-links <%= header_css_class %>'>
+          <h5>Другие участники</h5>
+          <ul>
+            <% collection.ordered(1).each do |doctor| %>
+              <li><%= doctor.slug.eql?(resource.slug) ? doctor.name : link_to(doctor.name, doctor) %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

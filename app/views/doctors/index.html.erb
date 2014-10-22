@@ -1,0 +1,39 @@
+<div class='content row'>
+  <div class='col-xs-3'>
+    <div class='subnavigation'>
+      <%= render_partial_for_region(@subnavigation, 'sub') if @subnavigation.present? %>
+      <% if @left_side_links.present? %>
+        <div class='left_side_links'>
+          <%= render_partial_for_region(@left_side_links) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='col-xs-9'>
+    <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
+    <h1 class='page-header <%= header_css_class %>'><%= @content_first.part_title if @content_first.present? %></h1>
+
+    <div class='html-part'>
+      <% @doctors.each do |doctor| %>
+        <div class='doctor'>
+          <div class='photo'>
+            <%= link_to doctor do %>
+              <% if doctor.photo_url? %>
+                <%= image_tag(resized_image_url(doctor.photo_url, '100', '100'), :size => '100x100', :alt => doctor.name) %>
+              <% else %>
+                <%= image_tag 'person-stub-100x100.jpg', :size => '100x100', :alt => '' %>
+              <% end %>
+            <% end %>
+          </div>
+          <p><%= link_to [doctor.name, doctor.post].join(', '), doctor %></p>
+          <%= doctor.description.html_safe.scan(/<p>.*<\/p>/).flatten[0..1].join.as_html if doctor.description.present? %>
+        </div>
+        <hr />
+      <% end %>
+      <%= paginate @doctors %>
+    </div>
+
+  </div>
+</div>
+

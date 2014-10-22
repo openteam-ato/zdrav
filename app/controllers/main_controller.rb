@@ -29,6 +29,11 @@ class MainController < ApplicationController
 
     def remote_url
       request_path, parts_params = request.fullpath.split('?')
+      [
+        '/ru/zdravoohranenie-v-tomskoy-oblasti/spetsialistam/zemskiy-doktor/uchastniki',
+      ].each do |path|
+        request_path = path if request_path.match(/\A#{path}.*/)
+      end
 
       ["#{cms_address}#{request_path.split('/').compact.join('/')}.json", parts_params].compact.join('?')
     end

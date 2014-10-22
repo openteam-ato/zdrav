@@ -17,6 +17,9 @@ Zdrav::Application.routes.draw do
 
     get  'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/birzha-idey'                          => 'idea#show'
     post 'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/birzha-idey'                          => 'idea#create'
+
+    get  'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/zemskiy-doktor/uchastniki'            => 'doctors#index', :as => :doctors
+    get  'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/zemskiy-doktor/uchastniki/:id'        => 'doctors#show',  :as => :doctor
   end
 
   namespace :manage do

@@ -127,6 +127,7 @@ GEM
     fastercsv (1.5.5)
     font-awesome-sass (4.1.0)
       sass (~> 3.2)
+    friendly_id (4.0.9)
     fssm (0.2.10)
     gilenson (1.2.2)
     haml (4.0.5)
@@ -331,6 +332,7 @@ DEPENDENCIES
   esp-ckeditor
   esp-commons
   font-awesome-sass
+  friendly_id
   gilenson
   has_scope
   hashie

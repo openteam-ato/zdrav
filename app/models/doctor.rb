@@ -10,6 +10,9 @@ class Doctor < ActiveRecord::Base
 
   normalize_attributes :name, :post
   normalize_attribute :description, :with => [:strip_empty_html, :strip, :blank]
+
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
 end
 
 # == Schema Information
@@ -28,4 +31,5 @@ end
 #  photo_updated_at   :datetime
 #  photo_url          :text
 #  photo_meta         :text
+#  slug               :string(255)
 #

@@ -23,11 +23,11 @@ module ApplicationHelper
     end
   end
 
-  def render_partial_for_region(region, prefix = nil)
+  def render_partial_for_region(region, prefix = nil, opts = {})
     if region && (region.response_status == 200 || !region.response_status?)
       template = prefix.present? ? "#{prefix}_#{region.template}" : region.template
       render :partial => "regions/#{template}",
-      :locals => { :part_title => region.part_title, :object => region.content, :response_status => region.response_status }
+      :locals => { :part_title => region.part_title, :object => region.content, :response_status => region.response_status, :opts => opts }
     else
       render :partial => "regions/error_#{region.response_status}", :locals => { :region => region }
     end

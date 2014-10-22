@@ -20,6 +20,7 @@ group :default do
   gem 'enumerize'
   gem 'esp-ckeditor'
   gem 'esp-commons'
+  gem 'friendly_id'
   gem 'gilenson'
   gem 'has_scope'
   gem 'hashie'

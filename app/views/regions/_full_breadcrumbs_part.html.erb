@@ -1,0 +1,7 @@
+<% collection = object.to_a %>
+<% collection.shift %>
+<% current = opts[:current] %>
+
+<div class='breadcrumbs'>
+  <%= collection.map {|item| link_to(item.first, item.second)}.push(current).join(' / ').html_safe if collection.any? %>
+</div>
