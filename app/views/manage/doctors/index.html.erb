@@ -3,7 +3,7 @@
     <div class='content'>
       <h3>Земский доктор</h3>
       <p><%= link_to 'Добавить', new_manage_doctor_path, :class => 'btn btn-primary' %></p>
-      <% collection.ordered.each do |doctor| %>
+      <% @doctors.each do |doctor| %>
         <div class='doctor'>
           <div class='photo'>
             <%= link_to [:manage, doctor] do %>
@@ -19,6 +19,7 @@
         </div>
         <hr />
       <% end %>
+      <%= paginate @doctors %>
       <p><%= link_to 'Добавить', new_manage_doctor_path, :class => 'btn btn-primary' %></p>
     </div>
   </div>

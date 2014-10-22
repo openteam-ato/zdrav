@@ -6,7 +6,7 @@ class Doctor < ActiveRecord::Base
   has_attached_file :photo, :storage => :elvfs, :elvfs_url => Settings['storage.url']
   validates_attachment_content_type :photo, :content_type => ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
 
-  scope :ordered, -> { order('name') }
+  scope :ordered, -> (_) { order('name') }
 
   normalize_attributes :name, :post
   normalize_attribute :description, :with => [:strip_empty_html, :strip, :blank]
