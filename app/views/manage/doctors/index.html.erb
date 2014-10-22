@@ -1,9 +1,24 @@
 <div class='row'>
   <div class='col-sm-12'>
-    <h3>Земский доктор</h3>
-    <p><%= link_to 'Добавить', new_manage_doctor_path, :class => 'btn btn-primary' %></p>
-    <% collection.ordered.each do |doctor| %>
-      <p><%= link_to [doctor.name, doctor.post].join(', '), [:manage, doctor] %></p>
-    <% end %>
-  </div>
+    <div class='content'>
+      <h3>Земский доктор</h3>
+      <p><%= link_to 'Добавить', new_manage_doctor_path, :class => 'btn btn-primary' %></p>
+      <% collection.ordered.each do |doctor| %>
+        <div class='doctor'>
+          <div class='photo'>
+            <%= link_to [:manage, doctor] do %>
+              <% if doctor.photo_url? %>
+                <%= image_tag(resized_image_url(doctor.photo_url, '100', '150'), :size => '100x150', :alt => doctor.name) %>
+              <% else %>
+                <%= image_tag 'person-stub-md.jpg', :size => '100x150', :alt => '' %>
+              <% end %>
+            <% end %>
+          </div>
+          <p><%= link_to [doctor.name, doctor.post].join(', '), [:manage, doctor] %></p>
+          <%= doctor.description.html_safe.scan(/<p>(.*)<\/p>/).flatten.first.html_safe if doctor.description.present? %>
+          </div>
+          <hr />
+        <% end %>
+      </div>
+    </div>
 </div>
