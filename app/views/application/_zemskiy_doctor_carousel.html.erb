@@ -1,0 +1,27 @@
+<div class='html-part'>
+  <h2>Участники проекта</h2>
+  <div class='js-doctors-carousel-wrapper'>
+    <div class='js-doctors-carousel'>
+      <ul>
+        <% Doctor.ordered(1).each do |doctor| %>
+          <li>
+            <div class='photo'>
+              <%= link_to doctor do %>
+                <% if doctor.photo_url? %>
+                  <%= image_tag(resized_image_url(doctor.photo_url, '110', '110'), :size => '110x110', :alt => doctor.name) %>
+                <% else %>
+                  <%= image_tag 'person-stub-100x100.jpg', :size => '110x110', :alt => '' %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class='name'>
+              <%= link_to doctor.name, doctor %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <a class='js-doctors-carousel-prev' href='#'>&lsaquo;</a>
+    <a class='js-doctors-carousel-next' href='#'>&rsaquo;</a>
+  </div>
+</div>

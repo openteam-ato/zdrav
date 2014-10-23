@@ -19,6 +19,7 @@
       <div class='row'>
         <div class='col-xs-9'>
           <%= render_partial_for_region(@content_first) %>
+          <%= render :partial => 'zemskiy_doctor_carousel' %>
           <%= render_partial_for_region(@content_second) if @content_second.present? %>
           <%= render_partial_for_region(@content_third) if @content_third.present? && @content_third.template != 'navigation_part' %>
         </div>
@@ -28,6 +29,7 @@
       </div>
     <% else %>
       <%= render_partial_for_region(@content_first, 'full') if @content_first.present? %>
+          <%= render :partial => 'zemskiy_doctor_carousel' %>
       <%= render_partial_for_region(@content_second) if @content_second.present? %>
       <%= render_partial_for_region(@content_third) if @content_third.present? && @content_third.template != 'navigation_part' %>
     <% end %>

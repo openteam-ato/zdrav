@@ -62,11 +62,68 @@
     .post
       color: #808080
 
+  .js-doctors-carousel-wrapper
+    position: relative
+    padding: 5px 20px 10px 19px
+    border-bottom: 1px solid #eeca1e
+
+    .js-doctors-carousel-prev,
+    .js-doctors-carousel-next
+      font-size: 50px
+      line-height: 50px
+      position: absolute
+      top: 30px
+      color: #9d9d9d
+      text-decoration: none
+
+      &:hover
+        color: #00517b
+
+    .js-doctors-carousel-prev
+      left: 0
+
+    .js-doctors-carousel-next
+      right: 0
+
+    .js-doctors-carousel
+      position: relative
+      overflow: hidden
+
+      ul
+        width: 20000em
+        position: relative
+        list-style: none
+        margin: 0
+        padding: 0
+
+        li
+          width: 112px
+          float: left
+          margin: 0 3px
+          padding: 0
+
+          &:before
+            display: none
+
+          .photo
+            text-align: center
+            margin-bottom: 5px
+
+            img
+              border: 1px solid #d9d9d9
+
+          .name
+            font-size: 11px
+            text-align: center
+
   .doctor
     +clearfix
 
     .photo
       float: left
+
+      img
+        border: 1px solid #d9d9d9
 
     p
       margin-left: 120px

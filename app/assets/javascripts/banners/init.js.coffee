@@ -1,13 +1,12 @@
 @init_banners = ->
   if $('.js-banners ul li').length > 4
 
-    carousel = $('.js-banners').jcarousel({
+    carousel = $('.js-banners').jcarousel
       wrap: 'circular',
       scroll: 1
-    })
 
     carousel.jcarouselAutoscroll
-      interval: 5000
+      interval: 10000
 
     $('.js-banners-prev').jcarouselControl
       target: "-=1"
@@ -32,3 +31,4 @@
         return
     ).jcarouselPagination()
 
+  return

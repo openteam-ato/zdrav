@@ -17,7 +17,7 @@
       </div>
       <div class='thanks_patients'>
         <h3><a href='#'>Благодарности пациентов</a></h3>
-        <div class="thanks">
+        <div class='thanks'>
           <div class='add'><a href='#'>Добавить</a></div>
           <div class='note'><span>Примечание:</span> стилистика и пунктуация писем полностью сохранена, послания печатаются без сокращений</div>
           <div class='text'>
@@ -36,9 +36,9 @@
     <div class='right'>
       <%= render_partial_for_region(@actual, 'actual') if @actual.present? %>
 
-      <div class="news visible-lg-block visible-md-block">
-        <ul class="tabs" role="tablist">
-          <li class="active">
+      <div class='news visible-lg-block visible-md-block'>
+        <ul class='tabs' role='tablist'>
+          <li class='active'>
             <%= link_to 'Новости', '#main-page-news', :data => { :toggle => :tab } %>
           </li>
           <li>
@@ -46,11 +46,11 @@
           </li>
         </ul>
 
-        <div class="tab-content">
-          <div class="tab-pane active" id="main-page-news">
+        <div class='tab-content'>
+          <div class='tab-pane active' id='main-page-news'>
             <%= render :partial => 'regions/news_list_part', :locals => { :object => @news.content } if @news.present? %>
           </div>
-          <div class="tab-pane" id="main-page-announcements">
+          <div class='tab-pane' id='main-page-announcements'>
             <%= render :partial => 'regions/events_list_part', :locals => { :object => @announcements.content } if @announcements.present? %>
           </div>
         </div>
@@ -59,8 +59,8 @@
       <%= render_partial_for_region(@banners, 'banners') if @banners.present? %>
 
       <% if @pay_attention.present? %>
-      <div class="attention visible-lg-block visible-md-block">
-        <span class="title"><%= @pay_attention.part_title %></span>
+      <div class='attention visible-lg-block visible-md-block'>
+        <span class='title'><%= @pay_attention.part_title %></span>
 
         <%= render :partial => 'regions/html_part', :locals => { :object => @pay_attention.content } %>
       </div>

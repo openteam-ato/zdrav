@@ -21,5 +21,6 @@
  * = require fotoreports
  * = require iframe_resizer
  * = require slider
+ * = require doctors_carousel
  * = require main
  */

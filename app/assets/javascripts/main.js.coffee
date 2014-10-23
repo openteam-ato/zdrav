@@ -10,5 +10,6 @@ $ ->
   init_collapse() if $('.need-collapse').length
   init_colorbox() if $('a.colorbox').length
   init_delete_file() if $('.delete_file').length
+  init_doctors_carousel() if $('.js-doctors-carousel').length
 
   return
