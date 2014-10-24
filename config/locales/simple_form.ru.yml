@@ -29,3 +29,8 @@ ru:
         author: 'Автор'
         email: 'E-mail'
         idea: 'Идея'
+
+      thank:
+        fullname: 'Ф.И.О.'
+        email: 'E-mail'
+        message: 'Благодарность'

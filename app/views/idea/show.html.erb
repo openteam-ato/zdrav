@@ -13,7 +13,7 @@
   <div class='col-xs-9'>
     <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
     <%= render_partial_for_region(@content_first, 'full') if @content_first.present? %>
-    <%= simple_form_for :idea, :html => { novalidate: false } do |f| %>
+    <%= simple_form_for :idea do |f| %>
       <% if flash[:notice] %>
         <p class='notice text-success'><%= flash[:notice] %></p>
       <% end %>

@@ -1,3 +1,29 @@
-<ul>
-  <%= render @thanks %>
-</ul>
+<div class='content row'>
+  <div class='col-xs-3'>
+    <div class='subnavigation'>
+      <%= render_partial_for_region(@subnavigation, 'sub') if @subnavigation.present? %>
+      <% if @left_side_links.present? %>
+        <div class='left_side_links'>
+          <%= render_partial_for_region(@left_side_links) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='col-xs-9'>
+    <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
+    <h1 class='page-header <%= header_css_class %>'><%= @content_first.part_title if @content_first.present? %></h1>
+
+    <div class='html-part'>
+      <p><%= link_to 'Оставить благодарность', new_thank_path, :class => 'btn btn-default' %></p>
+      <% if flash[:notice] %>
+        <p class='notice text-success'><%= flash[:notice] %></p>
+      <% end %>
+      <% if @thanks.any? %>
+        <ul>
+          <%= render @thanks %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

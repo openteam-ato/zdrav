@@ -1,52 +1,66 @@
 .simple_form
 
+  .notice
+    margin-bottom: 20px
+
+  .input
+    +clearfix
+    margin-bottom: 10px
+
+    label
+      display: block
+      font-weight: normal
+      font-size: 14px
+
+      abbr
+        color: #880000
+
+    input
+      border: 1px solid #e1e1e1
+      padding: 5px
+
+    textarea
+      width: 500px
+      height: 200px
+      border-color: #e1e1e1
+      padding: 5px
+
+  #dynamic_recaptcha
+    margin-bottom: 10px
+
+    .recaptchatable #recaptcha_image
+      border: 0 !important
+
+    .recaptchatable #recaptcha_response_field
+      font-size: 12px
+      border: 1px solid #e1e1e1 !important
+      padding: 5px
+
+    #recaptcha_logo
+      display: none
+
+  .actions
+
+    input
+      font-size: 14px
+      border: 1px solid #eccb1c
+      background-color: #f2df79
+      padding: 5px 15px
+
   &.idea
 
     border-top: 1px solid #e1e1e1
     padding-top: 20px
 
-    .notice
-      font-size: 16px
-      margin-bottom: 20px
-
     .input
-      +clearfix
-      margin-bottom: 10px
 
       label
-        display: block
         float: left
         width: 70px
-        font-weight: normal
-        font-size: 14px
         margin-top: 3px
-
-        abbr
-          color: #880000
-
-      input
-        border: 1px solid #e1e1e1
-        padding: 5px
-
-      textarea
-        width: 500px
-        height: 200px
-        border-color: #e1e1e1
-        padding: 5px
 
     #dynamic_recaptcha
       margin: 0 0 10px 70px
-
-      .recaptchatable #recaptcha_image
-        border: 0 !important
-
-      .recaptchatable #recaptcha_response_field
-        font-size: 12px
-        border: 1px solid #e1e1e1 !important
-        padding: 5px
-
-      #recaptcha_logo
-        display: none
 
     .recaptcha-alert
       margin-left: 70px
@@ -54,8 +68,17 @@
     .actions
       margin-left: 70px
 
-      input
-        font-size: 14px
-        border: 1px solid #eccb1c
-        background-color: #f2df79
-        padding: 5px 15px
+  &.new_thank
+
+    .thank_fullname
+      float: left
+      margin-right: 20px
+
+    .thank_email
+      float: left
+
+    .thank_message
+      clear: left
+
+      textarea
+        width: 668px

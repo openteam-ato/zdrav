@@ -31,6 +31,7 @@ class MainController < ApplicationController
       request_path, parts_params = request.fullpath.split('?')
       [
         '/ru/zdravoohranenie-v-tomskoy-oblasti/spetsialistam/zemskiy-doktor/uchastniki',
+        '/ru/dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov',
       ].each do |path|
         request_path = path if request_path.match(/\A#{path}.*/)
       end
