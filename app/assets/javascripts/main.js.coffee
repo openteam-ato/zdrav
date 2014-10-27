@@ -12,4 +12,6 @@ $ ->
   init_delete_file() if $('.delete_file').length
   init_doctors_carousel() if $('.js-doctors-carousel').length
 
+  $('.datetimepicker').datetimepicker()
+
   return

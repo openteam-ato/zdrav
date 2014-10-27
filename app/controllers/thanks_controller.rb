@@ -6,8 +6,10 @@ class ThanksController < MainController
 
   actions :all, :only => :new
 
+  has_scope :by_state, :default => 'published', :only => :index
+
   def index
-    @thanks = Thank.published
+    index! { @thanks = Kaminari.paginate_array(collection).page(params[:page]).per(10) }
   end
 
   def create

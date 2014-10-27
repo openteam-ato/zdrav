@@ -31,6 +31,7 @@ ru:
         idea: 'Идея'
 
       thank:
+        published_at: 'Дата и время публикации'
         fullname: 'Ф.И.О.'
         email: 'E-mail'
         message: 'Благодарность'

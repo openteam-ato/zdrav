@@ -23,7 +23,7 @@ ru:
 
   change:
     draft:     Опубликовать
-    published: В неопубликованные
+    published: Снять с публикации
 
   recaptcha:
     failure: Текст с картинки введен неправильно

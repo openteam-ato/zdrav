@@ -1,3 +1,13 @@
-<ul class="js-ajaxed">
-  <%= render @thanks %>
-</ul>
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='content'>
+      <h4>Благодарности пациентов</h4>
+      <p><%= link_to 'Добавить', new_manage_thank_path, :class => 'btn btn-primary' %></p>
+      <ul class='js-ajaxed'>
+        <%= render @thanks %>
+      </ul>
+      <%= paginate @thanks %>
+      <p><%= link_to 'Добавить', new_manage_thank_path, :class => 'btn btn-primary' %></p>
+    </div>
+  </div>
+</div>

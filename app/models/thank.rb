@@ -1,14 +1,19 @@
 class Thank < ActiveRecord::Base
-  attr_accessible :email, :fullname, :message, :state
+  attr_accessible :email, :fullname, :message, :state, :published_at
 
   extend Enumerize
   enumerize :state, :in => [:draft, :published], :default => :draft, :predicates => true
 
-  scope :by_state, ->(state) { where(:state => state).ordered }
-  scope :ordered,   ->{ order('created_at desc') }
+  scope :by_state, -> (state) { where(:state => state).ordered(1) }
+  scope :ordered, -> (_) { order('published_at desc') }
   scope :published, by_state(:published)
+  scope :draft, by_state(:draft)
 
   validates_presence_of :fullname, :message
+
+  default_value_for :published_at do
+    Time.now
+  end
 
   def change!
     self.state = (state.draft? ? :published : :draft)
@@ -20,11 +25,12 @@ end
 #
 # Table name: thanks
 #
-#  id         :integer          not null, primary key
-#  fullname   :string(255)
-#  email      :string(255)
-#  message    :text
-#  state      :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :integer          not null, primary key
+#  fullname     :string(255)
+#  email        :string(255)
+#  message      :text
+#  state        :string(255)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  published_at :datetime
 #

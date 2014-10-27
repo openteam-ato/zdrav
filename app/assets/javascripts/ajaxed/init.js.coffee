@@ -3,3 +3,5 @@
     target = $(evt.target)
 
     target.closest('li').replaceWith(response)
+
+  return

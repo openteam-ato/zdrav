@@ -1,8 +1,15 @@
-<%= simple_form_for [:manage, @thank],
-                    :defaults => { :input_html => { :class => 'form-control' }, :wrapper_html => { :class => 'form-group' } } do |f| %>
-
+<%= simple_form_for [:manage, @thank], :defaults => { :input_html => { :class => 'form-control' }, :wrapper_html => { :class => 'form-group' } } do |f| %>
+  <%= f.input :published_at, :as => :string, :input_html => { :class => 'form-control datetimepicker', :value => @thank.published_at? ? l(@thank.published_at) : nil } %>
+  <%= f.input :state, :as => :hidden, :input_html => { :value => :published } %>
   <%= f.input :fullname %>
   <%= f.input :email %>
   <%= f.input :message %>
-  <%= f.submit I18n.t('save'), :class => 'button' %>
+  <div class='actions'>
+    <%= f.submit I18n.t('save'), :class => 'btn' %>
+    <%= link_to 'Отмена', manage_thanks_path, :class => 'btn btn-default' %>
+    <% unless resource.new_record? %>
+      <%= link_to 'Удалить', [:manage, resource], :method => :delete, :confirm => 'Точно хотите удалить?', :class => 'floatr btn btn-danger' %>
+    <% else %>
+    <% end %>
+  </div>
 <% end %>

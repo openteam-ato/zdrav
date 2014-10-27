@@ -19,10 +19,12 @@
       <% if flash[:notice] %>
         <p class='notice text-success'><%= flash[:notice] %></p>
       <% end %>
+      <p class='note'><strong>Примечание:</strong> стилистика и пунктуация писем полностью сохранена, послания печатаются без сокращений.</p>
       <% if @thanks.any? %>
-        <ul>
+        <ul class='thanks'>
           <%= render @thanks %>
         </ul>
+        <%= paginate @thanks %>
       <% end %>
     </div>
   </div>

@@ -16,7 +16,7 @@
   <% end %>
   <%= f.input :description, :as => :ckeditor %>
   <div class='actions'>
-    <%= f.submit 'Сохранить', :class => 'btn btn-primary' %>
+    <%= f.submit 'Сохранить', :class => 'btn' %>
     <% unless resource.new_record? %>
       <%= link_to 'Отмена', [:manage, resource], :class => 'btn btn-default' %>
       <%= link_to 'Удалить', [:manage, resource], :method => :delete, :confirm => 'Точно хотите удалить?', :class => 'floatr btn btn-danger' %>

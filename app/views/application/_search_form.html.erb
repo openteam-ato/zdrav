@@ -1,4 +1,4 @@
-<%= simple_form_for :parts_params, :url => '/ru/search', :method => :get do |form| %>
+<%= simple_form_for :parts_params, :url => '/ru/search', :method => :get, :html => { :class => :search_form } do |form| %>
   <%= form.simple_fields_for :search do |search| %>
     <%= search.input :q, :label => false, :input_html => { :value => params[:parts_params].try(:[], 'search').try(:[], 'q'), :placeholder => 'Поиск' }%>
   <% end %>

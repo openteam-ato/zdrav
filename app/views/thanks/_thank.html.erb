@@ -1,3 +1,4 @@
 <li>
-  <%= thank.message %>
+  <div class='thank'><%= simple_format(thank.message).as_html %></div>
+  <div class='author'><%= thank.fullname %>. <%= l thank.published_at, :format => '%d.%m.%Y' %></div>
 </li>

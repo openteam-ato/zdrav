@@ -1,9 +1,13 @@
 <li>
-  <%= thank.fullname %>
-  <%= mail_to thank.email %>
-  <%= thank.message %>
-  <%= thank.state_text %>
-  <%= link_to I18n.t("change.#{thank.state}"), change_manage_thank_path(thank), :method => :put, :remote => true %>
-  <%= link_to I18n.t('edit'), edit_manage_thank_path(thank) %>
-  <%= link_to I18n.t('destroy'), manage_thank_path(thank), :method => :delete, :data => { :confirm => I18n.t('confirm') } %>
+  <p class='name'>Автор: <%= thank.fullname %><%= ", #{mail_to(thank.email)}" if thank.email.present? %>, <span class='date'>Создано: <%= l thank.published_at, :format => :long %></span></p>
+  <p class='notice <%= thank.draft? ? 'text-danger' : 'text-success' %>'>
+    <strong><%= thank.state_text %></strong>
+    <%= link_to I18n.t("change.#{thank.state}"), change_manage_thank_path(thank), :method => :put, :remote => true %>
+  </p>
+  <p>
+    <%= link_to I18n.t('edit'), edit_manage_thank_path(thank) %>
+    <%= link_to I18n.t('destroy'), manage_thank_path(thank), :method => :delete, :data => { :confirm => I18n.t('confirm') } %>
+  </p>
+  <%= simple_format(thank.message).as_html %>
+  <hr />
 </li>

@@ -5,6 +5,9 @@
  * = require bootstrap/dropdown
  * = require bootstrap/tab
  * = require bootstrap/transition
+ * = require moment
+ * = require moment/ru
+ * = require bootstrap-datetimepicker
  * = require esp-ckeditor
  * = require vendor/jscrollpane
  * = require vendor/jcarousel
