@@ -1,0 +1,14 @@
+<div class='content row'>
+  <div class='col-xs-12'>
+    <%= render_partial_for_region(@breadcrumbs, 'full', { :current => 'Оставить благодарность' }) if @breadcrumbs.present? %>
+    <h1 class='page-header <%= header_css_class %>'>Публикация благодарности</h1>
+
+    <div class='html-part'>
+      <p>Благодарность опубликована</p>
+      <p>Автор: <%= @thank.fullname %></p>
+      <p>Дата публикации: <%= l(@thank.published_at, :format => '%d.%m.%Y') %></p>
+      <p>Email: <%= @thank.email? ? mail_to(@thank.email) : 'не указан' %></p>
+      <%= simple_format(@thank.message).as_html %>
+    </div>
+  </div>
+</div>

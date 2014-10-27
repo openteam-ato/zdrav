@@ -15,6 +15,12 @@ class Thank < ActiveRecord::Base
     Time.now
   end
 
+  default_value_for :key do
+    UUID.new.generate
+  end
+
+  normalize_attributes :email, :fullname, :message
+
   def change!
     self.state = (state.draft? ? :published : :draft)
     self.save
@@ -33,4 +39,5 @@ end
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  published_at :datetime
+#  key          :string(255)
 #

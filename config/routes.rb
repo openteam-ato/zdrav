@@ -11,9 +11,10 @@ Zdrav::Application.routes.draw do
   end
 
   scope  'ru' do
-    get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                       => 'thanks#index',  :as => :thanks
-    get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov/ostavit-blagodarnost'  => 'thanks#new',    :as => :new_thank
-    post 'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                       => 'thanks#create', :as => :create_thank
+    get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                       => 'thanks#index',    :as => :thanks
+    get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov/ostavit-blagodarnost'  => 'thanks#new',      :as => :new_thank
+    post 'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                       => 'thanks#create',   :as => :create_thank
+    get  'thanks/publish'                                                                       => 'thanks#publish',  :as => :publish_thank
 
     get  'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/birzha-idey'                          => 'idea#show'
     post 'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/birzha-idey'                          => 'idea#create'

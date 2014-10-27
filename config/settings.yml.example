@@ -37,3 +37,7 @@ mail:
   idea:
     sender:     sender@mail
     recipient:  recipient@mail
+
+  thank:
+    sender:     sender@mail
+    recipient:  recipient@mail
