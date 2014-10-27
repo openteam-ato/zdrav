@@ -1,5 +1,5 @@
 class ThanksMailer < ActionMailer::Base
-  default :from => Settings['mail.thanks.sender']
+  default :from => Settings['mail.thank.sender']
 
   def new_thank_email(thank)
     @thank = thank
