@@ -1,5 +1,5 @@
 <li>
-  <p class='name'>Автор: <%= thank.fullname %><%= ", #{mail_to(thank.email)}" if thank.email.present? %>, <span class='date'>Создано: <%= l thank.published_at, :format => :long %></span></p>
+  <p class='name'>Автор: <%= thank.fullname.as_html %><%= ", #{mail_to(thank.email)}" if thank.email.present? %>, <span class='date'>Создано: <%= l thank.published_at, :format => :long %></span></p>
   <p class='notice <%= thank.draft? ? 'text-danger' : 'text-success' %>'>
     <strong><%= thank.state_text %></strong>
     <%= link_to I18n.t("change.#{thank.state}"), change_manage_thank_path(thank), :method => :put, :remote => true %>
