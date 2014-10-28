@@ -16,17 +16,13 @@
         <div class='post'>Заместитель начальника департамента по развитию здравоохранения</div>
       </div>
       <div class='thanks_patients'>
-        <h3><a href='#'>Благодарности пациентов</a></h3>
+        <h3><a href='/ru/dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'>Благодарности пациентов</a></h3>
         <div class='thanks'>
-          <div class='add'><a href='#'>Добавить</a></div>
-          <div class='note'><span>Примечание:</span> стилистика и пунктуация писем полностью сохранена, послания печатаются без сокращений</div>
+          <div class='add'><a href='/ru/dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov/ostavit-blagodarnost'>Добавить</a></div>
+          <div class='note'><span>Примечание:</span> стилистика и пунктуация писем полностью сохранена, послания публикуются без сокращений</div>
           <div class='text'>
-            <p><strong>Начальнику департамента Холопову Александру Владимировичу.</strong></p>
-            <p>Здравствуйте Александр Владимирович!</p>
-            <p>Разрешите накануне&nbsp;"Дня Медика"&nbsp;поздравить Вас лично и в Вашем лице - весь мед. персонал Томской области с&nbsp;профессиональным праздником!!!</p>
-            <p>Разрешите так же сердечно пожелать всем&nbsp;работникам отрасли&nbsp;быть здоровыми, бодрыми, иметь семейное...</p>
+            <%= simple_format(Thank.ordered(1).limit(1).first.message).as_html %>
           </div>
-          <div class='more'><a href='#'>Читать полностью</a></div>
         </div>
       </div>
     </div>
