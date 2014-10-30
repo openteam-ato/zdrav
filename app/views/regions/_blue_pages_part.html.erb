@@ -38,7 +38,6 @@
       <% if object.appointments.present? %>
         <div class='contact'>
           <% if object.appointments.scan(/\Ahttps?:/).any? %>
-            <div class='label'>&nbsp;</div>
             <div class='value'><%= link_to 'Записаться на прием к врачу', object.appointments, :target => '_blank', :class => :appointments %></div>
           <% else %>
             <div class='label'>Запись на прием</div>

@@ -41,6 +41,7 @@ group :default do
   gem 'simple_form'
   gem 'sso-auth',                 '= 0.0.6'
   gem 'stop_ie'
+  gem 'truncate_html'
   gem 'uuid'
 end
 
