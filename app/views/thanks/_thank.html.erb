@@ -1,4 +1,4 @@
 <li>
   <div class='thank'><%= simple_format(thank.message).as_html %></div>
-  <div class='author'><%= thank.fullname.as_html.gsub(/\.\z/, '') %>. <%= l thank.published_at, :format => '%d.%m.%Y' %></div>
+  <div class='author'><%= thank.fullname.as_html.gsub(/\.\z/, '').html_safe %>. <%= l thank.published_at, :format => '%d.%m.%Y' %></div>
 </li>

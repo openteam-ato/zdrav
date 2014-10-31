@@ -155,9 +155,9 @@ module ApplicationHelper
     link = navigation.to_hash.to_s.match(/#{object.title.squish}\", \"path\"=>\"(.*?)\"/).try(:[], 1)
     external_link = navigation.to_hash.to_s.match(/#{object.title.squish}\",.*?\"external_link\"=>\"(.*?)\"/).try(:[], 1)
 
-    return render_link_for_navigation({ 'title' => object.title, 'path' => link, 'external_link' => external_link }) if link
+    return render_link_for_navigation({ 'title' => object.title.as_html, 'path' => link, 'external_link' => external_link }) if link
 
-    return object.title
+    object.title.as_html
   end
 
   def extension(filename)
