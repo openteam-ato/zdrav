@@ -43,16 +43,16 @@
           <% if subdivision.title.scan(/заместитель|бухгалтерия/i).any? %>
             <div class='subdivision'>
               <div class='image'>
-                <% if subdivision.items.first.image_url.present? %>
+                <% if subdivision.items.try(:first).try(:image_url).present? %>
                   <%= link_to subdivision.items.first.image_url, :class => :colorbox, :rel => :colorbox do %>
                     <%= image_tag(resized_image_url(subdivision.items.first.image_url, 100, 150), :size => '100x150', :alt => subdivision.items.first.person.squish) %>
                   <% end %>
                 <% else %>
-                  <%= image_tag('person-stub-md.jpg', :size => '100x150', :alt => subdivision.items.first.person.squish) %>
+                  <%= image_tag('person-stub-md.jpg', :size => '100x150', :alt => subdivision.items.try(:first).try(:person).to_s.squish) %>
                 <% end %>
               </div>
               <div class='person'>
-                <%= render :partial => 'employee', :locals => { :employee => subdivision.items.first } %>
+                <%= render :partial => 'employee', :locals => { :employee => subdivision.items.first } if subdivision.items.present? %>
                 <% if subdivision.subdivisions.any? %>
                   <ul class='children'>
                     <% subdivision.subdivisions.each do |item| %>
