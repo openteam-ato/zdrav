@@ -52,7 +52,11 @@
                 <% end %>
               </div>
               <div class='person'>
-                <%= render :partial => 'employee', :locals => { :employee => subdivision.items.first } if subdivision.items.present? %>
+                <% if subdivision.items.present? %>
+                  <%= render :partial => 'employee', :locals => { :employee => subdivision.items.first } %>
+                <% else %>
+                  <div class="name"><%= subdivision.title %></div>
+                <% end %>
                 <% if subdivision.subdivisions.any? %>
                   <ul class='children'>
                     <% subdivision.subdivisions.each do |item| %>
