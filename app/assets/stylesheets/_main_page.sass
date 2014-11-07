@@ -121,23 +121,15 @@
       li
         height: $height_li
 
-
-        @media (min-width: $screen-md-min)
-          width: 247px
-
-        @media (min-width: $screen-lg-min)
-          width: 403px
-
         a
           height: $height_li
-          width: 403px
+          width: 397px
           color: inherit
           position: relative
           display: table-cell
           vertical-align: middle
           text-decoration: none
-          background-color: #fff
-          +background(linear-gradient(top, #f1f1f1, #ffffff, #f1f1f1))
+          background-color: #f1f1f1
           border-bottom: 1px solid #cdcdcd
           border-right: 1px solid #cdcdcd
           padding-right: 15px
@@ -148,8 +140,7 @@
 
         &.hover a
           color: #fff
-          background-color: #005e8e
-          +background(linear-gradient(top, #00507b, #005b8a, #00517c))
+          background-color: #005b8a
 
           &:after
             display: block
@@ -157,33 +148,19 @@
             content: ''
             width: 0
             height: 0
-            top: 0
+            top: -2px
+            right: -10px
             border-style: solid
             border-width: 40px 0 40px 10px
             border-color: transparent transparent transparent #005b8a
             z-index: 1
 
-            @media (min-width: $screen-md-min)
-              right: -10px
-
-            @media (min-width: $screen-lg-min)
-              right: -4px
-
         img
           display: none
 
       &.without_scroll
-        li
-          @media (min-width: $screen-md-min)
-            width: 254px
-
-          @media (min-width: $screen-lg-min)
-            width: 403px
-
-          &.hover a
-            &:after
-              @media (min-width: $screen-lg-min)
-                right: -10px
+        li a
+          width: 404px
 
     .images
       a
