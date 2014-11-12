@@ -33,4 +33,13 @@ class ThanksController < MainController
     end
   end
 
+  def remove
+    @thank = Thank.find_by_key(params['key'])
+    @thank_status = :not_found and return if @thank.blank?
+    if @thank.fullname.slugged == params['author'] && @thank.draft?
+      @thank.destroy
+      @thank_status = :removed
+    end
+  end
+
 end

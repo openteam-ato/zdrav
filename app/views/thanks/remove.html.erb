@@ -1,0 +1,13 @@
+<div class='content row'>
+  <div class='col-xs-12'>
+    <%= render_partial_for_region(@breadcrumbs, 'full', { :current => 'Оставить благодарность' }) if @breadcrumbs.present? %>
+    <h1 class='page-header <%= header_css_class %>'>Удаление благодарности</h1>
+
+    <div class='html-part'>
+      <p>
+        <%= 'Благодарность не найдена, скорее всего она уже была удалена.' if @thank_status == :not_found %>
+        <%= 'Благодарность успешно удалена.' if @thank_status == :removed %>
+      </p>
+    </div>
+  </div>
+</div>

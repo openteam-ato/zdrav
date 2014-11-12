@@ -15,6 +15,7 @@ Zdrav::Application.routes.draw do
     get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov/ostavit-blagodarnost'  => 'thanks#new',      :as => :new_thank
     post 'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                       => 'thanks#create',   :as => :create_thank
     get  'thanks/publish'                                                                       => 'thanks#publish',  :as => :publish_thank
+    get  'thanks/remove'                                                                        => 'thanks#remove',   :as => :remove_thank
 
     get  'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/birzha-idey'                          => 'idea#show'
     post 'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/birzha-idey'                          => 'idea#create'
