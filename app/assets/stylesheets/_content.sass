@@ -31,6 +31,18 @@
     ol li
       margin: 5px 0
 
+    ol.book
+      counter-reset: item
+      margin-left: 0
+
+      li
+        list-style-type: none
+
+        &:before
+          counter-increment: item
+          content: 'Глава ' counter(item) '. '
+          font-weight: bold
+
     h2
       clear: left
       margin-top: 15px
@@ -40,6 +52,7 @@
         font-size: 20px
 
     h3
+      clear: left
       margin-top: 15px
       font-size: 16px
 
