@@ -1,0 +1,8 @@
+<div class='content row'>
+  <div class='col-xs-12'>
+    <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
+    <%= render_partial_for_region(@content_first, 'full') if @content_first.present? %>
+    <%= render_partial_for_region(@content_second) if @content_second.present? %>
+    <%= render_partial_for_region(@content_third) if @content_third.present? && @content_third.template != 'navigation_part' %>
+  </div>
+</div>
