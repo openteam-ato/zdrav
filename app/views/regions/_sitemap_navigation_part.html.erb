@@ -1,0 +1,7 @@
+<h1 class='page-header <%= header_css_class %>'><%= part_title %></h1>
+
+<div class='html-part'>
+  <div class='sitemap'>
+    <%= render_cms_navigation(object.values.first['children']) %>
+  </div>
+</div>
