@@ -47,6 +47,8 @@ Zdrav::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   config.assets.precompile += [
+    'html5.js',
+    'respond.js',
     'widget.css',
     'esp-ckeditor.js',
     'esp-ckeditor/custom_config.js',
