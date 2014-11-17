@@ -1,6 +1,13 @@
 $ ->
 
   init_actual() if $('.main_page .actual ul li').length
+
+  if $('html').is('.ie6, .ie7, .ie8') && $('.main_page .actual ul li').length
+    setTimeout ->
+      init_actual()
+      return
+    , 1000
+
   init_ajaxed() if $('.js-ajaxed').length
   init_banners() if $('.js-banners').length
   init_archive_collapser() if $('.js-archive').length

@@ -1,5 +1,10 @@
 <!DOCTYPE HTML>
+<!--[if IE 8 ]>
+<html class='ie8' lang='ru'>
+<![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
 <html lang='ru'>
+<!--<![endif]-->
 <head>
   <title><%= yield :app_page_title %></title>
   <meta charset='UTF-8'>
@@ -8,9 +13,13 @@
   <%= favicon_link_tag %>
   <%= stylesheet_link_tag    'application', :media => 'all' %>
   <%= javascript_include_tag 'application' %>
+  <!--[if lt IE 9]>
+  <%= javascript_include_tag 'html5.js' %>
+  <%= javascript_include_tag 'respond.js' %>
+  <![endif]-->
   <!--[if lte IE 7]>
-  <%= stylesheet_link_tag    "stop_ie/application" %>
-  <%= javascript_include_tag "stop_ie/application" %>
+  <%= stylesheet_link_tag    'stop_ie/application' %>
+  <%= javascript_include_tag 'stop_ie/application' %>
   <![endif]-->
   <%= csrf_meta_tags %>
   <%= yield :entry_date %>
