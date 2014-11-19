@@ -82,6 +82,16 @@
       <% object.subdivisions.each do |subdivision| %>
         <div class='subdivision'>
           <h3><%= subdivision.title %></h3>
+          <% if subdivision.address.present? %>
+            <div class='contact'>
+              <%= subdivision.address %>
+            </div>
+          <% end %>
+          <% if subdivision.phones.present? %>
+            <div class='contact'>
+              <%= subdivision.phones %>
+            </div>
+          <% end %>
           <% if subdivision.items.present? %>
             <div class='employees'>
               <% subdivision.items.each do |employee| %>
