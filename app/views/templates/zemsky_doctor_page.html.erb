@@ -27,11 +27,17 @@
           <%= render_partial_for_region(@right_side_links, 'right') %>
         </div>
       </div>
+      <div class='row'>
+        <%= render :partial => 'social_likes' %>
+      </div>
     <% else %>
       <%= render_partial_for_region(@content_first, 'full') if @content_first.present? %>
           <%= render :partial => 'zemskiy_doctor_carousel' %>
       <%= render_partial_for_region(@content_second) if @content_second.present? %>
       <%= render_partial_for_region(@content_third) if @content_third.present? && @content_third.template != 'navigation_part' %>
+      <div class='row'>
+        <%= render :partial => 'social_likes' %>
+      </div>
     <% end %>
   </div>
 </div>

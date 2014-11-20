@@ -1,3 +1,5 @@
+<% content_for :page_title, "#{[resource.name, resource.post].join(', ')}, #{@page_title.mb_chars.downcase} — #{strip_tags(@site_name.content.body)}".squish %>
+
 <div class='content row'>
   <div class='col-xs-3'>
     <div class='subnavigation'>
@@ -40,7 +42,8 @@
         </div>
       </div>
     </div>
-
+    <div class='row'>
+      <%= render :partial => 'social_likes' %>
+    </div>
   </div>
 </div>
-

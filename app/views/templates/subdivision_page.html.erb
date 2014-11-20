@@ -14,6 +14,8 @@
     <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
     <%= render_partial_for_region(@content_first) if @content_first.present? %>
     <%= render_partial_for_region(@content_second) if @content_second.present? %>
-    <%= render :partial => 'social_likes' %>
+    <div class='row'>
+      <%= render :partial => 'social_likes' %>
+    </div>
   </div>
 </div>
