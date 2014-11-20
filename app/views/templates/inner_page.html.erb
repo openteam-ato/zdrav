@@ -26,10 +26,12 @@
           <%= render_partial_for_region(@right_side_links, 'right') %>
         </div>
       </div>
+      <%= content_tag :div, yield(:social_likes), :class => :row if content_for?(:social_likes) %>
     <% else %>
       <%= render_partial_for_region(@content_first, 'full') if @content_first.present? %>
       <%= render_partial_for_region(@content_second) if @content_second.present? %>
       <%= render_partial_for_region(@content_third) if @content_third.present? && @content_third.template != 'navigation_part' %>
+      <%= content_tag :div, yield(:social_likes), :class => :row if content_for?(:social_likes) %>
     <% end %>
   </div>
 </div>

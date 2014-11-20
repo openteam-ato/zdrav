@@ -14,6 +14,7 @@
  * = require vendor/galleria
  * = require vendor/colorbox
  * = require vendor/scroll_to
+ * = require vendor/social_likes
  * = require actual
  * = require archive_collapser
  * = require delete_file
