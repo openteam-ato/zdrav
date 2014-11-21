@@ -1,4 +1,4 @@
-<% if @content_first.present? %>
+<% if @content_first.present? && @content_first.content.present? %>
   <% content_for :page_title, "#{[@content_first.part_title, @content_first.content.title.mb_chars.downcase].join(', ')} — #{strip_tags(@site_name.content.body)}".squish %>
 <% end %>
 
