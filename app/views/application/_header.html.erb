@@ -11,14 +11,6 @@
         <li>
           <span class='fa fa-sitemap'></span> <a href='/ru/sitemap'>Карта сайта</a>
         </li>
-        <li>
-          <% if current_user %>
-            <span class='current_user'><%= current_user.sso_auth_name %></span>
-            <%= link_to('Выход', '/sign_out') %>
-          <% else %>
-            <%= link_to 'Вход в систему', user_omniauth_authorize_path(:identity)  %>
-          <% end %>
-        </li>
       </ul>
     </div>
     <div class='search_form col-md-4'>
