@@ -1,7 +1,7 @@
-<div class='banners visible-lg-block visible-md-block'>
+<div class='banners visible-lg-block visible-md-block noindex'>
   <div class='inner'>
     <div class='js-banners'>
-      <%= raw object.body.gsub('<span class="nobr">data-ratio</span>', 'data-ratio').gsub('&#160;', ' ') %>
+      <%= object.body.gsub('<span class="nobr">data-ratio</span>', 'data-ratio').gsub('&#160;', ' ').html_safe %>
     </div>
   </div>
 

@@ -1,7 +1,7 @@
 <% content_for :page_title, strip_tags(@site_name.content.body).squish %>
 
 <div class='main_page row'>
-  <div class='col-xs-3 visible-lg-block visible-md-block'>
+  <div class='col-xs-3 visible-lg-block visible-md-block noindex'>
     <div class='left'>
       <%= content_tag :div, render_partial_for_region(@quick_links), :class => :quick_links if @quick_links.present? %>
       <!--
@@ -35,7 +35,7 @@
     <div class='right'>
       <%= render_partial_for_region(@actual, 'actual') if @actual.present? %>
 
-      <div class='news visible-lg-block visible-md-block'>
+      <div class='news visible-lg-block visible-md-block noindex'>
         <ul class='tabs' role='tablist'>
           <li class='active'>
             <%= link_to 'Новости', '#main-page-news', :data => { :toggle => :tab } %>
