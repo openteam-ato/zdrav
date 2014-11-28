@@ -6,9 +6,9 @@
   <%= paper.authority %>,
 
   <% if paper.approved_on %>
-    <span class="kind"><%= paper.kind %></span>
+    <span class="kind"><%= paper.kind.mb_chars.downcase %></span>
     <%= "#{t('paper_of')} #{l(paper.approved_on.to_date)}" %>
-    <%= "№ #{paper.number}" if paper.number %>
+    <%= "№#{paper.number}" if paper.number %>
   <% else %>
     <span class="kind"><%= paper.kind %></span>,
     <%= "#{t('published_on')} #{l(paper.published_on.to_date)}" %>

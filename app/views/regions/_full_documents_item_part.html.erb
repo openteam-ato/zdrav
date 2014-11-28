@@ -7,7 +7,10 @@
       <strong><%= object.authority %></strong>, <%= object.kind.mb_chars.downcase %><%= " №#{object.number}" if object.number %>
 
     <% if object.approved_on? %>
-      <p>Утверждён: <%= l object.approved_on.to_date %></p>
+      <p>
+        Утверждён: <%= l object.approved_on.to_date %>,
+        опубликован: <%= l object.published_on.to_date %>
+      </p>
     <% else %>
       <p>Опубликован: <%= l object.published_on.to_date %></p>
     <% end %>
