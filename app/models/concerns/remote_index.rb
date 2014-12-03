@@ -12,7 +12,7 @@ module RemoteIndex
     return if Rails.env.development?
 
     RestClient.post "#{Settings['cms.url']}/api",
-                    :url => "#{Settings['app.url']}/#{url_for(self)}",
+                    :url => "#{Settings['app.url']}#{url_for(self)}",
                     :content_type => :json,
                     :accept => :json if Settings['app.url']
   end
