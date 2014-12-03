@@ -1,4 +1,5 @@
 class Thank < ActiveRecord::Base
+
   attr_accessible :email, :fullname, :message, :state, :published_at
 
   extend Enumerize

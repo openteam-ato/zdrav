@@ -1,4 +1,9 @@
 class Doctor < ActiveRecord::Base
+
+  include RemoteIndex
+
+  after_save :reindex
+
   attr_accessible :name, :post, :photo, :description
 
   validates :name, :presence => true, :uniqueness => true
@@ -13,6 +18,7 @@ class Doctor < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :name, :use => :slugged
+
 end
 
 # == Schema Information

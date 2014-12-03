@@ -35,6 +35,7 @@ group :default do
   gem 'rack-utf8_sanitizer'
   gem 'rails',                    '~> 3.2.12'
   gem 'recaptcha',                :require => 'recaptcha/rails'
+  gem 'rest-client'
   gem 'russian'
   gem 'simple-navigation'
   gem 'simple-rss'
