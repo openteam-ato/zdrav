@@ -4,7 +4,11 @@ class Doctor < ActiveRecord::Base
 
   after_save :reindex
 
-  attr_accessible :name, :post, :photo, :description
+  attr_accessor :delete_photo
+
+  attr_accessible :name, :post, :photo, :description, :delete_photo
+
+  before_validation { photo.clear if delete_photo == 'true' }
 
   validates :name, :presence => true, :uniqueness => true
 

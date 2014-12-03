@@ -8,11 +8,4 @@ class Manage::DoctorsController < Manage::ApplicationController
     index! { @doctors = Kaminari.paginate_array(collection).page(params[:page]).per(5) }
   end
 
-  def update
-    update! do |format|
-      resource.photo = nil if params['doctor'].try(:[], 'delete_photo') == 'true'
-      resource.save
-    end
-  end
-
 end

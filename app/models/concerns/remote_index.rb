@@ -9,6 +9,8 @@ module RemoteIndex
   end
 
   def reindex
+    Rails.logger.info "=== Sendind url to cms for reindex: #{Settings['app.url']}#{url_for(self)}"
+
     return if Rails.env.development?
 
     RestClient.post "#{Settings['cms.url']}/api",
