@@ -17,17 +17,19 @@
         <div class='post'>Заместитель начальника департамента по развитию здравоохранения</div>
       </div>
       -->
-      <div class='thanks_patients'>
-        <h3><a href='/ru/dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'>Благодарности пациентов</a></h3>
-        <div class='thanks'>
-          <div class='add'><a href='/ru/dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov/ostavit-blagodarnost'>Добавить</a></div>
-          <div class='note'><span>Примечание:</span> стилистика и пунктуация писем полностью сохранена, послания публикуются без сокращений</div>
-          <div class='text'>
-            <% last_thank = Thank.by_state('published').limit(1).first %>
-            <%= truncate_html(simple_format(last_thank.message).as_html, :length => 700) %>
+      <% last_thank = Thank.by_state('published').limit(1).first %>
+      <% if last_thank.present? %>
+        <div class='thanks_patients'>
+          <h3><a href='/ru/dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'>Благодарности пациентов</a></h3>
+          <div class='thanks'>
+            <div class='add'><a href='/ru/dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov/ostavit-blagodarnost'>Добавить</a></div>
+            <div class='note'><span>Примечание:</span> стилистика и пунктуация писем полностью сохранена, послания публикуются без сокращений</div>
+            <div class='text'>
+              <%= truncate_html(simple_format(last_thank.message).as_html, :length => 700) %>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 
