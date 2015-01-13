@@ -5,8 +5,10 @@
     <% if @content_second.present? && @content_second.template == 'html_part' && @content_second.content.try(&:body).empty? %>
       <% object.subdivisions.each do |category| %>
         <h2><%= get_link(@content_third, category) %></h2>
-        <% category.subdivisions.each do |subdivision| %>
-          <h3><%= get_link(@content_third, subdivision) %></h3>
+        <% if category.subdivisions.present? %>
+          <% category.subdivisions.each do |subdivision| %>
+            <h3><%= get_link(@content_third, subdivision) %></h3>
+          <% end %>
         <% end %>
       <% end %>
     <% else %>
