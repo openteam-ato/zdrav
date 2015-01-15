@@ -12,7 +12,7 @@ class MainController < ApplicationController
 
   private
     def prepare_cms
-      render :file => "#{Rails.root}/public/404", :formats => [:html], :layout => false and return if request_status == 404
+      render :file => "#{Rails.root}/public/404", :formats => [:html], :layout => false, :status => 404 and return if request_status == 404
 
       page_regions.each do |region|
         eval "@#{region} = page.regions.#{region}"
