@@ -1,6 +1,13 @@
+<% employee = employees.first if employees.present? %>
 <% if employee.person.present? %>
   <div class='name'><%= employee.person.squish %></div>
-  <div class='post'><%= employee.title %></div>
+  <div class='post'>
+    <% if employees.present? && employees.many? %>
+      <%= link_to(employee.title, "#{request.fullpath}/#{employee.title.slugged}") %>
+    <% else %>
+      <%= employee.title %>
+    <% end %>
+  </div>
 <% else %>
   <div class='name'><%= employee.title %></div>
 <% end %>

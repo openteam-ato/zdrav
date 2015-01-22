@@ -40,7 +40,7 @@
       <div class='subdivisions-with-tree'>
         <h3><%= @page_title %></h3>
         <% object.subdivisions.each do |subdivision| %>
-          <% if subdivision.title.scan(/заместитель|бухгалтерия/i).any? %>
+          <% if subdivision.title.scan(/заместитель|бухгалтерия|юрисконсульт/i).any? %>
             <div class='subdivision'>
               <div class='image'>
                 <% if subdivision.items.try(:first).try(:image_url).present? %>
@@ -53,9 +53,9 @@
               </div>
               <div class='person'>
                 <% if subdivision.items.present? %>
-                  <%= render :partial => 'employee', :locals => { :employee => subdivision.items.first } %>
+                  <%= render :partial => 'employee', :locals => { :employees => subdivision.items } %>
                 <% else %>
-                  <div class="name"><%= subdivision.title %></div>
+                  <div class='name'><%= subdivision.title %></div>
                 <% end %>
                 <% if subdivision.subdivisions.any? %>
                   <ul class='children'>
@@ -72,7 +72,7 @@
       <div class='subdivisions-without-tree'>
         <h3>Подразделения</h3>
         <% object.subdivisions.each do |item| %>
-          <% unless item.title.scan(/заместитель|бухгалтерия/i).any? %>
+          <% unless item.title.scan(/заместитель|бухгалтерия|юрисконсульт/i).any? %>
             <div class='title'><%= link_to(item.title, "#{request.fullpath}/#{item.title.slugged}") %></div>
           <% end %>
         <% end %>
