@@ -2,6 +2,8 @@
 <% collection.shift %>
 <% current = collection.pop.try(:first).try(:gsub, /\s\|.*$/, '') %>
 
-<div class='breadcrumbs noindex'>
-  <%= collection.map {|item| link_to(item.first, item.second)}.push(current).join(' / ').html_safe if collection.any? %>
-</div>
+<% if collection.any? %>
+  <div class='breadcrumbs noindex'>
+    <%= collection.map {|item| link_to(item.first, item.second)}.push(current).join(' / ').html_safe %>
+  </div>
+<% end %>
