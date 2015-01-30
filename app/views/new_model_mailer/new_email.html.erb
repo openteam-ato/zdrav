@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html lang='ru'>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>Посетитель сайта оставил вопрос или предложение о новой модели томского здравоохранения</h3>
+    <hr />
+    <p><strong>Автор:</strong> <%= [@new_model['surname'], @new_model['name'], @new_model['patronymic']].delete_if(&:blank?).join(' ') %></p>
+    <p><strong>Социальный статус:</strong> <%= @new_model['social_status'] %></p>
+    <p><strong>Электронная почта:</strong> <%= mail_to @new_model['email'] %></p>
+    <p><strong>Почтовый адрес:</strong> <%= [@new_model['postcode'], @new_model['region'], @new_model['district'], @new_model['township'], @new_model['street'], @new_model['house'], @new_model['building'], @new_model['flat']].delete_if(&:blank?).join(', ') %></p>
+    <p><strong>Телефон:</strong> <%= @new_model['phone'] %></p>
+    <p><strong>Текст:</strong></p>
+    <%= simple_format(@new_model['text']).as_html %>
+    <hr />
+  </body>
+</html>

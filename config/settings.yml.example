@@ -41,3 +41,7 @@ mail:
   thank:
     sender:     sender@mail
     recipient:  recipient@mail
+
+  new_model:
+    sender:     sender@mail
+    recipient:  recipient@mail
