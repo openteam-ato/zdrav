@@ -49,6 +49,7 @@
       font-size: 12px
 
       @media (min-width: $screen-lg-min)
+
         font-size: 15px
 
       &:before
@@ -135,6 +136,14 @@
           padding-right: 15px
           padding-left: 15px
 
+          @media (min-width: $screen-md-min) and (max-width: $screen-md-max)
+
+            width: 287px
+
+          @media (min-width: $screen-lg-min)
+
+            width: 397px
+
           &.last_child
             border-bottom: none
 
@@ -161,6 +170,14 @@
       &.without_scroll
         li a
           width: 404px
+
+          @media (min-width: $screen-md-min) and (max-width: $screen-md-max)
+
+            width: 294px
+
+          @media (min-width: $screen-lg-min)
+
+            width: 404px
 
     .images
       a
@@ -231,7 +248,7 @@
         background: transparent image_url('banners-btn.png') no-repeat -47px -33px
 
     .banners-pagination
-      margin: 8px 5px
+      margin: 8px 6px 8px 5px
 
       .square
         +inline-block
@@ -239,6 +256,7 @@
         height: 15px
         width: 15px
         border: 1px solid #cdcdcd
+        margin-left: 2px
 
         &.active
           background: #00517c

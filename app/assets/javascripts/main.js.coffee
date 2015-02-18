@@ -21,4 +21,7 @@ $ ->
 
   $('.datetimepicker').datetimepicker()
 
+  $(document). on 'click', 'a.disabled', ->
+    false
+
   return

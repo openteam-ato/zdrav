@@ -1,6 +1,11 @@
-<div class='actual visible-lg-block visible-md-block noindex'>
+<div class='actual visible-lg visible-md noindex'>
   <div class='scroller'>
-    <%= object.body.to_s.gsub(/\/\d+-\d+\//, '/440-315cmn/').gsub(/width=['|"]\d+['|"]/, 'width="440"').gsub(/height=['|"]\d+['|"]/, 'height="312"').html_safe %>
+    <div class='visible-lg'>
+      <%= object.body.to_s.gsub(/\/\d+-\d+\//, '/440-312!mn/').gsub(/width=['|"]\d+['|"]/, 'width="440"').gsub(/height=['|"]\d+['|"]/, 'height="312"').html_safe %>
+    </div>
+    <div class='visible-md'>
+      <%= object.body.to_s.gsub(/\/\d+-\d+\//, '/400-312!mn/').gsub(/width=['|"]\d+['|"]/, 'width="400"').gsub(/height=['|"]\d+['|"]/, 'height="312"').html_safe %>
+    </div>
   </div>
   <div class='images'></div>
 </div>

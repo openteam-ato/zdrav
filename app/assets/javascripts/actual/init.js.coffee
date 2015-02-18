@@ -1,7 +1,7 @@
 @init_actual = () ->
 
   wrapper = $('.main_page .actual')
-  list = $('ul', wrapper).addClass('items')
+  list = $('ul:visible', wrapper).addClass('items')
   $('br', list).remove()
   $('a:last', list).addClass('last_child')
 

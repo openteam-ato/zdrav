@@ -40,10 +40,18 @@
       <div class='news visible-lg-block visible-md-block noindex'>
         <ul class='tabs' role='tablist'>
           <li class='active'>
-            <%= link_to 'Новости', '#main-page-news', :data => { :toggle => :tab } %>
+            <% if @news.present? && @news.content.items.present? %>
+              <%= link_to 'Новости', '#main-page-news', :data => { :toggle => :tab } %>
+            <% else %>
+              <%= link_to 'Новости', '#main-page-news', :class => :disabled %>
+            <% end %>
           </li>
           <li>
-            <%= link_to 'Анонсы', '#main-page-announcements', :data => { :toggle => :tab } %>
+            <% if @announcements.present? && @announcements.content.items.present? %>
+              <%= link_to 'Анонсы', '#main-page-announcements', :data => { :toggle => :tab } %>
+            <% else %>
+              <%= link_to 'Анонсы', '#main-page-announcements', :class => :disabled %>
+            <% end %>
           </li>
         </ul>
 
