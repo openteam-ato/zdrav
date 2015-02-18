@@ -1,7 +1,7 @@
 <% content_for :page_title, strip_tags(@site_name.content.body).squish %>
 
 <div class='main_page row'>
-  <div class='col-xs-3 visible-lg-block visible-md-block noindex'>
+  <div class='col-lg-3 col-md-3 col-sm-12 col-xs-12 noindex'>
     <div class='left'>
       <%= content_tag :div, render_partial_for_region(@quick_links), :class => :quick_links if @quick_links.present? %>
       <!--
@@ -33,11 +33,11 @@
     </div>
   </div>
 
-  <div class='col-xs-9 visible-lg-block visible-md-block visible-xs-block'>
+  <div class='col-lg-9 col-md-9 col-sm-12 col-xs-12'>
     <div class='right'>
       <%= render_partial_for_region(@actual, 'actual') if @actual.present? %>
 
-      <div class='news visible-lg-block visible-md-block noindex'>
+      <div class='news noindex'>
         <ul class='tabs' role='tablist'>
           <li class='active'>
             <% if @news.present? && @news.content.items.present? %>
@@ -68,7 +68,7 @@
       <%= render_partial_for_region(@banners, 'banners') if @banners.present? %>
 
       <% if @pay_attention.present? %>
-      <div class='attention visible-lg-block visible-md-block'>
+      <div class='attention'>
         <span class='title'><%= @pay_attention.part_title %></span>
 
         <%= render :partial => 'regions/html_part', :locals => { :object => @pay_attention.content } %>
