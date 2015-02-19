@@ -5,11 +5,11 @@
   </a>
   <ul class='dropdown-menu' role='menu' aria-labelledby='dropdown_for_mobile'>
     <% object.values.first['children'].each do |name, item| %>
-      <li role='presentation'>
+      <li role='presentation' <%= 'class="selected"'.html_safe if item.selected %>>
         <%= render_link_for_navigation item %>
       </li>
       <% item['children'].each do |name, item| %>
-        <li role='presentation' class='second-level'>
+        <li role='presentation' class='second-level<%= ' selected'.html_safe if item.selected %>'>
           <%= render_link_for_navigation item %>
         </li>
       <% end %>

@@ -1,16 +1,7 @@
 <div class='content row'>
-  <div class='col-xs-3 noindex'>
-    <div class='subnavigation'>
-      <%= render_partial_for_region(@subnavigation, 'sub') if @subnavigation.present? %>
-      <% if @left_side_links.present? %>
-        <div class='left_side_links'>
-          <%= render_partial_for_region(@left_side_links) %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <%= render :partial => 'subnavigation' %>
 
-  <div class='col-xs-9'>
+  <div class='col-sm-9 col-xs-12'>
     <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
     <%= render_partial_for_region(@content_first, 'department') if @content_first.present? %>
     <%= render_partial_for_region(@content_second, 'department') if @content_second.present? %>

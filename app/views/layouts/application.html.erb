@@ -15,7 +15,7 @@
   <%= render :partial => 'content' %>
   <%= render :partial => 'bottom_menu' %>
   <%= render :partial => 'footer' %>
-  <%= render :partial => 'developers_tools' if Rails.env.development? %>
+  <%= render :partial => 'development' if Rails.env.development? %>
   <%= render :partial => 'metrika' if Rails.env.production? %>
 <% end %>
 

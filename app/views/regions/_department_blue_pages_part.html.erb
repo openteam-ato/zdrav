@@ -3,7 +3,7 @@
 <% chief = object.items.shift %>
 
 <div class='department row'>
-  <div class='col-xs-9'>
+  <div class='col-lg-9 col-md-8 col-sm-8 col-xs-8'>
     <div class='department-contacts'>
       <%= render_partial_for_region(@regulation, 'regulation') if @regulation.present? %>
       <% if object.address.present? %>
@@ -89,7 +89,7 @@
     <% end %>
   </div>
 
-  <div class='col-xs-3'>
+  <div class='col-lg-3 col-md-4 col-sm-4 col-xs-4'>
     <div class='subdivision-chief'>
       <div class='position'>
         <%= chief.title %>
