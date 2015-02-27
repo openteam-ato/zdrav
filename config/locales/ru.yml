@@ -68,6 +68,7 @@ ru:
         ip: "IP"
         user_agent: "User-Agent"
         recaptcha: ""
+        attachments: "Прикрепленные файлы"
 
         question_1: "Организация процесса"
         question_1_1: "Соблюдение графика работы"
@@ -109,3 +110,6 @@ ru:
         question_5: "Общая оценка работы регистратуры"
         question_5_1: "Удовлетворенность работой регистратуры"
         question_5_2: "Был ли решен Ваш вопрос"
+
+      evaluation_registry_attachment:
+        attachment: "Файл"

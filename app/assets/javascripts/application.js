@@ -8,6 +8,7 @@
  * = require moment
  * = require moment/ru
  * = require bootstrap-datetimepicker
+ * = require jquery_nested_form
  * = require esp-ckeditor
  * = require vendor/jscrollpane
  * = require vendor/jcarousel

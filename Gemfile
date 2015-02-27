@@ -29,6 +29,7 @@ group :default do
   gem 'hashie'
   gem 'inherited_resources'
   gem 'kaminari'
+  gem 'nested_form'
   gem 'openteam-commons'
   gem 'paperclip-elvfs'
   gem 'paperclip-meta'
