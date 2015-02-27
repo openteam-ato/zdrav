@@ -58,6 +58,8 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :doctors, 'Земский доктор', manage_doctors_path, :highlights_on => /\A\/manage\/doctors/
 
+    primary.item :evaluation_registries, 'Поликлиника начинается с регистратуры', manage_evaluation_registries_path, :highlights_on => /\A\/manage\/evaluation_registries/
+
     #primary.item :key_1, 'name', url, options
 
     # Add an item which has a sub navigation (same params, but with block)

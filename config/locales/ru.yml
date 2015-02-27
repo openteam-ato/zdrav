@@ -48,6 +48,14 @@ ru:
     many: "%{count} проектов"
     other: "%{count} проекты"
 
+  evaluation_registry_attachments:
+    count:
+      zero: "без вложений"
+      one: "%{count} вложение"
+      few: "%{count} вложения"
+      many: "%{count} вложений"
+      other: "%{count} вложения"
+
   enumerize:
     thank:
       state:

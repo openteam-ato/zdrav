@@ -1,0 +1,55 @@
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='content'>
+      <h4>Лечебно-профилактическое учреждение <%= resource.title %></h4>
+      <div class="evaluation_registry">
+        <p><%= I18n.t('activerecord.attributes.evaluation_registry.ip') %>: <%= resource.ip %></p>
+        <p><%= I18n.t('activerecord.attributes.evaluation_registry.user_agent') %>: <%= resource.user_agent %></p>
+        <fieldset>
+          <legend><%= I18n.t('activerecord.attributes.evaluation_registry.question_1') %></legend>
+          <% (1..11).each do |number| %>
+            <%= render :partial => 'question', :locals => { :resource => resource, :group => 1, :number => number } %>
+          <% end %>
+        </fieldset>
+        <fieldset>
+          <legend><%= I18n.t('activerecord.attributes.evaluation_registry.question_2') %></legend>
+          <% (1..9).each do |number| %>
+            <%= render :partial => 'question', :locals => { :resource => resource, :group => 2, :number => number } %>
+          <% end %>
+        </fieldset>
+        <fieldset>
+          <legend><%= I18n.t('activerecord.attributes.evaluation_registry.question_3') %></legend>
+          <% (1..6).each do |number| %>
+            <%= render :partial => 'question', :locals => { :resource => resource, :group => 3, :number => number } %>
+          <% end %>
+        </fieldset>
+        <fieldset>
+          <legend><%= I18n.t('activerecord.attributes.evaluation_registry.question_4') %></legend>
+          <% (1..3).each do |number| %>
+            <%= render :partial => 'question', :locals => { :resource => resource, :group => 4, :number => number } %>
+          <% end %>
+        </fieldset>
+        <fieldset>
+          <legend><%= I18n.t('activerecord.attributes.evaluation_registry.question_5') %></legend>
+          <% (1..2).each do |number| %>
+            <%= render :partial => 'question', :locals => { :resource => resource, :group => 5, :number => number } %>
+          <% end %>
+        </fieldset>
+        <fieldset>
+          <legend><%= I18n.t('activerecord.attributes.evaluation_registry.proposal') %></legend>
+          <%= simple_format resource.proposal %>
+        </fieldset>
+        <fieldset>
+          <legend><%= I18n.t('activerecord.attributes.evaluation_registry.attachments') %></legend>
+          <% if resource.evaluation_registry_attachments.any? %>
+            <% resource.evaluation_registry_attachments.each do |attachment| %>
+              <p><%= link_to attachment.attachment_file_name, attachment.attachment_url, :target => '_blank' %></p>
+            <% end %>
+          <% else %>
+            <p>Нет файлов</p>
+          <% end %>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>

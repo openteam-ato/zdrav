@@ -40,6 +40,8 @@ Zdrav::Application.routes.draw do
 
     resources :doctors
 
+    resources :evaluation_registries
+
     root :to => 'thanks#index'
   end
 

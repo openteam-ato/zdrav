@@ -1,0 +1,10 @@
+<p>
+  <%= I18n.t("activerecord.attributes.evaluation_registry.question_#{group}_#{number}") %><br />
+  <span class='date'>Рэйтинг: <%= resource.send("question_1_#{number}").to_i %></span>
+  <% (1..resource.send("question_#{group}_#{number}").to_i).each do |star| %>
+    <%= content_tag(:span, '', :class => 'glyphicon glyphicon-star') %>
+  <% end %>
+  <% (resource.send("question_#{group}_#{number}").to_i..4).each do |star| %>
+    <%= content_tag(:span, '', :class => 'glyphicon glyphicon-star-empty') %>
+  <% end %>
+</p>

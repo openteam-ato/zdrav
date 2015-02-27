@@ -20,6 +20,8 @@ class EvaluationRegistry < ActiveRecord::Base
   accepts_nested_attributes_for :evaluation_registry_attachments, :allow_destroy => true
 
   normalize_attributes :title, :proposal
+
+  scope :ordered, -> (_) { order('created_at desc') }
 end
 
 # == Schema Information
