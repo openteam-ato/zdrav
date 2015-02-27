@@ -32,6 +32,7 @@ class MainController < ApplicationController
       [
         '/ru/zdravoohranenie-v-tomskoy-oblasti/spetsialistam/zemskiy-doktor/uchastniki',
         '/ru/dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov',
+        '/ru/konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety',
         '/ru/thanks'
       ].each do |path|
         request_path = path if request_path.match(/\A#{path}.*/)

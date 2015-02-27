@@ -45,3 +45,7 @@ mail:
   new_model:
     sender:     sender@mail
     recipient:  recipient@mail
+
+  evaluation_registry:
+    sender:     sender@mail
+    recipient:  recipient@mail

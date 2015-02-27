@@ -1,6 +1,11 @@
 .simple_form
 
+  legend
+    margin-bottom: 10px
+
   .notice
+    font-size: 16px
+    font-weight: bold
     margin-bottom: 20px
 
   .input
@@ -29,6 +34,32 @@
       height: 200px
       border-color: #e1e1e1
       padding: 5px
+
+    &.radio_buttons
+      +clearfix
+      margin-top: 10px
+
+      label.radio_buttons
+        margin-bottom: 0
+
+      label.radio
+        width: auto
+        +inline-block
+        padding-left: 18px
+        margin: 0 15px 0 0
+
+        input
+          top: 5px
+          left: 0
+          border: 0
+          padding: 0
+          margin: 0
+
+  #evaluation_registry_title
+    width: 100%
+
+  #evaluation_registry_proposal
+    width: 100%
 
   #dynamic_recaptcha
     margin-bottom: 10px

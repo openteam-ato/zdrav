@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html lang='ru'>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>Новая анкета конкурса «Поликлиника начинается с регистратуры»</h3>
+    <hr />
+    <p><strong>ЛПУ:</strong> <%= @evaluation_registry.title %></p>
+    <p><strong><a href='<%= Settings['app.url'] %>/manage/evaluation_registries/<%= @evaluation_registry.id %>'>Перейти к просмотру анкеты</a></strong></p>
+    <hr />
+    <p>Это письмо сформировано автоматически. Не нужно на него отвечать.</p>
+  </body>
+</html>
