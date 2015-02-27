@@ -3,8 +3,6 @@ class EvaluationRegistryAttachment < ActiveRecord::Base
 
   belongs_to :evaluation_registry
 
-  validates_presence_of :attachment
-
   has_attached_file :attachment, :storage => :elvfs, :elvfs_url => Settings['storage.url']
   do_not_validate_attachment_file_type :attachment
 end
