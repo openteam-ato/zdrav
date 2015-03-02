@@ -17,7 +17,11 @@ module ApplicationHelper
 
   def render_link_for_navigation(item)
     if item['external_link'].present?
-      link_to item['title'], item['external_link'], :target => :_blank
+      if item['external_link'].match(/\Ahttp/)
+        link_to item['title'], item['external_link'], :target => :_blank
+      else
+        link_to item['title'], item['external_link']
+      end
     else
       link_to item['title'], item['path']
     end
