@@ -6,7 +6,11 @@
         <% @evaluation_registries.each do |evaluation_registry| %>
           <li>
             <div class='link'>ЛПУ: <%= link_to evaluation_registry.title, manage_evaluation_registry_path(evaluation_registry) %></div>
-            <div class='date'>
+            <div class='gray'>
+              IP: <%= evaluation_registry.ip %>,
+              User-Agent: <%= evaluation_registry.user_agent %>
+            </div>
+            <div class='gray'>
               Анкета создана <%= I18n.l evaluation_registry.created_at %>,
               <%= I18n.t 'evaluation_registry_attachments.count', :count => evaluation_registry.evaluation_registry_attachments.count %>
             </div>
