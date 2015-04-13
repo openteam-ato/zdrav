@@ -1,3 +1,5 @@
+<% raise ActionController::RoutingError.new('Not Found') if object.blank? %>
+
 <h1 class='page-header <%= header_css_class %>'><%= object.title %></h1>
 
 <%= content_tag :div, :class => object.more_like_this.present? ? 'news-item col-xs-9' : 'news-item col-xs-12' do %>
