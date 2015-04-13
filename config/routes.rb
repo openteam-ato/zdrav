@@ -2,7 +2,7 @@ Zdrav::Application.routes.draw do
   mount ElVfsClient::Engine => '/'
 
   devise_for :users, :path => 'auth',
-    :controllers => {:omniauth_callbacks => 'sso_auth/omniauth_callbacks'},
+    :controllers => { :omniauth_callbacks => 'sso_auth/omniauth_callbacks' },
     :skip => [:sessions]
 
   devise_scope :users do
@@ -40,7 +40,9 @@ Zdrav::Application.routes.draw do
 
     resources :doctors
 
-    resources :evaluation_registries
+    resources :evaluation_registries do
+      get :xls, :on => :collection
+    end
 
     root :to => 'thanks#index'
   end

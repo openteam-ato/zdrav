@@ -41,6 +41,7 @@ group :default do
   gem 'simple-navigation'
   gem 'simple-rss'
   gem 'simple_form'
+  gem 'spreadsheet'
   gem 'sso-auth',                 '= 0.0.6'
   gem 'stop_ie'
   gem 'truncate_html'
