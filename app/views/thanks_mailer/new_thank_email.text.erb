@@ -4,6 +4,7 @@
 
 Автор: <%= @thank['fullname'] %>
 Email: <%= @thank['email'] %>
+Перейти на страницу управления благодарностями: '<%= Settings['app.url'] %>/manage/thanks
 Ссылка для быстрой публикации: <%= Settings['app.url'] %>/ru/thanks/publish?author=<%= @thank.fullname.slugged %>&key=<%= @thank.key %>
 Ссылка для быстрого удаления: <%= Settings['app.url'] %>/ru/thanks/remove?author=<%= @thank.fullname.slugged %>&key=<%= @thank.key %>
 
