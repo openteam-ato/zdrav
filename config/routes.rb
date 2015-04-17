@@ -1,4 +1,7 @@
 Zdrav::Application.routes.draw do
+
+  put '/ali.txt' => redirect('http://alihack.com')
+
   mount ElVfsClient::Engine => '/'
 
   devise_for :users, :path => 'auth',
