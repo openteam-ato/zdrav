@@ -74,5 +74,7 @@ module Zdrav
 
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
+    config.assets.precompile += %w( print.css )
+
   end
 end
