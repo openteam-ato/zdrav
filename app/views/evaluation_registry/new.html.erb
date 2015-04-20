@@ -30,6 +30,7 @@
       <fieldset>
         <legend><%= I18n.t('activerecord.attributes.evaluation_registry.question_2') %></legend>
         <% (1..9).each do |number| %>
+          <% next if number == 7 %>
           <%= f.input "question_2_#{number}", :as => :radio_buttons, :collection => (1..5) %>
         <% end %>
       </fieldset>

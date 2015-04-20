@@ -15,6 +15,7 @@
         <fieldset>
           <legend><%= I18n.t('activerecord.attributes.evaluation_registry.question_2') %></legend>
           <% (1..9).each do |number| %>
+            <% next if number == 7 %>
             <%= render :partial => 'question', :locals => { :resource => resource, :group => 2, :number => number } %>
           <% end %>
         </fieldset>
