@@ -28,14 +28,19 @@ class MainController < ApplicationController
     end
 
     def remote_url
-      request_path, parts_params = request.fullpath.split('?')
+      original_request_path, parts_params = request.fullpath.split('?')
+      request_path = original_request_path
       [
         '/ru/zdravoohranenie-v-tomskoy-oblasti/spetsialistam/zemskiy-doktor/uchastniki',
         '/ru/dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov',
         '/ru/konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety',
         '/ru/thanks'
       ].each do |path|
-        request_path = path if request_path.match(/\A#{path}.*/)
+        request_path = path if original_request_path.match(/\A#{path}.*/)
+      end
+
+      if original_request_path == '/ru/konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety/done'
+        request_path = '/ru/konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety/done'
       end
 
       ["#{cms_address}#{request_path.split('/').compact.join('/')}.json", parts_params].compact.join('?')

@@ -29,7 +29,6 @@ Zdrav::Application.routes.draw do
     get  'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/zemskiy-doktor/uchastniki'            => 'doctors#index', :as => :doctors
     get  'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/zemskiy-doktor/uchastniki/:id'        => 'doctors#show',  :as => :doctor
 
-    get  'konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety-done'       => 'evaluation_registry#show',   :as => :evaluation_registry_done
     get  'konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety'            => 'evaluation_registry#new',    :as => :evaluation_registry
     post 'konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety'            => 'evaluation_registry#create', :as => :evaluation_registry
     put  'konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety'            => 'evaluation_registry#create', :as => :evaluation_registry

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150227081728) do
+ActiveRecord::Schema.define(:version => 20150421064336) do
 
   create_table "doctors", :force => true do |t|
     t.text     "name"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20150227081728) do
     t.datetime "updated_at",    :null => false
     t.text     "ip"
     t.text     "user_agent"
+    t.text     "username"
   end
 
   create_table "evaluation_registry_attachments", :force => true do |t|

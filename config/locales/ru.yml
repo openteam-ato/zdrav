@@ -72,7 +72,8 @@ ru:
 
       evaluation_registry:
         title: "Название лечебно-профилактического учреждения"
-        proposal: "Ваши предложения"
+        username: "Ф.И.О., контакты"
+        proposal: "Ваши предложения по улучшению нашей работы"
         ip: "IP"
         user_agent: "User-Agent"
         recaptcha: ""
