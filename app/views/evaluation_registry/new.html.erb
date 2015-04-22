@@ -20,7 +20,7 @@
       <% if @evaluation_registry.errors.any? %>
         <p class='notice text-danger'><%= @evaluation_registry.errors.full_messages.map(&:squish).join(', ') %></p>
       <% end %>
-      <%= f.input :title, :as => :string, :autofocus => true %>
+      <%= f.input :title, :as => :select, :collection => EvaluationRegistry.collection_for_title %>
       <%= f.input :username, :as => :string, :hint => 'заполняется по желанию' %>
       <fieldset>
         <legend><%= I18n.t('activerecord.attributes.evaluation_registry.question_1') %></legend>
