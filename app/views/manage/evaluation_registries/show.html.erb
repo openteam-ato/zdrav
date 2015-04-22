@@ -6,6 +6,7 @@
       <%= link_to 'удалить', manage_evaluation_registry_path(resource), :method => :delete, :confirm => 'Вы уверены?', :class => 'btn btn-default floatr' %>
       <%= link_to 'распечатать', 'javascript:if(window.print)window.print()', :class => 'btn btn-default print floatr' %>
       <h4>Лечебно-профилактическое учреждение <%= resource.title %></h4>
+      <h5>Автор: <%= resource.username.presence || 'не указан' %></h5>
       <div class='evaluation_registry'>
         <p><%= I18n.t('activerecord.attributes.evaluation_registry.ip') %>: <%= resource.ip %></p>
         <p><%= I18n.t('activerecord.attributes.evaluation_registry.user_agent') %>: <%= resource.user_agent %></p>
