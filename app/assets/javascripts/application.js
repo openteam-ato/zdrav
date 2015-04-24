@@ -22,6 +22,7 @@
  * = require ajaxed
  * = require collapse
  * = require colorbox
+ * = require location_map
  * = require banners
  * = require fotoreports
  * = require iframe_resizer
