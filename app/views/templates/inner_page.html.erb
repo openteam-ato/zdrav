@@ -31,6 +31,11 @@
       <%= render_partial_for_region(@content_second) if @content_second.present? %>
       <%= render_partial_for_region(@content_third) if @content_third.present? && @content_third.template != 'navigation_part' %>
     <% end %>
+    <% if @banners.present? %>
+      <div class='clearfix'>
+        <%= render_partial_for_region(@banners, 'banners') %>
+      </div>
+    <% end %>
     <%= content_tag :div, yield(:social_likes), :class => :row if content_for?(:social_likes) %>
   </div>
 </div>
