@@ -7,6 +7,8 @@
     <h3>Посетитель сайта оставил благодарность</h3>
     <hr />
     <p><strong>Автор:</strong> <%= @thank.fullname %></p>
+    <p><strong>IP:</strong> <%= @thank.ip %></p>
+    <p><strong>User-Agent:</strong> <%= @thank.user_agent %></p>
     <p><strong>Email:</strong> <%= mail_to(@thank.email) %></p>
     <p><strong><a href='<%= Settings['app.url'] %>/manage/thanks'>Перейти на страницу управления благодарностями</a></strong></p>
     <p><strong><a href='<%= Settings['app.url'] %>/ru/thanks/publish?author=<%= @thank.fullname.slugged %>&key=<%= @thank.key %>'>Ссылка для быстрой публикации</a></strong></p>

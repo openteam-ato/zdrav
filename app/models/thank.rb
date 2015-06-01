@@ -1,6 +1,6 @@
 class Thank < ActiveRecord::Base
 
-  attr_accessible :email, :fullname, :message, :state, :published_at
+  attr_accessible :email, :fullname, :message, :state, :published_at, :ip, :user_agent
 
   extend Enumerize
   enumerize :state, :in => [:draft, :published], :default => :draft, :predicates => true
@@ -41,4 +41,6 @@ end
 #  updated_at   :datetime         not null
 #  published_at :datetime
 #  key          :string(255)
+#  ip           :text
+#  user_agent   :text
 #

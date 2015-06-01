@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150421064336) do
+ActiveRecord::Schema.define(:version => 20150601153046) do
 
   create_table "doctors", :force => true do |t|
     t.text     "name"
@@ -116,6 +116,8 @@ ActiveRecord::Schema.define(:version => 20150421064336) do
     t.datetime "updated_at",   :null => false
     t.datetime "published_at"
     t.string   "key"
+    t.text     "ip"
+    t.text     "user_agent"
   end
 
   create_table "users", :force => true do |t|

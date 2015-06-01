@@ -16,6 +16,8 @@ class ThanksController < MainController
 
   def create
     @thank = Thank.new(params[:thank])
+    @thank.ip = request.env['HTTP_X_FORWARDED_FOR'] || request.remote_ip
+    @thank.user_agent = request.user_agent
     if verify_recaptcha(:model => @thank)
       ThanksMailer.new_thank_email(@thank).deliver
       flash[:notice] = 'Ваша благодарность принята. Спасибо!'
