@@ -92,6 +92,16 @@
               <%= subdivision.phones %>
             </div>
           <% end %>
+          <% if subdivision.url.present? %>
+            <div class='contact'>
+              Сайт: <%= link_to object.url, object.url, :target => '_blank' %>
+            </div>
+          <% end %>
+          <% if subdivision.emails.present? %>
+            <div class='contact'>
+              Email: <%= object.emails.map{ |email| mail_to email }.join(', ').html_safe %>
+            </div>
+          <% end %>
           <% if subdivision.items.present? %>
             <div class='employees'>
               <% subdivision.items.each do |employee| %>
