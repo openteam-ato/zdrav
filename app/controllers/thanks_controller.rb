@@ -30,6 +30,9 @@ class ThanksController < MainController
 
   def publish
     @thank = Thank.find_by_key(params['key'])
+
+    render :not_found and return @thank.inspect
+
     if @thank.fullname.slugged == params['author'] && @thank.draft?
       @thank.change!
     end

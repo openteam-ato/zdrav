@@ -1,0 +1,10 @@
+<div class='content row'>
+  <div class='col-xs-12'>
+    <%= render_partial_for_region(@breadcrumbs, 'full', { :current => 'Оставить благодарность' }) if @breadcrumbs.present? %>
+    <h1 class='page-header <%= header_css_class %>'>Не удалось опубликовать благодарность</h1>
+
+    <div class='html-part'>
+      <p>Благодарность по указанным данным не найдена</p>
+    </div>
+  </div>
+</div>
