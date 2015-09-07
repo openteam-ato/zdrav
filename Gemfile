@@ -16,6 +16,7 @@ end
 
 group :default do
   gem 'attribute_normalizer'
+  gem 'awesome_print'
   gem 'curb'
   gem 'default_value_for',        '~> 3.0.0'
   gem 'devise',                   '= 2.2.4'
