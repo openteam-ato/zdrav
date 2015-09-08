@@ -22,7 +22,7 @@
       <%= f.input :idea, :as => :text, :input_html => { :value => params['idea'].try(:[], 'idea') } %>
       <%= recaptcha_tags :display => { :theme => 'clean' }, :ajax => true %>
       <% if flash[:alert] %>
-        <p class='recaptcha-alert text-danger'><%= flash[:alert] %></p>
+        <p class='recaptcha-alert text-danger'><%= flash[:alert].html_safe %></p>
       <% end %>
       <div class='actions'>
         <%= f.button :submit, 'Отправить', class: 'submit' %>

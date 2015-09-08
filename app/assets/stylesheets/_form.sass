@@ -1,6 +1,7 @@
 .simple_form
 
   legend
+    font-size: 18px
     margin-bottom: 10px
 
   .notice
@@ -14,6 +15,7 @@
 
     label
       display: block
+
       font-weight: normal
       font-size: 14px
 
@@ -29,13 +31,15 @@
       border: 1px solid #e1e1e1
       padding: 5px
 
+      &.string
+        width: 300px
+
     select
       background-color: #fff
       border: 1px solid #e1e1e1
       padding: 6px 5px
 
     textarea
-      width: 500px
       height: 200px
       border-color: #e1e1e1
       padding: 5px
@@ -59,6 +63,24 @@
           border: 0
           padding: 0
           margin: 0
+
+  .form-group
+
+    label
+      display: block
+      font-weight: normal
+
+      abbr
+        color: #880000
+
+    &.radio_buttons
+
+      span.radio
+        +inline-block
+        margin: 0 10px 0 0
+
+    textarea
+      height: 200px
 
   .attachments
     border-bottom: 1px solid #e5e5e5
@@ -87,19 +109,9 @@
   #evaluation_registry_proposal
     width: 100%
 
-  #dynamic_recaptcha
-    margin-bottom: 10px
-
-    .recaptchatable #recaptcha_image
-      border: 0 !important
-
-    .recaptchatable #recaptcha_response_field
-      font-size: 12px
-      border: 1px solid #e1e1e1 !important
-      padding: 5px
-
-    #recaptcha_logo
-      display: none
+  .g-recaptcha
+    height: 78px
+    margin: 0 0 15px 0
 
   .actions
 
@@ -128,15 +140,6 @@
         width: 70px
         margin-top: 3px
 
-    #dynamic_recaptcha
-      margin: 0 0 10px 70px
-
-    .recaptcha-alert
-      margin-left: 70px
-
-    .actions
-      margin-left: 70px
-
   &.new_thank
 
     .thank_created_at
@@ -152,22 +155,19 @@
     .thank_message
       clear: left
 
-      textarea
-        width: 668px
-
   &.new_model
-    .input
+    .form-group
       float: left
       margin-right: 10px
+
+      &.text
+        float: none
 
     input
       width: 170px
 
     select
       width: 170px
-
-    textarea
-      width: 700px
 
     #new_model_house,
     #new_model_building,

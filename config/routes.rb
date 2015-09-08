@@ -1,17 +1,14 @@
-Zdrav::Application.routes.draw do
-
-  put '/ali.txt' => redirect('http://alihack.com')
+Rails.application.routes.draw do
 
   mount ElVfsClient::Engine => '/'
 
-  devise_for :users, :path => 'auth',
-    :controllers => { :omniauth_callbacks => 'sso_auth/omniauth_callbacks' },
-    :skip => [:sessions]
+  put '/ali.txt' => redirect('http://alihack.com')
 
+  devise_for :users, :path => 'auth', :controllers => {:omniauth_callbacks => 'sso/auth/omniauth_callbacks'}, :skip => [:sessions]
   devise_scope :users do
-    get 'sign_out' => 'sso-auth/sessions#destroy', :as => :destroy_user_session
-    get 'sign_in' => redirect('/auth/auth/identity'), :as => :new_user_session
-  end
+            delete 'sign_out' => 'sso/auth/sessions#destroy', :as => :destroy_user_session
+            get    'sign_in' => redirect('/auth/auth/identity'), :as => :new_user_session
+          end
 
   scope  'ru' do
     get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                       => 'thanks#index',    :as => :thanks
@@ -23,16 +20,16 @@ Zdrav::Application.routes.draw do
     get  'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/birzha-idey'                          => 'idea#show'
     post 'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/birzha-idey'                          => 'idea#create'
 
-    get  'novaya-model-tomskogo-zdravoohraneniya/predlagaem-k-obsuzhdeniyu-proekt-novoy-modeli-tomskogo-zdravoohraneniya/otpravit-vopros-ili-predlozhenie' => 'new_model#show'
-    post 'novaya-model-tomskogo-zdravoohraneniya/predlagaem-k-obsuzhdeniyu-proekt-novoy-modeli-tomskogo-zdravoohraneniya/otpravit-vopros-ili-predlozhenie' => 'new_model#create'
+    get  'zdravoohranenie-v-tomskoy-oblasti/novaya-model-tomskogo-zdravoohraneniya/predlagaem-k-obsuzhdeniyu-proekt-novoy-modeli-tomskogo-zdravoohraneniya/otpravit-vopros-ili-predlozhenie' => 'new_model#show'
+    post 'zdravoohranenie-v-tomskoy-oblasti/novaya-model-tomskogo-zdravoohraneniya/predlagaem-k-obsuzhdeniyu-proekt-novoy-modeli-tomskogo-zdravoohraneniya/otpravit-vopros-ili-predlozhenie' => 'new_model#create'
 
     get  'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/zemskiy-doktor/uchastniki'            => 'doctors#index', :as => :doctors
     get  'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/zemskiy-doktor/uchastniki/:id'        => 'doctors#show',  :as => :doctor
 
     get  'konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety/done'       => 'evaluation_registry#show',   :as => :evaluation_registry_done
-    get  'konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety'            => 'evaluation_registry#new',    :as => :evaluation_registry
-    post 'konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety'            => 'evaluation_registry#create', :as => :evaluation_registry
-    put  'konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety'            => 'evaluation_registry#create', :as => :evaluation_registry
+    get  'konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety'            => 'evaluation_registry#new',    :as => :evaluation_registry_new
+    post 'konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety'            => 'evaluation_registry#create', :as => :evaluation_registry_post_create
+    put  'konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety'            => 'evaluation_registry#create', :as => :evaluation_registry_put_ceate
   end
 
   namespace :manage do
@@ -46,6 +43,8 @@ Zdrav::Application.routes.draw do
     resources :evaluation_registries do
       get :xls, :on => :collection
     end
+
+    resources :eco_coupons
 
     root :to => 'thanks#index'
   end

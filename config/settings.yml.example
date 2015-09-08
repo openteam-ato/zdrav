@@ -21,6 +21,9 @@ sso:
   key:          KEY
   secret:       SECRET
 
+solr:
+  url:          http://solr.url
+
 recaptcha:
   private:      SECRET
   public:       SECRET

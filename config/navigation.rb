@@ -54,11 +54,17 @@ SimpleNavigation::Configuration.run do |navigation|
     #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>.
     #
 
-    primary.item :thanks, 'Благодарности пациентов', manage_thanks_path, :highlights_on => /\A\/manage(\z|\/thanks)/
+    primary.item :thanks, 'Благодарности пациентов', manage_thanks_path,
+      :highlights_on => /\A\/manage(\z|\/thanks)/
 
-    primary.item :doctors, 'Земский доктор', manage_doctors_path, :highlights_on => /\A\/manage\/doctors/
+    primary.item :doctors, 'Земский доктор', manage_doctors_path,
+      :highlights_on => /\A\/manage\/doctors/
 
-    primary.item :evaluation_registries, 'Поликлиника начинается с регистратуры', manage_evaluation_registries_path, :highlights_on => /\A\/manage\/evaluation_registries/
+    primary.item :evaluation_registries, 'Поликлиника начинается с регистратуры', manage_evaluation_registries_path,
+      :highlights_on => /\A\/manage\/evaluation_registries/
+
+    primary.item :eco_coupons, 'ЭКО талоны', manage_eco_coupons_path,
+      :highlights_on => /\A\/manage\/eco_coupons/
 
     #primary.item :key_1, 'name', url, options
 

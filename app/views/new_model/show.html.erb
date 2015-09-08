@@ -25,6 +25,7 @@
       </div>
       <div class='clearfix'>
         <%= f.input :email, :input_html => { :value => params['new_model'].try(:[], 'email') } %>
+        <%= f.input :phone, :required => false, :input_html => { :value => params['new_model'].try(:[], 'phone') } %>
       </div>
       <div class='clearfix'>
         <%= f.input :postcode, :required => false, :input_html => { :value => params['new_model'].try(:[], 'postcode') } %>
@@ -37,9 +38,6 @@
         <%= f.input :house, :required => false, :input_html => { :value => params['new_model'].try(:[], 'house') } %>
         <%= f.input :building, :required => false, :input_html => { :value => params['new_model'].try(:[], 'building') } %>
         <%= f.input :flat, :required => false, :input_html => { :value => params['new_model'].try(:[], 'flat') } %>
-      </div>
-      <div class='clearfix'>
-        <%= f.input :phone, :required => false, :input_html => { :value => params['new_model'].try(:[], 'phone') } %>
       </div>
       <div class='clearfix'>
         <%= f.input :text, :as => :text, :input_html => { :value => params['new_model'].try(:[], 'text') } %>

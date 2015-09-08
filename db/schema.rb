@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150601153046) do
+ActiveRecord::Schema.define(:version => 20150907093654) do
 
   create_table "doctors", :force => true do |t|
     t.text     "name"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(:version => 20150601153046) do
   end
 
   add_index "doctors", ["slug"], :name => "index_doctors_on_slug", :unique => true
+
+  create_table "eco_coupons", :force => true do |t|
+    t.string   "number"
+    t.string   "patient_code"
+    t.datetime "issued_at"
+    t.datetime "closing_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "evaluation_registries", :force => true do |t|
     t.text     "title"

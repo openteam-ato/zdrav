@@ -2,7 +2,7 @@
   <%= form.simple_fields_for :search do |search| %>
     <%= search.input :q, :label => false, :input_html => { :value => params[:parts_params].try(:[], 'search').try(:[], 'q'), :placeholder => 'Поиск' }%>
   <% end %>
-  <div class='action'>
+  <div class='action hidden-sm hidden-xs'>
     <%= form.button :submit, 'Искать', :name => nil %>
   </div>
 <% end %>

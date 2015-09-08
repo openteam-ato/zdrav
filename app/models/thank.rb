@@ -7,8 +7,8 @@ class Thank < ActiveRecord::Base
 
   scope :by_state, -> (state) { where(:state => state).ordered(1) }
   scope :ordered, -> (_) { order('published_at desc') }
-  scope :published, by_state(:published)
-  scope :draft, by_state(:draft)
+  scope :published, -> { by_state(:published) }
+  scope :draft, -> { by_state(:draft) }
 
   validates_presence_of :fullname, :message
 

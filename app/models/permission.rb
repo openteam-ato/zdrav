@@ -1,9 +1,6 @@
 class Permission < ActiveRecord::Base
-  sso_auth_permission :roles => [:manager]
-
   attr_accessible :role
-
-  belongs_to :user
+  sso_auth_permission :roles => [:admin, :manager, :eco_operator]
 end
 
 # == Schema Information

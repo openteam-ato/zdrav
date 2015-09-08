@@ -29,9 +29,9 @@ class ThanksController < MainController
   end
 
   def publish
-    @thank = Thank.find_by_key(params['key'])
+    @thank = Thank.find_by(:key => params['key'])
 
-    render :not_found and return @thank.inspect
+    render :not_found and return if @thank.blank?
 
     if @thank.fullname.slugged == params['author'] && @thank.draft?
       @thank.change!
@@ -45,6 +45,7 @@ class ThanksController < MainController
       @thank.destroy
       @thank_status = :removed
     end
+    @thank_status = :published
   end
 
 end

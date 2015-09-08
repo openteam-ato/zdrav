@@ -4,10 +4,14 @@ class Ability
   def initialize(user)
     return unless user
 
-    can :manage, :all if user.manager?
-
-    can :manage, :permissions do
+    can :manage, :application do
       user.manager?
     end
+
+    can :manage, :all do
+      user.admin?
+    end
+
+    # TODO: insert app specific rules here
   end
 end
