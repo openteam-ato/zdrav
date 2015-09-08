@@ -1,3 +1,1 @@
-require 'openteam/capistrano/recipes'
-
-set :default_stage, :production
+require 'openteam/capistrano/deploy'

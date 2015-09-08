@@ -496,7 +496,7 @@ DEPENDENCIES
   letter_opener
   momentjs-rails
   nested_form
-  openteam-capistrano
+  openteam-capistrano (~> 1.0.12)
   openteam-commons
   paperclip-elvfs
   paperclip-meta
@@ -524,6 +524,3 @@ DEPENDENCIES
   uglifier
   unicorn
   uuid
-
-BUNDLED WITH
-   1.10.6

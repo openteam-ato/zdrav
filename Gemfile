@@ -54,7 +54,7 @@ group :development do
   gem 'capistrano-unicorn', '~> 0.1.7', :require => false
   gem 'hirb'
   gem 'letter_opener'
-  gem 'openteam-capistrano'
+  gem 'openteam-capistrano', '~> 1.0.12'
   gem 'quiet_assets' #, :require => false
   gem 'sqlite3'
   gem 'thin'
