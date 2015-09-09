@@ -24,6 +24,7 @@ group :default do
   gem 'kaminari'
   gem 'momentjs-rails'
   gem 'nested_form'
+  gem 'non-stupid-digest-assets'
   gem 'openteam-commons'
   gem 'paperclip-elvfs'
   gem 'paperclip-meta'
