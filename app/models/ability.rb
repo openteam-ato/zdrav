@@ -16,7 +16,7 @@ class Ability
 
     when 'eco'
       can :manage, :all do
-        user.eco_operator?
+        user.permissions.any?
       end
     end
   end
