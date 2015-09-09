@@ -63,8 +63,8 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :evaluation_registries, 'Поликлиника начинается с регистратуры', manage_evaluation_registries_path,
       :highlights_on => /\A\/manage\/evaluation_registries/
 
-    primary.item :eco_coupons, 'ЭКО талоны', manage_eco_coupons_path,
-      :highlights_on => /\A\/manage\/eco_coupons/
+    primary.item :eco_coupons, 'ЭКО талоны', eco_eco_coupons_path,
+      :highlights_on => -> { controller_name == 'eco_coupons' }
 
     #primary.item :key_1, 'name', url, options
 

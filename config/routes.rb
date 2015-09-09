@@ -44,9 +44,13 @@ Rails.application.routes.draw do
       get :xls, :on => :collection
     end
 
+    root :to => 'thanks#index'
+  end
+
+  namespace :eco do
     resources :eco_coupons
 
-    root :to => 'thanks#index'
+    root :to => 'eco_coupons#index'
   end
 
   get '/ru/(*path)', :to => 'main#index'

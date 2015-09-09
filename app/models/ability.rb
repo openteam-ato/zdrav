@@ -1,17 +1,23 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(user, namespace = nil)
     return unless user
 
-    can :manage, :application do
-      user.manager?
-    end
+    case namespace
+    when nil
+      can :manage, :application do
+        user.manager?
+      end
 
-    can :manage, :all do
-      user.admin?
-    end
+      can :manage, :all do
+        user.admin?
+      end
 
-    # TODO: insert app specific rules here
+    when 'eco'
+      can :manage, :all do
+        user.eco_operator?
+      end
+    end
   end
 end
