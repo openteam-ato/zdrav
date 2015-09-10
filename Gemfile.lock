@@ -192,7 +192,7 @@ GEM
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.0.2)
-    el_vfs_client (0.4.3)
+    el_vfs_client (0.4.4)
       configliere
       curb
       rails
