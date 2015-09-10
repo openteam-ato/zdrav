@@ -1,1 +1,38 @@
-<%= link_to 'Добавить талон', new_eco_coupon_path %>
+
+<div class="row">
+  <div class="col-xs-12">
+    <%= link_to 'Добавить талон', new_eco_coupon_path, :class => [:btn, 'btn-default'] %>
+
+      <table class="table tabel-hover">
+        <thead>
+          <th>Код талона</th>
+          <th>Код пациента</th>
+          <th>Дата выдачи</th>
+          <th>Статус</th>
+        </thead>
+
+        <tbody>
+          <% @coupons.each do |coupon| %>
+          <tr>
+            <td>
+              <%= link_to coupon.number, eco_coupon_path(coupon) %>
+            </td>
+
+            <td>
+              <%= coupon.patient_code %>
+            </td>
+
+
+            <td>
+              <%= I18n.l(coupon.issued_on) %>
+            </td>
+            <td>
+              <%= I18n.t("coupon_#{coupon.state}") %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+  </div>
+</div>

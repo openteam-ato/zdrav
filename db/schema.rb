@@ -19,10 +19,11 @@ ActiveRecord::Schema.define(version: 20150910035653) do
 
   create_table "coupons", force: :cascade do |t|
     t.string   "number"
-    t.datetime "issued_on"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "patient_id"
+    t.string   "state"
+    t.date     "issued_on"
   end
 
   create_table "doctors", force: :cascade do |t|

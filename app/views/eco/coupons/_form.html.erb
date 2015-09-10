@@ -1,0 +1,6 @@
+<%= simple_form_for [:eco, @coupon] do |f| %>
+  <%= f.input :patient_code_id %>
+  <%= f.input :issued_on, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year - 10 %>
+  <%= f.submit 'Добавить', :class => [:btn, 'btn-default'] %>
+  <%= link_to 'Отмена', :back %>
+<% end %>

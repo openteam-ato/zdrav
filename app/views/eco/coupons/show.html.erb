@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-xs-12">
+    Код пациента
+    Код талона
+    Дата выдачи
+    Статус
+
+    <%= @coupon.patient_code %>
+
+    <%= @coupon.number %>
+
+    <%= I18n.l(@coupon.issued_on) %>
+    <%= I18n.t("coupon_#{@coupon.state}") %>
+
+    <p>
+      <%= link_to 'Назад', eco_coupons_path %>
+    </p>
+  </div>
+</div>

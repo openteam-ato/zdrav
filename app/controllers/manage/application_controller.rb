@@ -6,7 +6,7 @@ class Manage::ApplicationController < ApplicationController
   layout 'manage'
 
   def redirect_access
-    redirect_to eco_eco_coupons_path if current_user && current_user.operator?
+    redirect_to eco_coupons_path if current_user && current_user.operator?
   end
 
   private

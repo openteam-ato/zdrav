@@ -9,6 +9,8 @@ ru:
   cancels: "отменяет"
   changes: "изменяет"
 
+  coupon_created: 'Новый'
+
   canceled: "утратил силу"
 
   paper_of: "от"
