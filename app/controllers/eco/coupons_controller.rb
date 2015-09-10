@@ -1,4 +1,4 @@
-class Eco::EcoCouponsController < Eco::ApplicationController
+class Eco::CouponsController < Eco::ApplicationController
 
   private
 

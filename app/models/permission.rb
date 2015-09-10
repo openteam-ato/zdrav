@@ -10,8 +10,8 @@ end
 #  id           :integer          not null, primary key
 #  user_id      :integer
 #  context_id   :integer
-#  context_type :string(255)
-#  role         :string(255)
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  context_type :string
+#  role         :string
+#  created_at   :datetime
+#  updated_at   :datetime
 #

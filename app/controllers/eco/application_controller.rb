@@ -7,6 +7,6 @@ class Eco::ApplicationController < ApplicationController
   private
 
   def redirect_access
-    redirect_to manage_root_path if current_user.manager?
+    redirect_to manage_root_path if current_user && current_user.manager?
   end
 end

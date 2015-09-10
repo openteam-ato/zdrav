@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   end
 
   namespace :eco do
-    resources :eco_coupons
+    resources :coupons
 
     root :to => 'eco_coupons#index'
   end

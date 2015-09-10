@@ -119,8 +119,8 @@ end
 #  question_5_1  :integer
 #  question_5_2  :integer
 #  proposal      :text
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  created_at    :datetime
+#  updated_at    :datetime
 #  ip            :text
 #  user_agent    :text
 #  username      :text
