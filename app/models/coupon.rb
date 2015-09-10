@@ -1,5 +1,12 @@
 class Coupon < ActiveRecord::Base
-  attr_accessible :number, :patient_code, :issued_on
+  attr_accessor :patient_code_id
+
+  attr_accessible :number, :issued_on, :patient_id, :patient_code_id
+
+  before_save :set_uniq_number
+
+  belongs_to :patient
+  delegate :code, :to => :patient, :prefix => true
 
   default_value_for (:issued_on) { Time.zone.now }
 
@@ -8,17 +15,39 @@ class Coupon < ActiveRecord::Base
     time :issued_on
   end
 
+  private
+
+  def set_uniq_number
+    patient = Patient.find_or_create_by(code: patient_code_id)
+
+    self.patient_id = patient.id
+
+    generated_number = generate_number
+
+    while exist_numbers.include?(generated_number) do
+      generated_number = generate_number
+    end
+
+    self.number = generated_number
+  end
+
+  def generate_number
+    I18n.l(Time.zone.now, :format => '%Y%m') + 6.times.map { Random.rand(10) }.join
+  end
+
+  def exist_numbers
+    @exist_numbers ||= Coupon.pluck(:number)
+  end
 end
 
 # == Schema Information
 #
 # Table name: coupons
 #
-#  id           :integer          not null, primary key
-#  number       :string
-#  patient_code :string
-#  issued_on    :datetime
-#  closing_at   :datetime
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id         :integer          not null, primary key
+#  number     :string
+#  issued_on  :datetime
+#  created_at :datetime
+#  updated_at :datetime
+#  patient_id :integer
 #

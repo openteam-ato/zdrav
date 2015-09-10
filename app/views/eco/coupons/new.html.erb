@@ -1,0 +1,5 @@
+<%= simple_form_for [:eco, @coupon] do |f| %>
+  <%= f.input :patient_code_id %>
+  <%= f.input :issued_on, :as => :date %>
+  <%= f.submit 'Добавить', :class => [:btn, 'btn-default'] %>
+<% end %>
