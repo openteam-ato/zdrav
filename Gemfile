@@ -5,6 +5,7 @@ group :default do
   gem 'awesome_print'
   gem 'bootstrap-sass', '~> 3.3.5'
   gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
+  gem 'cancancan'
   gem 'coffee-rails', '~> 4.1.0'
   gem 'compass-rails', '~> 2.0.4'
   gem 'curb'

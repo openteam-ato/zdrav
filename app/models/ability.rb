@@ -4,20 +4,15 @@ class Ability
   def initialize(user, namespace = nil)
     return unless user
 
-    case namespace
-    when nil
-      can :manage, :application do
-        user.manager?
-      end
 
-      can :manage, :all do
-        user.admin?
-      end
+    case namespace
+    when 'manage'
+      can :manage, :all if user.manager?
 
     when 'eco'
-      can :manage, :all do
-        user.permissions.any?
-      end
+      can :manage, :all if user.operator?
     end
+
+    can :manage, :all if user.admin?
   end
 end
