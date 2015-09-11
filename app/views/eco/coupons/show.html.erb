@@ -1,19 +1,9 @@
-<div class="row">
-  <div class="col-xs-12">
-    Код пациента
-    Код талона
-    Дата выдачи
-    Статус
-
-    <%= @coupon.patient_code %>
-
-    <%= @coupon.number %>
-
-    <%= I18n.l(@coupon.issued_on) %>
-    <%= I18n.t("coupon_#{@coupon.state}") %>
-
-    <p>
-      <%= link_to 'Назад', eco_coupons_path %>
-    </p>
+<div class='row'>
+  <div class='col-xs-12'>
+    <p>Номер талона: <%= @coupon.number %></p>
+    <p>Код пациента: <%= @coupon.patient_code %></p>
+    <p>Дата выдачи: <%= I18n.l(@coupon.created_on) %></p>
+    <p>Статус: <%= I18n.t("coupon.#{@coupon.state}") %></p>
+    <p><%= link_to 'Назад', eco_coupons_path, :class => 'btn btn-default' %></p>
   </div>
 </div>

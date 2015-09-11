@@ -1,5 +1,9 @@
 class Eco::CouponsController < Eco::ApplicationController
 
+  def index
+    @coupons = Eco::CouponsSearcher.new(params).results
+  end
+
   private
 
   def current_ability

@@ -1,38 +1,67 @@
+<div class='row'>
+  <%= simple_form_for :coupons_search, :url => eco_coupons_path, :method => :get do |f| %>
 
-<div class="row">
-  <div class="col-xs-12">
-    <%= link_to 'Добавить талон', new_eco_coupon_path, :class => [:btn, 'btn-default'] %>
+    <div class='col-xs-10'>
+      <%= f.input :search, :required => false, :label => false,
+        :placeholder => 'Введите номер талона или код пациента',
+        :input_html => { :name => :search, :value => params[:search] } %>
+    </div>
 
-      <table class="table tabel-hover">
-        <thead>
-          <th>Код талона</th>
-          <th>Код пациента</th>
-          <th>Дата выдачи</th>
-          <th>Статус</th>
-        </thead>
+    <div class='col-xs-2'>
+      <%= f.submit 'Поиск', :class => 'btn btn-primary' %>
+      <%= link_to 'Очистить', eco_coupons_path %>
+    </div>
+  <% end %>
 
-        <tbody>
-          <% @coupons.each do |coupon| %>
+  <div class='col-xs-12'>
+    <hr />
+  </div>
+
+  <div class='col-xs-10'>
+    <ul class='nav nav-tabs'>
+      <li role='presentation'><%= link_to 'Все', eco_coupons_path %></li>
+      <li role='presentation' class='dropdown'>
+        <a class='dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false'>Открытые <span class='caret'></span></a>
+        <ul class='dropdown-menu'>
+          <li role='presentation'><%= link_to 'Талон выдан', eco_coupons_path(:state => :created) %></li>
+          <li role='presentation'><%= link_to 'Выдано направление в МУ', eco_coupons_path(:state => :issued) %></a></li>
+          <li role='presentation'><%= link_to 'Принято решение МУ', eco_coupons_path(:state => :approved) %></a></li>
+        </ul>
+      </li>
+      <li role='presentation'><%= link_to 'Закрытые талоны', eco_coupons_path(:state => :closed) %></a></li>
+    </ul>
+  </div>
+  <div class='col-xs-2'>
+    <%= link_to 'Добавить талон', new_eco_coupon_path, :class => 'btn btn-primary' %>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-xs-12'>
+
+    <table class='table table-hover'>
+      <thead>
+        <th>Номер талона</th>
+        <th>Код пациента</th>
+        <th>Дата выдачи</th>
+        <th>Статус</th>
+        <th>Дата последнего изменения &darr;</th>
+      </thead>
+
+      <tbody>
+        <% @coupons.each do |coupon| %>
           <tr>
-            <td>
-              <%= link_to coupon.number, eco_coupon_path(coupon) %>
-            </td>
-
-            <td>
-              <%= coupon.patient_code %>
-            </td>
-
-
-            <td>
-              <%= I18n.l(coupon.issued_on) %>
-            </td>
-            <td>
-              <%= I18n.t("coupon_#{coupon.state}") %>
-            </td>
+            <td><%= link_to coupon.number, eco_coupon_path(coupon) %></td>
+            <td><%= link_to coupon.patient_code, eco_coupons_path(:search => coupon.patient_code) %></td>
+            <td><%= I18n.l(coupon.created_on) %></td>
+            <td><%= I18n.t("coupon.#{coupon.state}") %></td>
+            <td><%= I18n.l(coupon.updated_at) %></td>
           </tr>
         <% end %>
-        </tbody>
-      </table>
+      </tbody>
+    </table>
+
+    <%= paginate @coupons %>
 
   </div>
 </div>

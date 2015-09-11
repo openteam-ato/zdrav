@@ -33,13 +33,13 @@ end
 #  name               :text
 #  post               :text
 #  description        :text
-#  created_at         :datetime
-#  updated_at         :datetime
-#  photo_file_name    :string
-#  photo_content_type :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  photo_file_name    :string(255)
+#  photo_content_type :string(255)
 #  photo_file_size    :integer
 #  photo_updated_at   :datetime
 #  photo_url          :text
 #  photo_meta         :text
-#  slug               :string
+#  slug               :string(255)
 #

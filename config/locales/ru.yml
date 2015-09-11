@@ -3,13 +3,17 @@ ru:
     pagination:
       previous: '&larr;'
       next: '&rarr;'
-      truncate: ...
+      truncate: '&hellip;'
 
   asserts: "утверждает"
   cancels: "отменяет"
   changes: "изменяет"
 
-  coupon_created: 'Новый'
+  coupon:
+    created:  'Новый'
+    issued:   'Выдано направление'
+    approved: 'Приянто решение МУ'
+    closed:   'Закрыт'
 
   canceled: "утратил силу"
 

@@ -1,7 +1,9 @@
 class Patient < ActiveRecord::Base
   attr_accessible :code
 
-  has_many :coupons
+  validates_uniqueness_of :code
+
+  has_many :coupons, :dependent => :destroy
 end
 
 # == Schema Information

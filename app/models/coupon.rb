@@ -3,7 +3,8 @@ class Coupon < ActiveRecord::Base
 
   attr_accessor :patient_code_id
 
-  attr_accessible :number, :issued_on, :patient_id, :patient_code_id, :state
+  attr_accessible :number, :patient_id, :patient_code_id, :state,
+    :created_on, :issued_on
 
   before_save :set_uniq_number
 
@@ -14,17 +15,24 @@ class Coupon < ActiveRecord::Base
 
   default_value_for (:issued_on) { Time.zone.now }
 
-  searchable do
-    string :number
-    time :issued_on
-  end
+  searchable(:include => [:patient]) do
+    string  :number
+    string  (:patient_code) { patient_code }
+    string  :state
 
+    text    :number
+    text    (:patient_code) { patient_code }
+
+    date    :created_on
+    date    :issued_on
+    time    :updated_at
+  end
 
   aasm :column => 'state'
 
   aasm do
     state :created, :initial => true
-    state :wait
+    state :issued
     state :approved
 
     state :closed
@@ -55,7 +63,7 @@ class Coupon < ActiveRecord::Base
   end
 
   def generate_number
-    I18n.l(Time.zone.now, :format => '%Y%m') + 6.times.map { Random.rand(10) }.join
+    I18n.l(Time.zone.now, :format => '%Y%m') + 6.times.map{ Random.rand(10) }.join
   end
 
   def exist_numbers
@@ -69,9 +77,10 @@ end
 #
 #  id         :integer          not null, primary key
 #  number     :string
-#  issued_on  :datetime
 #  created_at :datetime
 #  updated_at :datetime
 #  patient_id :integer
 #  state      :string
+#  issued_on  :date
+#  created_on :date
 #

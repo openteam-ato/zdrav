@@ -33,14 +33,14 @@ end
 # Table name: thanks
 #
 #  id           :integer          not null, primary key
-#  fullname     :string
-#  email        :string
+#  fullname     :string(255)
+#  email        :string(255)
 #  message      :text
-#  state        :string
-#  created_at   :datetime
-#  updated_at   :datetime
+#  state        :string(255)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #  published_at :datetime
-#  key          :string
+#  key          :string(255)
 #  ip           :text
 #  user_agent   :text
 #

@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150910035653) do
+ActiveRecord::Schema.define(version: 20150910090922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "postgis"
 
   create_table "coupons", force: :cascade do |t|
     t.string   "number"
@@ -24,21 +23,22 @@ ActiveRecord::Schema.define(version: 20150910035653) do
     t.integer  "patient_id"
     t.string   "state"
     t.date     "issued_on"
+    t.date     "created_on"
   end
 
   create_table "doctors", force: :cascade do |t|
     t.text     "name"
     t.text     "post"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "photo_file_name",    limit: 255
+    t.string   "photo_content_type", limit: 255
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.text     "photo_url"
     t.text     "photo_meta"
-    t.string   "slug"
+    t.string   "slug",               limit: 255
   end
 
   add_index "doctors", ["slug"], name: "index_doctors_on_slug", unique: true, using: :btree
@@ -77,8 +77,8 @@ ActiveRecord::Schema.define(version: 20150910035653) do
     t.integer  "question_5_1"
     t.integer  "question_5_2"
     t.text     "proposal"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.text     "ip"
     t.text     "user_agent"
     t.text     "username"
@@ -86,10 +86,10 @@ ActiveRecord::Schema.define(version: 20150910035653) do
 
   create_table "evaluation_registry_attachments", force: :cascade do |t|
     t.integer  "evaluation_registry_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "attachment_file_name"
-    t.string   "attachment_content_type"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "attachment_file_name",    limit: 255
+    t.string   "attachment_content_type", limit: 255
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.text     "attachment_url"
@@ -99,8 +99,8 @@ ActiveRecord::Schema.define(version: 20150910035653) do
   add_index "evaluation_registry_attachments", ["evaluation_registry_id"], name: "index_evaluation_registry_attachments_on_evaluation_registry_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
-    t.string   "slug",                      null: false
-    t.integer  "sluggable_id",              null: false
+    t.string   "slug",           limit: 255, null: false
+    t.integer  "sluggable_id",               null: false
     t.string   "sluggable_type", limit: 40
     t.datetime "created_at"
   end
@@ -118,46 +118,39 @@ ActiveRecord::Schema.define(version: 20150910035653) do
   create_table "permissions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "context_id"
-    t.string   "context_type"
-    t.string   "role"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "context_type", limit: 255
+    t.string   "role",         limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "permissions", ["user_id", "role", "context_id", "context_type"], name: "by_user_and_role_and_context", unique: true, using: :btree
 
-  create_table "spatial_ref_sys", primary_key: "srid", force: :cascade do |t|
-    t.string  "auth_name", limit: 256
-    t.integer "auth_srid"
-    t.string  "srtext",    limit: 2048
-    t.string  "proj4text", limit: 2048
-  end
-
   create_table "thanks", force: :cascade do |t|
-    t.string   "fullname"
-    t.string   "email"
+    t.string   "fullname",     limit: 255
+    t.string   "email",        limit: 255
     t.text     "message"
-    t.string   "state"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "state",        limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.datetime "published_at"
-    t.string   "key"
+    t.string   "key",          limit: 255
     t.text     "ip"
     t.text     "user_agent"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "uid"
+    t.string   "uid",                limit: 255
     t.text     "name"
     t.text     "email"
     t.text     "raw_info"
     t.integer  "sign_in_count"
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "current_sign_in_ip", limit: 255
+    t.string   "last_sign_in_ip",    limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "users", ["uid"], name: "index_users_on_uid", using: :btree

@@ -1,5 +1,11 @@
-<% if current_page.last? %>
-  <%= content_tag :span, raw(t 'views.pagination.next'), :class => 'next' %>
-<% else %>
-  <%= link_to raw(t 'views.pagination.next'), url, :rel => 'next', :remote => remote, :class => 'next' %>
-<% end %>
+<li>
+  <% if current_page.last? %>
+    <span>
+      <span aria-hidden='true'>
+        <%= raw(t 'views.pagination.next') %>
+      </span>
+    </span>
+  <% else %>
+    <%= link_to raw(t 'views.pagination.next'), url, :rel => 'next', :remote => remote %>
+  <% end %>
+</li>
