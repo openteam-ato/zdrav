@@ -64,9 +64,8 @@ class Coupon < ActiveRecord::Base
 
     state :closed # талон закрыт
 
-    on_transition do |from, to, triggering_event, *event_args|
-      logger.info "#{from} -> #{to}"
-      close! if %w[not_need_help failure_patient help_provided].include?(to)
+    after_transition do |from, to, triggering_event, *event_args|
+      self.close! if %w[not_need_help failure_patient help_provided].include?(to.to_s)
     end
 
     on_error do |error, from, to, event, *args|
