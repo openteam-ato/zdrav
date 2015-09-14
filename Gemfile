@@ -28,6 +28,7 @@ group :default do
   gem 'nested_form'
   gem 'non-stupid-digest-assets'
   gem 'openteam-commons'
+  gem 'paper_trail'
   gem 'paperclip-elvfs'
   gem 'paperclip-meta'
   gem 'progress_bar', :require => false

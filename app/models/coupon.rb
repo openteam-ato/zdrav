@@ -71,8 +71,9 @@ class Coupon < ActiveRecord::Base
     on_error do |error, from, to, event, *args|
       logger.info "Exception (#{error.class}) on #{from} -> #{to}"
     end
-
   end
+
+  has_paper_trail
 
   def self.opened_states
     (Coupon.workflow_spec.states.keys - [:closed]).map(&:to_s)
