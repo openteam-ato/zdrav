@@ -1,57 +1,96 @@
 class Coupon < ActiveRecord::Base
-  include AASM
 
   attr_accessor :patient_code_id
 
-  attr_accessible :number, :patient_id, :patient_code_id, :state,
-    :created_on, :issued_on
+  attr_accessible :number, :patient_code_id, :patient_id, :workflow_state, :created_on, :issued_on
 
-  before_save :set_uniq_number
+  before_create :set_uniq_number
 
   validate :check_opened_coupons
 
-  belongs_to :patient
-  delegate :code, :to => :patient, :prefix => true
+  validates_presence_of :patient_code_id, :created_on
 
-  default_value_for (:issued_on) { Time.zone.now }
+  belongs_to :patient
+  delegate :code, :to => :patient, :prefix => true, :allow_nil => true
+
+  scope :by_state,  -> (state) { where :workflow_state => state }
+  scope :created,   -> { by_state 'created' }
+  scope :issued,    -> { by_state 'issued' }
+  scope :approved,  -> { by_state 'approved' }
+  scope :opened,    -> { by_state ['created', 'issued', 'approved'] }
+  scope :closed,    -> { by_state 'closed' }
 
   searchable(:include => [:patient]) do
     string  :number
-    string  (:patient_code) { patient_code }
-    string  :state
+    string  (:patient_code) { patient.code }
+    string  :workflow_state
 
     text    :number
-    text    (:patient_code) { patient_code }
+    text    (:patient_code) { patient.code }
 
     date    :created_on
     date    :issued_on
     time    :updated_at
   end
 
-  aasm :column => 'state'
+  include Workflow
 
-  aasm do
-    state :created, :initial => true
-    state :issued
-    state :approved
+  workflow do
+    state :created do # талон выдан
+      event :issue, :transitions_to => :issued
+    end
 
-    state :closed
+    state :issued do # выдано направление в МУ
+      event :approve, :transitions_to => :approved
+      event :not_need_help_trigger, :transitions_to => :not_need_help
+    end
+
+    state :not_need_help do # нет наличия показаний
+      event :close, :transitions_to => :closed
+    end
+
+    state :approved do # есть наличие показаний
+      event :failure_patient_trigger, :transitions_to => :failure_patient
+      event :help_provided_trigger, :transitions_to => :help_provided
+    end
+
+    state :failure_patient do # отказ пациента
+      event :close, :transitions_to => :closed
+    end
+
+    state :help_provided do # помощ оказана
+      event :close, :transitions_to => :closed
+    end
+
+    state :closed # талон закрыт
+
+    on_transition do |from, to, triggering_event, *event_args|
+      logger.info "#{from} -> #{to}"
+      close! if %w[not_need_help failure_patient help_provided].include?(to)
+    end
+
+    on_error do |error, from, to, event, *args|
+      logger.info "Exception (#{error.class}) on #{from} -> #{to}"
+    end
+
   end
 
-  def check_opened_coupons
-    patient = Patient.find_or_create_by(code: patient_code_id)
-
-    if patient.coupons.map(&:state).any?
-      errors.add(:patient_code_id, 'У пациента есть открытые талоны, добавление невозможно')
-    end
+  def self.opened_states
+    (Coupon.workflow_spec.states.keys - [:closed]).map(&:to_s)
   end
 
   private
 
-  def set_uniq_number
-    patient = Patient.find_or_create_by(code: patient_code_id)
+  def check_opened_coupons
+    self.patient = Patient.find_or_create_by(:code => patient_code || patient_code_id)
 
-    self.patient_id = patient.id
+    if (Coupon.opened_states & self.patient.coupons.map(&:workflow_state).uniq).any?
+      errors.add(:patient_code_id, 'У пациента есть открытые талоны, добавление невозможно')
+    end
+  end
+
+  def set_uniq_number
+    self.patient = Patient.find_or_create_by(:code => patient_code || patient_code_id)
 
     generated_number = generate_number
 
@@ -75,12 +114,12 @@ end
 #
 # Table name: coupons
 #
-#  id         :integer          not null, primary key
-#  number     :string
-#  created_at :datetime
-#  updated_at :datetime
-#  patient_id :integer
-#  state      :string
-#  issued_on  :date
-#  created_on :date
+#  id             :integer          not null, primary key
+#  number         :string
+#  created_at     :datetime
+#  updated_at     :datetime
+#  patient_id     :integer
+#  workflow_state :string
+#  issued_on      :date
+#  created_on     :date
 #

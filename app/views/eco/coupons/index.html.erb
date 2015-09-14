@@ -1,4 +1,9 @@
 <div class='row'>
+
+  <div class='col-xs-12'>
+    <h4>ЭКО купоны</h4>
+  </div>
+
   <%= simple_form_for :coupons_search, :url => eco_coupons_path, :method => :get do |f| %>
 
     <div class='col-xs-10'>
@@ -19,16 +24,22 @@
 
   <div class='col-xs-10'>
     <ul class='nav nav-tabs'>
-      <li role='presentation'><%= link_to 'Все', eco_coupons_path %></li>
-      <li role='presentation' class='dropdown'>
-        <a class='dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false'>Открытые <span class='caret'></span></a>
+      <li role='presentation'<%= " class='active'".html_safe if params[:search].blank? && params[:state].blank? %>>
+        <%= link_to 'Все талоны', eco_coupons_path %>
+      </li>
+      <li role='presentation' class='dropdown<%= ' active' if %w[created issued approved].include?(params[:state]) %>'>
+        <a class='dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false'>Открытые талоны <span class='caret'></span></a>
         <ul class='dropdown-menu'>
-          <li role='presentation'><%= link_to 'Талон выдан', eco_coupons_path(:state => :created) %></li>
-          <li role='presentation'><%= link_to 'Выдано направление в МУ', eco_coupons_path(:state => :issued) %></a></li>
-          <li role='presentation'><%= link_to 'Принято решение МУ', eco_coupons_path(:state => :approved) %></a></li>
+          <% %w(created issued approved).each do |state| %>
+            <li role='presentation'<%= " class='active'".html_safe if params[:search].blank? && params[:state] == state %>>
+              <%= link_to I18n.t("coupon.#{state}"), eco_coupons_path(:state => state) %>
+            </li>
+          <% end %>
         </ul>
       </li>
-      <li role='presentation'><%= link_to 'Закрытые талоны', eco_coupons_path(:state => :closed) %></a></li>
+      <li role='presentation'<%= " class='active'".html_safe if params[:search].blank? && params[:state] == 'closed' %>>
+        <%= link_to 'Закрытые талоны', eco_coupons_path(:state => :closed) %>
+      </li>
     </ul>
   </div>
   <div class='col-xs-2'>

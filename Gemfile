@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 group :default do
-  gem 'aasm'
   gem 'attribute_normalizer'
   gem 'awesome_print'
   gem 'bootstrap-sass', '~> 3.3.5'
@@ -49,6 +48,7 @@ group :default do
   gem 'truncate_html'
   gem 'uglifier'
   gem 'uuid'
+  gem 'workflow'
 end
 
 group :development do

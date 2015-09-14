@@ -1,7 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    aasm (4.2.0)
     actionmailer (4.2.4)
       actionpack (= 4.2.4)
       actionview (= 4.2.4)
@@ -466,12 +465,12 @@ GEM
       rack (>= 1.0)
     whenever (0.9.4)
       chronic (>= 0.6.3)
+    workflow (1.2.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  aasm
   annotate
   attribute_normalizer
   awesome_print
@@ -530,6 +529,4 @@ DEPENDENCIES
   uglifier
   unicorn
   uuid
-
-BUNDLED WITH
-   1.10.6
+  workflow

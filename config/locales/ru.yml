@@ -10,9 +10,9 @@ ru:
   changes: "изменяет"
 
   coupon:
-    created:  'Новый'
-    issued:   'Выдано направление'
-    approved: 'Приянто решение МУ'
+    created:  'Талон выдан'
+    issued:   'Выдано направление в МУ'
+    approved: 'Принято решение МУ'
     closed:   'Закрыт'
 
   canceled: "утратил силу"

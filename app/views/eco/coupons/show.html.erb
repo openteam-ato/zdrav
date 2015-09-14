@@ -1,7 +1,9 @@
 <div class='row'>
+  <div class="col-xs-12">
+    <h4>Просмотр талона №<%= @coupon.number %></h4>
+  </div>
   <div class='col-xs-12'>
-    <p>Номер талона: <%= @coupon.number %></p>
-    <p>Код пациента: <%= @coupon.patient_code %></p>
+    <p>Код пациента: <%= link_to @coupon.patient_code, eco_coupons_path(:search => @coupon.patient_code) %></p>
     <p>Дата выдачи: <%= I18n.l(@coupon.created_on) %></p>
     <p>Статус: <%= I18n.t("coupon.#{@coupon.state}") %></p>
     <p><%= link_to 'Назад', eco_coupons_path, :class => 'btn btn-default' %></p>

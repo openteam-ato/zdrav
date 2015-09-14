@@ -7,7 +7,7 @@ class Eco::CouponsSearcher
   end
 
   def per_page
-    params[:per_page] || 10
+    params[:per_page] || 20
   end
 
   def results

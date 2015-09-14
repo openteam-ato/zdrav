@@ -12,6 +12,6 @@ SimpleNavigation::Configuration.run do |navigation|
       :highlights_on => /\A\/manage\/evaluation_registries/ if current_user.manager? || current_user.admin?
 
     primary.item :eco_coupons, 'ЭКО талоны', eco_coupons_path,
-      :highlights_on => -> { controller_name == 'eco_coupons' } if current_user.operator? || current_user.admin?
+      :highlights_on => /\A\/eco\/coupons/ if current_user.operator? || current_user.admin?
   end
 end

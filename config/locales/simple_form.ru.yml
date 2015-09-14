@@ -39,4 +39,4 @@ ru:
 
       coupon:
         patient_code_id: 'Код пациента'
-        issued_on: 'Дата выдачи'
+        created_on: 'Дата выдачи'
