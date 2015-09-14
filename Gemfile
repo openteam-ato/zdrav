@@ -50,7 +50,7 @@ group :default do
   gem 'truncate_html'
   gem 'uglifier'
   gem 'uuid'
-  gem 'workflow'
+  gem 'aasm'
 end
 
 group :development do
