@@ -4,13 +4,17 @@ class Eco::CouponsController < Eco::ApplicationController
     @coupons = Eco::CouponsSearcher.new(params).results
   end
 
+  def update
+    update!{
+      @coupon.send("to_#{params[:state]}!") if @coupon.aasm.events.map(&:name).include? "to_#{params[:state]}".to_sym
+      redirect_to [:eco, @coupon] and return
+    }
+  end
+
   def revert_state
     coupon = Coupon.find(params[:coupon_id])
-    if coupon.current_state.events.keys.include?("to_#{params[:state]}".to_sym)
-      coupon.touch_with_version
-      coupon.send("to_#{params[:state]}!")
-    end
-    redirect_to eco_coupon_path(coupon)
+    coupon.rollback!
+    redirect_to [:eco, coupon]
   end
 
   private

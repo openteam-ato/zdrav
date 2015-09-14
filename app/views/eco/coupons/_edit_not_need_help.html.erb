@@ -1,3 +1,2 @@
-<%= f.input :partial, :as => :hidden, :input_html => { :name => :partial, :value => :edit_not_need_help } %>
-
+<%= f.input :state, :as => :hidden, :input_html => { :name => :state, :value => :not_need_help } %>
 <%= f.input :not_need_help_on, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year - 10 %>

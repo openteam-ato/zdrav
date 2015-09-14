@@ -1,4 +1,4 @@
-<%= f.input :partial, :as => :hidden, :input_html => { :name => :partial, :value => :edit_issued } %>
+<%= f.input :state, :as => :hidden, :input_html => { :name => :state, :value => :issued } %>
 <%= f.input :mi_title, :autofocus => true, :autofocus => true,
   :input_html => { :class => 'js-autocomplete',
                    :data => { :url => eco_medical_institutions_path },

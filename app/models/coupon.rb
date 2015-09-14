@@ -10,27 +10,22 @@ class Coupon < ActiveRecord::Base
   belongs_to :medical_institution
 
   before_create :set_uniq_number
-  #before_save   :set_medical_institution, :if => :mi_title
-  #after_save    :change_state_to_issued, :if => -> { issued_on && created? }
-  #after_save    :change_state_to_not_need_help, :if => -> { not_need_help_on && issued? }
-  #after_save    :change_state_to_approved, :if => -> { approved_on && issued? }
-  #after_save    :change_state_to_failure_patient, :if => -> { failure_patient_on && approved? }
-  #after_save    :change_state_to_closed, :if => -> { closed_on && (not_need_help? || failure_patient?) }
 
-  validates_presence_of :patient_code_id, :if => -> { created? && patient_code.blank? }
-  validates_presence_of :created_on
-  #validates_presence_of :mi_title, :issued_on, :if => -> { (created? || issued?) && mi_title }
-  #validate :check_opened_coupons, :on => :create
+  validates_presence_of :patient_code_id, :created_on, :if => -> { created? && patient_code_id }
+  validate :check_opened_coupons, :on => :create
+  validates_presence_of :mi_title, :issued_on, :if => -> { (created? || issued?) && mi_title }
 
   delegate :code, :to => :patient, :prefix => true, :allow_nil => true
   delegate :title, :to => :medical_institution, :prefix => true, :allow_nil => true
 
-  #scope :by_state,  -> (state) { where :workflow_state => state }
-  #scope :created,   -> { by_state 'created' }
-  #scope :issued,    -> { by_state 'issued' }
-  #scope :approved,  -> { by_state 'approved' }
-  #scope :opened,    -> { by_state ['created', 'issued', 'approved'] }
-  #scope :closed,    -> { by_state 'closed' }
+  has_paper_trail
+
+  scope :by_state,  -> (state) { where :workflow_state => state }
+  scope :created,   -> { by_state 'created' }
+  scope :issued,    -> { by_state 'issued' }
+  scope :approved,  -> { by_state 'approved' }
+  scope :opened,    -> { by_state ['created', 'issued', 'approved'] }
+  scope :closed,    -> { by_state 'closed' }
 
   searchable(:include => [:patient]) do
     string  :number
@@ -44,66 +39,6 @@ class Coupon < ActiveRecord::Base
     date    :issued_on
     time    :updated_at
   end
-
-  #include Workflow
-
-  #workflow do
-    #state :created do # талон выдан
-      #event :to_issued, :transitions_to => :issued, :if =>
-    #end
-
-    #state :issued do # выдано направление в МУ
-      #event :to_approved, :transitions_to => :approved
-      #event :to_not_need_help, :transitions_to => :not_need_help
-
-      #event :to_created, :transitions_to => :created do
-        #self.update_columns :medical_institution_id => nil, :issued_on => nil
-      #end
-    #end
-
-    #state :not_need_help do # нет наличия показаний
-      #event :to_issued, :transitions_to => :issued do
-        #self.update_columns :not_need_help_on => nil
-      #end
-
-      #event :to_closed, :transitions_to => :closed
-    #end
-
-    #state :approved do # есть наличие показаний
-      #event :to_failure_patient, :transitions_to => :failure_patient
-      #event :to_help_provided, :transitions_to => :help_provided
-    #end
-
-    #state :failure_patient do # отказ пациента
-      #event :to_closed, :transitions_to => :closed
-
-      #event :to_approved, :transitions_to => :approved do
-        #self.update_columns :failure_patient_on, nil
-      #end
-    #end
-
-    #state :help_provided do # помощ оказана
-      #event :to_closed, :transitions_to => :closed
-    #end
-
-    #state :closed do # талон закрыт
-      #event :to_not_need_help, :transitions_to => :not_need_help do
-        #self.update_columns :closed_on => nil
-      #end
-
-      #event :to_failure_patient, :transitions_to => :failure_patient do
-        #self.update_columns :closed_on => nil
-      #end
-    #end
-
-    #before_transition do |from, to, triggering_event, *event_args|
-      #self.touch_with_version
-    #end
-
-    #on_error do |error, from, to, event, *args|
-      #logger.info "Exception (#{error.class}) on #{from} -> #{to}"
-    #end
-  #end
 
   include AASM
 
@@ -121,12 +56,36 @@ class Coupon < ActiveRecord::Base
     end
 
     event :to_not_need_help do
-      transitions :from => :issues, :to => :not_need_help, :if => ->{not_need_help_on?}
+      transitions :from => :issued, :to => :not_need_help, :if => ->{ not_need_help_on? }
+    end
+
+    event :to_approved do
+      transitions :from => :issued, :to => :approved, :if => ->{ approved_on? }
+    end
+
+    event :to_failure_patient do
+      transitions :from => :approved, :to => :failure_patient, :if => ->{ failure_patient_on? }
+    end
+
+    event :to_help_provided do
+      transitions :from => :approved, :to => :help_provided, :if => ->{ help_provided_on? }
+    end
+
+    event :to_closed do
+      transitions :from => :not_need_help, :to => :closed, :if => ->{ closed_on? }
+      transitions :from => :failure_patient, :to => :closed, :if => ->{ closed_on? }
+      transitions :from => :help_provided, :to => :closed, :if => ->{ closed_on? }
     end
 
     event :rollback do
       transitions :from => :issued, :to => :created, :after => :clear_issued_info
       transitions :from => :not_need_help, :to => :issued, :after => :clear_not_need_help_info
+      transitions :from => :approved, :to => :issued, :after => :clear_approved_info
+      transitions :from => :help_provided, :to => :approved, :after => :clear_help_provided_info
+      transitions :from => :failure_patient, :to => :approved, :after => :clear_failure_patient_info
+      transitions :from => :closed, :to => :not_need_help, :after => :clear_closed_info, :if =>  ->{ not_need_help_on? }
+      transitions :from => :closed, :to => :failure_patient, :after => :clear_closed_info, :if =>  ->{ failure_patient_on? }
+      transitions :from => :closed, :to => :help_provided, :after => :clear_closed_info, :if =>  ->{ help_provided_on? }
     end
   end
 
@@ -139,10 +98,24 @@ class Coupon < ActiveRecord::Base
     self.not_need_help_on = nil
   end
 
-  has_paper_trail
+  def clear_approved_info
+    self.approved_on = nil
+  end
+
+  def clear_help_provided_info
+    self.help_provided_on = nil
+  end
+
+  def clear_failure_patient_info
+    self.failure_patient_on = nil
+  end
+
+  def clear_closed_info
+    self.closed_on = nil
+  end
 
   def self.opened_states
-    (Coupon.workflow_spec.states.keys - [:closed]).map(&:to_s)
+    (Coupon.aasm.states.map(&:name) - [:closed]).map(&:to_s)
   end
 
   def previous_state
@@ -151,14 +124,8 @@ class Coupon < ActiveRecord::Base
 
   private
 
-  %w( issued not_need_help closed approved failure_patient ).each do |evt|
-    define_method "change_state_to_#{evt}" do
-      self.send("to_#{evt}!")
-    end
-  end
-
   def check_opened_coupons
-    self.patient = Patient.find_or_create_by(:code => patient_code || patient_code_id)
+    self.patient = Patient.find_or_create_by(:code => patient_code_id)
 
     if (Coupon.opened_states & self.patient.coupons.map(&:workflow_state).uniq).any?
       errors.add(:patient_code_id, 'У пациента есть открытые талоны, добавление невозможно')

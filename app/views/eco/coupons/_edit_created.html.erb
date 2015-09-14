@@ -1,4 +1,3 @@
-<%= f.input :partial, :as => :hidden, :input_html => { :name => :partial, :value => :edit_created } %>
-
+<%= f.input :state, :as => :hidden, :input_html => { :name => :state, :value => :created } %>
 <%= f.input :patient_code_id, :autofocus => true, :input_html => { :value => @coupon.patient_code } %>
 <%= f.input :created_on, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year - 10 %>
