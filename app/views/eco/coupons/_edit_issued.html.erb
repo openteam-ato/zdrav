@@ -1,5 +1,6 @@
+<%= f.input :partial, :as => :hidden, :input_html => { :name => :partial, :value => :edit_issued } %>
 <%= f.input :mi_title, :autofocus => true, :autofocus => true,
   :input_html => { :class => 'js-autocomplete',
-                   :data => { :url => search_eco_medical_institutions_path },
+                   :data => { :url => eco_medical_institutions_path },
                    :value => @coupon.medical_institution_title  } %>
 <%= f.input :issued_on, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year - 10 %>

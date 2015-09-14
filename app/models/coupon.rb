@@ -2,20 +2,21 @@ class Coupon < ActiveRecord::Base
 
   attr_accessor :patient_code_id, :mi_title
 
-  attr_accessible :number, :patient_code_id, :patient_id, :workflow_state, :created_on, :issued_on, :mi_title
+  attr_accessible :number, :patient_code_id, :patient_id, :workflow_state, :created_on, :issued_on, :mi_title,
+                  :medical_institution
 
-  belongs_to :medical_institution
   belongs_to :patient
+  belongs_to :medical_institution
 
-  before_save :set_uniq_number, :if => :patient_code_id
+  before_create :set_uniq_number, :if => :patient_code_id
   before_save :set_medical_institution, :if => :mi_title
 
-  validates_presence_of :patient_code_id, :created_on, :on => :create
+  validates_presence_of :patient_code_id, :created_on, :if => -> { created? && patient_code.blank? }
+  validates_presence_of :mi_title , :issued_on, :if => -> { (created? || issued?) && mi_title }
   validate :check_opened_coupons, :on => :create
 
   delegate :code, :to => :patient, :prefix => true, :allow_nil => true
   delegate :title, :to => :medical_institution, :prefix => true, :allow_nil => true
-
 
   scope :by_state,  -> (state) { where :workflow_state => state }
   scope :created,   -> { by_state 'created' }
@@ -47,6 +48,10 @@ class Coupon < ActiveRecord::Base
     state :issued do # выдано направление в МУ
       event :approve, :transitions_to => :approved
       event :not_need_help_trigger, :transitions_to => :not_need_help
+
+      event :to_created, :transitions_to => :created do
+        self.update_attributes :medical_institution => nil, :issued_on => nil
+      end
     end
 
     state :not_need_help do # нет наличия показаний
@@ -75,6 +80,7 @@ class Coupon < ActiveRecord::Base
 
   has_paper_trail
 
+
   def self.opened_states
     (Coupon.workflow_spec.states.keys - [:closed]).map(&:to_s)
   end
@@ -92,7 +98,7 @@ class Coupon < ActiveRecord::Base
   def set_medical_institution
     mi = MedicalInstitution.find_or_create_by(title: mi_title)
     self.medical_institution = mi
-    self.issue!
+    self.issue! if self.created?
   end
 
   def set_uniq_number
@@ -120,12 +126,13 @@ end
 #
 # Table name: coupons
 #
-#  id             :integer          not null, primary key
-#  number         :string
-#  created_at     :datetime
-#  updated_at     :datetime
-#  patient_id     :integer
-#  workflow_state :string
-#  issued_on      :date
-#  created_on     :date
+#  id                     :integer          not null, primary key
+#  number                 :string
+#  created_at             :datetime
+#  updated_at             :datetime
+#  patient_id             :integer
+#  workflow_state         :string
+#  issued_on              :date
+#  created_on             :date
+#  medical_institution_id :integer
 #

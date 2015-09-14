@@ -1,3 +1,20 @@
 class MedicalInstitution < ActiveRecord::Base
-  has_many :coupons
+
+  attr_accessible :title
+
+  searchable do
+    string :title
+    text   :title
+  end
+
 end
+
+# == Schema Information
+#
+# Table name: medical_institutions
+#
+#  id         :integer          not null, primary key
+#  title      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#

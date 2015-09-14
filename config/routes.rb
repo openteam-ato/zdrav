@@ -48,11 +48,11 @@ Rails.application.routes.draw do
   end
 
   namespace :eco do
-    resources :coupons
-
-    resources :medical_institutions, :only => [] do
-      get 'search', :on => :collection
+    resources :coupons do
+      put 'delete_mi'
     end
+
+    resources :medical_institutions, :only => [:index]
 
     root :to => 'eco_coupons#index'
   end
