@@ -3,14 +3,23 @@
     <h4>Просмотр талона №<%= @coupon.number %></h4>
   </div>
   <div class='col-xs-12'>
-    <p>Код пациента: <%= link_to @coupon.patient_code, eco_coupons_path(:search => @coupon.patient_code) %></p>
-    <p>Дата выдачи: <%= I18n.l(@coupon.created_on) %></p>
+    <p>
+      Код пациента: <%= link_to @coupon.patient_code, eco_coupons_path(:search => @coupon.patient_code) %>
+      <%= link_to '(Изменить код пациента)', edit_eco_coupon_path(@coupon, :partial => "edit_created") if @coupon.created? %>
+    </p>
+    <p>
+      Дата выдачи: <%= I18n.l(@coupon.created_on) %>
+      <%= link_to '(Изменить дату выдачи)', edit_eco_coupon_path(@coupon, :partial => "edit_created") if @coupon.created?%>
+    </p>
     <p>Статус: <%= I18n.t("coupon.#{@coupon.workflow_state}") %></p>
       Медициское учреждение: <%= @coupon.medical_institution_title || "Нет направления" %>
-      <%= link_to '(Изменить МУ)', edit_eco_coupon_path(@coupon) if @coupon.issued? %>
+    <%= link_to '(Изменить МУ)', edit_eco_coupon_path(@coupon, :partial=> "edit_issued") if @coupon.issued? %>
     </p>
-    <p>Дата выдачи направления: <%= I18n.l(@coupon.issued_on) %></p>
-    <p><%= link_to 'Выдать направление в МУ', edit_eco_coupon_path(@coupon), :class => 'btn btn-success' if @coupon.created? %></p>
+    <p>
+      Дата выдачи направления: <%= I18n.l(@coupon.issued_on) %>
+      <%= link_to '(Изменить дату выдачи)', edit_eco_coupon_path(@coupon, :partial=> "edit_issued") if @coupon.issued? %>
+    </p>
+    <p><%= link_to 'Выдать направление в МУ', edit_eco_coupon_path(@coupon, :partial=> "edit_issued"), :class => 'btn btn-success' if @coupon.created? %></p>
     <p><%= link_to 'Назад', eco_coupons_path, :class => 'btn btn-default' %></p>
   </div>
 </div>

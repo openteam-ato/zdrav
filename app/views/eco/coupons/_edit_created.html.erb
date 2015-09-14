@@ -1,0 +1,2 @@
+<%= f.input :patient_code_id, :autofocus => true %>
+<%= f.input :created_on, :start_year => Time.zone.now.year, :end_year => Time.zone.now.year - 10 if @coupon.created? %>
