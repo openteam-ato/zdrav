@@ -19,6 +19,7 @@ $ ->
   init_location_map() if $('a.js-location-map').length
   init_delete_file() if $('.delete_file').length
   init_doctors_carousel() if $('.js-doctors-carousel').length
+  init_autocomplete() if $('.js-autocomplete').length
 
   $('.datetimepicker').datetimepicker()
 

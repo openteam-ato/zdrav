@@ -22,6 +22,7 @@ group :default do
   gem 'hashie'
   gem 'inherited_resources'
   gem 'jquery-rails', '= 2.1.4'
+  gem 'jquery-ui-rails'
   gem 'kaminari'
   gem 'momentjs-rails'
   gem 'nested_form'

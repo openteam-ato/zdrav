@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150914031544) do
     t.string   "workflow_state"
     t.date     "issued_on"
     t.date     "created_on"
+    t.integer  "medical_institution_id"
   end
 
   create_table "doctors", force: :cascade do |t|
@@ -108,6 +109,13 @@ ActiveRecord::Schema.define(version: 20150914031544) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", unique: true, using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "medical_institutions", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "coupon_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "patients", force: :cascade do |t|
     t.string   "code"

@@ -50,6 +50,10 @@ Rails.application.routes.draw do
   namespace :eco do
     resources :coupons
 
+    resources :medical_institutions, :only => [] do
+      get 'search', :on => :collection
+    end
+
     root :to => 'eco_coupons#index'
   end
 

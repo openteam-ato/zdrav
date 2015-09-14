@@ -1,17 +1,21 @@
 class Coupon < ActiveRecord::Base
 
-  attr_accessor :patient_code_id
+  attr_accessor :patient_code_id, :mi_title
 
-  attr_accessible :number, :patient_code_id, :patient_id, :workflow_state, :created_on, :issued_on
+  attr_accessible :number, :patient_code_id, :patient_id, :workflow_state, :created_on, :issued_on, :mi_title
 
-  before_create :set_uniq_number
-
-  validate :check_opened_coupons
-
-  validates_presence_of :patient_code_id, :created_on
-
+  belongs_to :medical_institution
   belongs_to :patient
+
+  before_save :set_uniq_number, :if => :patient_code_id
+  before_save :set_medical_institution, :if => :mi_title
+
+  validates_presence_of :patient_code_id, :created_on, :on => :create
+  validate :check_opened_coupons, :on => :create
+
   delegate :code, :to => :patient, :prefix => true, :allow_nil => true
+  delegate :title, :to => :medical_institution, :prefix => true, :allow_nil => true
+
 
   scope :by_state,  -> (state) { where :workflow_state => state }
   scope :created,   -> { by_state 'created' }
@@ -82,6 +86,12 @@ class Coupon < ActiveRecord::Base
     if (Coupon.opened_states & self.patient.coupons.map(&:workflow_state).uniq).any?
       errors.add(:patient_code_id, 'У пациента есть открытые талоны, добавление невозможно')
     end
+  end
+
+  def set_medical_institution
+    mi = MedicalInstitution.find_or_create_by(title: mi_title)
+    self.medical_institution = mi
+    self.issue!
   end
 
   def set_uniq_number

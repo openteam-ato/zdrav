@@ -1,6 +1,7 @@
 /*
  * = require jquery
  * = require jquery_ujs
+ * = require jquery-ui/autocomplete
  * = require bootstrap/collapse
  * = require bootstrap/dropdown
  * = require bootstrap/tab
@@ -21,6 +22,7 @@
  * = require delete_file
  * = require ajaxed
  * = require collapse
+ * = require autocomplete
  * = require colorbox
  * = require location_map
  * = require banners
