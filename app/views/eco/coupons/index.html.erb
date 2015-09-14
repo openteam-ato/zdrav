@@ -24,21 +24,21 @@
 
   <div class='col-xs-10'>
     <ul class='nav nav-tabs'>
-      <li role='presentation'<%= " class='active'".html_safe if params[:search].blank? && params[:state].blank? %>>
+      <li role='presentation'<%= " class='active'".html_safe if params[:search].blank? && params[:workflow_state].blank? %>>
         <%= link_to 'Все талоны', eco_coupons_path %>
       </li>
-      <li role='presentation' class='dropdown<%= ' active' if %w[created issued approved].include?(params[:state]) %>'>
+      <li role='presentation' class='dropdown<%= ' active' if %w[created issued approved].include?(params[:workflow_state]) %>'>
         <a class='dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false'>Открытые талоны <span class='caret'></span></a>
         <ul class='dropdown-menu'>
-          <% %w(created issued approved).each do |state| %>
-            <li role='presentation'<%= " class='active'".html_safe if params[:search].blank? && params[:state] == state %>>
-              <%= link_to I18n.t("coupon.#{state}"), eco_coupons_path(:state => state) %>
+          <% %w(created issued approved).each do |workflow_state| %>
+            <li role='presentation'<%= " class='active'".html_safe if params[:search].blank? && params[:workflow_state] == workflow_state %>>
+              <%= link_to I18n.t("coupon.#{workflow_state}"), eco_coupons_path(:workflow_state => workflow_state) %>
             </li>
           <% end %>
         </ul>
       </li>
-      <li role='presentation'<%= " class='active'".html_safe if params[:search].blank? && params[:state] == 'closed' %>>
-        <%= link_to 'Закрытые талоны', eco_coupons_path(:state => :closed) %>
+      <li role='presentation'<%= " class='active'".html_safe if params[:search].blank? && params[:workflow_state] == 'closed' %>>
+        <%= link_to 'Закрытые талоны', eco_coupons_path(:workflow_state => :closed) %>
       </li>
     </ul>
   </div>
@@ -65,7 +65,7 @@
             <td><%= link_to coupon.number, eco_coupon_path(coupon) %></td>
             <td><%= link_to coupon.patient_code, eco_coupons_path(:search => coupon.patient_code) %></td>
             <td><%= I18n.l(coupon.created_on) %></td>
-            <td><%= I18n.t("coupon.#{coupon.state}") %></td>
+            <td><%= I18n.t("coupon.#{coupon.workflow_state}") %></td>
             <td><%= I18n.l(coupon.updated_at) %></td>
           </tr>
         <% end %>

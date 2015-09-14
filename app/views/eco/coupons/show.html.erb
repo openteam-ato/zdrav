@@ -5,7 +5,7 @@
   <div class='col-xs-12'>
     <p>Код пациента: <%= link_to @coupon.patient_code, eco_coupons_path(:search => @coupon.patient_code) %></p>
     <p>Дата выдачи: <%= I18n.l(@coupon.created_on) %></p>
-    <p>Статус: <%= I18n.t("coupon.#{@coupon.state}") %></p>
+    <p>Статус: <%= I18n.t("coupon.#{@coupon.workflow_state}") %></p>
     <p><%= link_to 'Назад', eco_coupons_path, :class => 'btn btn-default' %></p>
   </div>
 </div>

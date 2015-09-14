@@ -15,7 +15,7 @@ class Eco::CouponsSearcher
 
       keywords params[:search], :fields => [:number, :patient_code] if params[:search].present?
 
-      %w(number patient_code state).map(&:to_sym).each do |field|
+      %w(number patient_code workflow_state).map(&:to_sym).each do |field|
         with field, params[field] if params[field].present?
       end
 
