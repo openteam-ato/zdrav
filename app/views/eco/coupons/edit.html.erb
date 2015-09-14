@@ -1,5 +1,5 @@
 <%= simple_form_for [:eco, @coupon] do |f| %>
   <%= render :partial => params[:partial], :locals => {:f => f} %>
-  <%= f.submit 'Добавить', :class => [:btn, 'btn-default'] %>
+  <%= f.submit 'Сохранить', :class => [:btn, 'btn-default'] %>
   <%= link_to 'Отмена', :back %>
 <% end %>

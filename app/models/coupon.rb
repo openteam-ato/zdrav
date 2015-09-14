@@ -3,13 +3,17 @@ class Coupon < ActiveRecord::Base
   attr_accessor :patient_code_id, :mi_title
 
   attr_accessible :number, :patient_code_id, :patient_id, :workflow_state, :created_on, :issued_on, :mi_title,
-                  :medical_institution
+                  :medical_institution,
+                  :approved_on, :not_need_help_on, :failure_patient_on, :help_provided_on, :closed_on
 
   belongs_to :patient
   belongs_to :medical_institution
 
   before_create :set_uniq_number, :if => :patient_code_id
-  before_save :set_medical_institution, :if => :mi_title
+  before_save   :set_medical_institution, :if => :mi_title
+  after_save    :change_state_to_issued, :if => -> { issued_on && created? }
+  after_save    :change_state_to_not_need_help, :if => -> { not_need_help_on && issued? }
+  after_save    :change_state_to_closed, :if => -> { closed_on && (not_need_help?) }
 
   validates_presence_of :patient_code_id, :created_on, :if => -> { created? && patient_code.blank? }
   validates_presence_of :mi_title , :issued_on, :if => -> { (created? || issued?) && mi_title }
@@ -42,36 +46,48 @@ class Coupon < ActiveRecord::Base
 
   workflow do
     state :created do # талон выдан
-      event :issue, :transitions_to => :issued
+      event :to_issued, :transitions_to => :issued
     end
 
     state :issued do # выдано направление в МУ
-      event :approve, :transitions_to => :approved
-      event :not_need_help_trigger, :transitions_to => :not_need_help
+      event :to_approved, :transitions_to => :approved
+      event :to_not_need_help, :transitions_to => :not_need_help
 
       event :to_created, :transitions_to => :created do
-        self.update_attributes :medical_institution => nil, :issued_on => nil
+        self.update_columns :medical_institution => nil, :issued_on => nil
       end
     end
 
     state :not_need_help do # нет наличия показаний
-      event :close, :transitions_to => :closed
+      event :to_issued, :transitions_to => :issued do
+        self.update_columns :not_need_help_on => nil
+      end
+
+      event :to_closed, :transitions_to => :closed
     end
 
     state :approved do # есть наличие показаний
-      event :failure_patient_trigger, :transitions_to => :failure_patient
-      event :help_provided_trigger, :transitions_to => :help_provided
+      event :to_failure_patient, :transitions_to => :failure_patient
+      event :to_help_provided, :transitions_to => :help_provided
     end
 
     state :failure_patient do # отказ пациента
-      event :close, :transitions_to => :closed
+      event :to_closed, :transitions_to => :closed
     end
 
     state :help_provided do # помощ оказана
-      event :close, :transitions_to => :closed
+      event :to_closed, :transitions_to => :closed
     end
 
-    state :closed # талон закрыт
+    state :closed do # талон закрыт
+      event :to_not_need_help, :transitions_to => :not_need_help do
+        self.update_columns :closed_on => nil
+      end
+    end
+
+    #before_transition do |from, to, triggering_event, *event_args|
+      #self.touch_with_version
+    #end
 
     on_error do |error, from, to, event, *args|
       logger.info "Exception (#{error.class}) on #{from} -> #{to}"
@@ -80,12 +96,21 @@ class Coupon < ActiveRecord::Base
 
   has_paper_trail
 
-
   def self.opened_states
     (Coupon.workflow_spec.states.keys - [:closed]).map(&:to_s)
   end
 
+  def previous_state
+    previous_version.workflow_state
+  end
+
   private
+
+  %w( issued not_need_help closed ).each do |evt|
+    define_method "change_state_to_#{evt}" do
+      self.send("to_#{evt}!")
+    end
+  end
 
   def check_opened_coupons
     self.patient = Patient.find_or_create_by(:code => patient_code || patient_code_id)
@@ -98,7 +123,6 @@ class Coupon < ActiveRecord::Base
   def set_medical_institution
     mi = MedicalInstitution.find_or_create_by(title: mi_title)
     self.medical_institution = mi
-    self.issue! if self.created?
   end
 
   def set_uniq_number
@@ -120,6 +144,7 @@ class Coupon < ActiveRecord::Base
   def exist_numbers
     @exist_numbers ||= Coupon.pluck(:number)
   end
+
 end
 
 # == Schema Information
@@ -135,4 +160,9 @@ end
 #  issued_on              :date
 #  created_on             :date
 #  medical_institution_id :integer
+#  approved_on            :date
+#  not_need_help_on       :date
+#  failure_patient_on     :date
+#  help_provided_on       :date
+#  closed_on              :date
 #

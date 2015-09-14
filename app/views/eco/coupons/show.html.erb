@@ -8,7 +8,7 @@
       <%= link_to '(Изменить код пациента)', edit_eco_coupon_path(@coupon, :partial => 'edit_created') if @coupon.created? %>
     </p>
     <p>
-      Дата выдачи: <%= I18n.l(@coupon.created_on) %>
+      Дата выдачи талона: <%= I18n.l(@coupon.created_on) %>
       <%= link_to '(Изменить дату выдачи)', edit_eco_coupon_path(@coupon, :partial => 'edit_created') if @coupon.created?%>
     </p>
     <p>Статус: <%= I18n.t("coupon.#{@coupon.workflow_state}") %></p>
@@ -17,14 +17,36 @@
         Медициское учреждение: <%= @coupon.medical_institution_title || 'Нет направления' %>
       </p>
       <p>
-        Дата выдачи направления: <%= I18n.l(@coupon.issued_on) || 'Не указано' %>
+        Дата выдачи направления в МУ: <%= I18n.l(@coupon.issued_on) || 'Не указано' %>
       </p>
 
       <p>
         <%= link_to 'Изменить информацию о направлении в МУ', edit_eco_coupon_path(@coupon, :partial=> 'edit_issued') %>
-        <%= link_to 'Удалить информацию о направлении в МУ', eco_coupon_delete_mi_path(@coupon), :method => :put, :data => { :confirm => 'Вы уверены?' } %>
+        <%= link_to 'Удалить информацию о направлении в МУ', eco_coupon_revert_state_path(@coupon, :created), :data => { :confirm => 'Вы уверены?' } %>
+      </p>
+
+      <p>
+        <%= link_to 'Нет медицинских показаний', edit_eco_coupon_path(@coupon, :partial => 'edit_not_need_help') %>
+        <%= link_to 'Есть медицинские показания', '#' %>
       </p>
     <% end %>
+
+    <% if @coupon.not_need_help? %>
+      <p>
+        Дата принятия решения об отсутствии показаний: <%= I18n.l(@coupon.not_need_help_on) %>
+      </p>
+      <div class="btn-group" role="group">
+        <%= link_to 'Изменить информацию об отсутствии показаний', edit_eco_coupon_path(@coupon, :partial=> 'edit_not_need_help'), :class => 'btn btn-default' %>
+        <%= link_to 'Удалить информацию об отсутствии показаний', eco_coupon_revert_state_path(@coupon, :issued), :data => { :confirm => 'Вы уверены?' }, :class => 'btn btn-default' %>
+        <%= link_to 'Закрыть талон', edit_eco_coupon_path(@coupon, :partial => 'edit_closed'), :class => 'btn btn-default' %>
+      </div>
+
+    <% end %>
+
+    <% if @coupon.closed? %>
+      <%= link_to I18n.t("coupon.revert_to.#{@coupon.previous_state}"), eco_coupon_revert_state_path(@coupon, @coupon.previous_state), :data => { :confirm => 'Вы уверены?' } %>
+    <% end %>
+
     <p><%= link_to 'Выдать направление в МУ', edit_eco_coupon_path(@coupon, :partial=> 'edit_issued'), :class => 'btn btn-success' if @coupon.created? %></p>
     <p><%= link_to 'Назад', eco_coupons_path, :class => 'btn btn-default' %></p>
   </div>

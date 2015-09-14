@@ -49,7 +49,7 @@ Rails.application.routes.draw do
 
   namespace :eco do
     resources :coupons do
-      put 'delete_mi'
+      get 'revert_state/:state', :action => :revert_state, :as => :revert_state
     end
 
     resources :medical_institutions, :only => [:index]
