@@ -3,20 +3,23 @@ class Coupon < ActiveRecord::Base
   attr_accessor :patient_code_id, :mi_title
 
   attr_accessible :number, :patient_code_id, :patient_id, :workflow_state, :created_on, :issued_on, :mi_title,
-                  :medical_institution,
+                  :medical_institution_id,
                   :approved_on, :not_need_help_on, :failure_patient_on, :help_provided_on, :closed_on
 
   belongs_to :patient
   belongs_to :medical_institution
 
-  before_create :set_uniq_number, :if => :patient_code_id
+  before_create :set_uniq_number
   before_save   :set_medical_institution, :if => :mi_title
-  after_save    :change_state_to_issued, :if => -> { issued_on && created? }
-  after_save    :change_state_to_not_need_help, :if => -> { not_need_help_on && issued? }
-  after_save    :change_state_to_closed, :if => -> { closed_on && (not_need_help?) }
+  #after_save    :change_state_to_issued, :if => -> { issued_on && created? }
+  #after_save    :change_state_to_not_need_help, :if => -> { not_need_help_on && issued? }
+  #after_save    :change_state_to_approved, :if => -> { approved_on && issued? }
+  #after_save    :change_state_to_failure_patient, :if => -> { failure_patient_on && approved? }
+  #after_save    :change_state_to_closed, :if => -> { closed_on && (not_need_help? || failure_patient?) }
 
-  validates_presence_of :patient_code_id, :created_on, :if => -> { created? && patient_code.blank? }
-  validates_presence_of :mi_title , :issued_on, :if => -> { (created? || issued?) && mi_title }
+  validates_presence_of :patient_code_id, :if => -> { created? && patient_code.blank? }
+  validates_presence_of :created_on
+  validates_presence_of :mi_title, :issued_on, :if => -> { (created? || issued?) && mi_title }
   validate :check_opened_coupons, :on => :create
 
   delegate :code, :to => :patient, :prefix => true, :allow_nil => true
@@ -46,7 +49,7 @@ class Coupon < ActiveRecord::Base
 
   workflow do
     state :created do # талон выдан
-      event :to_issued, :transitions_to => :issued
+      event :to_issued, :transitions_to => :issued, :if =>
     end
 
     state :issued do # выдано направление в МУ
@@ -54,7 +57,7 @@ class Coupon < ActiveRecord::Base
       event :to_not_need_help, :transitions_to => :not_need_help
 
       event :to_created, :transitions_to => :created do
-        self.update_columns :medical_institution => nil, :issued_on => nil
+        self.update_columns :medical_institution_id => nil, :issued_on => nil
       end
     end
 
@@ -73,6 +76,10 @@ class Coupon < ActiveRecord::Base
 
     state :failure_patient do # отказ пациента
       event :to_closed, :transitions_to => :closed
+
+      event :to_approved, :transitions_to => :approved do
+        self.update_columns :failure_patient_on, nil
+      end
     end
 
     state :help_provided do # помощ оказана
@@ -81,6 +88,10 @@ class Coupon < ActiveRecord::Base
 
     state :closed do # талон закрыт
       event :to_not_need_help, :transitions_to => :not_need_help do
+        self.update_columns :closed_on => nil
+      end
+
+      event :to_failure_patient, :transitions_to => :failure_patient do
         self.update_columns :closed_on => nil
       end
     end
@@ -106,7 +117,7 @@ class Coupon < ActiveRecord::Base
 
   private
 
-  %w( issued not_need_help closed ).each do |evt|
+  %w( issued not_need_help closed approved failure_patient ).each do |evt|
     define_method "change_state_to_#{evt}" do
       self.send("to_#{evt}!")
     end
