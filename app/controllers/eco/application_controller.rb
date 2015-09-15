@@ -2,6 +2,8 @@ class Eco::ApplicationController < ApplicationController
   before_filter :redirect_access
   sso_load_and_authorize_resource
 
+  actions :all, :except => [:update]
+
   layout 'manage'
 
   private

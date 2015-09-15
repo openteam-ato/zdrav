@@ -1,5 +1,6 @@
 class Coupon < ActiveRecord::Base
 
+  include CouponHistory
   attr_accessor :patient_code_id, :mi_title
 
   attr_accessible :number, :patient_code_id, :patient_id, :workflow_state, :created_on, :issued_on, :mi_title,
@@ -11,8 +12,9 @@ class Coupon < ActiveRecord::Base
 
   before_create :set_uniq_number
 
-  validates_presence_of :patient_code_id, :created_on, :if => -> { created? && patient_code_id }
-  validates_presence_of :mi_title, :issued_on, :if => -> { (created? || issued?) && mi_title }
+  validates_presence_of :patient_code_id, :if => -> { created? && patient_code_id }
+  validates_presence_of :mi_title, :if => -> { (created? || issued?) && mi_title }
+
   validate :check_opened_coupons, :on => :create
   validate :validate_issued_on,             :if => :issued_on
   validate :validate_not_need_help_on,      :if => :not_need_help_on
@@ -143,6 +145,8 @@ class Coupon < ActiveRecord::Base
   def set_medical_institution
     mi = MedicalInstitution.find_or_create_by(title: mi_title)
     self.medical_institution_id = mi.id
+
+    #self.save
   end
 
   def set_uniq_number

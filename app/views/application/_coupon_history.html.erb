@@ -1,0 +1,48 @@
+<h4>История измений</h4>
+<p class='text-success'>
+  <%= I18n.l(@coupon.created_on, :format => :long) %>
+  талон выдан
+</p>
+
+<% if @coupon.issued_on? %>
+  <p class='text-success'>
+    <%= I18n.l(@coupon.issued_on, :format => :long) %>
+    выдано направление в МУ
+    &laquo;<%= @coupon.medical_institution_title %>&raquo;
+  </p>
+<% end %>
+
+<% if @coupon.not_need_help_on? %>
+  <p class='text-muted'>
+    <%= I18n.l(@coupon.not_need_help_on, :format => :long) %>
+    принято решение об отсутствии медицинских показаний для госпитализации в базовой программе ЭКО
+  </p>
+<% end %>
+
+<% if @coupon.approved_on? %>
+  <p class='text-success'>
+    <%= I18n.l(@coupon.approved_on, :format => :long) %>
+    принято решение о наличии мединских показаний для госпитализации в базовой программе ЭКО
+  </p>
+<% end %>
+
+<% if @coupon.failure_patient_on? %>
+  <p class='text-muted'>
+    <%= I18n.l(@coupon.failure_patient_on, :format => :long) %>
+    пациент отказался от оказания медицинской помощи
+  </p>
+<% end %>
+
+<% if @coupon.help_provided_on? %>
+  <p class='text-success'>
+    <%= I18n.l(@coupon.help_provided_on, :format => :long) %>
+    помощь оказана
+  </p>
+<% end %>
+
+<% if @coupon.closed_on? %>
+  <p class='text-muted'>
+    <%= I18n.l(@coupon.closed_on, :format => :long) %>
+    талон закрыт
+  </p>
+<% end %>
