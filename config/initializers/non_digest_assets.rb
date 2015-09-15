@@ -3,4 +3,5 @@ NonStupidDigestAssets.whitelist = [
   'application.js',
   /bootstrap\/glyphicons-halflings-regular.*/,
   /esp-ckeditor\/.*/,
+  /phones.*pdf/,
 ]
