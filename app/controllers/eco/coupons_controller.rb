@@ -5,10 +5,12 @@ class Eco::CouponsController < Eco::ApplicationController
   end
 
   def update
-    update!{
-      @coupon.send("to_#{params[:state]}!") if @coupon.aasm.events.map(&:name).include? "to_#{params[:state]}".to_sym
-      redirect_to [:eco, @coupon] and return
-    }
+    update! do |success, failure|
+      success.html do
+        @coupon.send("to_#{params[:state]}!") if @coupon.aasm.events.map(&:name).include? "to_#{params[:state]}".to_sym
+        redirect_to [:eco, @coupon] and return
+      end
+    end
   end
 
   def revert_state

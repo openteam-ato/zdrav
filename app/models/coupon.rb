@@ -12,8 +12,15 @@ class Coupon < ActiveRecord::Base
   before_create :set_uniq_number
 
   validates_presence_of :patient_code_id, :created_on, :if => -> { created? && patient_code_id }
-  validate :check_opened_coupons, :on => :create
   validates_presence_of :mi_title, :issued_on, :if => -> { (created? || issued?) && mi_title }
+  validate :check_opened_coupons, :on => :create
+  validate :validate_issued_on,             :if => :issued_on
+  validate :validate_not_need_help_on,      :if => :not_need_help_on
+  validate :validate_approved_on,           :if => :approved_on
+  validate :validate_failure_patient_on,    :if => :failure_patient_on
+  validate :validate_help_provided_on,      :if => :help_provided_on
+  validate :validate_closed_on,             :if => :closed_on
+
 
   delegate :code, :to => :patient, :prefix => true, :allow_nil => true
   delegate :title, :to => :medical_institution, :prefix => true, :allow_nil => true
@@ -21,11 +28,6 @@ class Coupon < ActiveRecord::Base
   has_paper_trail
 
   scope :by_state,  -> (state) { where :workflow_state => state }
-  scope :created,   -> { by_state 'created' }
-  scope :issued,    -> { by_state 'issued' }
-  scope :approved,  -> { by_state 'approved' }
-  scope :opened,    -> { by_state ['created', 'issued', 'approved'] }
-  scope :closed,    -> { by_state 'closed' }
 
   searchable(:include => [:patient]) do
     string  :number
@@ -89,40 +91,46 @@ class Coupon < ActiveRecord::Base
     end
   end
 
-  def clear_issued_info
-    self.issued_on = nil
-    self.medical_institution = nil
-  end
-
-  def clear_not_need_help_info
-    self.not_need_help_on = nil
-  end
-
-  def clear_approved_info
-    self.approved_on = nil
-  end
-
-  def clear_help_provided_info
-    self.help_provided_on = nil
-  end
-
-  def clear_failure_patient_info
-    self.failure_patient_on = nil
-  end
-
-  def clear_closed_info
-    self.closed_on = nil
-  end
-
-  def self.opened_states
-    (Coupon.aasm.states.map(&:name) - [:closed]).map(&:to_s)
-  end
 
   def previous_state
     previous_version.workflow_state
   end
 
   private
+
+  {
+   "issued_on" => "created_on", "not_need_help_on" => "issued_on", "approved_on" => "issued_on",
+   "failure_patient_on" => "approved_on", "help_provided_on" => "approved_on"
+  }.each do |key,value|
+    define_method "validate_#{key}" do
+    if self[key] < self[value]
+      errors.add(key, I18n.t("coupon.errors.#{key}"))
+    end
+    end
+  end
+
+  def validate_closed_on
+    state = %w(not_need_help_on failure_patient_on help_provided_on).select { |s| self[s].present? }.first
+
+    if self.closed_on < self[state]
+      errors.add(:closed_on, I18n.t("coupon.errors.closed_on.#{state}"))
+    end
+  end
+
+  (Coupon.aasm.states.map(&:name) - [:issued]).each do |state|
+    define_method "clear_#{state}_info" do
+      self["#{state}_on"] = nil
+    end
+  end
+
+  def clear_issued_info
+    self.issued_on = nil
+    self.medical_institution = nil
+  end
+
+  def self.opened_states
+    (Coupon.aasm.states.map(&:name) - [:closed]).map(&:to_s)
+  end
 
   def check_opened_coupons
     self.patient = Patient.find_or_create_by(:code => patient_code_id)
