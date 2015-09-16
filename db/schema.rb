@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20150915093724) do
 
   create_table "medical_institutions", force: :cascade do |t|
     t.string   "title"
+    t.integer  "coupon_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

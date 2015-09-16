@@ -171,7 +171,7 @@
 
   <div class='col-xs-6'>
     <h4>История изменений</h4>
-    <table class="table table-hover">
+    <table class="table table-hover history-table">
       <thead>
         <th>Дата</th>
         <th>Действия</th>
@@ -184,7 +184,12 @@
             </td>
 
             <td>
-              <%= value.html_safe %>
+              <p><%= value["user_prefix"]%></p>
+              <ul>
+                <% value["action_list"].each do |action|  %>
+                  <li><%= action.html_safe %></li>
+                <% end %>
+              </ul>
             </td>
           </tr>
         <% end %>
