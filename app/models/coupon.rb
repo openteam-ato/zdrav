@@ -162,7 +162,7 @@ class Coupon < ActiveRecord::Base
   end
 
   def generate_number
-    I18n.l(Time.zone.now, :format => '%Y%m') + 6.times.map{ Random.rand(10) }.join
+    I18n.l(created_on, :format => '%Y%m') + 6.times.map{ Random.rand(10) }.join
   end
 
   def exist_numbers

@@ -26,4 +26,7 @@ $ ->
   $(document). on 'click', 'a.disabled', ->
     false
 
+  $('input.coupon').inputmask
+    mask: '999 999 999 999'
+
   return

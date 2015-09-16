@@ -1,0 +1,34 @@
+<div class='content row'>
+  <div class='col-sm-3 hidden-xs noindex'>
+    <div class='subnavigation'>
+      <%= render_partial_for_region(@subnavigation, 'sub') if @subnavigation.present? %>
+      <% if @left_side_links.present? %>
+        <div class='left_side_links'>
+          <%= render_partial_for_region(@left_side_links) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='col-sm-9 co-xs-12'>
+    <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
+    <%= render_partial_for_region(@content_first, 'full') if @content_first.present? %>
+    <div class='html-part'>
+      <div class='row'>
+        <div class='col-lg-3 col-md-4 col-sm-5 col-xs-5'>
+          <%= simple_form_for :coupon, :url => coupon_path, :method => :post do |f| %>
+            <%= f.input :number, :as => :string, :label => 'Введите номер талона',
+              :input_html => { :value => params.try(:[], :coupon).try(:[], :number),
+                               :placeholder => '123 123 123 123',
+                               :class => 'coupon' } %>
+          </div>
+        </div>
+        <p><%= f.submit 'Поиск', :class => 'btn btn-primary' %></p>
+      <% end %>
+      <% if params.try(:[], :coupon).try(:[], :number).present? %>
+          <%= render :partial => 'coupon_history' %>
+      <% end %>
+    </div>
+    <%= content_tag :div, yield(:social_likes), :class => :row if content_for?(:social_likes) %>
+  </div>
+</div>

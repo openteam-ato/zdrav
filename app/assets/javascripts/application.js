@@ -8,6 +8,9 @@
  * = require bootstrap/transition
  * = require moment
  * = require moment/ru
+ * = require social-likes
+ * = require sugar
+ * = require jquery.inputmask
  * = require bootstrap-datetimepicker
  * = require jquery_nested_form
  * = require esp-ckeditor
@@ -16,7 +19,6 @@
  * = require vendor/galleria
  * = require vendor/colorbox
  * = require vendor/scroll_to
- * = require vendor/social_likes
  * = require actual
  * = require archive_collapser
  * = require delete_file

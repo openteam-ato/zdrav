@@ -1,5 +1,5 @@
 <%= content_for :app_page_title do %>
-  <%= content_for?(:page_title) ? yield(:page_title) : "#{@page_title} — #{strip_tags(@site_name.content.body)}".squish %>
+  <%= content_for?(:page_title) ? yield(:page_title) : "#{@page_title} — #{strip_tags(@site_name.try(:content).try(:body))}".squish %>
 <% end %>
 
 <%= content_for :entry_date do %>

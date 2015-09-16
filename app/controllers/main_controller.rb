@@ -46,7 +46,8 @@ class MainController < ApplicationController
       '/ru/zdravoohranenie-v-tomskoy-oblasti/spetsialistam/zemskiy-doktor/uchastniki',
       '/ru/dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov',
       '/ru/konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety',
-      '/ru/thanks'
+      '/ru/thanks',
+      '/ru/dlya-naseleniya/otslezhivanie-ocheredi-eko'
     ].each do |path|
       request_path = path if original_request_path.match(/\A#{path}.*/)
     end
