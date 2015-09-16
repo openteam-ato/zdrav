@@ -56,7 +56,7 @@ class MainController < ApplicationController
       request_path = '/ru/konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety/done'
     end
 
-    if original_request_path == '/manage' || original_request_path == '/eco'
+    if original_request_path.match(/^\/manage|\/eco/)
       request_path = '/ru'
     end
 

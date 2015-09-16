@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   put '/ali.txt' => redirect('http://alihack.com')
 
+  get '/eco' => redirect('/eco/coupons')
+
   devise_for :users, :path => 'auth', :controllers => {:omniauth_callbacks => 'sso/auth/omniauth_callbacks'}, :skip => [:sessions]
   devise_scope :users do
             delete 'sign_out' => 'sso/auth/sessions#destroy', :as => :destroy_user_session
