@@ -63,27 +63,6 @@
           </tr>
         <% end %>
 
-        <% if @coupon.approved_on? %>
-          <tr>
-            <td>
-              <%= I18n.l(@coupon.approved_on, :format => :long) %>
-            </td>
-            <td class='with_icons'>
-              принято решение о наличии мединских показаний для госпитализации в базовой программе ЭКО
-
-              <% if @coupon.approved? %>
-                <%= link_to edit_eco_coupon_path(@coupon, :state => 'approved') do %>
-                  <span class="glyphicon glyphicon-pencil" aria-hidden="true" title='Изменить информацию о наличии показаний'></span>
-                <% end %>
-
-                <%= link_to eco_coupon_revert_state_path(@coupon), :data => { :confirm => 'Вы уверены?' } do %>
-                  <span class="glyphicon glyphicon-remove" aria-hidden="true" title='Удалить информацию о наличии показаний'></span>
-                <% end %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-
         <% if @coupon.failure_patient_on? %>
           <tr>
             <td><%= I18n.l(@coupon.failure_patient_on, :format => :long) %></td>
@@ -143,21 +122,17 @@
     </table>
 
     <% if @coupon.created? %>
+      <%= link_to 'Нет медицинских показаний', edit_eco_coupon_path(@coupon, :state => 'not_need_help'), :class => 'btn btn-default' %>
       <%= link_to 'Выдать направление в МУ', edit_eco_coupon_path(@coupon, :state=> 'issued'), :class => 'btn btn-primary' %>
     <% end %>
 
     <% if @coupon.issued? %>
-      <%= link_to 'Нет медицинских показаний', edit_eco_coupon_path(@coupon, :state => 'not_need_help'), :class => 'btn btn-default' %>
-      <%= link_to 'Есть медицинские показания', edit_eco_coupon_path(@coupon, :state => 'approved'), :class => 'btn btn-primary' %>
+      <%= link_to 'Пациент отказался от помощи', edit_eco_coupon_path(@coupon, :state=> 'failure_patient'), :class => 'btn btn-default' %>
+      <%= link_to 'Помощь оказана', edit_eco_coupon_path(@coupon, :state => 'help_provided'), :class => 'btn btn-primary' %>
     <% end %>
 
     <% if @coupon.not_need_help? %>
       <%= link_to 'Закрыть талон', edit_eco_coupon_path(@coupon, :state => 'closed'), :class => 'btn btn-primary' %>
-    <% end %>
-
-    <% if @coupon.approved? %>
-      <%= link_to 'Пациент отказался от помощи', edit_eco_coupon_path(@coupon, :state=> 'failure_patient'), :class => 'btn btn-default' %>
-      <%= link_to 'Помощь оказана', edit_eco_coupon_path(@coupon, :state => 'help_provided'), :class => 'btn btn-primary' %>
     <% end %>
 
     <% if @coupon.failure_patient? %>

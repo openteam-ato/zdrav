@@ -4,8 +4,7 @@ class Coupon < ActiveRecord::Base
   attr_accessor :patient_code_id, :mi_title
 
   attr_accessible :number, :patient_code_id, :patient_id, :workflow_state, :created_on, :issued_on, :mi_title,
-                  :medical_institution_id,
-                  :approved_on, :not_need_help_on, :failure_patient_on, :help_provided_on, :closed_on
+                  :medical_institution_id, :not_need_help_on, :failure_patient_on, :help_provided_on, :closed_on
 
   belongs_to :patient
   belongs_to :medical_institution
@@ -18,7 +17,6 @@ class Coupon < ActiveRecord::Base
   validate :check_opened_coupons, :on => :create
   validate :validate_issued_on,             :if => :issued_on
   validate :validate_not_need_help_on,      :if => :not_need_help_on
-  validate :validate_approved_on,           :if => :approved_on
   validate :validate_failure_patient_on,    :if => :failure_patient_on
   validate :validate_help_provided_on,      :if => :help_provided_on
   validate :validate_closed_on,             :if => :closed_on
@@ -50,7 +48,6 @@ class Coupon < ActiveRecord::Base
     state :created, :initial => true
     state :issued
     state :not_need_help
-    state :approved
     state :failure_patient
     state :help_provided
     state :closed
@@ -60,19 +57,15 @@ class Coupon < ActiveRecord::Base
     end
 
     event :to_not_need_help do
-      transitions :from => :issued, :to => :not_need_help, :if => ->{ not_need_help_on? }
-    end
-
-    event :to_approved do
-      transitions :from => :issued, :to => :approved, :if => ->{ approved_on? }
+      transitions :from => :created, :to => :not_need_help, :if => ->{ not_need_help_on? }
     end
 
     event :to_failure_patient do
-      transitions :from => :approved, :to => :failure_patient, :if => ->{ failure_patient_on? }
+      transitions :from => :issued, :to => :failure_patient, :if => ->{ failure_patient_on? }
     end
 
     event :to_help_provided do
-      transitions :from => :approved, :to => :help_provided, :if => ->{ help_provided_on? }
+      transitions :from => :issued, :to => :help_provided, :if => ->{ help_provided_on? }
     end
 
     event :to_closed do
@@ -83,10 +76,9 @@ class Coupon < ActiveRecord::Base
 
     event :rollback do
       transitions :from => :issued, :to => :created, :after => :clear_issued_info
-      transitions :from => :not_need_help, :to => :issued, :after => :clear_not_need_help_info
-      transitions :from => :approved, :to => :issued, :after => :clear_approved_info
-      transitions :from => :help_provided, :to => :approved, :after => :clear_help_provided_info
-      transitions :from => :failure_patient, :to => :approved, :after => :clear_failure_patient_info
+      transitions :from => :not_need_help, :to => :created, :after => :clear_not_need_help_info
+      transitions :from => :help_provided, :to => :issued, :after => :clear_help_provided_info
+      transitions :from => :failure_patient, :to => :issued, :after => :clear_failure_patient_info
       transitions :from => :closed, :to => :not_need_help, :after => :clear_closed_info, :if =>  ->{ not_need_help_on? }
       transitions :from => :closed, :to => :failure_patient, :after => :clear_closed_info, :if =>  ->{ failure_patient_on? }
       transitions :from => :closed, :to => :help_provided, :after => :clear_closed_info, :if =>  ->{ help_provided_on? }
@@ -101,8 +93,8 @@ class Coupon < ActiveRecord::Base
   private
 
   {
-   "issued_on" => "created_on", "not_need_help_on" => "issued_on", "approved_on" => "issued_on",
-   "failure_patient_on" => "approved_on", "help_provided_on" => "approved_on"
+   "issued_on" => "created_on", "not_need_help_on" => "created_on",
+   "failure_patient_on" => "issued_on", "help_provided_on" => "issued_on"
   }.each do |key,value|
     define_method "validate_#{key}" do
     if self[key] < self[value]
@@ -184,7 +176,6 @@ end
 #  issued_on              :date
 #  created_on             :date
 #  medical_institution_id :integer
-#  approved_on            :date
 #  not_need_help_on       :date
 #  failure_patient_on     :date
 #  help_provided_on       :date
