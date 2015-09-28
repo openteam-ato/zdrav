@@ -131,14 +131,6 @@
       <%= link_to 'Помощь оказана', edit_eco_coupon_path(@coupon, :state => 'help_provided'), :class => 'btn btn-primary' %>
     <% end %>
 
-    <% if @coupon.not_need_help? %>
-      <%= link_to 'Закрыть талон', edit_eco_coupon_path(@coupon, :state => 'closed'), :class => 'btn btn-primary' %>
-    <% end %>
-
-    <% if @coupon.failure_patient? %>
-      <%= link_to 'Закрыть талон', edit_eco_coupon_path(@coupon, :state => 'closed'), :class => 'btn btn-primary' %>
-    <% end %>
-
     <% if @coupon.help_provided? %>
       <%= link_to 'Закрыть талон', edit_eco_coupon_path(@coupon, :state => 'closed'), :class => 'btn btn-primary' %>
     <% end %>

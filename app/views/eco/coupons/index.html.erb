@@ -30,7 +30,7 @@
       <li role='presentation' class='dropdown<%= ' active' if %w[created issued approved].include?(params[:workflow_state]) %>'>
         <a class='dropdown-toggle' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false'>Открытые талоны <span class='caret'></span></a>
         <ul class='dropdown-menu'>
-          <% %w(created issued approved).each do |workflow_state| %>
+          <% %w(created issued).each do |workflow_state| %>
             <li role='presentation'<%= " class='active'".html_safe if params[:search].blank? && params[:workflow_state] == workflow_state %>>
               <%= link_to I18n.t("coupon.#{workflow_state}"), eco_coupons_path(:workflow_state => workflow_state) %>
             </li>

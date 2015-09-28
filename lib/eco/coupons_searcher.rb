@@ -19,7 +19,7 @@ class Eco::CouponsSearcher
         with field, params[field] if params[field].present?
       end
 
-      order_by :updated_at, :asc
+      order_by :number
 
       paginate :page => page, :per_page => per_page
     end

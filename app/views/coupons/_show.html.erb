@@ -19,14 +19,16 @@
           <%= simple_form_for :coupon, :url => coupon_path, :method => :post do |f| %>
             <%= f.input :number, :as => :string, :label => 'Введите номер талона',
               :input_html => { :value => params.try(:[], :coupon).try(:[], :number),
-                               :placeholder => '123 123 123 123',
-                               :class => 'coupon' } %>
+                               :placeholder => '2015 0000', :class => 'coupon' } %>
           </div>
         </div>
         <p><%= f.submit 'Поиск', :class => 'btn btn-primary' %></p>
       <% end %>
       <% if params.try(:[], :coupon).try(:[], :number).present? %>
-          <%= render :partial => 'coupon_history' %>
+        <% if @coupon_position  %>
+          <h4> Ваша позиция в очереди: <%= @coupon_position if @coupon.created? %> </h4>
+        <% end %>
+        <%= render :partial => 'coupon_history' %>
       <% end %>
     </div>
     <%= content_tag :div, yield(:social_likes), :class => :row if content_for?(:social_likes) %>

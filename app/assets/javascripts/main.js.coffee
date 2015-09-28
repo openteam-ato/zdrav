@@ -27,6 +27,6 @@ $ ->
     false
 
   $('input.coupon').inputmask
-    mask: '999 999 999 999'
+    mask: '9999 9999'
 
   return

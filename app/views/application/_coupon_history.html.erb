@@ -21,13 +21,6 @@
     </p>
   <% end %>
 
-  <% if @coupon.approved_on? %>
-    <p class='text-success'>
-      <%= I18n.l(@coupon.approved_on, :format => :long) %>
-      принято решение о наличии мединских показаний для госпитализации в базовой программе ЭКО
-    </p>
-  <% end %>
-
   <% if @coupon.failure_patient_on? %>
     <p class='text-muted'>
       <%= I18n.l(@coupon.failure_patient_on, :format => :long) %>

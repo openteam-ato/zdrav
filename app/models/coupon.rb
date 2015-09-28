@@ -58,14 +58,29 @@ class Coupon < ActiveRecord::Base
 
     event :to_not_need_help do
       transitions :from => :created, :to => :not_need_help, :if => ->{ not_need_help_on? }
+
+      after do |coupon|
+        self.closed_on = self.not_need_help_on
+        self.to_closed
+      end
     end
 
     event :to_failure_patient do
       transitions :from => :issued, :to => :failure_patient, :if => ->{ failure_patient_on? }
+
+      after do |coupon|
+        self.closed_on = self.failure_patient_on
+        self.to_closed
+      end
     end
 
     event :to_help_provided do
       transitions :from => :issued, :to => :help_provided, :if => ->{ help_provided_on? }
+
+      after do |coupon|
+        self.closed_on = self.help_provided_on
+        self.to_closed
+      end
     end
 
     event :to_closed do
@@ -76,12 +91,11 @@ class Coupon < ActiveRecord::Base
 
     event :rollback do
       transitions :from => :issued, :to => :created, :after => :clear_issued_info
-      transitions :from => :not_need_help, :to => :created, :after => :clear_not_need_help_info
       transitions :from => :help_provided, :to => :issued, :after => :clear_help_provided_info
       transitions :from => :failure_patient, :to => :issued, :after => :clear_failure_patient_info
-      transitions :from => :closed, :to => :not_need_help, :after => :clear_closed_info, :if =>  ->{ not_need_help_on? }
-      transitions :from => :closed, :to => :failure_patient, :after => :clear_closed_info, :if =>  ->{ failure_patient_on? }
-      transitions :from => :closed, :to => :help_provided, :after => :clear_closed_info, :if =>  ->{ help_provided_on? }
+      transitions :from => :closed, :to => :created, :after => :clear_closed_info, :if =>  ->{ not_need_help_on? }
+      transitions :from => :closed, :to => :issued, :after => :clear_closed_info, :if =>  ->{ failure_patient_on? }
+      transitions :from => :closed, :to => :issued, :after => :clear_closed_info, :if =>  ->{ help_provided_on? }
     end
   end
 
@@ -111,7 +125,7 @@ class Coupon < ActiveRecord::Base
     end
   end
 
-  (Coupon.aasm.states.map(&:name) - [:issued]).each do |state|
+  (Coupon.aasm.states.map(&:name) - [:issued, :closed]).each do |state|
     define_method "clear_#{state}_info" do
       self["#{state}_on"] = nil
     end
@@ -120,6 +134,13 @@ class Coupon < ActiveRecord::Base
   def clear_issued_info
     self.issued_on = nil
     self.medical_institution = nil
+  end
+
+  def clear_closed_info
+    self.closed_on = nil
+    self.not_need_help_on = nil
+    self.help_provided_on = nil
+    self.failure_patient_on = nil
   end
 
   def self.opened_states
@@ -137,30 +158,22 @@ class Coupon < ActiveRecord::Base
   def set_medical_institution
     mi = MedicalInstitution.find_or_create_by(title: mi_title)
     self.medical_institution_id = mi.id
-
-    #self.save
   end
 
   def set_uniq_number
     self.patient = Patient.find_or_create_by(:code => patient_code || patient_code_id)
-
-    generated_number = generate_number
-
-    while exist_numbers.include?(generated_number) do
-      generated_number = generate_number
-    end
-
-    self.number = generated_number
+    self.number = generate_number
   end
 
   def generate_number
-    I18n.l(created_on, :format => '%Y%m') + 6.times.map{ Random.rand(10) }.join
+    codes_by_year = Coupon.where(:created_on => Date.parse("01.01.#{created_on.year}")..Date.parse("31.12.#{created_on.year}")).pluck(:number)
+    if codes_by_year.present?
+      last_number = codes_by_year.last.to_i
+      last_number+=1
+    else
+      "#{I18n.l(created_on, :format => '%Y')}0001".to_i
+    end
   end
-
-  def exist_numbers
-    @exist_numbers ||= Coupon.pluck(:number)
-  end
-
 end
 
 # == Schema Information
