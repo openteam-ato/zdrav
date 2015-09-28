@@ -25,9 +25,7 @@
         <p><%= f.submit 'Поиск', :class => 'btn btn-primary' %></p>
       <% end %>
       <% if params.try(:[], :coupon).try(:[], :number).present? %>
-        <% if @coupon_position  %>
-          <h4> Ваша позиция в очереди: <%= @coupon_position if @coupon.created? %> </h4>
-        <% end %>
+        <%= content_tag :h4, "Ваша позиция в очереди: #{@coupon_position}" if @coupon_position %>
         <%= render :partial => 'coupon_history' %>
       <% end %>
     </div>

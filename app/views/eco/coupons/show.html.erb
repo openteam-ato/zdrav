@@ -5,7 +5,7 @@
 
   <div class='col-xs-6'>
     <h4>Просмотр талона №<%= @coupon.number %>, код пациента <%= @coupon.patient_code %></h4>
-
+    <%= content_tag :h4, "Позиця в очереди: #{@coupon_position}" if @coupon_position %>
     <table class="table table-hover">
       <thead>
         <th>Дата</th>
@@ -16,11 +16,14 @@
           <td class='nobr'>
             <%= I18n.l(@coupon.created_on, :format => :long) %>
           </td>
-          <td>
+          <td class='with_icons'>
             талон выдан
             <% if @coupon.created? %>
               <%= link_to edit_eco_coupon_path(@coupon, :state => 'created') do %>
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true" title='Изменить код пациента'></span>
+              <% end %>
+              <%= link_to eco_coupon_path(@coupon), :method => :delete, :data => {:confirm => "Вы уверены?"} do %>
+                <span class="glyphicon glyphicon-remove" aria-hidden="true" title='Изменить код пациента'></span>
               <% end %>
             <% end %>
           </td>

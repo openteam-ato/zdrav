@@ -21,6 +21,13 @@ class Eco::CouponsController < Eco::ApplicationController
     show! {
       add_breadcrumb "Список талонов", eco_coupons_path
       add_breadcrumb "Талон №#{@coupon.number}", eco_coupon_path(@coupon)
+      if @coupon.created?
+        coupons = Coupon.search {
+          with :workflow_state, :created
+          order_by :number
+        }.results
+        @coupon_position = coupons.index(@coupon) + 1
+      end
     }
   end
 
