@@ -113,6 +113,7 @@ module ApplicationHelper
     parts_array = parts_array.compact.select { |part| part.content.items }
 
     return "" if parts_array.empty?
+
     @events = parts_array.map(&:archive_dates)
 
     base_path = parts_array.first.content.collection_link
@@ -140,6 +141,7 @@ module ApplicationHelper
   end
 
   def archive_monthes
+    return [] if early_date.blank? || lately_date.blank?
     (early_date..lately_date).select{|m| m.day == 1 }
   end
 
@@ -148,10 +150,12 @@ module ApplicationHelper
   end
 
   def early_date
+    return nil if @events.map(&:min_date).compact.empty?
     @events.map(&:min_date).map(&:to_date).min.strftime('01-%B-%Y').to_date
   end
 
   def lately_date
+    return nil if @events.map(&:min_date).compact.empty?
     @events.map(&:max_date).map(&:to_date).max
   end
 
