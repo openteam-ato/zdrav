@@ -10,6 +10,6 @@ namespace :sitemap do
     run "ln -nfs #{shared_path}/sitemaps/sitemap.xml.gz #{current_path}/public/sitemap.xml.gz"
   end
 
-  after 'tagging:deploy', 'sitemap:symlink'
+  after 'deploy:finishing', 'sitemap:symlink'
 
 end
