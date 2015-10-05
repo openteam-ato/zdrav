@@ -166,7 +166,7 @@ class Coupon < ActiveRecord::Base
   end
 
   def generate_number
-    codes_by_year = Coupon.where(:created_on => Date.parse("01.01.#{created_on.year}")..Date.parse("31.12.#{created_on.year}")).pluck(:number)
+    codes_by_year = Coupon.where(:created_on => Date.parse("01.01.#{created_on.year}")..Date.parse("31.12.#{created_on.year}")).pluck(:number).sort
     if codes_by_year.present?
       last_number = codes_by_year.last.to_i
       last_number+=1
