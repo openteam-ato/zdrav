@@ -6,7 +6,7 @@ class MainController < ApplicationController
 
   before_filter :detect_robots_in_development if Rails.env.development?
 
-  rescue_from ActionController::UnknownFormat, :with => raise(ActionController::RoutingError.new('Not Found'))
+  #rescue_from ActionController::UnknownFormat, :with => raise(ActionController::RoutingError.new('Not Found'))
 
   def index
     respond_to do |format|
