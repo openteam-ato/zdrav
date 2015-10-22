@@ -1,6 +1,1 @@
-<div class='error row'>
-  <div class='col-xs-12'>
-    <h4>Ошибка обработки запроса</h4>
-    <p>Запрашиваемый ресурс не найден</p>
-  </div>
-</div>
+<% raise ActionController::RoutingError.new('Not Found') %>
