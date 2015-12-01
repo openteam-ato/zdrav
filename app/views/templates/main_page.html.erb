@@ -4,19 +4,6 @@
   <div class='col-lg-3 col-md-3 col-sm-12 col-xs-12 noindex'>
     <div class='left'>
       <%= content_tag :div, render_partial_for_region(@quick_links), :class => :quick_links if @quick_links.present? %>
-      <!--
-      <div class='gallery_of_honor'>
-        <h3><a href='#'>Галерея почета</a></h3>
-        <div class='photo'>
-          <%= link_to '#' do %>
-            <%= image_tag 'stub_gallery_of_honor_lg.jpg', :width => '220', :height => '330', :alt => 'Тимошина Елена Леонтьевна', :class => 'visible-lg-inline' %>
-            <%= image_tag 'stub_gallery_of_honor_md.jpg', :width => '170', :height => '255', :alt => 'Тимошина Елена Леонтьевна', :class => 'visible-md-inline' %>
-          <% end %>
-        </div>
-        <div class='name'>Тимошина Елена Леонтьевна</div>
-        <div class='post'>Заместитель начальника департамента по развитию здравоохранения</div>
-      </div>
-      -->
       <% last_thank = Thank.by_state('published').limit(1).first %>
       <% if last_thank.present? %>
         <div class='thanks_patients'>
@@ -53,6 +40,13 @@
               <%= link_to 'Анонсы', '#main-page-announcements', :class => :disabled %>
             <% end %>
           </li>
+          <li>
+            <% if @news_institutions.present? && @news_institutions.content.items.present? %>
+              <%= link_to 'Новости учреждений', '#main-page-news-institutions', :data => { :toggle => :tab } %>
+            <% else %>
+              <%= link_to 'Новости учреждений', '#main-page-news-institutions', :class => :disabled %>
+            <% end %>
+          </li>
         </ul>
 
         <div class='tab-content'>
@@ -61,6 +55,9 @@
           </div>
           <div class='tab-pane' id='main-page-announcements'>
             <%= render :partial => 'regions/events_list_part', :locals => { :object => @announcements.content } if @announcements.present? %>
+          </div>
+          <div class='tab-pane' id='main-page-news-institutions'>
+            <%= render :partial => 'regions/news_list_part', :locals => { :object => @news_institutions.content } %>
           </div>
         </div>
       </div>
