@@ -94,17 +94,17 @@
           <% end %>
           <% if subdivision.url.present? %>
             <div class='contact'>
-              Сайт: <%= link_to object.url, object.url, :target => '_blank' %>
+              Сайт: <%= link_to subdivision.url, subdivision.url, :target => '_blank' %>
             </div>
           <% end %>
           <% if subdivision.emails.present? %>
             <div class='contact'>
-              Email: <%= object.emails.map{ |email| mail_to email }.join(', ').html_safe %>
+              Email: <%= subdivision.emails.map{ |email| mail_to email }.join(', ').html_safe %>
             </div>
           <% end %>
           <% if subdivision.mode.present? %>
             <div class='contact'>
-              Режим работы: <%= object.mode %>
+              Режим работы: <%= subdivision.mode %>
             </div>
           <% end %>
           <% if subdivision.items.present? %>
