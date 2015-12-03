@@ -102,6 +102,11 @@
               Email: <%= object.emails.map{ |email| mail_to email }.join(', ').html_safe %>
             </div>
           <% end %>
+          <% if subdivision.mode.present? %>
+            <div class='contact'>
+              Режим работы: <%= object.mode %>
+            </div>
+          <% end %>
           <% if subdivision.items.present? %>
             <div class='employees'>
               <% subdivision.items.each do |employee| %>
