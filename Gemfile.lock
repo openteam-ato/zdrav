@@ -174,7 +174,6 @@ GEM
       compass (~> 1.0.0)
       sass-rails (< 5.1)
       sprockets (< 2.13)
-    concurrent-ruby (1.0.0)
     configliere (0.4.18)
       highline (>= 1.5.2)
       multi_json (>= 1.1)
@@ -349,11 +348,12 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.5.1)
       sprockets-rails
+    rails-assets-colorbox (1.6.3)
+      rails-assets-jquery (>= 1.3.2)
     rails-assets-jquery (2.1.4)
     rails-assets-jquery.inputmask (3.1.63)
       rails-assets-jquery (>= 1.7)
-    rails-assets-social-likes (3.0.15)
-      rails-assets-jquery (>= 1.8)
+    rails-assets-social-likes (3.1.0)
     rails-assets-sugar (1.4.1)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
@@ -536,6 +536,7 @@ DEPENDENCIES
   quiet_assets
   rack-utf8_sanitizer
   rails (~> 4.2.4)
+  rails-assets-colorbox!
   rails-assets-jquery (= 2.1.4)!
   rails-assets-jquery.inputmask (~> 3.1.0)!
   rails-assets-social-likes!

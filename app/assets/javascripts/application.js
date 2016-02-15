@@ -12,12 +12,13 @@
  * = require sugar
  * = require jquery.inputmask
  * = require bootstrap-datetimepicker
+ * = require colorbox/jquery.colorbox.js
+ * = require colorbox/i18n/jquery.colorbox-ru.js
  * = require jquery_nested_form
  * = require esp-ckeditor
  * = require vendor/jscrollpane
  * = require vendor/jcarousel
  * = require vendor/galleria
- * = require vendor/colorbox
  * = require vendor/scroll_to
  * = require actual
  * = require archive_collapser
