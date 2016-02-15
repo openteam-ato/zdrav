@@ -13,6 +13,7 @@
       scrolling: false
       opacity: '0.2'
       onComplete: ->
+        html = html.replace('height="100%"', "height='#{$('#cboxLoadedContent').innerHeight()}'")
         location_map.html(html)
         return
 
