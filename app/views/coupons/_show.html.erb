@@ -25,7 +25,8 @@
         <p><%= f.submit 'Поиск', :class => 'btn btn-primary' %></p>
       <% end %>
       <% if params.try(:[], :coupon).try(:[], :number).present? %>
-        <%= content_tag :h4, "Ваша позиция в очереди: #{@coupon_position}" if @coupon_position %>
+        <%= content_tag :h4, "Ваша позиция в очереди: #{@coupon_position}" if @coupon_position && @coupon_position > 1 %>
+        <%= content_tag :h4, "Принято решение о наличии оснований для направления пациента в медицинскую организацию для оказания медицинской помощи с применением вспомогательных репродуктивных технологий (экстракорпорального оплодотворения), осуществляемых в рамках базовой программы обязательного медицинского страхования.", class: 'text-success' if @coupon_position && @coupon_position == 1 %>
         <%= render :partial => 'coupon_history' %>
       <% end %>
     </div>

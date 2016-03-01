@@ -52,7 +52,7 @@
               <%= I18n.l(@coupon.not_need_help_on, :format => :long) %>
             </td>
             <td class='with_icons'>
-              принято решение об отсутствии медицинских показаний для госпитализации в базовой программе ЭКО
+              принято решение об отсутствии медицинских показаний к проведению базовой программе ЭКО
               <% if @coupon.not_need_help? %>
                 <%= link_to edit_eco_coupon_path(@coupon, :state=> 'not_need_help') do %>
                   <span class="glyphicon glyphicon-pencil" aria-hidden="true" title='Изменить информацию об отсутствии показаний'></span>

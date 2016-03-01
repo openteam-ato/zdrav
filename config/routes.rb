@@ -33,8 +33,8 @@ Rails.application.routes.draw do
     post 'konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety'      => 'evaluation_registry#create', :as => :evaluation_registry_post_create
     put  'konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety'      => 'evaluation_registry#create', :as => :evaluation_registry_put_ceate
 
-    get  'dlya-naseleniya/elektronnaya-ochered-na-eko-za-schet-sredstv-oms' => 'coupons#index', :as => :coupons
-    post 'dlya-naseleniya/elektronnaya-ochered-na-eko-za-schet-sredstv-oms' => 'coupons#show',  :as => :coupon
+    get  'dlya-naseleniya/programma-eko-za-schet-sredstv-oms' => 'coupons#index', :as => :coupons
+    post 'dlya-naseleniya/programma-eko-za-schet-sredstv-oms' => 'coupons#show',  :as => :coupon
   end
 
   namespace :manage do
