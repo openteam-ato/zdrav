@@ -174,7 +174,6 @@ GEM
       compass (~> 1.0.0)
       sass-rails (< 5.1)
       sprockets (< 2.13)
-    concurrent-ruby (1.0.1)
     configliere (0.4.18)
       highline (>= 1.5.2)
       multi_json (>= 1.1)

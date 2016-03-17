@@ -14,6 +14,7 @@
  * = require bootstrap-datetimepicker
  * = require colorbox/jquery.colorbox.js
  * = require colorbox/i18n/jquery.colorbox-ru.js
+ * = require colorbox/index
  * = require jquery_nested_form
  * = require esp-ckeditor
  * = require vendor/jscrollpane
