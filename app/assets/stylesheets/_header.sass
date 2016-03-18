@@ -61,6 +61,14 @@
     color: #005faf
     text-align: right
 
+    .cecutient
+      font-size: 15px
+
+      a,
+      span
+        color: #000
+        font-weight: bold
+
     p
       margin-bottom: 0
 
@@ -70,14 +78,24 @@
       margin-top: 5px
       margin-bottom: 10px
 
-    @media (min-width: $screen-sm-min)
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max)
 
       text-align: center
       margin-top: 5px
       margin-bottom: 10px
 
-    @media (min-width: $screen-md-min)
+    @media (min-width: $screen-md-min) and (max-width: $screen-md-max)
 
       font-size: 14px
       text-align: right
+      margin-top: 20px
+
+      .cecutient
+        font-size: 14px
+
+    @media (min-width: $screen-lg-min)
+
       margin-top: 30px
+
+      .cecutient
+        font-size: 15px

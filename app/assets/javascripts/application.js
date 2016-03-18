@@ -8,6 +8,7 @@
  * = require bootstrap/transition
  * = require moment
  * = require moment/ru
+ * = require cecutient
  * = require social-likes
  * = require sugar
  * = require jquery.inputmask

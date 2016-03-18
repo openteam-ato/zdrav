@@ -1,0 +1,192 @@
+body
+  .hide-on-normal,
+  .hidden
+    display: none !important
+
+  &.cecutient
+    .hide-on-normal
+      display: block !important
+
+body
+  &.color-white,
+  &.color-black,
+  &.color-blue
+    .cecutient-panel
+      background: #dadada !important
+      border: 1px solid #999 !important
+      border-top: 0 !important
+      font-family: Arial
+      font-size: 16px !important
+      text-align: center
+      padding: 15px
+
+      div
+        +inline-block
+        background: #dadada !important
+        margin: 0 5px
+
+        &.setting-font-size
+          .reduce-font-size,
+          .increase-font-size
+            +inline-block
+            font-size: 36px !important
+            font-weight: bold
+            text-align: center
+            width: 40px
+            height: 40px
+            line-height: 40px
+            text-decoration: none
+            color: #000 !important
+            background-color: #fff !important
+
+            &:hover
+              background-color: #efefef !important
+
+        &.setting-color
+          a
+            +inline-block
+            width: 40px
+            height: 40px
+
+            &.current
+              position: relative
+
+              &:after
+                top: 100%
+                left: 50%
+                border: solid transparent
+                content: ''
+                height: 0
+                width: 0
+                position: absolute
+                pointer-events: none
+                border-color: transparent
+                border-width: 5px
+                margin-left: -5px
+
+            &.color-white
+              background-color: #fff !important
+
+              &.current:after
+                border-top-color: #fff !important
+
+            &.color-black
+              background-color: #000 !important
+
+              &.current:after
+                border-top-color: #000 !important
+
+            &.color-blue
+              background-color: #9dd1ff !important
+
+              &.current:after
+                border-top-color: #9dd1ff !important
+
+
+        &.setting-images
+          a
+            +inline-block
+            font-size: 18px !important
+            color: #000 !important
+            background-color: #fff !important
+            height: 40px
+            line-height: 40px
+            padding: 0 15px
+            text-decoration: none
+            color: #000 !important
+            background-color: #fff !important
+
+            &:hover
+              background-color: #efefef !important
+
+            &.current
+              position: relative
+
+              &:after
+                top: 100%
+                left: 50%
+                border: solid transparent
+                content: ''
+                height: 0
+                width: 0
+                position: absolute
+                pointer-events: none
+                border-color: transparent
+                border-top-color: #fff !important
+                border-width: 5px
+                margin-left: -5px
+
+              &:hover
+                &:after
+                  border-top-color: #efefef !important
+
+=grayscale_images
+  .header
+    .logotype a
+      +filter(grayscale(100%))
+
+  .main_menu_wrapper
+    &:before,
+    &:after
+      +filter(grayscale(100%))
+
+  .main_menu ul li
+    &:after
+      +filter(grayscale(100%))
+
+    a:before
+      +filter(grayscale(100%))
+
+  img
+    +filter(grayscale(100%))
+
+body
+  &.cecutient
+    +grayscale_images
+
+  &.color-white
+    color: #000 !important
+    background-color: #fff !important
+    border-color: #000 !important
+
+    a, span
+      color: #000 !important
+      background-color: #fff !important
+
+    >
+      .container.index *,
+      .bottom_menu_wrapper *,
+      .footer_wrapper *
+
+        color: #000 !important
+        background: #fff !important
+        border-color: #000 !important
+        +filter(grayscale(100%))
+
+        &:before,
+        &:after
+          display: none
+
+  &.color-black
+    color: #fff !important
+    background: none !important
+    background-color: #000 !important
+    border-color: #fff !important
+
+    *
+      color: #fff !important
+      background: none !important
+      background-color: #000 !important
+      border-color: #fff !important
+
+  &.color-blue
+    color: #063462 !important
+    background: none !important
+    background-color: #9dd1ff !important
+    border-color: #063462 !important
+
+    *
+      color: #063462 !important
+      background: none !important
+      background-color: #9dd1ff !important
+      border-color: #063462 !important

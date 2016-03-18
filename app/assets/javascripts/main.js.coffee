@@ -1,5 +1,7 @@
 $ ->
 
+  init_cetutient()
+
   init_actual() if $('.main_page .actual ul li').length
 
   if $('html').is('.ie6, .ie7, .ie8') && $('.main_page .actual ul li').length
