@@ -1,6 +1,17 @@
 <h1 class='page-header <%= header_css_class %>'><%= object.title %></h1>
 
-<div class="documents col-xs-12">
+<div class='documents col-xs-12'>
+  <ul class='nav nav-pills'>
+    <li role='presentation'<%= ' class="active"'.html_safe if params['parts_params'].try(:[], 'documents').try(:[], 'keywords') != 'приказ' && params['parts_params'].try(:[], 'documents').try(:[], 'keywords') != 'распоряжение' %>>
+      <a href='/ru/dokumenty/pravovye-akty-departamenta-zdravoohraneniya-tomskoy-oblasti'>Все правовые акты</a>
+    </li>
+    <li role='presentation'<%= ' class="active"'.html_safe if params['parts_params'].try(:[], 'documents').try(:[], 'keywords') == 'приказ' %>>
+      <a href='/ru/dokumenty/pravovye-akty-departamenta-zdravoohraneniya-tomskoy-oblasti?utf8=%E2%9C%93&parts_params[documents][keywords]=приказ'>Приказы</a>
+    </li>
+    <li role='presentation'<%= ' class="active"'.html_safe if params['parts_params'].try(:[], 'documents').try(:[], 'keywords') == 'распоряжение' %>>
+      <a href='/ru/dokumenty/pravovye-akty-departamenta-zdravoohraneniya-tomskoy-oblasti?utf8=%E2%9C%93&parts_params[documents][keywords]=распоряжение'>Распоряжения </a>
+    </li>
+  </ul>
   <%= form_tag object.action, :method => :get, :class => 'documents-form' do %>
     <%= text_field_tag 'parts_params[documents][keywords]', object.keywords, :class => 'input', :placeholder => 'Поиск' %>
     <%= submit_tag t('find'), :name => nil, :class => 'submit' %>
