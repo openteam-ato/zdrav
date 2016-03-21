@@ -61,6 +61,7 @@
       cecutient_remove_font_size_classes()
       cecutient_remove_color_classes()
       cecutient_remove_images_classes()
+      $('a.current', options.panel).removeClass('current')
 
       context.text(context.data('cecutient'))
 

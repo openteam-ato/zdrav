@@ -22,6 +22,7 @@ body
 
       div
         +inline-block
+        color: #000 !important
         background: #dadada !important
         margin: 0 5px
 
@@ -121,8 +122,8 @@ body
                   border-top-color: #efefef !important
 
 body
+
   &.cecutient
-    +grayscale_images
 
   &.color-white
     color: #000 !important
@@ -208,14 +209,22 @@ body
 
       .news
         .tabs
+          border-color: #000
+
           li
             &.active
               background-color: #fff
               border: 1px solid #000
               border-bottom: 0
 
-        .rss
-          +filter(grayscale(100%))
+        .tab-content
+
+          .date,
+          .location
+            color: #000
+
+          .rss
+            +filter(grayscale(100%))
 
       .banners
         li
@@ -446,3 +455,363 @@ body
           +inline-block
           background-color: #fff
           border-color: #000
+
+  &.color-black
+    color: #fff !important
+    background-color: #000 !important
+    border-color: #fff !important
+
+    span, a
+      color: #fff !important
+
+    img
+      +filter(grayscale(100%))
+
+    .header
+      .logotype a
+        +filter(grayscale(100%))
+
+      .search_form
+        .form-control
+          border-color: #fff
+          background-color: #000
+
+        .btn
+          color: #fff
+          background: none
+          background-color: #000
+          border-color: #fff
+
+    .main_menu_wrapper
+      *
+        font-size: inherit !important
+
+      &:before,
+      &:after
+        +filter(grayscale(100%))
+
+    .main_menu
+      .submenu
+        background-color: #000
+
+      ul li
+        &:after
+          +filter(grayscale(100%))
+
+        a:before
+          +filter(grayscale(100%))
+
+        &.selected
+          a:after
+            border-bottom-color: #000
+
+    .main_page
+      *
+        font-size: inherit !important
+
+      .quick_links
+        p
+          border: 1px solid #fff
+          background-color: #000
+
+      .thanks_patients
+        h3
+          border: 1px solid #fff
+          border-bottom: 0
+          background-color: #000
+
+          &:before,
+          &:after
+            display: none
+
+        .thanks
+          background: none
+          background-color: #000
+          border-color: #fff
+
+          .note
+            color: #fff
+
+      .actual
+        ul
+          li
+            background-color: #000
+
+            a
+              background-color: #000
+              border-color: #fff
+
+            &.hover
+              a
+                background-color: #000
+
+                &:after
+                  border-color: transparent transparent transparent #000
+
+        .scroller
+          border-color: #fff
+
+          .jspVerticalBar
+            border-color: #fff
+
+          .jspDrag
+            background-color: #000
+
+      .news
+        .tabs
+          border-color: #fff
+
+          li
+            &.active
+              background-color: #000
+              border: 1px solid #fff
+              border-bottom: 0
+
+        .tab-content
+
+          .date,
+          .location
+            color: #fff
+
+          .rss
+            +filter(grayscale(100%))
+
+      .banners
+        li
+          border-color: #fff
+
+        .banners-prev
+          +filter(grayscale(100%))
+
+        .banners-next
+          +filter(grayscale(100%))
+
+        .banners-pagination .square
+          background-color: #fff
+          border-color: #fff
+
+          &.active
+            background-color: #999
+
+      .attention
+        border-color: #fff
+
+        .title
+          color: #000 !important
+          background-color: #fff
+          border: 1px solid #fff
+
+          &:before
+            display: none
+
+    .bottom_menu_wrapper
+      background-color: #000
+      border-color: #fff
+
+      *
+        font-size: inherit !important
+
+    .footer_wrapper
+      color: #fff
+      background-color: #000
+      border-top: 1px solid #fff
+
+    .development-json
+      background-color: #000
+      border-top: 1px solid #fff
+
+    .development-resolution
+      border-color: #fff
+      background-color: #000
+
+      &:before
+        color: #fff
+
+    .content
+      *
+        font-size: inherit !important
+
+      .subnavigation
+        > ul
+          border-color: #fff
+
+          li
+            border-color: #fff
+
+            &.has_children
+              > a:after
+                border-top-color: #fff
+
+              &.selected
+                ul
+                  border-color: #fff
+
+                > a:after
+                  bottom: 5px
+                  border-top-color: transparent
+                  border-bottom-color: #fff
+
+        .left_side_links
+          .blue-pages,
+          .reception
+            +filter(grayscale(100%))
+            background-color: #000
+            border: 1px solid #fff
+
+      h1.page-header
+        font-size: 180% !important
+        color: #fff !important
+        border-bottom-color: #fff !important
+
+      .department h3
+        font-size: 140% !important
+
+      .department .department-structure .subdivisions-with-tree .subdivision .person .post,
+      .department .subdivision-chief .contacts .appointments
+        color: #fff
+
+      .department .subdivision-chief
+        border-color: #fff
+
+      .department .department-contacts .regulation
+        +filter(grayscale(100%))
+        background-color: #000
+
+      .department .department-contacts .contact
+        border-color: #fff
+
+      .department .department-structure .subdivisions-with-tree .subdivision
+        border-color: #fff
+
+      .html-part blockquote,
+      .news-item blockquote
+        background-color: #000
+        border-left-color: #fff
+
+      .news-item,
+      .more-like-this
+        border-color: #fff
+
+      .docs,
+      .icon
+        +filter(grayscale(100%))
+        background-color: #000
+
+      .social-likes-wrapper .social-likes
+        .social-likes__widget
+          border-color: #fff
+          background-color: #000
+
+          span
+            +filter(grayscale(100%))
+
+      .html-part table th,
+      .html-part table td
+        color: #fff !important
+        border-color: #fff
+        background-color: #000 !important
+
+        strong
+          color: #fff !important
+
+      .html-part .need-collapse h2
+        color: #fff
+
+        &:after
+          color: #fff
+
+      .html-part .note
+        color: #fff
+
+      .html-part .thanks
+        li
+          border-color: #fff
+
+        .thank p
+          font-size: 120% !important
+
+        .author
+          color: #fff
+
+      em
+        font-size: 120% !important
+
+      .btn
+        color: #fff
+        background-color: #000
+        border-color: #fff
+
+      .slider
+        border-color: #fff
+
+        &:after
+          color: #fff
+
+      .js-doctors-carousel-wrapper
+        border-color: #fff
+
+      .form-control
+        border-color: #fff
+
+      .simple_form .form-group label abbr
+        color: #fff
+
+      .simple_form .actions input
+        border-color: #fff
+        background-color: #000
+
+      .right-side-links
+        border-color: #fff
+
+        h5
+          color: #fff
+          background-color: #000
+
+          &:after
+            display: none
+
+      .news li,
+      .announcements li
+        border-color: #fff
+
+      .date
+        color: #fff
+
+      #galleria .galleria-container .galleria-thumbnails-container .galleria-thumbnails-list .galleria-thumbnails .active
+        border-color: #fff
+
+      .documents-form
+        .input,
+        .submit
+          background: none
+          background-color: #000
+          border-color: #fff
+
+      .text-muted
+        color: #fff
+
+      .caution,
+      hr
+        border-color: #fff
+
+      .nav.nav-pills
+        li a
+          border: 1px solid #000
+
+          &:hover
+            background-color: #999
+
+          &:active
+            background-color: #000
+
+        .active a
+          border: 1px solid #fff
+          background-color: #000
+
+      .pagination
+        > li > a,
+        > li > span,
+        .active > a
+          +inline-block
+          background-color: #000
+          border-color: #fff
