@@ -120,26 +120,6 @@ body
                 &:after
                   border-top-color: #efefef !important
 
-=grayscale_images
-  .header
-    .logotype a
-      +filter(grayscale(100%))
-
-  .main_menu_wrapper
-    &:before,
-    &:after
-      +filter(grayscale(100%))
-
-  .main_menu ul li
-    &:after
-      +filter(grayscale(100%))
-
-    a:before
-      +filter(grayscale(100%))
-
-  img
-    +filter(grayscale(100%))
-
 body
   &.cecutient
     +grayscale_images
@@ -149,44 +129,320 @@ body
     background-color: #fff !important
     border-color: #000 !important
 
-    a, span
+    span, a
       color: #000 !important
-      background-color: #fff !important
 
-    >
-      .container.index *,
-      .bottom_menu_wrapper *,
-      .footer_wrapper *
+    img
+      +filter(grayscale(100%))
 
-        color: #000 !important
-        background: #fff !important
-        border-color: #000 !important
+    .header
+      .logotype a
         +filter(grayscale(100%))
 
-        &:before,
+    .main_menu_wrapper
+      *
+        font-size: inherit !important
+
+      &:before,
+      &:after
+        +filter(grayscale(100%))
+
+    .main_menu ul li
+      &:after
+        +filter(grayscale(100%))
+
+      a:before
+        +filter(grayscale(100%))
+
+    .main_page
+      *
+        font-size: inherit !important
+
+      .quick_links
+        p
+          border: 1px solid #000
+          background-color: #fff
+
+      .thanks_patients
+        h3
+          border: 1px solid #000
+          border-bottom: 0
+          background-color: #fff
+
+          &:before,
+          &:after
+            display: none
+
+        .thanks
+          background: none
+          background-color: #fff
+          border-color: #000
+
+          .note
+            color: #000
+
+      .actual
+        ul
+          li
+            background-color: #fff
+
+            a
+              background-color: #fff
+              border-color: #000
+
+            &.hover
+              a
+                background-color: #fff
+
+                &:after
+                  border-color: transparent transparent transparent #fff
+
+        .scroller
+          border-color: #000
+
+          .jspVerticalBar
+            border-color: #000
+
+          .jspDrag
+            background-color: #000
+
+      .news
+        .tabs
+          li
+            &.active
+              background-color: #fff
+              border: 1px solid #000
+              border-bottom: 0
+
+        .rss
+          +filter(grayscale(100%))
+
+      .banners
+        li
+          border-color: #000
+
+        .banners-prev
+          +filter(grayscale(100%))
+
+        .banners-next
+          +filter(grayscale(100%))
+
+        .banners-pagination .square
+          background-color: #fff
+          border-color: #000
+
+          &.active
+            background-color: #000
+
+      .attention
+        border-color: #000
+
+        .title
+          background-color: #fff
+          border: 1px solid #000
+
+          &:before
+            display: none
+
+    .bottom_menu_wrapper
+      background-color: #fff
+      border-color: #000
+
+      *
+        font-size: inherit !important
+
+    .footer_wrapper
+      color: #000
+      background-color: #fff
+      border-top: 1px solid #000
+
+    .development-json
+      background-color: #fff
+      border-top: 1px solid #000
+
+    .development-resolution
+      border-color: #000
+      background-color: #fff
+
+      &:before
+        color: #000
+
+    .content
+      *
+        font-size: inherit !important
+
+      .subnavigation
+        > ul
+          border-color: #000
+
+          li
+            border-color: #000
+
+            &.has_children
+              > a:after
+                border-top-color: #000
+
+              &.selected
+                ul
+                  border-color: #000
+
+                > a:after
+                  bottom: 5px
+                  border-top-color: transparent
+                  border-bottom-color: #000
+
+        .left_side_links
+          .blue-pages,
+          .reception
+            +filter(grayscale(100%))
+            background-color: #fff
+            border: 1px solid #000
+
+      h1.page-header
+        font-size: 180% !important
+        color: #000 !important
+        border-bottom-color: #000 !important
+
+      .department h3
+        font-size: 140% !important
+
+      .department .department-structure .subdivisions-with-tree .subdivision .person .post,
+      .department .subdivision-chief .contacts .appointments
+        color: #000
+
+      .department .subdivision-chief
+        border-color: #000
+
+      .department .department-contacts .regulation
+        +filter(grayscale(100%))
+
+      .department .department-contacts .contact
+        border-color: #000
+
+      .department .department-structure .subdivisions-with-tree .subdivision
+        border-color: #000
+
+      .html-part blockquote,
+      .news-item blockquote
+        background-color: #fff
+        border-left-color: #000
+
+      .news-item,
+      .more-like-this
+        border-color: #000
+
+      .docs,
+      .icon
+        +filter(grayscale(100%))
+
+      .social-likes-wrapper .social-likes
+        .social-likes__widget
+          border-color: #000
+
+          span
+            +filter(grayscale(100%))
+
+      .html-part table th,
+      .html-part table td
+        color: #000 !important
+        border-color: #000
+        background-color: #fff !important
+
+        strong
+          color: #000 !important
+
+      .html-part .need-collapse h2
+        color: #000
+
         &:after
-          display: none
+          color: #000
 
-  &.color-black
-    color: #fff !important
-    background: none !important
-    background-color: #000 !important
-    border-color: #fff !important
+      .html-part .note
+        color: #000
 
-    *
-      color: #fff !important
-      background: none !important
-      background-color: #000 !important
-      border-color: #fff !important
+      .html-part .thanks
+        li
+          border-color: #000
 
-  &.color-blue
-    color: #063462 !important
-    background: none !important
-    background-color: #9dd1ff !important
-    border-color: #063462 !important
+        .thank p
+          font-size: 120% !important
 
-    *
-      color: #063462 !important
-      background: none !important
-      background-color: #9dd1ff !important
-      border-color: #063462 !important
+        .author
+          color: #000
+
+      em
+        font-size: 120% !important
+
+      .btn
+        color: #000
+        background-color: #fff
+        border-color: #000
+
+      .slider
+        border-color: #000
+
+        &:after
+          color: #000
+
+      .js-doctors-carousel-wrapper
+        border-color: #000
+
+      .form-control
+        border-color: #000
+
+      .simple_form .form-group label abbr
+        color: #000
+
+      .simple_form .actions input
+        border-color: #000
+        background-color: #fff
+
+      .right-side-links
+        border-color: #000
+
+        h5
+          color: #000
+          background-color: #fff
+
+          &:after
+            display: none
+
+      .news li,
+      .announcements li
+        border-color: #000
+
+      .date
+        color: #000
+
+      #galleria .galleria-container .galleria-thumbnails-container .galleria-thumbnails-list .galleria-thumbnails .active
+        border-color: #000
+
+      .documents-form
+        .input,
+        .submit
+          background: none
+          background-color: #fff
+          border-color: #000
+
+      .text-muted
+        color: #000
+
+      .caution,
+      hr
+        border-color: #000
+
+      .nav.nav-pills
+        li a
+          border: 1px solid #fff
+
+        .active a
+          border: 1px solid #000
+          background-color: #fff
+
+      .pagination
+        > li > a,
+        > li > span,
+        .active > a
+          +inline-block
+          background-color: #fff
+          border-color: #000
