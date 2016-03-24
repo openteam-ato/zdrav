@@ -12,6 +12,7 @@
 
     context = $(this)
     body = $('body')
+    font_size_info = $('.font-size', options.panel)
 
     cecutient_remove_font_size_classes = ->
       for size in [options.minimum_font_size..options.maximum_font_size]
@@ -36,6 +37,7 @@
 
       Cookies.set 'cecutient_font_size', "font-size-#{options.minimum_font_size}" unless Cookies.get 'cecutient_font_size'
       body.addClass Cookies.get 'cecutient_font_size'
+      font_size_info.text(Cookies.get('cecutient_font_size').replace('font-size-', ''))
 
       Cookies.set 'cecutient_color', 'color-white' unless Cookies.get 'cecutient_color'
       body.addClass Cookies.get 'cecutient_color'
@@ -76,6 +78,7 @@
       cecutient_remove_font_size_classes()
       Cookies.set 'cecutient_font_size', target_size
       body.addClass Cookies.get 'cecutient_font_size'
+      font_size_info.text(Cookies.get('cecutient_font_size').replace('font-size-', ''))
       return
 
     cecutient_incrase_font_size = ->
@@ -87,6 +90,7 @@
       cecutient_remove_font_size_classes()
       Cookies.set 'cecutient_font_size', target_size
       body.addClass Cookies.get 'cecutient_font_size'
+      font_size_info.text(Cookies.get('cecutient_font_size').replace('font-size-', ''))
       return
 
     cecutient_set_color_scheme = (color) ->

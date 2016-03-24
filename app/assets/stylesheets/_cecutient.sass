@@ -43,6 +43,9 @@ body
             &:hover
               background-color: #efefef !important
 
+          .font-size
+            color: #000 !important
+
         &.setting-color
           a
             +inline-block
@@ -1399,3 +1402,14 @@ body
 
     .content .department .department-structure .subdivisions-with-tree .subdivision .person
       margin-left: 0
+
+  /******************************/
+  /******* with font-size *******/
+  /******************************/
+
+  @for $size from 12 through 30
+    &.font-size-#{$size}
+      font-size: #{$size / 10}rem !important
+
+      *
+        +word-wrap()
