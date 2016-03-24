@@ -123,7 +123,9 @@ body
 
 body
 
-  &.cecutient
+  /***************************/
+  /******* color white *******/
+  /***************************/
 
   &.color-white
     color: #000 !important
@@ -140,20 +142,72 @@ body
       .logotype a
         +filter(grayscale(100%))
 
+      .search_form
+        .form-control
+          border-color: #000
+          background-color: #fff
+
+        .btn
+          color: #000
+          background: none
+          background-color: #fff
+          border-color: #000
+
     .main_menu_wrapper
+      border-color: #000
       *
         font-size: inherit !important
 
       &:before,
       &:after
-        +filter(grayscale(100%))
+        background-color: #000
 
-    .main_menu ul li
+    .main_menu ul
+
       &:after
-        +filter(grayscale(100%))
+        background: none
+        background-color: #000 !important
 
-      a:before
-        +filter(grayscale(100%))
+      li
+
+        &:before
+          background: none
+          background-color: #000 !important
+
+        &:after
+          background-color: #000 !important
+
+        &:hover
+          &:after
+            display: none
+
+          .submenu
+            border-right: 0
+
+            &:before
+              position: absolute
+              content: ''
+              bottom: -1px
+              right: -1px
+              width: 1px
+              height: 2px
+              background-color: #000
+
+            &:after
+              top: -1px
+              right: -1px
+              background-color: #000
+
+        &.selected a
+          &:before
+            border-bottom-color: #000 !important
+
+          &:after
+            border-bottom-color: #fff !important
+
+        .submenu
+          border-color: #000
+          background-color: #fff
 
     .main_page
       *
@@ -276,6 +330,9 @@ body
       &:before
         color: #000
 
+    .list-bordered
+      border-color: #000
+
     .content
       *
         font-size: inherit !important
@@ -312,8 +369,11 @@ body
         color: #000 !important
         border-bottom-color: #000 !important
 
-      .department h3
-        font-size: 140% !important
+      h2
+        font-size: 160% !important
+
+      h3
+        font-size: 130% !important
 
       .department .department-structure .subdivisions-with-tree .subdivision .person .post,
       .department .subdivision-chief .contacts .appointments
@@ -329,6 +389,12 @@ body
         border-color: #000
 
       .department .department-structure .subdivisions-with-tree .subdivision
+        border-color: #000
+
+      .department .department-chief .post
+        color: #000
+
+      .department .employees .employee
         border-color: #000
 
       .html-part blockquote,
@@ -388,6 +454,7 @@ body
         border-color: #000
 
       .slider
+        font-size: 130% !important
         border-color: #000
 
         &:after
@@ -420,7 +487,8 @@ body
       .announcements li
         border-color: #000
 
-      .date
+      .date,
+      .location
         color: #000
 
       #galleria .galleria-container .galleria-thumbnails-container .galleria-thumbnails-list .galleria-thumbnails .active
@@ -456,6 +524,10 @@ body
           background-color: #fff
           border-color: #000
 
+  /***************************/
+  /******* color black *******/
+  /***************************/
+
   &.color-black
     color: #fff !important
     background-color: #000 !important
@@ -483,27 +555,60 @@ body
           border-color: #fff
 
     .main_menu_wrapper
+      border-color: #fff
       *
         font-size: inherit !important
 
       &:before,
       &:after
-        +filter(grayscale(100%))
+        background-color: #fff
 
-    .main_menu
-      .submenu
-        background-color: #000
+    .main_menu ul
 
-      ul li
+      &:after
+        background: none
+        background-color: #fff !important
+
+      li
+
+        &:before
+          background: none
+          background-color: #fff !important
+
         &:after
-          +filter(grayscale(100%))
+          background-color: #fff !important
 
-        a:before
-          +filter(grayscale(100%))
+        &:hover
+          &:after
+            display: none
 
-        &.selected
-          a:after
-            border-bottom-color: #000
+          .submenu
+            border-right: 0
+
+            &:before
+              position: absolute
+              content: ''
+              bottom: -1px
+              right: -1px
+              width: 1px
+              height: 2px
+              background-color: #fff
+
+            &:after
+              top: -1px
+              right: -1px
+              background-color: #fff
+
+        &.selected a
+          &:before
+            border-bottom-color: #fff !important
+
+          &:after
+            border-bottom-color: #000 !important
+
+        .submenu
+          border-color: #fff
+          background-color: #000
 
     .main_page
       *
@@ -627,6 +732,9 @@ body
       &:before
         color: #fff
 
+    .list-bordered
+      border-color: #fff
+
     .content
       *
         font-size: inherit !important
@@ -663,8 +771,11 @@ body
         color: #fff !important
         border-bottom-color: #fff !important
 
-      .department h3
-        font-size: 140% !important
+      h2
+        font-size: 160% !important
+
+      h3
+        font-size: 130% !important
 
       .department .department-structure .subdivisions-with-tree .subdivision .person .post,
       .department .subdivision-chief .contacts .appointments
@@ -681,6 +792,12 @@ body
         border-color: #fff
 
       .department .department-structure .subdivisions-with-tree .subdivision
+        border-color: #fff
+
+      .department .department-chief .post
+        color: #fff
+
+      .department .employees .employee
         border-color: #fff
 
       .html-part blockquote,
@@ -742,6 +859,7 @@ body
         border-color: #fff
 
       .slider
+        font-size: 130% !important
         border-color: #fff
 
         &:after
@@ -774,7 +892,8 @@ body
       .announcements li
         border-color: #fff
 
-      .date
+      .date,
+      .location
         color: #fff
 
       #galleria .galleria-container .galleria-thumbnails-container .galleria-thumbnails-list .galleria-thumbnails .active
@@ -815,3 +934,432 @@ body
           +inline-block
           background-color: #000
           border-color: #fff
+
+  /**************************/
+  /******* color blue *******/
+  /**************************/
+
+  &.color-blue
+    color: #063462 !important
+    background-color: #9dd1ff !important
+    border-color: #063462 !important
+
+    span, a
+      color: #063462 !important
+
+    img
+      +filter(sepia(1) hue-rotate(170deg))
+
+    .header
+      .logotype a
+        +filter(sepia(1) hue-rotate(170deg))
+
+      .search_form
+        .form-control
+          border-color: #063462
+          background-color: #9dd1ff
+
+        .btn
+          color: #063462
+          background: none
+          background-color: #9dd1ff
+          border-color: #063462
+
+    .main_menu_wrapper
+      border-color: #063462
+      *
+        font-size: inherit !important
+
+      &:before,
+      &:after
+        background-color: #063462
+
+    .main_menu ul
+
+      &:after
+        background: none
+        background-color: #063462 !important
+
+      li
+
+        &:before
+          background: none
+          background-color: #063462 !important
+
+        &:after
+          background-color: #063462 !important
+
+        &:hover
+          &:after
+            display: none
+
+          .submenu
+            border-right: 0
+
+            &:before
+              position: absolute
+              content: ''
+              bottom: -1px
+              right: -1px
+              width: 1px
+              height: 2px
+              background-color: #063462
+
+            &:after
+              top: -1px
+              right: -1px
+              background-color: #063462
+
+        &.selected a
+          &:before
+            border-bottom-color: #063462 !important
+
+          &:after
+            border-bottom-color: #9dd1ff !important
+
+        .submenu
+          border-color: #063462
+          background-color: #9dd1ff
+
+    .main_page
+      *
+        font-size: inherit !important
+
+      .quick_links
+        p
+          border: 1px solid #063462
+          background-color: #9dd1ff
+
+      .thanks_patients
+        h3
+          border: 1px solid #063462
+          border-bottom: 0
+          background-color: #9dd1ff
+
+          &:before,
+          &:after
+            display: none
+
+        .thanks
+          background: none
+          background-color: #9dd1ff
+          border-color: #063462
+
+          .note
+            color: #063462
+
+      .actual
+        ul
+          li
+            background-color: #9dd1ff
+
+            a
+              background-color: #9dd1ff
+              border-color: #063462
+
+            &.hover
+              a
+                background-color: #9dd1ff
+
+                &:after
+                  border-color: transparent transparent transparent #9dd1ff
+
+        .scroller
+          border-color: #063462
+
+          .jspCap,
+          .jspTrack
+            background-color: #9dd1ff
+
+          .jspVerticalBar
+            border-color: #063462
+
+          .jspDrag
+            background-color: #063462
+
+      .news
+        .tabs
+          border-color: #063462
+
+          li
+            &.active
+              background-color: #9dd1ff
+              border: 1px solid #063462
+              border-bottom: 0
+
+        .tab-content
+
+          .date,
+          .location
+            color: #063462
+
+      .banners
+        li
+          border-color: #063462
+
+        .banners-prev
+          +filter(grayscale(100%))
+
+        .banners-next
+          +filter(grayscale(100%))
+
+        .banners-pagination .square
+          background-color: #9dd1ff
+          border-color: #063462
+
+          &.active
+            background-color: #999
+
+      .attention
+        border-color: #063462
+
+        .title
+          color: #9dd1ff !important
+          background-color: #063462
+          border: 1px solid #063462
+
+          &:before
+            display: none
+
+    .bottom_menu_wrapper
+      background-color: #9dd1ff
+      border-color: #063462
+
+      *
+        font-size: inherit !important
+
+    .footer_wrapper
+      color: #063462
+      background-color: #9dd1ff
+      border-top: 1px solid #063462
+
+    .development-json
+      background-color: #9dd1ff
+      border-top: 1px solid #063462
+
+    .development-resolution
+      border-color: #063462
+      background-color: #9dd1ff
+
+      &:before
+        color: #063462
+
+    .list-bordered
+      border-color: #063462
+
+    .content
+      *
+        font-size: inherit !important
+
+      .subnavigation
+        > ul
+          border-color: #063462
+
+          li
+            border-color: #063462
+
+            &.has_children
+              > a:after
+                border-top-color: #063462
+
+              &.selected
+                ul
+                  border-color: #063462
+
+                > a:after
+                  bottom: 5px
+                  border-top-color: transparent
+                  border-bottom-color: #063462
+
+        .left_side_links
+          .blue-pages,
+          .reception
+            background-color: #9dd1ff
+            border: 1px solid #063462
+
+      h1.page-header
+        font-size: 180% !important
+        color: #063462 !important
+        border-bottom-color: #063462 !important
+
+      h2
+        font-size: 160% !important
+
+      h3
+        font-size: 130% !important
+
+      .department .department-structure .subdivisions-with-tree .subdivision .person .post,
+      .department .subdivision-chief .contacts .appointments
+        color: #063462
+
+      .department .subdivision-chief
+        border-color: #063462
+
+      .department .department-contacts .regulation
+        background-color: #9dd1ff
+
+      .department .department-contacts .contact
+        border-color: #063462
+
+      .department .department-structure .subdivisions-with-tree .subdivision
+        border-color: #063462
+
+      .department .department-chief .post
+        color: #063462
+
+      .department .employees .employee
+        border-color: #063462
+
+      .html-part blockquote,
+      .news-item blockquote
+        background-color: #9dd1ff
+        border-left-color: #063462
+
+      .news-item,
+      .more-like-this
+        border-color: #063462
+
+      .docs,
+      .icon
+        background-color: #9dd1ff
+
+      .social-likes-wrapper .social-likes
+        .social-likes__widget
+          border-color: #063462
+          background-color: #9dd1ff
+
+      .html-part table th,
+      .html-part table td
+        color: #063462 !important
+        border-color: #063462
+        background-color: #9dd1ff !important
+
+        strong
+          color: #063462 !important
+
+      .html-part .need-collapse h2
+        color: #063462
+
+        &:after
+          color: #063462
+
+      .html-part .note
+        color: #063462
+
+      .html-part .thanks
+        li
+          border-color: #063462
+
+        .thank p
+          font-size: 120% !important
+
+        .author
+          color: #063462
+
+      em
+        font-size: 120% !important
+
+      .btn
+        color: #063462
+        background-color: #9dd1ff
+        border-color: #063462
+
+      .slider
+        font-size: 130% !important
+        border-color: #063462
+
+        &:after
+          color: #063462
+
+      .js-doctors-carousel-wrapper
+        border-color: #063462
+
+      .form-control
+        border-color: #063462
+
+      .simple_form .form-group label abbr
+        color: #063462
+
+      .simple_form .actions input
+        border-color: #063462
+        background-color: #9dd1ff
+
+      .right-side-links
+        border-color: #063462
+
+        h5
+          color: #063462
+          background-color: #9dd1ff
+
+          &:after
+            display: none
+
+      .news li,
+      .announcements li
+        border-color: #063462
+
+      .date,
+      .location
+        color: #063462
+
+      #galleria .galleria-container .galleria-thumbnails-container .galleria-thumbnails-list .galleria-thumbnails .active
+        border-color: #063462
+
+      .documents-form
+        .input,
+        .submit
+          background: none
+          background-color: #9dd1ff
+          border-color: #063462
+
+      .text-muted
+        color: #063462
+
+      .caution,
+      hr
+        border-color: #063462
+
+      .nav.nav-pills
+        li a
+          border: 1px solid #9dd1ff
+
+          &:hover
+            background-color: #999
+
+          &:active
+            background-color: #9dd1ff
+
+        .active a
+          border: 1px solid #063462
+          background-color: #9dd1ff
+
+      .pagination
+        > li > a,
+        > li > span,
+        .active > a
+          +inline-block
+          background-color: #9dd1ff
+          border-color: #063462
+
+  /***************************/
+  /******* hide images *******/
+  /***************************/
+
+  &.images-hide
+    img
+      display: none !important
+
+    *
+      background-image: none !important
+
+      &:before,
+      &:after
+        background-image: none !important
+
+      &.icon
+        padding-left: 0
+
+    .main_page
+      .banners,
+      .attention
+        display: none !important
