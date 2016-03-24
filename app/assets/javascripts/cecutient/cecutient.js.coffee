@@ -6,9 +6,9 @@
     options.debug = options.debug or false
     options.panel = $(options.panel)
     options.panel = $('.cecutient-panel') unless options.panel.length
-    options.minimum_font_size = options.minimum_font_size or 12
+    options.minimum_font_size = options.minimum_font_size or 14
     options.maximum_font_size = options.maximum_font_size or 26
-    options.font_size_increment = options.font_size_increment or 3
+    options.font_size_increment = options.font_size_increment or 2
 
     context = $(this)
     body = $('body')
