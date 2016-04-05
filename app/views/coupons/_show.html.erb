@@ -29,6 +29,7 @@
         <%= render :partial => 'coupon_history' %>
       <% end %>
     </div>
+    <%= render_partial_for_region(@content_second) if @content_second.present? %>
     <%= content_tag :div, yield(:social_likes), :class => :row if content_for?(:social_likes) %>
   </div>
 </div>
