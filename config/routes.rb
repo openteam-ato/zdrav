@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   get '/eco' => redirect('/eco/coupons')
 
+  get '/impersonate', to: redirect('/manage/users')
+  mount UserImpersonate::Engine => '/impersonate', as: 'impersonate_engine'
+
   devise_for :users, :path => 'auth', :controllers => {:omniauth_callbacks => 'sso/auth/omniauth_callbacks'}, :skip => [:sessions]
   devise_scope :users do
             delete 'sign_out' => 'sso/auth/sessions#destroy', :as => :destroy_user_session
@@ -50,6 +53,8 @@ Rails.application.routes.draw do
     end
 
     resources :video_messages
+
+    resources :users
 
     root :to => 'thanks#index'
   end

@@ -11,6 +11,9 @@
 <%= content_for :content do %>
   <%= render :partial => 'header' %>
   <%= render :partial => 'main_menu' %>
+  <% if current_staff_user %>
+    <%= render 'user_impersonate/header' %>
+  <% end %>
   <%= render :partial => 'content' %>
   <%= render :partial => 'bottom_menu' %>
   <%= render :partial => 'footer' %>

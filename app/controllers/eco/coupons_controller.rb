@@ -1,4 +1,10 @@
-class Eco::CouponsController < Eco::ApplicationController
+class Eco::CouponsController < MainController
+
+  layout 'manage'
+
+  sso_load_and_authorize_resource
+
+  actions :all, :except => [:update]
 
   def index
     @coupons = Eco::CouponsSearcher.new(params).results

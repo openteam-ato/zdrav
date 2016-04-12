@@ -52,6 +52,7 @@ gem 'sunspot_rails'
 gem 'time_diff'
 gem 'truncate_html'
 gem 'uglifier'
+gem 'user_impersonate2', :require => 'user_impersonate'
 gem 'uuid'
 
 source 'https://rails-assets.org' do

@@ -1,4 +1,4 @@
-class Manage::ApplicationController < ApplicationController
+class Manage::ApplicationController < MainController
   layout 'manage'
 
   sso_load_and_authorize_resource

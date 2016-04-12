@@ -12,6 +12,9 @@
         </div>
       </div>
     </div>
+    <% if current_staff_user %>
+      <%= render 'user_impersonate/header' %>
+    <% end %>
     <%= render :partial => 'content' %>
   </div>
   <%= render :partial => 'footer' %>

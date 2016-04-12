@@ -481,6 +481,8 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    user_impersonate2 (0.10.2)
+      rails (>= 3.2.0)
     uuid (2.3.8)
       macaddr (~> 1.0)
     warden (1.2.3)
@@ -560,6 +562,7 @@ DEPENDENCIES
   truncate_html
   uglifier
   unicorn
+  user_impersonate2
   uuid
 
 BUNDLED WITH

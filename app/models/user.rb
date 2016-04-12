@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
 
   sso_auth_user
 
+  scope :ordered, -> { order(:name) }
+
   Permission.pluck(:role).each do |role|
     define_method "#{role}?" do
       available_permissions.include? role
@@ -10,6 +12,10 @@ class User < ActiveRecord::Base
 
   def available_permissions
     @available_permissions ||= permissions.pluck(:role)
+  end
+
+  def staff?
+    admin?
   end
 
 end
