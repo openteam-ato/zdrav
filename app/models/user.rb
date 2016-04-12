@@ -1,5 +1,17 @@
 class User < ActiveRecord::Base
+
   sso_auth_user
+
+  Permission.pluck(:role).each do |role|
+    define_method "#{role}?" do
+      available_permissions.include? role
+    end
+  end
+
+  def available_permissions
+    @available_permissions ||= permissions.pluck(:role)
+  end
+
 end
 
 # == Schema Information

@@ -49,6 +49,8 @@ Rails.application.routes.draw do
       get :xls, :on => :collection
     end
 
+    resources :video_messages
+
     root :to => 'thanks#index'
   end
 

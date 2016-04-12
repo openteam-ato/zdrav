@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922032326) do
+ActiveRecord::Schema.define(version: 20160412060054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,7 +116,6 @@ ActiveRecord::Schema.define(version: 20150922032326) do
 
   create_table "medical_institutions", force: :cascade do |t|
     t.string   "title"
-    t.integer  "coupon_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -178,5 +177,36 @@ ActiveRecord::Schema.define(version: 20150922032326) do
   end
 
   add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
+
+  create_table "video_messages", force: :cascade do |t|
+    t.string   "target"
+    t.string   "title"
+    t.string   "name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "aasm_state"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "question_source_file_name"
+    t.string   "question_source_content_type"
+    t.integer  "question_source_file_size"
+    t.datetime "question_source_updated_at"
+    t.text     "question_source_url"
+    t.string   "question_converted_file_name"
+    t.string   "question_converted_content_type"
+    t.integer  "question_converted_file_size"
+    t.datetime "question_converted_updated_at"
+    t.text     "question_converted_url"
+    t.string   "answer_source_file_name"
+    t.string   "answer_source_content_type"
+    t.integer  "answer_source_file_size"
+    t.datetime "answer_source_updated_at"
+    t.text     "answer_source_url"
+    t.string   "answer_converted_file_name"
+    t.string   "answer_converted_content_type"
+    t.integer  "answer_converted_file_size"
+    t.datetime "answer_converted_updated_at"
+    t.text     "answer_converted_url"
+  end
 
 end

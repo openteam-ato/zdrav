@@ -3,9 +3,9 @@ class Thank < ActiveRecord::Base
   attr_accessible :email, :fullname, :message, :state, :published_at, :ip, :user_agent
 
   extend Enumerize
-  enumerize :state, :in => [:draft, :published], :default => :draft, :predicates => true
+  enumerize :state, in: [:draft, :published], default: :draft, predicates: true
 
-  scope :by_state, -> (state) { where(:state => state).ordered(1) }
+  scope :by_state, -> (state) { where(state: state).ordered(1) }
   scope :ordered, -> (_) { order('published_at desc') }
   scope :published, -> { by_state(:published) }
   scope :draft, -> { by_state(:draft) }
