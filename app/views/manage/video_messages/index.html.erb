@@ -1,0 +1,33 @@
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='content'>
+      <h4>Видео обращения</h4>
+      <p><%= link_to 'Добавить', new_manage_video_message_path, class: 'btn btn-primary' %></p>
+      <% if @video_messages.any? %>
+        <ul>
+          <% @video_messages.each do |video_message| %>
+            <li>
+              <div>
+                <%= link_to video_message.title, manage_video_message_path(video_message) %>
+              </div>
+              <div>
+                Автор:
+                <%= [video_message.name, video_message.phone].delete_if(&:blank?).join(', ') %>
+                [<%= mail_to video_message.email %>]
+              </div>
+              <div class='text-<%= video_message.aasm_state %>'>
+                <%= video_message.aasm.human_state %>
+              </div>
+              <div>
+                создано: <%= I18n.l video_message.created_at %>,
+                изменено: <%= I18n.l video_message.updated_at %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>Нет видео обращений.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -98,6 +98,13 @@ ru:
         draft: "Не опубликовано"
         published: "Опубликовано"
 
+    video_message:
+      target:
+        specialist: 'Специалист ДЗТО'
+        pharmacist: 'Провизор'
+        doctor: 'Врач'
+        other: 'другое'
+
   activerecord:
     attributes:
       doctor:
@@ -158,3 +165,16 @@ ru:
 
       evaluation_registry_attachment:
         attachment: "Файл"
+
+      video_message:
+        created_at: 'Создано'
+        updated_at: 'Обновлено'
+        name: 'Ф.И.О.'
+        phone: 'Телефон'
+        email: 'E-mail'
+        title: 'Тема обращения'
+        target: 'Кому адресовано'
+        question_source: 'Видео файл'
+        aasm_state: 'Статус'
+        aasm_state/draft: 'Черновик'
+        aasm_state/published: 'Опубликовано'

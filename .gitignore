@@ -21,5 +21,6 @@
 /config/deploy.yml
 /config/settings.yml
 /public/assets
+/public/video_messages
 /public/sitemap*
 *.swp

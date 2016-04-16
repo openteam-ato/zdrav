@@ -52,7 +52,9 @@ Rails.application.routes.draw do
       get :xls, :on => :collection
     end
 
-    resources :video_messages
+    resources :video_messages do
+      get 'change_state'
+    end
 
     resources :users
 

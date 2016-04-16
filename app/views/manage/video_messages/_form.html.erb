@@ -1,0 +1,23 @@
+<%= simple_form_for resource,
+  url: resource.new_record? ? manage_video_messages_path : manage_video_message_path(resource) do |f| %>
+  <%= f.input :title, autofocus: true %>
+  <%= f.input :target %>
+  <%= f.input :name %>
+  <%= f.input :email %>
+  <%= f.input :phone %>
+  <% if f.object.question_source.blank? %>
+    <%= f.input :question_source, as: :file %>
+  <% else %>
+    <p>
+      Загруженное видео:
+      <%= link_to resource.question_source_file_name, resource.question_source.url %>
+    </p>
+  <% end %>
+
+  <%= f.submit 'Сохранить', name: nil, class: 'btn btn-primary' %>
+  <%= link_to 'Отмена', resource.new_record? ? collection_path : resource_path(resource), class: 'btn btn-default pull-right' %>
+  <% unless resource.new_record? %>
+    <%= link_to 'Удалить', manage_video_message_path(resource), method: :delete,
+      data: { confirm: 'Удалить без возможности восстановления?' }, class: 'btn btn-default pull-right' %>
+  <% end %>
+<% end %>

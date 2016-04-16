@@ -2,6 +2,8 @@ require 'openteam/capistrano/deploy'
 
 set :bundle_binstubs, -> { shared_path.join('bin') }
 
+set :linked_dirs, fetch(:linked_dirs) + %w{ public/video_messages }
+
 namespace :sitemap do
 
   desc 'Create symlink from shared sitemaps to public'

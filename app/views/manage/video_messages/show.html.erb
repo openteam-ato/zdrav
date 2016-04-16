@@ -1,0 +1,46 @@
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='content'>
+      <h4>Видео обращение</h4>
+      <p>
+        <%= link_to 'Редактировать', edit_manage_video_message_path(resource), class: 'btn btn-primary' %>
+        <%= link_to 'Вернуться к списку', manage_video_messages_path, class: 'btn btn-default pull-right' %>
+      </p>
+      <%= show_for resource do |item| %>
+        <%= item.attribute :title %>
+        <%= item.attribute :target do %>
+          <%= item.object.target_text %>
+        <% end %>
+        <%= item.attribute :name %>
+        <%= item.attribute :email do %>
+          <%= mail_to item.object.email %>
+        <% end %>
+        <%= item.attribute :phone %>
+        <%= item.attribute :aasm_state, wrapper_html: { class: "text-#{item.object.aasm_state}" } do %>
+          <%= item.object.aasm.human_state %>
+        <% end %>
+        <%= item.attribute :created_at %>
+        <%= item.attribute :updated_at %>
+        <%= item.attribute :question_source, label: false do %>
+          <p><strong>Загруженное видео обращение:</strong></p>
+          <object id='videoplayer-question-source-<%= item.object.id %>' width='640' height='360'>
+            <param name='bgcolor' value='#ffffff' />
+            <param name='allowFullScreen' value='true' />
+            <param name='allowScriptAccess' value='always' />
+            <param name='movie' value='<%= asset_path('player.swf') %>' />
+            <param name='flashvars' value='comment=<%= item.object.title %>&amp;st=<%= asset_path('style.txt') %>&amp;file=<%= item.object.question_source.url %>' />
+            <embed src='<%= asset_path('player.swf') %>'
+              name='videoplayer9092'
+              type='application/x-shockwave-flash'
+              allowscriptaccess='always'
+              allowfullscreen='true'
+              flashvars='comment=<%= item.object.title %>&amp;st=<%= asset_path('style.txt') %>&amp;file=<%= item.object.question_source.url %>'
+              bgcolor='#ffffff'
+              width='640'
+              height='360'></embed>
+          </object>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

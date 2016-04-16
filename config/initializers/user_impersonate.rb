@@ -17,10 +17,10 @@ module UserImpersonate
     config.user_is_staff_method = 'staff?'
 
     # Redirect to this path when entering impersonate mode
-    config.redirect_on_impersonate = '/'
+    config.redirect_on_impersonate = '/manage/users'
 
     # Redirect to this path when leaving impersonate mode
-    config.redirect_on_revert = '/'
+    config.redirect_on_revert = '/manage/users'
 
     # Devise filter method used to protect impersonation controller
     # For Active Admin "AdminUser" model, change to 'authenticate_admin_user!'

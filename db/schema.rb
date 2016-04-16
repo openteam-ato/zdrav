@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412060054) do
+ActiveRecord::Schema.define(version: 20160412060004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -192,21 +192,25 @@ ActiveRecord::Schema.define(version: 20160412060054) do
     t.integer  "question_source_file_size"
     t.datetime "question_source_updated_at"
     t.text     "question_source_url"
+    t.string   "question_source_fingerprint"
     t.string   "question_converted_file_name"
     t.string   "question_converted_content_type"
     t.integer  "question_converted_file_size"
     t.datetime "question_converted_updated_at"
     t.text     "question_converted_url"
+    t.string   "question_converted_fingerprint"
     t.string   "answer_source_file_name"
     t.string   "answer_source_content_type"
     t.integer  "answer_source_file_size"
     t.datetime "answer_source_updated_at"
     t.text     "answer_source_url"
+    t.string   "answer_source_fingerprint"
     t.string   "answer_converted_file_name"
     t.string   "answer_converted_content_type"
     t.integer  "answer_converted_file_size"
     t.datetime "answer_converted_updated_at"
     t.text     "answer_converted_url"
+    t.string   "answer_converted_fingerprint"
   end
 
 end
