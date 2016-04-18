@@ -1,10 +1,10 @@
-<%= stylesheet_link_tag 'print', :media => 'print' %>
+<%= stylesheet_link_tag 'print', media: 'print' %>
 
 <div class='row'>
   <div class='col-sm-12'>
     <div class='content'>
-      <%= link_to 'удалить', manage_evaluation_registry_path(resource), :method => :delete, :confirm => 'Вы уверены?', :class => 'btn btn-default floatr' %>
-      <%= link_to 'распечатать', 'javascript:if(window.print)window.print()', :class => 'btn btn-default print floatr' %>
+      <%= link_to 'удалить', manage_evaluation_registry_path(resource), method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-default floatr' %>
+      <%= link_to 'распечатать', 'javascript:if(window.print)window.print()', class: 'btn btn-default print floatr' %>
       <h4>Лечебно-профилактическое учреждение <%= resource.title %></h4>
       <h5>Автор: <%= resource.username.presence || 'не указан' %></h5>
       <div class='evaluation_registry'>
@@ -13,32 +13,32 @@
         <fieldset>
           <legend><%= I18n.t('activerecord.attributes.evaluation_registry.question_1') %></legend>
           <% (1..11).each do |number| %>
-            <%= render :partial => 'question', :locals => { :resource => resource, :group => 1, :number => number } %>
+            <%= render partial: 'question', locals: { resource: resource, group: 1, number: number } %>
           <% end %>
         </fieldset>
         <fieldset>
           <legend><%= I18n.t('activerecord.attributes.evaluation_registry.question_2') %></legend>
           <% (1..9).each do |number| %>
             <% next if number == 7 %>
-            <%= render :partial => 'question', :locals => { :resource => resource, :group => 2, :number => number } %>
+            <%= render partial: 'question', locals: { resource: resource, group: 2, number: number } %>
           <% end %>
         </fieldset>
         <fieldset>
           <legend><%= I18n.t('activerecord.attributes.evaluation_registry.question_3') %></legend>
           <% (1..6).each do |number| %>
-            <%= render :partial => 'question', :locals => { :resource => resource, :group => 3, :number => number } %>
+            <%= render partial: 'question', locals: { resource: resource, group: 3, number: number } %>
           <% end %>
         </fieldset>
         <fieldset>
           <legend><%= I18n.t('activerecord.attributes.evaluation_registry.question_4') %></legend>
           <% (1..3).each do |number| %>
-            <%= render :partial => 'question', :locals => { :resource => resource, :group => 4, :number => number } %>
+            <%= render partial: 'question', locals: { resource: resource, group: 4, number: number } %>
           <% end %>
         </fieldset>
         <fieldset>
           <legend><%= I18n.t('activerecord.attributes.evaluation_registry.question_5') %></legend>
           <% (1..2).each do |number| %>
-            <%= render :partial => 'question', :locals => { :resource => resource, :group => 5, :number => number } %>
+            <%= render partial: 'question', locals: { resource: resource, group: 5, number: number } %>
           <% end %>
         </fieldset>
         <fieldset>
@@ -49,7 +49,7 @@
           <legend><%= I18n.t('activerecord.attributes.evaluation_registry.attachments') %></legend>
           <% if resource.evaluation_registry_attachments.any? %>
             <% resource.evaluation_registry_attachments.each do |attachment| %>
-              <p><%= link_to attachment.attachment_file_name, attachment.attachment_url, :target => '_blank' %></p>
+              <p><%= link_to attachment.attachment_file_name, attachment.attachment_url, target: '_blank' %></p>
             <% end %>
           <% else %>
             <p>Нет файлов</p>
