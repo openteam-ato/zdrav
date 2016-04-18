@@ -5,7 +5,7 @@ class VideoMessage < ActiveRecord::Base
     :answer_source, :answer_converted
 
   validates_presence_of :target, :title, :name, :email, :question_source
-  validates_uniqueness_of :question_source_fingerprint
+  #validates :uniqueness_of_question_source # TODO: надо реализовать уникальность загружаемых видео обращений
 
   scope :ordered, -> { order('created_at desc') }
 
@@ -17,17 +17,21 @@ class VideoMessage < ActiveRecord::Base
     predicates: true
 
   include AASM
-  aasm do
+  aasm whiny_transitions: false do
     state :draft, initial: true
     state :published
 
-    event :publish do
+    event :publish, guards: :converted_videos_present? do
       transitions from: :draft, to: :published
     end
 
     event :unpublish do
       transitions from: :published, to: :draft
     end
+  end
+
+  def converted_videos_present?
+    question_converted.present? && answer_converted.present?
   end
 
   has_attached_file :question_source,

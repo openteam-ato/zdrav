@@ -5,17 +5,46 @@
   <%= f.input :name %>
   <%= f.input :email %>
   <%= f.input :phone %>
-  <% if f.object.question_source.blank? %>
-    <%= f.input :question_source, as: :file %>
-  <% else %>
+
+  <hr />
+  <% if f.object.question_source.present? %>
     <p>
-      Загруженное видео:
-      <%= link_to resource.question_source_file_name, resource.question_source.url %>
+      <%= I18n.t 'video_message.kind.question_source' %>:
+      <%= link_to resource.question_source_file_name, resource.question_source.url, target: '_blank' %>
     </p>
+  <% else %>
+    <%= f.input :question_source, as: :file %>
   <% end %>
 
+  <hr />
+  <% if f.object.question_converted.present? %>
+    <p>
+      <%= I18n.t 'video_message.kind.question_converted' %>:
+      <%= link_to resource.question_converted_file_name, resource.question_converted.url, target: '_blank' %>
+    </p>
+  <% end %>
+  <%= f.input :question_converted, as: :file %>
+
+  <hr />
+  <% if f.object.answer_source.present? %>
+    <p>
+      <%= I18n.t 'video_message.kind.answer_source' %>:
+      <%= link_to resource.answer_source_file_name, resource.answer_source.url, target: '_blank' %>
+    </p>
+  <% end %>
+  <%= f.input :answer_source, as: :file %>
+
+  <hr />
+  <% if f.object.answer_converted.present? %>
+    <p>
+      <%= I18n.t 'video_message.kind.answer_converted' %>:
+      <%= link_to resource.answer_converted_file_name, resource.answer_converted.url, target: '_blank' %>
+    </p>
+  <% end %>
+  <%= f.input :answer_converted, as: :file %>
+
   <%= f.submit 'Сохранить', name: nil, class: 'btn btn-primary' %>
-  <%= link_to 'Отмена', resource.new_record? ? collection_path : resource_path(resource), class: 'btn btn-default pull-right' %>
+  <%= link_to 'Отмена', resource.new_record? ? collection_path : resource_path(resource), class: 'btn btn-default' %>
   <% unless resource.new_record? %>
     <%= link_to 'Удалить', manage_video_message_path(resource), method: :delete,
       data: { confirm: 'Удалить без возможности восстановления?' }, class: 'btn btn-default pull-right' %>

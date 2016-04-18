@@ -105,6 +105,13 @@ ru:
         doctor: 'Врач'
         other: 'другое'
 
+  video_message:
+    kind:
+      question_source: 'Загруженное видео обращения'
+      question_converted: 'Загруженное сконвертированное видео обращения'
+      answer_source: 'Загруженное видео ответа'
+      answer_converted: 'Загруженное сконвертирванное видео ответа'
+
   activerecord:
     attributes:
       doctor:
@@ -174,7 +181,10 @@ ru:
         email: 'E-mail'
         title: 'Тема обращения'
         target: 'Кому адресовано'
-        question_source: 'Видео файл'
+        question_source: 'Файл видео обращения'
+        question_converted: 'Файл сконвертированного видео обращения'
+        answer_source: 'Файл видео ответа'
+        answer_converted: 'Файл сконвертированного видео ответа'
         aasm_state: 'Статус'
         aasm_state/draft: 'Черновик'
         aasm_state/published: 'Опубликовано'

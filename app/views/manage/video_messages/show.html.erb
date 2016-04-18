@@ -18,27 +18,18 @@
         <%= item.attribute :phone %>
         <%= item.attribute :aasm_state, wrapper_html: { class: "text-#{item.object.aasm_state}" } do %>
           <%= item.object.aasm.human_state %>
+          <%= link_to 'Опубликовать', manage_video_message_publish_path(item.object), class: 'btn btn-success btn-sm' if item.object.draft? %>
+          <%= link_to 'Снять с публикации', manage_video_message_unpublish_path(item.object), class: 'btn btn-success btn-sm' if item.object.published? %>
+        <% end %>
+        <% if flash[:alert].present? %>
+          <p class='text-danger'><%= flash[:alert] %></p>
         <% end %>
         <%= item.attribute :created_at %>
         <%= item.attribute :updated_at %>
-        <%= item.attribute :question_source, label: false do %>
-          <p><strong>Загруженное видео обращение:</strong></p>
-          <object id='videoplayer-question-source-<%= item.object.id %>' width='640' height='360'>
-            <param name='bgcolor' value='#ffffff' />
-            <param name='allowFullScreen' value='true' />
-            <param name='allowScriptAccess' value='always' />
-            <param name='movie' value='<%= asset_path('player.swf') %>' />
-            <param name='flashvars' value='comment=<%= item.object.title %>&amp;st=<%= asset_path('style.txt') %>&amp;file=<%= item.object.question_source.url %>' />
-            <embed src='<%= asset_path('player.swf') %>'
-              name='videoplayer9092'
-              type='application/x-shockwave-flash'
-              allowscriptaccess='always'
-              allowfullscreen='true'
-              flashvars='comment=<%= item.object.title %>&amp;st=<%= asset_path('style.txt') %>&amp;file=<%= item.object.question_source.url %>'
-              bgcolor='#ffffff'
-              width='640'
-              height='360'></embed>
-          </object>
+        <% %i[question_source question_converted answer_source answer_converted].each do |video| %>
+        <%= item.attribute video, label: false do %>
+          <%= render partial: 'video', locals: { video: item.object.send(video) } %>
+        <% end if item.object.send(video).present? %>
         <% end %>
       <% end %>
     </div>

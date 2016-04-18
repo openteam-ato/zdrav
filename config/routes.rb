@@ -53,7 +53,8 @@ Rails.application.routes.draw do
     end
 
     resources :video_messages do
-      get 'change_state'
+      get 'publish'
+      get 'unpublish'
     end
 
     resources :users
