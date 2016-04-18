@@ -1,0 +1,16 @@
+Ваше видеообращение и ответ на него удалены
+
+==========
+
+Тема: <%= @video_message.title %>
+Кому адресовано: <%= @video_message.target_text %>
+Ф.И.О.: <%= @video_message.name %>
+E-mail: <%= @video_message.email %>
+Телефон: <%= @video_message.phone.presence || 'Не указано' %>
+
+Причина удаления:
+<%= @video_message.delete_reason %>
+
+==========
+
+Это письмо сформировано автоматически. Не нужно на него отвечать.

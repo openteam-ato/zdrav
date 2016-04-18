@@ -2,7 +2,8 @@ class VideoMessage < ActiveRecord::Base
 
   attr_accessible :target, :title, :name, :phone, :email, :aasm_state,
     :question_source, :question_converted,
-    :answer_source, :answer_converted
+    :answer_source, :answer_converted,
+    :delete_reason
 
   validates_presence_of :target, :title, :name, :email, :question_source
   #validates :uniqueness_of_question_source # TODO: надо реализовать уникальность загружаемых видео обращений
@@ -20,18 +21,27 @@ class VideoMessage < ActiveRecord::Base
   aasm whiny_transitions: false do
     state :draft, initial: true
     state :published
+    state :deleted
 
     event :publish, guards: :converted_videos_present? do
       transitions from: :draft, to: :published
     end
 
     event :unpublish do
-      transitions from: :published, to: :draft
+      transitions from: [:published, :deleted], to: :draft
+    end
+
+    event :delete, guards: :delete_reason_present? do
+      transitions from: [:draft, :published], to: :deleted
     end
   end
 
   def converted_videos_present?
     question_converted.present? && answer_converted.present?
+  end
+
+  def delete_reason_present?
+    delete_reason.present?
   end
 
   has_attached_file :question_source,
@@ -97,4 +107,5 @@ end
 #  answer_converted_updated_at     :datetime
 #  answer_converted_url            :text
 #  answer_converted_fingerprint    :string
+#  delete_reason                   :text
 #

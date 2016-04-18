@@ -46,7 +46,6 @@
   <%= f.submit 'Сохранить', name: nil, class: 'btn btn-primary' %>
   <%= link_to 'Отмена', resource.new_record? ? collection_path : resource_path(resource), class: 'btn btn-default' %>
   <% unless resource.new_record? %>
-    <%= link_to 'Удалить', manage_video_message_path(resource), method: :delete,
-      data: { confirm: 'Удалить без возможности восстановления?' }, class: 'btn btn-default pull-right' %>
+    <%= link_to 'Удалить', manage_video_message_set_delete_reason_path(resource), class: 'btn btn-default pull-right' %>
   <% end %>
 <% end %>

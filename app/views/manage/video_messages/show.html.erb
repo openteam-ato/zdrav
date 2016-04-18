@@ -7,6 +7,15 @@
         <%= link_to 'Вернуться к списку', manage_video_messages_path, class: 'btn btn-default pull-right' %>
       </p>
       <%= show_for resource do |item| %>
+        <%= item.attribute :aasm_state, wrapper_html: { class: "text-#{item.object.aasm_state}" } do %>
+          <%= item.object.aasm.human_state %>
+          <%= link_to 'Опубликовать', manage_video_message_publish_path(item.object), class: 'btn btn-success btn-sm' if item.object.draft? %>
+          <%= link_to 'Снять с публикации', manage_video_message_unpublish_path(item.object), class: 'btn btn-success btn-sm' if item.object.published? %>
+          <%= link_to 'Вернуть в черновики', manage_video_message_unpublish_path(item.object), class: 'btn btn-default btn-sm' if item.object.deleted? %>
+        <% end %>
+        <% if item.object.deleted? %>
+          <%= item.attribute :delete_reason, wrapper_html: { class: "text-#{item.object.aasm_state}" } %>
+        <% end %>
         <%= item.attribute :title %>
         <%= item.attribute :target do %>
           <%= item.object.target_text %>
@@ -16,11 +25,6 @@
           <%= mail_to item.object.email %>
         <% end %>
         <%= item.attribute :phone %>
-        <%= item.attribute :aasm_state, wrapper_html: { class: "text-#{item.object.aasm_state}" } do %>
-          <%= item.object.aasm.human_state %>
-          <%= link_to 'Опубликовать', manage_video_message_publish_path(item.object), class: 'btn btn-success btn-sm' if item.object.draft? %>
-          <%= link_to 'Снять с публикации', manage_video_message_unpublish_path(item.object), class: 'btn btn-success btn-sm' if item.object.published? %>
-        <% end %>
         <% if flash[:alert].present? %>
           <p class='text-danger'><%= flash[:alert] %></p>
         <% end %>

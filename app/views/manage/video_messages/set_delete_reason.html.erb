@@ -1,0 +1,13 @@
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='content'>
+      <h4>Удаление видеообращения</h4>
+      <%= simple_form_for resource, url: manage_video_message_delete_path(resource), method: :post do |f| %>
+        <%= f.input :delete_reason, label: 'Укажите причину удаления',
+          required: true, autofocus: true %>
+        <%= f.submit 'Удалить', name: nil, class: 'btn btn-primary' %>
+        <%= link_to 'Отмена', manage_video_message_path(resource), class: 'btn btn-default' %>
+      <% end %>
+    </div>
+  </div>
+</div>

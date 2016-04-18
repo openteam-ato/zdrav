@@ -57,9 +57,11 @@ Rails.application.routes.draw do
       get :xls, :on => :collection
     end
 
-    resources :video_messages do
+    resources :video_messages, except: :destroy do
       get 'publish'
       get 'unpublish'
+      get 'set_delete_reason'
+      post 'delete'
     end
 
     resources :users

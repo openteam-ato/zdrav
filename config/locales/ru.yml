@@ -188,3 +188,5 @@ ru:
         aasm_state: 'Статус'
         aasm_state/draft: 'Черновик'
         aasm_state/published: 'Опубликовано'
+        aasm_state/deleted: 'Удалено'
+        delete_reason: 'Причина удаления'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412060004) do
+ActiveRecord::Schema.define(version: 20160418085055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(version: 20160412060004) do
     t.datetime "answer_converted_updated_at"
     t.text     "answer_converted_url"
     t.string   "answer_converted_fingerprint"
+    t.text     "delete_reason"
   end
 
 end
