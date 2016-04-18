@@ -33,19 +33,21 @@ gem 'paper_trail'
 gem 'paperclip'
 gem 'paperclip-elvfs'
 gem 'paperclip-meta'
-gem 'progress_bar', :require => false
+gem 'progress_bar', require: false
 gem 'protected_attributes'
 gem 'rack-utf8_sanitizer'
 gem 'rails', '~> 4.2.4'
-gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'recaptcha', require: 'recaptcha/rails'
 gem 'rest-client'
 gem 'russian'
 gem 'sass'
 gem 'sass-rails'
 gem 'show_for'
+gem 'sidekiq'
 gem 'simple-navigation'
 gem 'simple-rss'
 gem 'simple_form'
+gem 'sinatra', require: nil
 gem 'sitemap_generator'
 gem 'spreadsheet'
 gem 'sso-auth'
@@ -54,7 +56,7 @@ gem 'sunspot_rails'
 gem 'time_diff'
 gem 'truncate_html'
 gem 'uglifier'
-gem 'user_impersonate2', :require => 'user_impersonate'
+gem 'user_impersonate2', require: 'user_impersonate'
 gem 'uuid'
 
 source 'https://rails-assets.org' do
@@ -66,9 +68,9 @@ source 'https://rails-assets.org' do
 end
 
 group :development do
-  gem 'annotate', :require => false
-  gem 'brakeman', :require => false
-  gem 'capistrano-unicorn', '~> 0.1.7', :require => false
+  gem 'annotate', require: false
+  gem 'brakeman', require: false
+  gem 'capistrano-unicorn', '~> 0.1.7', require: false
   gem 'hirb'
   gem 'letter_opener'
   gem 'openteam-capistrano', '~> 1.0.12'

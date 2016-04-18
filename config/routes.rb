@@ -1,5 +1,8 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
 
+  mount Sidekiq::Web => '/sidekiq'
   mount ElVfsClient::Engine => '/'
 
   put '/ali.txt' => redirect('http://alihack.com')

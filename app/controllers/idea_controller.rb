@@ -4,7 +4,7 @@ class IdeaController < MainController
 
   def create
     if verify_recaptcha
-      IdeaMailer.new_idea_email(params['idea']).deliver
+      IdeaMailer.delay.new_idea_email(params['idea'])
       flash[:notice] = 'Предложенная Вами идея принята к сведению. Спасибо за Ваше обращение!'
       redirect_to :action => :show
     else
