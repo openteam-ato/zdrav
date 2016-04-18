@@ -1,4 +1,6 @@
 app:
+  url:          http://localhost
+  host:         localhost
   secret:       SECRET
 
 devise:
@@ -50,5 +52,9 @@ mail:
     recipient:  recipient@mail
 
   evaluation_registry:
+    sender:     sender@mail
+    recipient:  recipient@mail
+
+  video_message:
     sender:     sender@mail
     recipient:  recipient@mail

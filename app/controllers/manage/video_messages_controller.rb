@@ -8,6 +8,8 @@ class Manage::VideoMessagesController < Manage::ApplicationController
     video_message = VideoMessage.find(params[:video_message_id])
     unless video_message.publish!
       flash[:alert] = 'Видео обращение нельзя опубликовать без прикреплённых сконвертированных вопроса и ответа'
+    else
+      VideoMessageMailer.delay.published_video_message(video_message)
     end
     redirect_to manage_video_message_path(video_message)
   end
@@ -15,6 +17,7 @@ class Manage::VideoMessagesController < Manage::ApplicationController
   def unpublish
     video_message = VideoMessage.find(params[:video_message_id])
     video_message.unpublish!
+    VideoMessageMailer.delay.unpublished_video_message(video_message)
     redirect_to manage_video_message_path(video_message)
   end
 

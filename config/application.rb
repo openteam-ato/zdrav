@@ -31,5 +31,7 @@ module Zdrav
     config.active_record.raise_in_transactional_callbacks = true
 
     config.middleware.insert_before 'Rack::Runtime', Rack::UTF8Sanitizer
+
+    config.action_mailer.default_url_options = { host: Settings['app.host'] }
   end
 end

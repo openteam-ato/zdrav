@@ -41,6 +41,8 @@ Rails.application.routes.draw do
 
     get  'dlya-naseleniya/programma-eko-za-schet-sredstv-oms' => 'coupons#index', :as => :coupons
     post 'dlya-naseleniya/programma-eko-za-schet-sredstv-oms' => 'coupons#show',  :as => :coupon
+
+    get 'video_messages/:id', to: 'video_messages#show', as: :video_message # TODO fix for production
   end
 
   namespace :manage do
