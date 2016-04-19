@@ -25,7 +25,7 @@ class VideoMessagesController < MainController
   end
 
   def show
-    @video_message = VideoMessage.find(params[:id])
+    @video_message = VideoMessage.published.find(params[:id])
     @page_title = @video_message.title
     @breadcrumbs.content[@video_message.title] = video_message_path(@video_message)
   end
