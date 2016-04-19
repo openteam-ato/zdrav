@@ -8,6 +8,25 @@ class Manage::VideoMessagesController < Manage::ApplicationController
     create! do |success, failure|
       failure.html do
         resource.question_source = nil
+        resource.question_converted = nil
+        resource.answer_source = nil
+        resource.answer_converted = nil
+        render partial: 'form' and return if request.xhr?
+        render :edit
+      end
+
+      success.html do
+        render text: manage_video_message_path(resource) and return if request.xhr?
+      end
+    end
+  end
+
+  def update
+    update! do |success, failure|
+      failure.html do
+        resource.question_converted = nil
+        resource.answer_source = nil
+        resource.answer_converted = nil
         render partial: 'form' and return if request.xhr?
         render :edit
       end

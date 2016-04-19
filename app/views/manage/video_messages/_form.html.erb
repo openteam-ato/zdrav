@@ -11,8 +11,8 @@
   <div class="js-file-upload-wrapper">
     <% if f.object.question_source.present? %>
       <p>
-        <%= I18n.t 'video_message.kind.question_source' %>:
-        <%= link_to resource.question_source_file_name, resource.question_source.url, target: '_blank' %>
+        <%= I18n.t "video_message.kind.question_source" %>:
+        <%= link_to f.object.question_source.original_filename, resource.question_source.url, target: '_blank' %>
       </p>
     <% else %>
       <%= f.input :question_source, as: :file, input_html: { class: "js-video-file" } %>
@@ -21,33 +21,10 @@
       </div>
     <% end %>
   </div>
-
-  <hr />
-  <% if f.object.question_converted.present? %>
-    <p>
-      <%= I18n.t 'video_message.kind.question_converted' %>:
-      <%= link_to resource.question_converted_file_name, resource.question_converted.url, target: '_blank' %>
-    </p>
+  <% %w(question_converted answer_source answer_converted).each do |input_name| %>
+    <hr />
+    <%= render partial: 'file_input', locals: { input_name: input_name, f: f } %>
   <% end %>
-  <%= f.input :question_converted, as: :file %>
-
-  <hr />
-  <% if f.object.answer_source.present? %>
-    <p>
-      <%= I18n.t 'video_message.kind.answer_source' %>:
-      <%= link_to resource.answer_source_file_name, resource.answer_source.url, target: '_blank' %>
-    </p>
-  <% end %>
-  <%= f.input :answer_source, as: :file %>
-
-  <hr />
-  <% if f.object.answer_converted.present? %>
-    <p>
-      <%= I18n.t 'video_message.kind.answer_converted' %>:
-      <%= link_to resource.answer_converted_file_name, resource.answer_converted.url, target: '_blank' %>
-    </p>
-  <% end %>
-  <%= f.input :answer_converted, as: :file %>
 
   <%= f.submit 'Сохранить', name: nil, class: 'btn btn-primary js-submit' %>
   <%= link_to 'Отмена', resource.new_record? ? collection_path : resource_path(resource), class: 'btn btn-default' %>
