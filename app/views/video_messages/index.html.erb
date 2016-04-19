@@ -1,0 +1,28 @@
+<div class='content row'>
+  <div class='col-xs-3'>
+    <div class='subnavigation'>
+      <%= render_partial_for_region(@subnavigation, 'sub') if @subnavigation.present? %>
+      <% if @left_side_links.present? %>
+        <div class='left_side_links'>
+          <%= render_partial_for_region(@left_side_links) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='col-xs-9'>
+    <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
+    <h1 class='page-header <%= header_css_class %>'><%= @page_title %></h1>
+
+    <div class='html-part'>
+      <ul>
+        <% @video_messages.ordered.each do |video_message| %>
+          <li>
+            <h5><%= link_to video_message.title, video_message_path(video_message) %></h5>
+            <p class='date'><%= I18n.l video_message.updated_at, format: :long %></p>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

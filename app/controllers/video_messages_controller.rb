@@ -2,6 +2,16 @@ class VideoMessagesController < MainController
 
   before_filter :prepare_cms
 
+  def index
+    @video_messages = VideoMessage.published.page(params[:page])
+  end
+
+  def show
+    @video_message = VideoMessage.published.find(params[:id])
+    @page_title = @video_message.title
+    @breadcrumbs.content[@video_message.title] = video_message_path(@video_message)
+  end
+
   def new
     @video_message = VideoMessage.new
   end
@@ -22,12 +32,6 @@ class VideoMessagesController < MainController
   end
 
   def done
-  end
-
-  def show
-    @video_message = VideoMessage.published.find(params[:id])
-    @page_title = @video_message.title
-    @breadcrumbs.content[@video_message.title] = video_message_path(@video_message)
   end
 
 end

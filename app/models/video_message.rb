@@ -1,5 +1,7 @@
 class VideoMessage < ActiveRecord::Base
 
+  paginates_per 10
+
   attr_accessible :target, :title, :name, :phone, :email, :aasm_state,
     :question_source, :question_converted,
     :answer_source, :answer_converted,
