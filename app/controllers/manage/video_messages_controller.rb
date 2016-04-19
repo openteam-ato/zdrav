@@ -4,6 +4,20 @@ class Manage::VideoMessagesController < Manage::ApplicationController
     @video_messages = VideoMessage.ordered.page(params[:page]).per(params[:per_page])
   end
 
+  def create
+    create! do |success, failure|
+      failure.html do
+        resource.question_source = nil
+        render partial: 'form' and return if request.xhr?
+        render :edit
+      end
+
+      success.html do
+        render text: manage_video_message_path(resource) and return if request.xhr?
+      end
+    end
+  end
+
   def publish
     video_message = VideoMessage.find(params[:video_message_id])
     unless video_message.publish!
