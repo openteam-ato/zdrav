@@ -42,7 +42,13 @@ Rails.application.routes.draw do
     get  'dlya-naseleniya/programma-eko-za-schet-sredstv-oms' => 'coupons#index', :as => :coupons
     post 'dlya-naseleniya/programma-eko-za-schet-sredstv-oms' => 'coupons#show',  :as => :coupon
 
-    get 'video_messages/:id', to: 'video_messages#show', as: :video_message # TODO fix for production
+    video_message_prefix = 'dlya-naseleniya/obrascheniya-grazhdan/videoobrascheniya-v-departament'
+    get  "#{video_message_prefix}/otpravit-videoobraschenie-v-departament", to: 'video_messages#new', as: :new_video_message
+    post "#{video_message_prefix}/otpravit-videoobraschenie-v-departament", to: 'video_messages#create', as: :video_message_post_create
+    put  "#{video_message_prefix}/otpravit-videoobraschenie-v-departament", to: 'video_messages#create', as: :video_message_put_create
+    get  "#{video_message_prefix}/otpravit-videoobraschenie-v-departament/done", to: 'video_messages#done', as: :video_message_done
+    get  "#{video_message_prefix}/spisok-videoobrascheniy", to: 'video_messages#index', as: :video_messages
+    get  "#{video_message_prefix}/spisok-videoobrascheniy/:id", to: 'video_messages#show', as: :video_message
   end
 
   namespace :manage do

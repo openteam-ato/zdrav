@@ -45,9 +45,15 @@ class MainController < ApplicationController
       '/ru/dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov',
       '/ru/konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety',
       '/ru/thanks',
-      '/ru/dlya-naseleniya/otslezhivanie-ocheredi-eko'
+      '/ru/dlya-naseleniya/otslezhivanie-ocheredi-eko',
+      '/ru/dlya-naseleniya/obrascheniya-grazhdan/videoobrascheniya-v-departament/otpravit-videoobraschenie-v-departament',
+      '/ru/dlya-naseleniya/obrascheniya-grazhdan/videoobrascheniya-v-departament/spisok-videoobrascheniy'
     ].each do |path|
       request_path = path if original_request_path.match(/\A#{path}.*/)
+    end
+
+    if original_request_path == '/ru/dlya-naseleniya/obrascheniya-grazhdan/videoobrascheniya-v-departament/otpravit-videoobraschenie-v-departament/done'
+      request_path = '/ru/dlya-naseleniya/obrascheniya-grazhdan/videoobrascheniya-v-departament/otpravit-videoobraschenie-v-departament/done'
     end
 
     if original_request_path == '/ru/konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety/done'

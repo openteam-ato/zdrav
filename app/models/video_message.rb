@@ -48,7 +48,7 @@ class VideoMessage < ActiveRecord::Base
     path: ':rails_root/public/:class/:id/:attachment/:filename',
     url:  '/:class/:id/:attachment/:filename'
   validates_attachment :question_source, presence: true,
-    content_type: { content_type: /\Avideo/ }
+    content_type: { content_type: /\Avideo\/mp4/ }
 
   has_attached_file :question_converted,
     path: ':rails_root/public/:class/:id/:attachment/:filename',
@@ -60,7 +60,7 @@ class VideoMessage < ActiveRecord::Base
     path: ':rails_root/public/:class/:id/:attachment/:filename',
     url:  '/:class/:id/:attachment/:filename'
   validates_attachment :answer_source,
-    content_type: { content_type: /\Avideo/ }
+    content_type: { content_type: /\Avideo\/mp4/ }
 
   has_attached_file :answer_converted,
     path: ':rails_root/public/:class/:id/:attachment/:filename',

@@ -64,6 +64,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery', '2.1.4'
   gem 'rails-assets-jquery-file-upload'
   gem 'rails-assets-jquery.inputmask', '~> 3.1.0'
+  gem 'rails-assets-modernizr'
   gem 'rails-assets-social-likes'
   gem 'rails-assets-sugar'
 end

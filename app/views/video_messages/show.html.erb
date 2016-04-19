@@ -1,0 +1,28 @@
+<div class='content row'>
+  <div class='col-xs-3'>
+    <div class='subnavigation'>
+      <%= render_partial_for_region(@subnavigation, 'sub') if @subnavigation.present? %>
+      <% if @left_side_links.present? %>
+        <div class='left_side_links'>
+          <%= render_partial_for_region(@left_side_links) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='col-xs-9'>
+    <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
+    <h1 class='page-header <%= header_css_class %>'><%= @video_message.title %></h1>
+
+    <div class='html-part'>
+      <p class='date'><%= I18n.l @video_message.updated_at, format: :long %></p>
+      <%= render partial: 'video_html5', locals: { title: 'Видеообращение', video: @video_message.question_source } %>
+      <%= render partial: 'video_flash', locals: { title: 'Видеообращение', video: @video_message.question_converted } %>
+      <%= render partial: 'video_html5', locals: { title: 'Ответ на видеообращение', video: @video_message.answer_source } %>
+      <%= render partial: 'video_flash', locals: { title: 'Ответ на видеообращение', video: @video_message.answer_converted } %>
+      <p class='no-player text-danger'>
+        Ваш браузер не поддерживает проигрывание видеофайлов.
+      </p>
+    </div>
+  </div>
+</div>

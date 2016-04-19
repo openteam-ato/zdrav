@@ -1,0 +1,23 @@
+<%= simple_form_for @video_message, url: video_message_post_create_path, html: { class: 'js-video-message-form', novalidate: true } do |f| %>
+  <%= f.input :title, autofocus: true %>
+  <%= f.input :target %>
+  <div class='row'>
+    <div class='col-md-4 col-sm-6 col-xs-12'>
+      <%= f.input :name %>
+    </div>
+    <div class='col-md-4 col-sm-6 col-xs-12'>
+      <%= f.input :email %>
+    </div>
+    <div class='col-md-4 col-sm-6 col-xs-12'>
+      <%= f.input :phone %>
+    </div>
+  </div>
+  <div class='js-file-upload-wrapper'>
+    <%= f.input :question_source, as: :file,
+      hint: 'Файл в формате MP4', input_html: { class: 'js-video-file' } %>
+    <div class='progress hidden js-progress-bar-wrapper'>
+      <div class='progress-bar js-progress-bar' role='progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width: 0%;'></div>
+    </div>
+  </div>
+  <%= f.submit 'Отправить видеообращение', name: nil, class: 'btn btn-primary js-submit' %>
+<% end %>

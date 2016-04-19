@@ -3,10 +3,12 @@
  * = require jquery_ujs
  * = require jquery-ui/autocomplete
  * = require jquery-file-upload
+ * = require modernizr
  * = require bootstrap/collapse
  * = require bootstrap/dropdown
  * = require bootstrap/tab
  * = require bootstrap/transition
+ * = require video_detect
  * = require moment
  * = require moment/ru
  * = require cecutient

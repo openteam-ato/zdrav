@@ -8,7 +8,7 @@
         wrapper = $(this).closest('.js-file-upload-wrapper')
 
         $(this).toggleClass('hidden')
-        $(this).after("<div><p>#{file.name}</p><button type='button' class='js-delete-button'>Удалить</button></div>")
+        $(this).after("<div><p>#{file.name} <span class='glyphicon glyphicon-remove js-delete-button cursor-pointer' title='Удалить'></span></p>")
         wrapper.find('.js-progress-bar-wrapper').toggleClass('hidden')
 
         $('.js-submit').click (e) ->

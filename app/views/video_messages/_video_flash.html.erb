@@ -1,0 +1,21 @@
+<div class='flash-player'>
+  <h3><%= title %></h3>
+  <p>
+    <object id='videoplayer-<%= video.name.to_s.gsub('_', '-') %>-<%= video.instance.id %>' width='640' height='360'>
+      <param name='bgcolor' value='#ffffff' />
+      <param name='allowFullScreen' value='true' />
+      <param name='allowScriptAccess' value='always' />
+      <param name='movie' value='<%= asset_path('player.swf') %>' />
+      <param name='flashvars' value='comment=<%= title %>&amp;st=<%= asset_path('style.txt') %>&amp;file=<%= video.url %>' />
+      <embed src='<%= asset_path('player.swf') %>'
+        name='videoplayer9092'
+        type='application/x-shockwave-flash'
+        allowscriptaccess='always'
+        allowfullscreen='true'
+        flashvars='comment=<%= title %>&amp;st=<%= asset_path('style.txt') %>&amp;file=<%= video.url %>'
+        bgcolor='#ffffff'
+        width='640'
+        height='360'></embed>
+    </object>
+  </p>
+</div>
