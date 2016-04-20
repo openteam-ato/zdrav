@@ -5,7 +5,7 @@ class VideoMessage < ActiveRecord::Base
   attr_accessible :target, :title, :name, :phone, :email, :aasm_state,
     :question_source, :question_converted,
     :answer_source, :answer_converted,
-    :delete_reason
+    :delete_reason, :ip, :user_agent
 
   validates_presence_of :target, :title, :name, :email, :question_source
   #validates :uniqueness_of_question_source # TODO: надо реализовать уникальность загружаемых видео обращений
@@ -110,4 +110,6 @@ end
 #  answer_converted_url            :text
 #  answer_converted_fingerprint    :string
 #  delete_reason                   :text
+#  ip                              :text
+#  user_agent                      :text
 #

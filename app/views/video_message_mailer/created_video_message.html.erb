@@ -12,6 +12,8 @@
     <p><strong>E-mail:</strong> <%= @video_message.email %></p>
     <p><strong>Телефон:</strong> <%= @video_message.phone.presence || 'Не указано' %></p>
     <p><%= link_to 'Перейти на страницу просмотра видеообращения', manage_video_message_url(@video_message) %></p>
+    <p><strong>IP:</strong> <%= @video_message.ip %></p>
+    <p><strong>User-Agent:</strong> <%= @video_message.user_agent %></p>
     <hr />
     <p>Это письмо сформировано автоматически. Не нужно на него отвечать.</p>
   </body>

@@ -18,10 +18,14 @@ class VideoMessagesController < MainController
 
   def create
     @video_message = VideoMessage.new(params[:video_message])
-    if @video_message.save
+    @video_message.ip = request.env['HTTP_X_FORWARDED_FOR'] || request.remote_ip
+    @video_message.user_agent = request.user_agent
+    if @video_message.save && verify_recaptcha
       VideoMessageMailer.delay.created_video_message(@video_message)
       render text: video_message_done_path and return if request.xhr?
     else
+      @video_message.errors.add(:recaptcha, I18n.t('recaptcha.failure'))
+      flash.now[:alert] = I18n.t('recaptcha.failure')
       @video_message.question_source = nil
       @video_message.question_converted = nil
       @video_message.answer_source = nil
