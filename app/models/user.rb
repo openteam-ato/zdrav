@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   scope :ordered, -> { order(:name) }
 
-  Permission.pluck(:role).each do |role|
+  Permission.available_roles.each do |role|
     define_method "#{role}?" do
       available_permissions.include? role
     end
