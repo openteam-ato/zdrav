@@ -2,10 +2,10 @@ require 'openteam/capistrano/deploy'
 
 set :bundle_binstubs, -> { shared_path.join('bin') }
 
-set :linked_dirs, fetch(:linked_dirs) + %w{ public/video_messages }
+append :linked_dirs, 'public/video_messages'
+append :linked_dirs, 'public/assets'
 
 namespace :sitemap do
-
   desc 'Create symlink from shared sitemaps to public'
   task :symlink do
     on roles(:app) do
@@ -14,6 +14,12 @@ namespace :sitemap do
     end
   end
 
-  after 'deploy:finishing', 'sitemap:symlink'
+  after 'deploy', 'sitemap:symlink'
+end
 
+desc 'Download video files'
+task :download_video_files do
+  on roles(:all) do |host|
+    download! "#{shared_path}/public/video_messages", 'public', :via =>:scp, :recursive =>:true
+  end
 end
