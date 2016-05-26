@@ -1,5 +1,8 @@
 <div class='flash-player'>
   <h3><%= title %></h3>
+  <% if answer_author.present? %>
+    <p><%= [answer_author, answer_author_post].delete_if(&:blank?).join(', ') %></p>
+  <% end %>
   <p>
     <object id='videoplayer-<%= video.name.to_s.gsub('_', '-') %>-<%= video.instance.id %>' width='640' height='360'>
       <param name='bgcolor' value='#ffffff' />

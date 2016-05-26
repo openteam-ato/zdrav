@@ -5,6 +5,7 @@ class VideoMessage < ActiveRecord::Base
   attr_accessible :target, :title, :name, :phone, :email, :aasm_state,
     :question_source, :question_converted, :question_screenshot,
     :answer_source, :answer_converted, :answer_screenshot,
+    :answer_author, :answer_author_post,
     :delete_reason, :ip, :user_agent
 
   validates_presence_of :target, :title, :name, :email, :question_source
@@ -134,4 +135,6 @@ end
 #  answer_screenshot_file_size      :integer
 #  answer_screenshot_updated_at     :datetime
 #  answer_screenshot_url            :text
+#  answer_author                    :string
+#  answer_author_post               :text
 #

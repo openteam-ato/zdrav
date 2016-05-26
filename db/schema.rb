@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526061603) do
+ActiveRecord::Schema.define(version: 20160526071128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,6 +224,8 @@ ActiveRecord::Schema.define(version: 20160526061603) do
     t.integer  "answer_screenshot_file_size"
     t.datetime "answer_screenshot_updated_at"
     t.text     "answer_screenshot_url"
+    t.string   "answer_author"
+    t.text     "answer_author_post"
   end
 
 end

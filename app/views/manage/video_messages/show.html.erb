@@ -30,6 +30,9 @@
         <% end %>
         <%= item.attribute :created_at %>
         <%= item.attribute :updated_at %>
+        <hr />
+        <%= item.attributes :answer_author, :answer_author_post %>
+        <hr />
         <% %i[question_source question_converted].each do |video| %>
           <%= item.attribute video, label: false do %>
             <%= render partial: 'video', locals: { video: item.object.send(video), poster: item.object.question_screenshot } %>

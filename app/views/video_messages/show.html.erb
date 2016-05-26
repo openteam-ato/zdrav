@@ -18,16 +18,24 @@
       <p class='date'><%= I18n.l @video_message.updated_at, format: :long %></p>
       <%= render partial: 'video_html5', locals: { title: 'Видеообращение',
                                                    video: @video_message.question_source,
-                                                   poster: @video_message.question_screenshot } %>
+                                                   poster: @video_message.question_screenshot,
+                                                   answer_author: nil,
+                                                   answer_author_post: nil } %>
       <%= render partial: 'video_flash', locals: { title: 'Видеообращение',
                                                    video: @video_message.question_converted,
-                                                   poster: @video_message.question_screenshot } %>
+                                                   poster: @video_message.question_screenshot,
+                                                   answer_author: nil,
+                                                   answer_author_post: nil } %>
       <%= render partial: 'video_html5', locals: { title: 'Ответ на видеообращение',
                                                    video: @video_message.answer_source,
-                                                   poster: @video_message.answer_screenshot } %>
+                                                   poster: @video_message.answer_screenshot,
+                                                   answer_author: @video_message.answer_author,
+                                                   answer_author_post: @video_message.answer_author_post } %>
       <%= render partial: 'video_flash', locals: { title: 'Ответ на видеообращение',
                                                    video: @video_message.answer_converted,
-                                                   poster: @video_message.answer_screenshot } %>
+                                                   poster: @video_message.answer_screenshot,
+                                                   answer_author: @video_message.answer_author,
+                                                   answer_author_post: @video_message.answer_author_post } %>
       <p class='no-player text-danger'>
         Ваш браузер не поддерживает проигрывание видеофайлов.
       </p>

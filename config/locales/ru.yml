@@ -187,6 +187,8 @@ ru:
         answer_source: 'Файл видео ответа'
         answer_converted: 'Файл сконвертированного видео ответа'
         answer_screenshot: 'Скриншот для видео ответа'
+        answer_author: 'Ф.И.О. автора ответа'
+        answer_author_post: 'Должность автора ответа'
         aasm_state: 'Статус'
         aasm_state/draft: 'Черновик'
         aasm_state/published: 'Опубликовано'

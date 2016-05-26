@@ -18,6 +18,7 @@ class Manage::VideoMessagesController < Manage::ApplicationController
       success.html do
         VideoMessageMailer.delay.created_video_message(resource)
         render text: manage_video_message_path(resource) and return if request.xhr?
+        redirect_to manage_video_message_path(resource)
       end
     end
   end
@@ -34,6 +35,7 @@ class Manage::VideoMessagesController < Manage::ApplicationController
 
       success.html do
         render text: manage_video_message_path(resource) and return if request.xhr?
+        redirect_to manage_video_message_path(resource)
       end
     end
   end
