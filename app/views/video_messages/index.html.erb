@@ -20,6 +20,12 @@
           <li>
             <h5><%= link_to video_message.title, video_message_path(video_message) %></h5>
             <p class='date'><%= I18n.l video_message.updated_at, format: :long %></p>
+            <p>
+              <%= link_to video_message_path(video_message) do %>
+                <%= image_tag video_message.question_screenshot, size: '150x85' %>
+                <%= image_tag video_message.answer_screenshot, size: '150x85' %>
+              <% end %>
+            </p>
           </li>
         <% end %>
       </ul>
