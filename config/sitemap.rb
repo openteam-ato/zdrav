@@ -1,4 +1,3 @@
-require 'progress_bar'
 require 'time_diff'
 
 class CmsData
@@ -12,10 +11,23 @@ class CmsData
     RestClient::Request.execute(
       method: :get,
       url: url,
-      timeout: 600,
-      headers: { :Accept => 'application/json', :timeout => 600 }
+      timeout: nil,
+      headers: {
+        Accept: 'application/json',
+        timeout: nil }
     ) do |response, request, result, &block|
-      response_json = (ActiveSupport::JSON.decode(response.body) rescue {})
+      response_json = begin
+                        {
+                          code: response.code,
+                          body: JSON.load(response.body)
+
+                        }
+                      rescue
+                        {
+                          code: response.code,
+                          body: {}
+                        }
+                      end
     end
 
     print '#'
@@ -23,9 +35,17 @@ class CmsData
     response_json
   end
 
+  def response_code(url)
+    response(url)[:code]
+  end
+
+  def response_body(url)
+    response(url)[:body]
+  end
+
   def response_locale(locale)
     url = "#{cms_address}/#{locale}/sitemap.json"
-    response(url)['page'].try(:[], 'regions').try(:[], 'content_first').try(:[], 'content')
+    response_body(url)['page'].try(:[], 'regions').try(:[], 'content_first').try(:[], 'content')
   end
 
   def find_all_values_for(hash)
@@ -40,16 +60,26 @@ class CmsData
   end
 
   def allow_part_types
-    ['NewsListPart', 'EventsListPart']
+    [
+      'AnnouncementsListPart',
+      'EventsListPart',
+      'NewsListPart',
+      'YoutubeListPart'
+    ]
   end
 
   def news_urls_for(paths)
     news_paths = []
     paths.each do |path|
       url = "#{cms_address}#{path[:path]}.json"
-      response_json = response(url)
+      response_json = response_body(url)
 
-      puts "\nregions is nil for: #{url}" if response_json.try(:[], 'page').try(:[], 'regions').blank?
+      if response_json.try(:[], 'page').try(:[], 'regions').blank?
+        puts "\nregions is nil for: #{url}"
+        status = response_code(url)
+        puts "\nresponse status: #{status}"
+        next if status == 404
+      end
       response_json.try(:[], 'page').try(:[], 'regions').each do |region_name, region_content|
         next if region_content.blank? || allow_part_types.exclude?(region_content.try(:[], 'type'))
         news_list_part = region_content.try(:[], 'content')
@@ -58,13 +88,22 @@ class CmsData
           total_count = news_list_part.try(:[], 'pagination').try(:[], 'total_count').to_f
           per_page = news_list_part.try(:[], 'pagination').try(:[], 'per_page').to_f
           pages = (total_count / per_page).ceil if per_page != 0
+          puts "\naggregate #{region_content.try(:[], 'type')} items, #{pages} pages"
           (2..pages.to_i).each do |page|
-            response_json = response("#{url}?page=#{page}")
-            puts "\nregions is nil for: #{url}" if response_json.try(:[], 'page').try(:[], 'regions').blank?
+            page_url = "#{url}?page=#{page}"
+            response_json = response_body(page_url)
+            if response_json.try(:[], 'page').try(:[], 'regions').blank?
+              puts "\nregions is nil for: #{page_url}"
+              status = response_code(page_url)
+              puts "\nresponse status: #{status}"
+              next if status == 404
+            end
             response_json.try(:[], 'page').try(:[], 'regions').each do |region_name, region_content|
               next if region_content.blank? || allow_part_types.exclude?(region_content.try(:[], 'type'))
               news_list_part = region_content.try(:[], 'content')
-              news_paths += news_list_part.try(:[], 'items').map{ |item| { :path => item['link'], :lastmod => item['updated_at'] } }
+              news_paths += news_list_part.try(:[], 'items').map { |item|
+                { :path => item['link'], :lastmod => item['updated_at'] }
+              } if news_list_part.try(:[], 'items').present?
             end
           end
         end
