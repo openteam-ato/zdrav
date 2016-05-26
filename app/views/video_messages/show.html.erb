@@ -16,10 +16,18 @@
 
     <div class='html-part'>
       <p class='date'><%= I18n.l @video_message.updated_at, format: :long %></p>
-      <%= render partial: 'video_html5', locals: { title: 'Видеообращение', video: @video_message.question_source } %>
-      <%= render partial: 'video_flash', locals: { title: 'Видеообращение', video: @video_message.question_converted } %>
-      <%= render partial: 'video_html5', locals: { title: 'Ответ на видеообращение', video: @video_message.answer_source } %>
-      <%= render partial: 'video_flash', locals: { title: 'Ответ на видеообращение', video: @video_message.answer_converted } %>
+      <%= render partial: 'video_html5', locals: { title: 'Видеообращение',
+                                                   video: @video_message.question_source,
+                                                   poster: @video_message.question_screenshot } %>
+      <%= render partial: 'video_flash', locals: { title: 'Видеообращение',
+                                                   video: @video_message.question_converted,
+                                                   poster: @video_message.question_screenshot } %>
+      <%= render partial: 'video_html5', locals: { title: 'Ответ на видеообращение',
+                                                   video: @video_message.answer_source,
+                                                   poster: @video_message.answer_screenshot } %>
+      <%= render partial: 'video_flash', locals: { title: 'Ответ на видеообращение',
+                                                   video: @video_message.answer_converted,
+                                                   poster: @video_message.answer_screenshot } %>
       <p class='no-player text-danger'>
         Ваш браузер не поддерживает проигрывание видеофайлов.
       </p>

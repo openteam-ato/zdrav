@@ -7,10 +7,41 @@
   <%= f.input :email %>
   <%= f.input :phone %>
 
-  <% %w(question_source question_converted answer_source answer_converted).each do |input_name| %>
+  <% %w(question_source question_converted).each do |input_name| %>
     <hr />
     <%= render partial: 'file_input', locals: { input_name: input_name, f: f } %>
   <% end %>
+
+  <hr />
+  <div class="js-file-upload-wrapper">
+    <% if resource.question_screenshot.present? %>
+      <p>Скриншот для видео обращения:</p>
+      <p><%= image_tag resource.question_screenshot %></p>
+    <% end %>
+    <%= f.input :question_screenshot, as: :file, input_html: { class: "js-video-file" } %>
+    <div class="progress hidden js-progress-bar-wrapper">
+      <div class="progress-bar js-progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+    </div>
+  </div>
+
+  <% %w(answer_source answer_converted).each do |input_name| %>
+    <hr />
+    <%= render partial: 'file_input', locals: { input_name: input_name, f: f } %>
+  <% end %>
+
+  <hr />
+  <div class="js-file-upload-wrapper">
+    <% if resource.answer_screenshot.present? %>
+      <p>Скриншот для видео ответа:</p>
+      <p><%= image_tag resource.answer_screenshot %></p>
+    <% end %>
+    <%= f.input :answer_screenshot, as: :file, input_html: { class: "js-video-file" } %>
+    <div class="progress hidden js-progress-bar-wrapper">
+      <div class="progress-bar js-progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+    </div>
+  </div>
+
+  <hr />
 
   <%= f.submit 'Сохранить', name: nil, class: 'btn btn-primary js-submit' %>
   <%= link_to 'Отмена', resource.new_record? ? collection_path : resource_path(resource), class: 'btn btn-default' %>

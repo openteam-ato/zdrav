@@ -30,10 +30,15 @@
         <% end %>
         <%= item.attribute :created_at %>
         <%= item.attribute :updated_at %>
-        <% %i[question_source question_converted answer_source answer_converted].each do |video| %>
-        <%= item.attribute video, label: false do %>
-          <%= render partial: 'video', locals: { video: item.object.send(video) } %>
-        <% end if item.object.send(video).present? %>
+        <% %i[question_source question_converted].each do |video| %>
+          <%= item.attribute video, label: false do %>
+            <%= render partial: 'video', locals: { video: item.object.send(video), poster: item.object.question_screenshot } %>
+          <% end if item.object.send(video).present? %>
+        <% end %>
+        <% %i[answer_source answer_converted].each do |video| %>
+          <%= item.attribute video, label: false do %>
+            <%= render partial: 'video', locals: { video: item.object.send(video), poster: item.object.answer_screenshot } %>
+          <% end if item.object.send(video).present? %>
         <% end %>
       <% end %>
     </div>

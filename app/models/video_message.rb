@@ -3,8 +3,8 @@ class VideoMessage < ActiveRecord::Base
   paginates_per 10
 
   attr_accessible :target, :title, :name, :phone, :email, :aasm_state,
-    :question_source, :question_converted,
-    :answer_source, :answer_converted,
+    :question_source, :question_converted, :question_screenshot,
+    :answer_source, :answer_converted, :answer_screenshot,
     :delete_reason, :ip, :user_agent
 
   validates_presence_of :target, :title, :name, :email, :question_source
@@ -58,6 +58,12 @@ class VideoMessage < ActiveRecord::Base
   validates_attachment :question_converted,
     content_type: { content_type: /\Avideo/ }
 
+  has_attached_file :question_screenshot,
+    path: ':rails_root/public/:class/:id/:attachment/:filename',
+    url:  '/:class/:id/:attachment/:filename'
+  validates_attachment :question_screenshot,
+    content_type: { content_type: /\Aimage/ }
+
   has_attached_file :answer_source,
     path: ':rails_root/public/:class/:id/:attachment/:filename',
     url:  '/:class/:id/:attachment/:filename'
@@ -70,46 +76,62 @@ class VideoMessage < ActiveRecord::Base
   validates_attachment :answer_converted,
     content_type: { content_type: /\Avideo/ }
 
+  has_attached_file :answer_screenshot,
+    path: ':rails_root/public/:class/:id/:attachment/:filename',
+    url:  '/:class/:id/:attachment/:filename'
+  validates_attachment :answer_screenshot,
+    content_type: { content_type: /\Aimage/ }
+
 end
 
 # == Schema Information
 #
 # Table name: video_messages
 #
-#  id                              :integer          not null, primary key
-#  target                          :string
-#  title                           :string
-#  name                            :string
-#  phone                           :string
-#  email                           :string
-#  aasm_state                      :string
-#  created_at                      :datetime         not null
-#  updated_at                      :datetime         not null
-#  question_source_file_name       :string
-#  question_source_content_type    :string
-#  question_source_file_size       :integer
-#  question_source_updated_at      :datetime
-#  question_source_url             :text
-#  question_source_fingerprint     :string
-#  question_converted_file_name    :string
-#  question_converted_content_type :string
-#  question_converted_file_size    :integer
-#  question_converted_updated_at   :datetime
-#  question_converted_url          :text
-#  question_converted_fingerprint  :string
-#  answer_source_file_name         :string
-#  answer_source_content_type      :string
-#  answer_source_file_size         :integer
-#  answer_source_updated_at        :datetime
-#  answer_source_url               :text
-#  answer_source_fingerprint       :string
-#  answer_converted_file_name      :string
-#  answer_converted_content_type   :string
-#  answer_converted_file_size      :integer
-#  answer_converted_updated_at     :datetime
-#  answer_converted_url            :text
-#  answer_converted_fingerprint    :string
-#  delete_reason                   :text
-#  ip                              :text
-#  user_agent                      :text
+#  id                               :integer          not null, primary key
+#  target                           :string
+#  title                            :string
+#  name                             :string
+#  phone                            :string
+#  email                            :string
+#  aasm_state                       :string
+#  created_at                       :datetime         not null
+#  updated_at                       :datetime         not null
+#  question_source_file_name        :string
+#  question_source_content_type     :string
+#  question_source_file_size        :integer
+#  question_source_updated_at       :datetime
+#  question_source_url              :text
+#  question_source_fingerprint      :string
+#  question_converted_file_name     :string
+#  question_converted_content_type  :string
+#  question_converted_file_size     :integer
+#  question_converted_updated_at    :datetime
+#  question_converted_url           :text
+#  question_converted_fingerprint   :string
+#  answer_source_file_name          :string
+#  answer_source_content_type       :string
+#  answer_source_file_size          :integer
+#  answer_source_updated_at         :datetime
+#  answer_source_url                :text
+#  answer_source_fingerprint        :string
+#  answer_converted_file_name       :string
+#  answer_converted_content_type    :string
+#  answer_converted_file_size       :integer
+#  answer_converted_updated_at      :datetime
+#  answer_converted_url             :text
+#  answer_converted_fingerprint     :string
+#  delete_reason                    :text
+#  ip                               :text
+#  user_agent                       :text
+#  question_screenshot_file_name    :string
+#  question_screenshot_content_type :string
+#  question_screenshot_file_size    :integer
+#  question_screenshot_updated_at   :datetime
+#  question_screenshot_url          :text
+#  answer_screenshot_file_name      :string
+#  answer_screenshot_content_type   :string
+#  answer_screenshot_file_size      :integer
+#  answer_screenshot_updated_at     :datetime
+#  answer_screenshot_url            :text
 #

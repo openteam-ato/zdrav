@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420062006) do
+ActiveRecord::Schema.define(version: 20160526061603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -185,8 +185,8 @@ ActiveRecord::Schema.define(version: 20160420062006) do
     t.string   "phone"
     t.string   "email"
     t.string   "aasm_state"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "question_source_file_name"
     t.string   "question_source_content_type"
     t.integer  "question_source_file_size"
@@ -214,6 +214,16 @@ ActiveRecord::Schema.define(version: 20160420062006) do
     t.text     "delete_reason"
     t.text     "ip"
     t.text     "user_agent"
+    t.string   "question_screenshot_file_name"
+    t.string   "question_screenshot_content_type"
+    t.integer  "question_screenshot_file_size"
+    t.datetime "question_screenshot_updated_at"
+    t.text     "question_screenshot_url"
+    t.string   "answer_screenshot_file_name"
+    t.string   "answer_screenshot_content_type"
+    t.integer  "answer_screenshot_file_size"
+    t.datetime "answer_screenshot_updated_at"
+    t.text     "answer_screenshot_url"
   end
 
 end
