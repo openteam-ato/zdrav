@@ -30,6 +30,10 @@
         <% end %>
       </ul>
       <%#= paginate @video_messages %>
+      <% if @content_first.present? %>
+        <h2><%= @content_first.part_title %></h2>
+        <%= render_partial_for_region(@content_first) %>
+      <% end %>
     </div>
   </div>
 </div>
