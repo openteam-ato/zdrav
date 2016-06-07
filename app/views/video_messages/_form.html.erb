@@ -12,6 +12,15 @@
     <div class='col-md-4 col-sm-6 col-xs-12'>
       <%= f.input :phone %>
     </div>
+    <div class='col-xs-12'>
+      <%= f.input :agreement, as: :boolean, input_html: { class: 'js-agreement' } %>
+      <p><a href='#collapse' data-toggle='collapse' aria-expanded='false' aria-controls='collapseExample'>Ознакомиться с соглашением</a></p>
+      <div class='collapse' id='collapse'>
+        <div class='well'>
+          <%= render_partial_for_region(@content_second) if @content_second %>
+        </div>
+      </div>
+    </div>
   </div>
   <div class='js-file-upload-wrapper'>
     <%= f.input :question_source, as: :file,
@@ -24,5 +33,5 @@
   <% if flash[:alert] %>
     <p class='recaptcha-alert text-danger'><%= flash[:alert].html_safe %></p>
   <% end %>
-  <%= f.submit 'Отправить видеообращение', name: nil, class: 'btn btn-primary js-submit' %>
+  <%= f.submit 'Отправить видеообращение', name: nil, class: 'btn btn-primary js-submit disabled' %>
 <% end %>

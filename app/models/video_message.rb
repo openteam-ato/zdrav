@@ -8,6 +8,8 @@ class VideoMessage < ActiveRecord::Base
     :answer_author, :answer_author_post,
     :delete_reason, :ip, :user_agent
 
+  attr_accessor :agreement
+
   validates_presence_of :target, :title, :name, :email, :question_source
   #validates :uniqueness_of_question_source # TODO: надо реализовать уникальность загружаемых видео обращений
 

@@ -1,4 +1,14 @@
 @init_video_fileupload = ->
+
+  $('.js-submit').click (e) ->
+    return false if $(this).hasClass('disabled')
+
+  $('.js-agreement').change ->
+    if $(this).is(':checked')
+      $('.js-submit').removeClass('disabled')
+    else
+      $('.js-submit').addClass('disabled')
+
   $('.js-video-file').closest('.content').on 'click','.js-video-file', ->
     $('.js-video-file').fileupload
       type: 'POST'
