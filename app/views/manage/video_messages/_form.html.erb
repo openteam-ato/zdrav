@@ -1,6 +1,8 @@
 <%= simple_form_for resource,
   url: resource.new_record? ? manage_video_messages_path : manage_video_message_path(resource),
   html: { class: 'js-video-message-form', novalidate: true } do |f| %>
+
+  <%= f.input :published_at %>
   <%= f.input :title, autofocus: true %>
   <%= f.input :target %>
   <%= f.input :name %>

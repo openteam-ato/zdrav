@@ -2,7 +2,7 @@ class VideoMessage < ActiveRecord::Base
 
   paginates_per 10
 
-  attr_accessible :target, :title, :name, :phone, :email, :aasm_state,
+  attr_accessible :target, :title, :name, :phone, :email, :aasm_state, :published_at,
     :question_source, :question_converted, :question_screenshot,
     :answer_source, :answer_converted, :answer_screenshot,
     :answer_author, :answer_author_post,
@@ -13,7 +13,8 @@ class VideoMessage < ActiveRecord::Base
   validates_presence_of :target, :title, :name, :email, :question_source
   #validates :uniqueness_of_question_source # TODO: надо реализовать уникальность загружаемых видео обращений
 
-  scope :ordered, -> { order('created_at desc') }
+  scope :ordered, -> { order created_at: :desc }
+  scope :published_with_order, -> { published.order(published_at: :desc) }
 
   normalize_attributes :title, :name, :phone, :email
 
@@ -21,6 +22,10 @@ class VideoMessage < ActiveRecord::Base
   enumerize :target,
     in: [:specialist, :pharmacist, :doctor, :other],
     predicates: true
+
+  default_value_for :published_at do
+    Time.zome.now
+  end
 
   include AASM
   aasm whiny_transitions: false do
@@ -145,4 +150,5 @@ end
 #  answer_screenshot_url            :text
 #  answer_author                    :string
 #  answer_author_post               :text
+#  published_at                     :datetime
 #

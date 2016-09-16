@@ -176,6 +176,7 @@ ru:
       video_message:
         created_at: 'Создано'
         updated_at: 'Обновлено'
+        published_at: 'Опубликовано'
         name: 'Ф.И.О.'
         phone: 'Телефон'
         email: 'E-mail'

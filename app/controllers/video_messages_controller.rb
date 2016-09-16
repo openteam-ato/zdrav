@@ -3,7 +3,7 @@ class VideoMessagesController < MainController
   before_filter :prepare_cms
 
   def index
-    @video_messages = VideoMessage.published #.page(params[:page])
+    @video_messages = VideoMessage.published_with_order
   end
 
   def show

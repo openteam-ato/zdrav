@@ -15,7 +15,7 @@
     <h1 class='page-header <%= header_css_class %>'><%= @video_message.title %></h1>
 
     <div class='html-part'>
-      <p class='date'><%= I18n.l @video_message.updated_at, format: :long %></p>
+      <p class='date'><%= I18n.l @video_message.published_at, format: :long %></p>
       <%= render partial: 'video_html5', locals: { title: 'Видеообращение',
                                                    video: @video_message.question_source,
                                                    poster: @video_message.question_screenshot,

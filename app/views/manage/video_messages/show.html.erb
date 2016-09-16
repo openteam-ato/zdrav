@@ -16,6 +16,7 @@
         <% if item.object.deleted? %>
           <%= item.attribute :delete_reason, wrapper_html: { class: "text-#{item.object.aasm_state}" } %>
         <% end %>
+        <%= item.attribute :published_at %>
         <%= item.attribute :title %>
         <%= item.attribute :target do %>
           <%= item.object.target_text %>
