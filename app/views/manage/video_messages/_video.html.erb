@@ -1,3 +1,19 @@
+<%
+  value = [
+    'comment=',
+    video.instance.title,
+    '&',
+    'st=',
+    asset_path('style.txt'),
+    '&',
+    'file=',
+    video.url,
+    '&',
+    'poster=',
+    poster.present? ? poster.url : asset_path('default_screeshot.png')
+  ].join
+%>
+
 <p>
   <strong><%= I18n.t "video_message.kind.#{video.name}" %>:</strong>
   <%= link_to video.original_filename, video.url, target: '_blank' %>
@@ -7,13 +23,13 @@
   <param name='allowFullScreen' value='true' />
   <param name='allowScriptAccess' value='always' />
   <param name='movie' value='<%= asset_path('player.swf') %>' />
-  <param name='flashvars' value='comment=<%= video.instance.title %>&amp;st=<%= asset_path('style.txt') %>&amp;file=<%= video.url %>&amp;poster=<%= poster %>' />
+  <param name='flashvars' value='<%= value %>' />
   <embed src='<%= asset_path('player.swf') %>'
     name='videoplayer9092'
     type='application/x-shockwave-flash'
     allowscriptaccess='always'
     allowfullscreen='true'
-    flashvars='comment=<%= video.instance.title %>&amp;st=<%= asset_path('style.txt') %>&amp;file=<%= video.url %>&amp;poster=<%= poster %>'
+    flashvars='<%= value %>'
     bgcolor='#ffffff'
     width='640'
     height='360'></embed>
