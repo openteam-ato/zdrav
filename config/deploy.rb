@@ -1,5 +1,7 @@
 require 'openteam/capistrano/deploy'
 
+set :db_remote_clean, true
+
 set :bundle_binstubs, -> { shared_path.join('bin') }
 
 append :linked_dirs, 'public/video_messages'
