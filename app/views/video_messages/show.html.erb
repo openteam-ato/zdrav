@@ -26,16 +26,20 @@
                                                    poster: @video_message.question_screenshot,
                                                    answer_author: nil,
                                                    answer_author_post: nil } %>
-      <%= render partial: 'video_html5', locals: { title: 'Ответ на видеообращение',
-                                                   video: @video_message.answer_source,
-                                                   poster: @video_message.answer_screenshot,
-                                                   answer_author: @video_message.answer_author,
-                                                   answer_author_post: @video_message.answer_author_post } %>
-      <%= render partial: 'video_flash', locals: { title: 'Ответ на видеообращение',
-                                                   video: @video_message.answer_converted,
-                                                   poster: @video_message.answer_screenshot,
-                                                   answer_author: @video_message.answer_author,
-                                                   answer_author_post: @video_message.answer_author_post } %>
+      <% if @video_message.answer_source.present? %>
+        <%= render partial: 'video_html5', locals: { title: 'Ответ на видеообращение',
+                                                     video: @video_message.answer_source,
+                                                     poster: @video_message.answer_screenshot,
+                                                     answer_author: @video_message.answer_author,
+                                                     answer_author_post: @video_message.answer_author_post } %>
+      <% end %>
+      <% if @video_message.answer_converted.present? %>
+        <%= render partial: 'video_flash', locals: { title: 'Ответ на видеообращение',
+                                                     video: @video_message.answer_converted,
+                                                     poster: @video_message.answer_screenshot,
+                                                     answer_author: @video_message.answer_author,
+                                                     answer_author_post: @video_message.answer_author_post } %>
+      <% end %>
       <p class='no-player text-danger'>
         Ваш браузер не поддерживает проигрывание видеофайлов.
       </p>

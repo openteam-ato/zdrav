@@ -42,7 +42,7 @@ class VideoMessage < ActiveRecord::Base
   end
 
   def converted_videos_present?
-    question_converted.present? && answer_converted.present?
+    question_converted.present? # && answer_converted.present?
   end
 
   def delete_reason_present?
