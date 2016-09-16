@@ -24,7 +24,7 @@ class VideoMessage < ActiveRecord::Base
     predicates: true
 
   default_value_for :published_at do
-    Time.zome.now
+    Time.zone.now
   end
 
   include AASM

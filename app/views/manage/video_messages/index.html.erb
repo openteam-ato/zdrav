@@ -15,6 +15,8 @@
                 <%= [video_message.name, video_message.phone].delete_if(&:blank?).join(', ') %>
                 [<%= mail_to video_message.email %>]
               </div>
+              <div>IP: <%= video_message.ip %></div>
+              <div>User-Agent: <%= video_message.user_agent %></div>
               <div class='text-<%= video_message.aasm_state %>'>
                 <%= video_message.aasm.human_state %>
               </div>

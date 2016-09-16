@@ -17,6 +17,8 @@
           <%= item.attribute :delete_reason, wrapper_html: { class: "text-#{item.object.aasm_state}" } %>
         <% end %>
         <%= item.attribute :published_at %>
+        <%= item.attribute :ip %>
+        <%= item.attribute :user_agent %>
         <%= item.attribute :title %>
         <%= item.attribute :target do %>
           <%= item.object.target_text %>
