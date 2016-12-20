@@ -28,7 +28,7 @@ gem 'kaminari'
 gem 'momentjs-rails'
 gem 'nested_form'
 gem 'non-stupid-digest-assets'
-gem 'openteam-commons'
+gem 'openteam-commons', '~> 0.3.3'
 gem 'paper_trail'
 gem 'paperclip'
 gem 'paperclip-elvfs'
@@ -72,11 +72,11 @@ end
 group :development do
   gem 'annotate', require: false
   gem 'brakeman', require: false
-  gem 'capistrano-unicorn', '~> 0.1.7', require: false
+  gem 'capistrano-db-tasks', '0.4', require: false
   gem 'hirb'
   gem 'letter_opener'
-  gem 'openteam-capistrano', '~> 1.0.12'
-  gem 'quiet_assets' #, :require => false
+  gem 'openteam-capistrano', '~> 1.0.16'
+  gem 'quiet_assets'
   gem 'sqlite3'
   gem 'thin'
 end

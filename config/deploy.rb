@@ -25,3 +25,7 @@ task :download_video_files do
     download! "#{shared_path}/public/video_messages", 'public', :via =>:scp, :recursive =>:true
   end
 end
+
+set :slackistrano,
+  channel: (Settings['slack.channel'] rescue ''),
+  webhook: (Settings['slack.webhook'] rescue '')
