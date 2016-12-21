@@ -160,7 +160,7 @@ module ApplicationHelper
   end
 
   def get_link(navigation, object)
-    link = navigation.to_hash.to_s.match(/#{object.title.squish}\", \"path\"=>\"(.*?)\"/).try(:[], 1)
+    link = navigation.to_hash.to_s.match(/#{object.title.gsub('(', '\(').gsub(')', '\)').squish}\", \"path\"=>\"(.*?)\"/).try(:[], 1)
     external_link = navigation.to_hash.to_s.match(/#{object.title.squish}\",.*?\"external_link\"=>\"(.*?)\"/).try(:[], 1)
 
     return render_link_for_navigation({ 'title' => object.title.as_html, 'path' => link, 'external_link' => external_link }) if link
