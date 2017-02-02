@@ -9,16 +9,16 @@
 <% end %>
 
 <%= content_for :content do %>
-  <%= render :partial => 'header' %>
-  <%= render :partial => 'main_menu' %>
+  <%= render partial: 'header' %>
+  <%= render partial: 'main_menu' %>
   <% if current_staff_user %>
     <%= render 'user_impersonate/header' %>
   <% end %>
-  <%= render :partial => 'content' %>
-  <%= render :partial => 'bottom_menu' %>
-  <%= render :partial => 'footer' %>
-  <%= render :partial => 'development' if Rails.env.development? %>
-  <%= render :partial => 'metrika' if Rails.env.production? %>
+  <%= render partial: 'content' %>
+  <%= render partial: 'bottom_menu' %>
+  <%= render partial: 'footer' %>
+  <%= render partial: 'development' if Rails.env.development? %>
+  <%= render partial: 'metrika' if Rails.env.production? %>
 <% end %>
 
 <%= render :file => 'layouts/base' %>

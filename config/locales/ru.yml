@@ -5,9 +5,11 @@ ru:
       next: '&rarr;'
       truncate: '&hellip;'
 
-  asserts: "утверждает"
-  cancels: "отменяет"
-  changes: "изменяет"
+  asserts: 'утверждает'
+  cancels: 'отменяет'
+  changes: 'изменяет'
+
+  address: "634041, Томская область, г. Томск, пр. Кирова, 41, <span class='nobr'>Тел.: (3822) 999-101;</span> <span class='nobr'>Факс: (3822) 51-60-35</span>"
 
   coupon:
     patient_code_id: 'код пациента'
