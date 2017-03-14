@@ -6,6 +6,7 @@ set :bundle_binstubs, -> { shared_path.join('bin') }
 
 append :linked_dirs, 'public/video_messages'
 append :linked_dirs, 'public/assets'
+append :linked_dirs, 'public/.well-known/acme-challenge'
 
 namespace :sitemap do
   desc 'Create symlink from shared sitemaps to public'
