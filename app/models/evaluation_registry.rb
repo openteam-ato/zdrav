@@ -23,6 +23,7 @@ class EvaluationRegistry < ActiveRecord::Base
   normalize_attributes :title, :proposal
 
   scope :ordered, -> (_) { order('created_at desc') }
+  scope :by_year, -> (year){ where('extract(year from created_at) = ?', year).order('created_at desc') }
 
   def self.collection_for_title
     [
