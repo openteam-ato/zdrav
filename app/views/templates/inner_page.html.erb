@@ -1,16 +1,22 @@
 <div class='content row'>
-  <div class='col-sm-3 hidden-xs noindex'>
-    <div class='subnavigation'>
-      <%= render_partial_for_region(@subnavigation, 'sub') if @subnavigation.present? %>
-      <% if @left_side_links.present? %>
-        <div class='left_side_links'>
-          <%= render_partial_for_region(@left_side_links) %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <% two_column =
+    @subnavigation.content.values.first['children'].present? ||
+    @left_side_links.present? %>
 
-  <div class='col-sm-9 co-xs-12'>
+  <% if two_column %>
+    <div class='col-sm-3 hidden-xs noindex'>
+      <div class='subnavigation'>
+        <%= render_partial_for_region(@subnavigation, 'sub') if @subnavigation.present? %>
+        <% if @left_side_links.present? %>
+          <div class='left_side_links'>
+            <%= render_partial_for_region(@left_side_links) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class='col-xs-12<%= two_column ? ' col-sm-9' : nil %>'>
     <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
     <% if @right_side_links.present? %>
       <% if @content_first.present? %>
