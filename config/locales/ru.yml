@@ -126,6 +126,7 @@ ru:
         title: "Название лечебно-профилактического учреждения"
         username: "Ф.И.О., контакты"
         proposal: "Ваши предложения по улучшению нашей работы"
+        created_at: "Создано"
         ip: "IP"
         user_agent: "User-Agent"
         recaptcha: ""

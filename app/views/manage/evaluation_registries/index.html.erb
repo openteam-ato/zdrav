@@ -1,8 +1,15 @@
 <div class='row'>
   <div class='col-sm-12'>
     <div class='content'>
-      <%= link_to 'скачать статистику', xls_manage_evaluation_registries_path, :class => 'pull-right' %>
       <h4>Конкурс «Поликлиника начинается с регистратуры»</h4>
+      <ul>
+      <% EvaluationRegistry.years.each do |year| %>
+        <li>
+          &mdash;
+          <%= link_to %(скачать статистику за #{year}), xls_manage_evaluation_registries_path(year: year) %>
+        </li>
+      <% end %>
+      </ul>
       <ul class='evaluation_registries'>
         <% @evaluation_registries.each do |evaluation_registry| %>
           <li>

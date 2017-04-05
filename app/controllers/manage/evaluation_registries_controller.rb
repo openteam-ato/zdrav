@@ -9,8 +9,14 @@ class Manage::EvaluationRegistriesController < Manage::ApplicationController
   end
 
   def xls
-    evaluation_registries = EvaluationRegistry.ordered(1)
-    send_data EvaluationRegistriesXls.new(evaluation_registries).xls, :filename => 'statistics.xls'
+    if params['year'].blank?
+      evaluation_registries = EvaluationRegistry.ordered(1)
+      filename = 'statistics.xls'
+    else
+      evaluation_registries = EvaluationRegistry.by_year(params['year'])
+      filename = %(statistics-#{params['year']}.xls)
+    end
+    send_data EvaluationRegistriesXls.new(evaluation_registries).xls, filename: filename
   end
 
 end

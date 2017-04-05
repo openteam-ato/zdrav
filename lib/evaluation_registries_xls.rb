@@ -23,7 +23,7 @@ class EvaluationRegistriesXls
   end
 
   def fields
-    %W[title username ip user_agent
+    %W[title username created_at ip user_agent
        question_1_1 question_1_2 question_1_3 question_1_4 question_1_5 question_1_6
        question_1_7 question_1_8 question_1_9 question_1_10 question_1_11
        question_2_1 question_2_2 question_2_3 question_2_4 question_2_5 question_2_6

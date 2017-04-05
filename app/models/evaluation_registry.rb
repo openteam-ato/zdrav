@@ -25,6 +25,10 @@ class EvaluationRegistry < ActiveRecord::Base
   scope :ordered, -> (_) { order('created_at desc') }
   scope :by_year, -> (year){ where('extract(year from created_at) = ?', year).order('created_at desc') }
 
+  def self.years
+    pluck(:created_at).map(&:year).uniq.sort.reverse
+  end
+
   def self.collection_for_title
     [
       'ОГАУЗ «Александровская районная больница»',
