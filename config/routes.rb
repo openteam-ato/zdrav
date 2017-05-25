@@ -3,7 +3,10 @@ Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
 
 Rails.application.routes.draw do
 
-  mount Sidekiq::Web => '/sidekiq'
+  authenticate :user, lambda { |user| user.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   mount ElVfsClient::Engine => '/'
 
   put '/ali.txt' => redirect('http://alihack.com')

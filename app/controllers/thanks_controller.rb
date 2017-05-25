@@ -19,7 +19,7 @@ class ThanksController < MainController
     @thank.ip = request.env['HTTP_X_FORWARDED_FOR'] || request.remote_ip
     @thank.user_agent = request.user_agent
     if verify_recaptcha(:model => @thank)
-      ThanksMailer.delay.new_thank_email(@thank)
+      ThanksMailer.delay(retry: false).new_thank_email(@thank)
       flash[:notice] = 'Ваша благодарность принята. Спасибо!'
       super
     else

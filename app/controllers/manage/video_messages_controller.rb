@@ -16,7 +16,7 @@ class Manage::VideoMessagesController < Manage::ApplicationController
       end
 
       success.html do
-        VideoMessageMailer.delay.created_video_message(resource)
+        VideoMessageMailer.delay(retry: false).created_video_message(resource)
         render text: manage_video_message_path(resource) and return if request.xhr?
         redirect_to manage_video_message_path(resource)
       end
@@ -45,7 +45,7 @@ class Manage::VideoMessagesController < Manage::ApplicationController
     unless video_message.publish!
       flash[:alert] = 'Видео обращение нельзя опубликовать без прикреплённых сконвертированных вопроса и ответа'
     else
-      VideoMessageMailer.delay.published_video_message(video_message)
+      VideoMessageMailer.delay(retry: false).published_video_message(video_message)
     end
 
     redirect_to manage_video_message_path(video_message)
@@ -56,7 +56,7 @@ class Manage::VideoMessagesController < Manage::ApplicationController
     state = video_message.aasm_state
     video_message.unpublish!
     unless state == 'deleted'
-      VideoMessageMailer.delay.unpublished_video_message(video_message)
+      VideoMessageMailer.delay(retry: false).unpublished_video_message(video_message)
     end
 
     redirect_to manage_video_message_path(video_message)
@@ -70,7 +70,7 @@ class Manage::VideoMessagesController < Manage::ApplicationController
     video_message = VideoMessage.find(params[:video_message_id])
     video_message.update_attributes(params[:video_message])
     video_message.delete!
-    VideoMessageMailer.delay.deleted_video_message(video_message)
+    VideoMessageMailer.delay(retry: false).deleted_video_message(video_message)
 
     redirect_to manage_video_message_path(video_message)
   end

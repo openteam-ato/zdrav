@@ -33,7 +33,7 @@ class NewModelController < MainController
 
   def create
     if verify_recaptcha
-      NewModelMailer.delay.new_email(params['new_model'])
+      NewModelMailer.delay(retry: false).new_email(params['new_model'])
       flash[:notice] = 'Информация о Вашем вопросе или предложении принята. Спасибо за Ваше обращение!'
       redirect_to :action => :show
     else
