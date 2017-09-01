@@ -12,24 +12,43 @@
 
   <div class='col-sm-9 co-xs-12'>
     <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
-    <%= render_partial_for_region(@content_first, 'full') if @content_first.present? %>
-    <div class='html-part'>
-      <div class='row'>
-        <div class='col-lg-3 col-md-4 col-sm-5 col-xs-5'>
-          <%= simple_form_for :coupon, :url => coupon_path, :method => :post do |f| %>
-            <%= f.input :number, :as => :string, :label => 'Введите номер талона',
-              :input_html => { :value => params.try(:[], :coupon).try(:[], :number),
-                               :placeholder => '2015 0000', :class => 'coupon' } %>
+    <% if @content_first.present? %>
+      <h1 class='page-header <%= header_css_class %>'><%= @content_first.part_title %></h1>
+    <% end %>
+
+    <% content_for :local_content do %>
+      <%= render_partial_for_region(@content_first) if @content_first.present? %>
+      <div class='html-part'>
+        <div class='row'>
+          <div class='col-lg-3 col-md-4 col-sm-5 col-xs-5'>
+            <%= simple_form_for :coupon, :url => coupon_path, :method => :post do |f| %>
+              <%= f.input :number, :as => :string, :label => 'Введите номер талона',
+                :input_html => { :value => params.try(:[], :coupon).try(:[], :number),
+                                 :placeholder => '2015 0000', :class => 'coupon' } %>
+            </div>
           </div>
-        </div>
-        <p><%= f.submit 'Поиск', :class => 'btn btn-primary' %></p>
-      <% end %>
-      <% if params.try(:[], :coupon).try(:[], :number).present? %>
-        <%= content_tag :h4, "Принято решение о наличии оснований для направления пациента в медицинскую организацию для оказания медицинской помощи с применением вспомогательных репродуктивных технологий (экстракорпорального оплодотворения), осуществляемых в рамках базовой программы обязательного медицинского страхования.", class: 'text-success' if @coupon_position %>
-        <%= render :partial => 'coupon_history' %>
-      <% end %>
+          <p><%= f.submit 'Поиск', :class => 'btn btn-primary' %></p>
+        <% end %>
+        <% if params.try(:[], :coupon).try(:[], :number).present? %>
+          <%= content_tag :h4, "Принято решение о наличии оснований для направления пациента в медицинскую организацию для оказания медицинской помощи с применением вспомогательных репродуктивных технологий (экстракорпорального оплодотворения), осуществляемых в рамках базовой программы обязательного медицинского страхования.", class: 'text-success' if @coupon_position %>
+          <%= render :partial => 'coupon_history' %>
+        <% end %>
+      </div>
+      <%= render_partial_for_region(@content_second) if @content_second.present? %>
+    <% end %>
+
+    <% if @right_side_links.present? %>
+    <div class='row'>
+      <div class='col-xs-9'>
+        <%= yield :local_content %>
+      </div>
+      <div class='col-xs-3'>
+        <%= render_partial_for_region(@right_side_links, 'right') %>
+      </div>
     </div>
-    <%= render_partial_for_region(@content_second) if @content_second.present? %>
+    <% else %>
+      <%= yield :local_content %>
+    <% end %>
     <%= content_tag :div, yield(:social_likes), :class => :row if content_for?(:social_likes) %>
   </div>
 </div>
