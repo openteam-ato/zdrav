@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     post 'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                      => 'thanks#create',  :as => :create_thank
     get  'thanks/publish'                                                                      => 'thanks#publish', :as => :publish_thank
     get  'thanks/remove'                                                                       => 'thanks#remove',  :as => :remove_thank
+    get  'anketa-samodiagnostiki-serdechno-sosudistyh-zabolevaniy' => 'anketa_samodiagnostiki#show'
 
     get  'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/birzha-idey' => 'idea#show'
     post 'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/birzha-idey' => 'idea#create'
