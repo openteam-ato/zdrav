@@ -26,6 +26,7 @@
  * = require vendor/galleria
  * = require vendor/scroll_to
  * = require actual
+ * = require anketa_calculator
  * = require archive_collapser
  * = require delete_file
  * = require ajaxed

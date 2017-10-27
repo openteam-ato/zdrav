@@ -23,6 +23,7 @@ $ ->
   init_doctors_carousel() if $('.js-doctors-carousel').length
   init_autocomplete() if $('.js-autocomplete').length
   init_video_fileupload() if $('.js-file-upload-wrapper').length
+  init_anketa_calculator() if $('.js-anketa-samodiagnostiki').length
   init_video_detect()
 
   $('.datetimepicker').datetimepicker()

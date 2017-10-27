@@ -1,94 +1,113 @@
 <div class='content row'>
   <div class='col-xs-12'>
-    <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
-    <%= render_partial_for_region(@content_first, 'full') if @content_first.present? %>
-    <hr />
-    <%= simple_form_for :vote, method: :get, html: { class: 'js-anketa-samodiagnostiki' } do |f| %>
-      <%= f.input :sex,
-        label: 'Ваш пол?',
-        required: false,
-        as: :radio_buttons,
-        collection: [['Мужской', '1'], ['Женский', '0']] %>
-      <%= f.input :age,
-        label: 'Ваш возраст?',
-        required: false,
-        as: :radio_buttons,
-        collection: [['Моложе 45 лет', '0'], ['Старше 45 лет', '1']] %>
-      <%= f.input :walking_distance,
-        label: 'Какое расстояние Вы проходите за 1 день пешком?',
-        required: false,
-        as: :radio_buttons,
-        collection: [['Менее 5 км', '1'], ['Более 5 км', '0']] %>
-      <%= f.input :spend_sitting,
-        label: 'Какую часть «рабочего времени» Вы проводите сидя?',
-        required: false,
-        as: :radio_buttons,
-        collection: [['Более 75%', '1'], ['Менее 75%', '0']] %>
-      <%= f.input :overweight,
-        label: 'Есть ли у Вас избыточный вес? (для этого посчитайте ИМТ по формуле, приведенной в конце анкеты)',
-        required: false,
-        as: :radio_buttons,
-        collection: [['Да', '2'], ['Нет', '0']] %>
-      <%= f.input :smoke,
-        label: 'Вы курите?',
-        required: false,
-        as: :radio_buttons,
-        collection: [['Да', '3'], ['Нет', '0']] %>
-      <%= f.input :alcohol,
-        label: 'Объем употребляемого алкоголя в неделю (в пересчете на 40°)',
-        required: false,
-        as: :radio_buttons,
-        collection: [['Меньше 250 мл', '0'], ['Больше 250 мл', '1']] %>
-      <%= f.input :greasy,
-        label: 'Какую часть рациона занимает пища, богатая жирами (масло, сало, жирное мясо)',
-        required: false,
-        as: :radio_buttons,
-        collection: [['Более 30%', '3'], ['От 10-30%', '1'], ['Менее 10%', '0']] %>
-      <%= f.input :arterial_pressure,
-        label: 'Повышалось ли у Вас артериальное давление? (выше 140/90)',
-        required: false,
-        as: :radio_buttons,
-        collection: [['Да', '4'], ['Нет', '0']] %>
-      <%= f.input :medical_help,
-        label: 'Обращались ли Вы за медицинской помощью по поводу заболевания сердечно-сосудистой системы или сахарного диабета?',
-        required: false,
-        as: :radio_buttons,
-        collection: [['Да', '4'], ['Нет', '0']] %>
-      <%= f.input :pain_heart,
-        label: 'Отмечали ли Вы дискомфорт или боли за грудиной или в области сердца?',
-        required: false,
-        as: :radio_buttons,
-        collection: [['Да', '5'], ['Нет', '0']] %>
-      <%= f.input :worried,
-        label: 'Беспокоитесь ли Вы о завтрашнем дне?',
-        required: false,
-        as: :radio_buttons,
-        collection: [['Да, безусловно', '0'], ['Нет', '2']] %>
-      <%= f.input :result,
-        label: 'Итого',
-        required: false,
-        input_html: { readonly: true }
-        %>
-    <% end %>
-    <hr />
-    <%= render_partial_for_region(@content_second) if @content_second.present? %>
-    <hr />
-    <div class='html-part'>
-      <h2>Считаем результаты</h2>
-      <ul>
-        <li class='text-success text-default'>
-          Менее 8 баллов – анкета не выявила серьезных проблем.
-        </li>
-        <li class='text-warning text-default'>
-          8-15 баллов – Вы находитесь в зоне риска!
-          Обратите внимание на свое здоровье или пройдите консультацию у врача терапевта или кардиолога.
-        </li>
-        <li class='text-danger text-default'>
-          Более 15 баллов – есть большая вероятность развития стенокардии (ИБС),
-          пройдите консультацию врача и соблюдайте все рекомендации!
-        </li>
-      </ul>
+    <div class='anketa-samodiagnostiki-wrapper'>
+      <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
+      <%= render_partial_for_region(@content_first, 'full') if @content_first.present? %>
+      <hr />
+      <%= simple_form_for :vote, method: :get, html: { class: 'js-anketa-samodiagnostiki' } do |f| %>
+        <%= f.input :sex,
+          label: 'Ваш пол?',
+          required: false,
+          as: :radio_buttons,
+          input_html: { class: 'js-radio-gender' },
+          collection: [['Мужской', '1'], ['Женский', '0']] %>
+        <%= f.input :age,
+          label: 'Ваш возраст?',
+          required: false,
+          as: :radio_buttons,
+          collection: [['Моложе 45 лет', '0'], ['Старше 45 лет', '1']] %>
+        <%= f.input :walking_distance,
+          label: 'Какое расстояние Вы проходите за 1 день пешком?',
+          required: false,
+          as: :radio_buttons,
+          collection: [['Менее 5 км', '1'], ['Более 5 км', '0']] %>
+        <%= f.input :spend_sitting,
+          label: 'Какую часть «рабочего времени» Вы проводите сидя?',
+          required: false,
+          as: :radio_buttons,
+          collection: [['Более 75%', '1'], ['Менее 75%', '0']] %>
+        <%= f.input :overweight,
+          label: "Есть ли у Вас избыточный вес? (#{link_to 'Расчет индекса массы тела по формуле', '', data: {'toggle': 'modal', 'target': '.imt-formula'}})".html_safe,
+          required: false,
+          as: :radio_buttons,
+          collection: [['Да', '2'], ['Нет', '0']] %>
+        <%= f.input :smoke,
+          label: 'Вы курите?',
+          required: false,
+          as: :radio_buttons,
+          collection: [['Да', '3'], ['Нет', '0']] %>
+        <%= f.input :alcohol,
+          label: 'Объем употребляемого алкоголя в неделю (в пересчете на 40°)',
+          required: false,
+          as: :radio_buttons,
+          input_html: { class: 'js-radio-alcohol' },
+          collection: [['Меньше 250 мл', '0'], ['Больше 250 мл', '1']] %>
+        <%= f.input :greasy,
+          label: 'Какую часть рациона занимает пища, богатая жирами (масло, сало, жирное мясо)',
+          required: false,
+          as: :radio_buttons,
+          collection: [['Более 30%', '3'], ['От 10-30%', '1'], ['Менее 10%', '0']] %>
+        <%= f.input :arterial_pressure,
+          label: 'Повышалось ли у Вас артериальное давление? (выше 140/90)',
+          required: false,
+          as: :radio_buttons,
+          collection: [['Да', '4'], ['Нет', '0']] %>
+        <%= f.input :medical_help,
+          label: 'Обращались ли Вы за медицинской помощью по поводу заболевания сердечно-сосудистой системы или сахарного диабета?',
+          required: false,
+          as: :radio_buttons,
+          collection: [['Да', '4'], ['Нет', '0']] %>
+        <%= f.input :pain_heart,
+          label: 'Отмечали ли Вы дискомфорт или боли за грудиной или в области сердца?',
+          required: false,
+          as: :radio_buttons,
+          collection: [['Да', '5'], ['Нет', '0']] %>
+        <%= f.input :worried,
+          label: 'Беспокоитесь ли Вы о завтрашнем дне?',
+          required: false,
+          as: :radio_buttons,
+          collection: [['Да, безусловно', '0'], ['Нет', '2']] %>
+        <%= f.input :result,
+          label: 'Итого',
+          required: false,
+          input_html: { readonly: true, class: 'anketa-results' }
+          %>
+      <% end %>
+      <hr />
+      <!-- Modal -->
+      <div class="modal fade imt-formula" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4>Считаем индекс массы тела</h4>
+            </div>
+            <div class="modal-body">
+              <%= render_partial_for_region(@content_second) if @content_second.present? %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='html-part'>
+        <h2>Считаем результаты</h2>
+        <div class='results-filled-attention'>
+          Внимание! Чтобы узнать результаты, необходимо ответить на все вопросы.
+        </div>
+        <ul class='results-list'>
+          <li class='text-success text-default results-list-item-8'>
+            Менее 8 баллов – анкета не выявила серьезных проблем.
+          </li>
+          <li class='text-warning text-default results-list-item-8-15'>
+            8-15 баллов – Вы находитесь в зоне риска!
+            Обратите внимание на свое здоровье или пройдите консультацию у врача терапевта или кардиолога.
+          </li>
+          <li class='text-danger text-default results-list-item-15'>
+            Более 15 баллов – есть большая вероятность развития стенокардии (ИБС),
+            пройдите консультацию врача и соблюдайте все рекомендации!
+          </li>
+        </ul>
+      </div>
+      <%= render :partial => 'social_likes' %>
     </div>
-    <%= render :partial => 'social_likes' %>
   </div>
 </div>

@@ -1,0 +1,33 @@
+.anketa-samodiagnostiki-wrapper
+  ul.results-list
+    li
+      padding-left: 16px
+
+      &:before
+        left: 5px
+
+      &.anketa-active-results
+        color: #fff
+        font-weight: 600
+        padding-top: 5px
+        padding-bottom: 5px
+        +transition(background-color .5s)
+
+        &:before
+          top: 4px
+
+        &.results-list-item-8
+          background-color: $brand-success
+
+        &.results-list-item-8-15
+          background-color: $brand-warning
+
+        &.results-list-item-15
+          background-color: $brand-danger
+
+  .results-filled-attention
+    background-color: $brand-danger
+    color: #fff
+    font-size: 16px
+    padding: 10px
+    margin-bottom: 10px
