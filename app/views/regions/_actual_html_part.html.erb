@@ -1,5 +1,5 @@
-<div class='actual hidden-xs noindex'>
-  <div class='scroller'>
+<div class='actual noindex'>
+  <div class='scroller hidden-xs '>
     <div class='visible-lg'>
       <%= object.body.to_s.gsub(/\/\d+-\d+\//, '/440-312!mn/').gsub(/width=['|"]\d+['|"]/, 'width="440"').gsub(/height=['|"]\d+['|"]/, 'height="312"').html_safe %>
     </div>
@@ -11,4 +11,7 @@
     </div>
   </div>
   <div class='images'></div>
+  <div class='visible-xs'>
+    <%= object.body.html_safe %>
+  </div>
 </div>
