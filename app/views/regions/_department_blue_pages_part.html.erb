@@ -53,7 +53,7 @@
                 <% else %>
                   <div class='name'><%= subdivision.title %></div>
                 <% end %>
-                <% if subdivision.subdivisions.any? %>
+                <% if subdivision.subdivisions.present? && subdivision.subdivisions.any? %>
                   <ul class='children'>
                     <% subdivision.subdivisions.each do |item| %>
                       <li><%= link_to(item.title, "#{request.fullpath}/#{item.title.slugged}") %></li>
