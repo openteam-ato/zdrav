@@ -36,7 +36,7 @@
       <div class='subdivisions-with-tree'>
         <h3><%= @page_title %></h3>
         <% object.subdivisions.each do |subdivision| %>
-          <% if subdivision.title.scan(/заместитель|бухгалтерия|юрисконсульт|председатель/i).any? %>
+          <% if subdivision.title.scan(/заместитель|юрисконсульт|председатель/i).any? %>
             <div class='subdivision'>
               <div class='image'>
                 <% if subdivision.items.try(:first).try(:image_url).present? %>
