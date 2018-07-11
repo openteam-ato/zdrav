@@ -53,7 +53,7 @@
                 <% else %>
                   <div class='name'><%= subdivision.title %></div>
                 <% end %>
-                <% if subdivision.subdivisions.present? && subdivision.subdivisions.any? %>
+                <% if subdivision.subdivisions.present? %>
                   <ul class='children'>
                     <% subdivision.subdivisions.each do |item| %>
                       <li><%= link_to(item.title, "#{request.fullpath}/#{item.title.slugged}") %></li>
@@ -68,7 +68,7 @@
       <div class='subdivisions-without-tree'>
         <h3>Подразделения</h3>
         <% object.subdivisions.each do |item| %>
-          <% unless item.title.scan(/заместитель|бухгалтерия|юрисконсульт|председатель/i).any? %>
+          <% unless item.title.scan(/заместитель|юрисконсульт|председатель/i).any? %>
             <div class='title'><%= link_to(item.title, "#{request.fullpath}/#{item.title.slugged}") %></div>
           <% end %>
         <% end %>
