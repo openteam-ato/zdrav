@@ -12,6 +12,7 @@
       )
 
   if window.location.hash
+    $("#{window.location.hash}").addClass('open')
     $("#{window.location.hash}").next('.collapse').show()
     $.scrollTo($("#{window.location.hash}"), 1000, {
       offset: { top: -10 }

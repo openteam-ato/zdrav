@@ -19,7 +19,8 @@
 
   # Set hashes and some replaces for it
   clear_anchor = (str, element) ->
-    result_string = str.replace("(","").replace(")","").replace('«',"").replace('»', "").replace("-", "_")
+    result_string = str.replace("(","").replace(")","").replace('«',"").replace('»', "")
+    .replace("-", "_").replace("–", "_")
 
     if $(element).hasClass('js-replaced-dots')
       result_string = result_string.replace(/\./g, "_")
