@@ -16,7 +16,8 @@ $ ->
   init_galleria() if $('.js-galleria').length
   init_iframe_resize() if $('#autoIframe').length
   init_slider() if $('.js-slider').length
-  init_collapse() if $('.need-collapse').length
+  init_collapse() if $('.need-collapse').length || $('.js-slider').length
+  init_url_anchors() if $('.js-slider').length
   init_colorbox() if $('a.colorbox').length
   init_location_map() if $('a.js-location-map').length
   init_delete_file() if $('.delete_file').length

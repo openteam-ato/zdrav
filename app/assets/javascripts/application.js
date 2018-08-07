@@ -3,6 +3,7 @@
  * = require jquery_ujs
  * = require jquery-ui/autocomplete
  * = require jquery-file-upload
+ * = require jquery.scrollTo
  * = require modernizr
  * = require bootstrap/collapse
  * = require bootstrap/dropdown
@@ -24,7 +25,7 @@
  * = require vendor/jscrollpane
  * = require vendor/jcarousel
  * = require vendor/galleria
- * = require vendor/scroll_to
+ * = require vendor/litranslit
  * = require actual
  * = require anketa_calculator
  * = require archive_collapser
@@ -33,6 +34,7 @@
  * = require collapse
  * = require autocomplete
  * = require colorbox
+ * = require url_anchors
  * = require location_map
  * = require banners
  * = require fotoreports

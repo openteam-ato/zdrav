@@ -67,6 +67,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-modernizr'
   gem 'rails-assets-social-likes'
   gem 'rails-assets-sugar'
+  gem 'rails-assets-jquery.scrollTo'
 end
 
 group :development do
