@@ -37,6 +37,7 @@ gem 'progress_bar', require: false
 gem 'protected_attributes'
 gem 'rack-utf8_sanitizer'
 gem 'rails', '~> 4.2.4'
+gem 'rb-readline'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'rest-client'
 gem 'russian'
