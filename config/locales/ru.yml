@@ -115,6 +115,13 @@ ru:
       answer_converted: 'Загруженное сконвертирванное видео ответа'
 
   activerecord:
+    errors:
+      models:
+        declaration_support:
+          attributes:
+            email:
+              invalid_email_address: "Указан неверный формат email адреса"
+
     attributes:
       doctor:
         name: "Ф.И.О."

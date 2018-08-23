@@ -45,6 +45,7 @@ class MainController < ApplicationController
       '/ru/dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov',
       '/ru/konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety',
       '/ru/thanks',
+      '/ru/zdravoohranenie-v-tomskoy-oblasti/otraslevoe-razvitie/formirovanie-patsient-orientirovannoy-sistemy-zdravoohraneniya-v-tomskoy-oblasti',
       '/ru/anketa-samodiagnostiki-serdechno-sosudistyh-zabolevaniy',
       '/ru/dlya-naseleniya/otslezhivanie-ocheredi-eko',
       '/ru/dlya-naseleniya/obrascheniya-grazhdan/videoobrascheniya-v-departament/otpravit-videoobraschenie-v-departament',
@@ -60,6 +61,10 @@ class MainController < ApplicationController
     if original_request_path == '/ru/konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety/done'
       request_path = '/ru/konkurs-poliklinika-nachinaetsya-s-registratury/otvetit-na-voprosy-ankety/done'
     end
+
+    if original_request_path.match(/\/podderzhat-deklaraciyu\/done/)
+      request_path = '/ru/zdravoohranenie-v-tomskoy-oblasti/otraslevoe-razvitie/formirovanie-patsient-orientirovannoy-sistemy-zdravoohraneniya-v-tomskoy-oblasti/podderzhat-deklaratsiyu/done'
+		end
 
     if original_request_path.match(/^\/[manage|eco]/)
       request_path = '/ru'
