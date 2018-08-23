@@ -465,6 +465,8 @@ GEM
       rails (>= 3.2.0)
     uuid (2.3.8)
       macaddr (~> 1.0)
+    validates_email_format_of (1.6.3)
+      i18n
     warden (1.2.3)
       rack (>= 1.0)
     whenever (0.9.7)
@@ -552,6 +554,7 @@ DEPENDENCIES
   unicorn
   user_impersonate2
   uuid
+  validates_email_format_of
 
 BUNDLED WITH
    1.16.4
