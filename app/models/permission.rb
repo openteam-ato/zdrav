@@ -1,6 +1,13 @@
 class Permission < ActiveRecord::Base
+  extend Enumerize
+
   attr_accessible :role
-  sso_auth_permission :roles => [:admin, :manager, :operator]
+  sso_auth_permission roles: [:admin, :manager, :operator]
+
+  enumerize :role, in: [:admin, :manager, :operator]
+
+  validates :role, uniqueness: { scope: [:user_id],
+    message: 'У пользователя не может быть несколько одинаковых ролей!' }
 end
 
 # == Schema Information

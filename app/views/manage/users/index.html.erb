@@ -14,10 +14,10 @@
           <% @users.each do |user| %>
             <tr>
               <td>
-                <%= user.name %>
+                <%= link_to user.name, edit_manage_user_path(user.id) %>
               </td>
               <td>
-                <%= user.permissions.map(&:role).sort.join(', ') %>
+                <%= user.permissions.map(&:role_text).sort.join(', ') %>
               </td>
               <td>
                 <% unless user.eql?(current_user) %>
@@ -35,4 +35,3 @@
     </div>
   </div>
 </div>
-

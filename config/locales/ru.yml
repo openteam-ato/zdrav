@@ -107,6 +107,12 @@ ru:
         doctor: 'Врач'
         other: 'другое'
 
+    permission:
+      role:
+        admin: 'Администратор'
+        manager: 'Менеджер'
+        operator: 'Оператор'
+
   video_message:
     kind:
       question_source: 'Загруженное видео обращения'
@@ -199,3 +205,6 @@ ru:
         aasm_state/deleted: 'Удалено'
         delete_reason: 'Причина удаления'
         agreement: 'Я согласен на публикацию видеообращения и на обработку моих персональных данных, в том числе, содержащихся в видеообращении'
+
+      user:
+        name: 'Ф.И.О.'

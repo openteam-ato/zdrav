@@ -77,7 +77,7 @@ Rails.application.routes.draw do
 
     resources :users
 
-    root :to => 'thanks#index'
+    root to: 'thanks#index'
   end
 
   namespace :eco do

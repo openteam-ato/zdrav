@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
-
   sso_auth_user
+
+  accepts_nested_attributes_for :permissions, allow_destroy: true
 
   scope :ordered, -> { order(:name) }
 
@@ -17,7 +18,6 @@ class User < ActiveRecord::Base
   def staff?
     admin?
   end
-
 end
 
 # == Schema Information

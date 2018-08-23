@@ -1,0 +1,18 @@
+<%= simple_nested_form_for [:manage, @user] do |f| %>
+  <%= f.input :name, readonly: true, input_html: { style: 'height:40px' } %>
+
+  <%= f.fields_for :permissions do |nf| %>
+    <%= nf.label :role %>
+    <%= nf.link_to_remove "Удалить" %>
+    <%= nf.input :role, include_blank: false, label: false %>
+  <% end %>
+
+  <p class="margin-bottom-20">
+    <%= f.link_to_add 'Добавить роль', :permissions %>
+  </p>
+
+  <div>
+    <%= f.submit 'Сохранить', class: 'btn btn-success btn-sm' %>
+    <%= link_to 'Отменить', manage_users_path, class: 'btn btn-default btn-sm' %>
+  </div>
+<% end %>
