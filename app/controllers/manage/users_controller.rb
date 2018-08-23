@@ -1,4 +1,6 @@
 class Manage::UsersController < Manage::ApplicationController
+  authorize_resource
+
   def index
     @users = User.ordered.page(params[:page]).per(params[:per_page])
   end
