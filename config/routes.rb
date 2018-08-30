@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   scope  'ru' do
     scope 'zdravoohranenie-v-tomskoy-oblasti/otraslevoe-razvitie/formirovanie-patsient-orientirovannoy-sistemy-zdravoohraneniya-v-tomskoy-oblasti' do
+      get '/', to: 'declaration_supports#index'
       get '/podderzhat-deklaraciyu/done', to: 'declaration_supports#show',   as: :show_declaration_support
       get '/podderzhat-deklaraciyu',      to: 'declaration_supports#new',    as: :new_declaration_support
       post '/podderzhat-deklaraciyu',     to: 'declaration_supports#create', as: :declaration_supports
@@ -68,7 +69,13 @@ Rails.application.routes.draw do
       put 'change' => 'thanks#change', :on => :member, :as => :change
     end
 
-    resources :declarations, only: [:destroy]
+    resources :declaration_supports, only: [:index, :destroy] do
+      member do
+        get :approve
+        get :unpublish
+      end
+    end
+
     resources :doctors
 
     resources :evaluation_registries do

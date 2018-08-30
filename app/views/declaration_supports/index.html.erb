@@ -1,0 +1,41 @@
+<div class='content declaration-wrapper row'>
+  <div class='col-xs-3'>
+    <div class='subnavigation'>
+      <%= render_partial_for_region(@subnavigation, 'sub') if @subnavigation.present? %>
+      <% if @left_side_links.present? %>
+        <div class='left_side_links'>
+          <%= render_partial_for_region(@left_side_links) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='col-xs-9'>
+    <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
+    <h1 class='page-header <%= header_css_class %>'><%= @content_first.part_title if @content_first.present? %></h1>
+
+    <div class='html-part'>
+      <% if @content_first.present? %>
+        <%= @content_first.content.body.html_safe %>
+      <% end %>
+
+      <% if @declaration_supports.present? %>
+        <hr />
+        <h3><strong>Жители региона, поддержавшие декларацию:</strong>
+          <span class='declaration-supports-counter'>
+            <%= @declaration_supports.count %>
+            <%= image_tag 'declaration_supports_arrow.png' %>
+          </span>
+        </h3>
+
+        <ul>
+          <% @declaration_supports.each do |ds| %>
+            <li>
+              <%= ds.sender_fullname %>, <%= ds.job %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

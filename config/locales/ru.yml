@@ -65,6 +65,8 @@ ru:
 
   recaptcha:
     failure: "Упс! Что-то пошло не так&hellip;"
+    errors:
+      verification_failed: 'Необходимо пройти проверку на робота'
 
   find: "Искать"
 
@@ -215,3 +217,16 @@ ru:
 
       user:
         name: 'Ф.И.О.'
+
+      declaration_support:
+        surname: 'Фамилия'
+        name: 'Имя'
+        patronymic: 'Отчество'
+        job: 'Место работы'
+        agreement: 'Я поддерживаю декларацию о пациент-ориентированном здравоохранении Томской области'
+        email: 'Email'
+
+  helpers:
+    submit:
+      declaration_support:
+        create: 'Дать согласие'

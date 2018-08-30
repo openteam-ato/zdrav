@@ -1,0 +1,33 @@
+<h1>Список лиц, поддержавших декларацию</h1>
+
+<table class='table table-bordered'>
+  <thead>
+    <tr>
+      <th>Отправитель</th>
+      <th>Место работы</th>
+      <th>Email</th>
+      <th>Управление</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @declaration_supports.each do |declaration_support| %>
+      <tr>
+        <td><%= declaration_support.sender_fullname %></td>
+        <td><%= declaration_support.job %></td>
+        <td><%= declaration_support.email %></td>
+        <td>
+          <% if declaration_support.created? || declaration_support.unpublished? %>
+            <%= link_to 'Опубликовать', polymorphic_path([:approve, :manage, declaration_support]), class: 'btn btn-success' %>
+          <% else %>
+            <%= link_to 'Снять с публикации', polymorphic_path([:unpublish, :manage, declaration_support]), class: 'btn btn-warning' %>
+          <% end %>
+
+          <%= link_to "Удалить",  manage_declaration_support_path(declaration_support),
+                                  method: :delete,
+                                  data: { confirm: 'Вы уверены?' },
+                                  class: 'btn btn-danger pull-right' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
