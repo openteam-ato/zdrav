@@ -1,5 +1,5 @@
 class DeclarationSupportsMailer < ActionMailer::Base
-  default from: Settings['mail.declaration.sender']
+  default from: Settings['mail.declaration_supports.sender']
 
   def new_declaration_support_email(declaration_support)
     @declaration_support = declaration_support
