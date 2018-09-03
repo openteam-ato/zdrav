@@ -32,7 +32,7 @@
           <% @declaration_supports.each do |ds| %>
             <li>
               <span class='font-size-14'><%= ds.sender_fullname %></span> <br />
-              <span class='text-color-gray'><%= ds.job %></span>
+              <span class='text-color-gray'><%= ds.job || ds.regional_institution_job.presence %></span>
             </li>
           <% end %>
         </ul>

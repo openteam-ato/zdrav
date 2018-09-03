@@ -46,6 +46,6 @@ class DeclarationSupportsController < MainController
   private
 
   def declaration_support_params
-    params.require(:declaration_support).permit(:name, :surname, :patronymic, :job, :email, :agreement)
+    params.require(:declaration_support).permit(:name, :surname, :patronymic, :job, :email, :agreement, :regional_institution_job)
   end
 end

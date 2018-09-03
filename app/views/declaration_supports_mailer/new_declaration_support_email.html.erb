@@ -6,9 +6,9 @@
   <body>
     <h3><%= @declaration_support.sender_fullname %> выступил(а) в поддержку декларации о пациент-ориентированном здравоохранении Томской области.</h3>
 
-    <% if @declaration_support.job.present? %>
+    <% if @declaration_support.job.present? || @declaration_support.regional_institution_job.present? %>
       <p>
-        <strong>Место работы:</strong> <%= @declaration_support.job %>
+        <strong>Место работы:</strong> <%= @declaration_support.job.presence || @declaration_support.regional_institution_job.presence %>
       </p>
     <% end %>
 

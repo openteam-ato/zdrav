@@ -16,7 +16,8 @@
       <%= f.input :surname %>
       <%= f.input :name %>
       <%= f.input :patronymic %>
-      <%= f.input :job, collection: @regional_institutions, as: :grouped_select, group_method: :last %>
+      <%= f.input :job %>
+      <%= f.input :regional_institution_job, collection: @regional_institutions, as: :grouped_select, group_method: :last %>
       <%= f.input :email %>
       <%= f.input :agreement %>
       <%= recaptcha_tags %>

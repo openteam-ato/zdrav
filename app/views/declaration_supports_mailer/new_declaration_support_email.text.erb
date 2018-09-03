@@ -1,7 +1,7 @@
 <%= @declaration_support.sender_fullname %> выступил(а) в поддержку декларации о пациент-ориентированном здравоохранении Томской области.
 
-<% if @declaration_support.job.present? %>
-  Место работы: <%= @declaration_support.job %>
+<% if @declaration_support.job.present? || @declaration_support.regional_institution_job.present? %>
+  Место работы: <%= @declaration_support.job.presence || @declaration_support.regional_institution_job.presence %>
 <% end %>
 
 <% if @declaration_support.email.present? %>

@@ -14,7 +14,7 @@
       <% @declaration_supports.each do |declaration_support| %>
         <tr>
           <td><%= declaration_support.sender_fullname %></td>
-          <td><%= declaration_support.job %></td>
+          <td><%= declaration_support.job.presence || declaration_support.regional_institution_job.presence %></td>
           <td><%= declaration_support.email %></td>
           <td>
             <% if declaration_support.created? || declaration_support.unpublished? %>

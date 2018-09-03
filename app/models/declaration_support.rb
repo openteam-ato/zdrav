@@ -1,7 +1,7 @@
 class DeclarationSupport < ActiveRecord::Base
   include AASM
 
-  validates :name, :surname, :agreement, :job, presence: true
+  validates :name, :surname, :agreement, presence: true
   validates :email, presence: true, email_format: true
 
   default_scope { order('created_at DESC') }
