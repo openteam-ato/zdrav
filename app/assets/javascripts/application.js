@@ -13,6 +13,7 @@
  * = require moment
  * = require moment/ru
  * = require cecutient
+ * = require cute_counter
  * = require social-likes
  * = require sugar
  * = require jquery.inputmask

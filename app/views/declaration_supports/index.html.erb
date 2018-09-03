@@ -21,12 +21,8 @@
 
       <% if @declaration_supports.present? %>
         <hr />
-        <h3><strong>Жители региона, поддержавшие декларацию:</strong>
-          <span class='declaration-supports-counter'>
-            <%= @declaration_supports.count %>
-            <%= image_tag 'declaration_supports_arrow.png' %>
-          </span>
-        </h3>
+        <span class='js-cute-counter-data' data-count="<%= declaration_support_dynamic_counter(@declaration_supports.count) %>"></span>
+        <h3><strong>Жители региона, поддержавшие декларацию:</strong></h3>
 
         <ul class='margin-top-20'>
           <% @declaration_supports.each do |ds| %>

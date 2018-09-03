@@ -1,0 +1,57 @@
+.cute-counter
+  display: inline-block
+  padding-top: 15px
+  position: relative
+  margin: 0
+  top: 27px
+  min-width: 180px
+  left: 40px
+
+  &:before
+    content: 'Декларацию поддержали'
+    color: #d10506
+    position: absolute
+    top: -10px
+
+  .cute-counter-number
+    display: inline-block
+    position: relative
+    color: #373737
+    font-size: 55px
+    text-align: center
+    line-height: 60px
+    border: 2px solid #747474
+    background-image: linear-gradient(#d9d9d9, #fff, #d9d9d9)
+    width: 45px
+    height: 65px
+    margin-right: 10px
+    margin-left: 1px
+    +border-radius(3px)
+
+    &:last-child
+      margin-right: 0
+
+    &:before
+      position: absolute
+      content: ''
+      background-color: #747474
+      height: 1px
+      width: 100%
+      margin: auto auto
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+
+    &:after
+      position: absolute
+      content: ''
+      border-left: 2px solid #747474
+      border-right: 2px solid #747474
+      height: 15px
+      width: 100%
+      margin: auto auto
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
