@@ -28,10 +28,11 @@
           </span>
         </h3>
 
-        <ul>
+        <ul class='margin-top-20'>
           <% @declaration_supports.each do |ds| %>
             <li>
-              <%= ds.sender_fullname %>, <%= ds.job %>
+              <span class='font-size-14'><%= ds.sender_fullname %></span> <br />
+              <span class='text-color-gray'><%= ds.job %></span>
             </li>
           <% end %>
         </ul>

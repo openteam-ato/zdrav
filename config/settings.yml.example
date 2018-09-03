@@ -58,3 +58,7 @@ mail:
   video_message:
     sender:     sender@mail
     recipient:  recipient@mail
+
+  declaration_supports:
+    sender:     sender@mail
+    recipient:  recipient@mail
