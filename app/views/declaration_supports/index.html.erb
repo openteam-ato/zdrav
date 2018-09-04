@@ -22,13 +22,12 @@
       <% if @declaration_supports.present? %>
         <hr />
         <span class='js-cute-counter-data' data-count="<%= declaration_support_dynamic_counter(@declaration_supports.count) %>"></span>
-        <h3><strong>Жители региона, поддержавшие декларацию:</strong></h3>
+        <h3><strong>Декларацию поддержали:</strong></h3>
 
         <ul class='margin-top-20'>
           <% @declaration_supports.each do |ds| %>
             <li>
-              <span class='font-size-14'><%= ds.sender_fullname %></span> <br />
-              <span class='text-color-gray'><%= ds.job || ds.regional_institution_job.presence %></span>
+              <span class='font-size-14'><%= ds.job || ds.regional_institution_job.presence %></span>
             </li>
           <% end %>
         </ul>
