@@ -129,8 +129,18 @@ ru:
           attributes:
             email:
               invalid_email_address: "Указан неверный формат email адреса"
+        claim:
+          attributes:
+            email:
+              invalid_email_address: "Указан неверный формат email адреса"
 
     attributes:
+      claim:
+        name: 'Имя'
+        surname: 'Фамилия'
+        patronymic: 'Отчество'
+        email: 'Электронная почта'
+
       doctor:
         name: "Ф.И.О."
         post: "Должность"

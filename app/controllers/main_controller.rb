@@ -50,6 +50,7 @@ class MainController < ApplicationController
       '/ru/dlya-naseleniya/otslezhivanie-ocheredi-eko',
       '/ru/dlya-naseleniya/obrascheniya-grazhdan/videoobrascheniya-v-departament/otpravit-videoobraschenie-v-departament',
       '/ru/dlya-naseleniya/obrascheniya-grazhdan/videoobrascheniya-v-departament/spisok-videoobrascheniy',
+      '/ru/departament/ruk_zdrav/podtverjdenie_emaila',
       '/ru/departament/ruk_zdrav/novaya_zayavka'
     ].each do |path|
       request_path = path if original_request_path.match(/\A#{path}.*/)

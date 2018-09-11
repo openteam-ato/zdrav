@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     end
 
     get 'departament/ruk_zdrav/novaya_zayavka', to: 'claims#new', as: :new_claim
+    post 'departament/ruk_zdrav/novaya_zayavka', to: 'claims#create', as: :claims
+    get 'departament/ruk_zdrav/podtverjdenie_emaila', to: 'claims#confirmation', as: :confirmation_claim
 
     get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                      => 'thanks#index',   :as => :thanks
     get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov/ostavit-blagodarnost' => 'thanks#new',     :as => :new_thank
