@@ -30,6 +30,8 @@ Rails.application.routes.draw do
       post '/podderzhat-deklaraciyu',     to: 'declaration_supports#create', as: :declaration_supports
     end
 
+    get 'departament/ruk_zdrav/novaya_zayavka', to: 'claims#new', as: :new_claim
+
     get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                      => 'thanks#index',   :as => :thanks
     get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov/ostavit-blagodarnost' => 'thanks#new',     :as => :new_thank
     post 'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                      => 'thanks#create',  :as => :create_thank

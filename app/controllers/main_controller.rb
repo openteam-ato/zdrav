@@ -49,7 +49,8 @@ class MainController < ApplicationController
       '/ru/anketa-samodiagnostiki-serdechno-sosudistyh-zabolevaniy',
       '/ru/dlya-naseleniya/otslezhivanie-ocheredi-eko',
       '/ru/dlya-naseleniya/obrascheniya-grazhdan/videoobrascheniya-v-departament/otpravit-videoobraschenie-v-departament',
-      '/ru/dlya-naseleniya/obrascheniya-grazhdan/videoobrascheniya-v-departament/spisok-videoobrascheniy'
+      '/ru/dlya-naseleniya/obrascheniya-grazhdan/videoobrascheniya-v-departament/spisok-videoobrascheniy',
+      '/ru/departament/ruk_zdrav/novaya_zayavka'
     ].each do |path|
       request_path = path if original_request_path.match(/\A#{path}.*/)
     end
