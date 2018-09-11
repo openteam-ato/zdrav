@@ -27,7 +27,7 @@
         <ul class='margin-top-20'>
           <% @declaration_supports.each do |ds| %>
             <li>
-              <span class='font-size-14'><%= ds.job || ds.regional_institution_job.presence %></span>
+              <span class='font-size-14'><%= ds.job.presence || ds.regional_institution_job.presence %></span>
             </li>
           <% end %>
         </ul>
