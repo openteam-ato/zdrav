@@ -15,15 +15,15 @@ class Claim < ActiveRecord::Base
     state :approved
     state :rejected
 
-    event :confirme, after: [:send_new_claim_email, :update_confirmed_at] do
+    event :confirme, after: [:send_mail, :update_confirmed_at] do
       transitions from: :pending, to: :draft
     end
 
-    event :approve do
+    event :approve, after: :send_mail do
       transitions from: :draft, to: :approved
     end
 
-    event :reject do
+    event :reject, after: :send_mail do
       transitions from: :draft, to: :rejected
     end
   end
@@ -37,14 +37,20 @@ class Claim < ActiveRecord::Base
     self.confirmation_sent_at = Time.zone.now
 
     ClaimsMailer.delay(retry: false)
-                .confirmation_claim_email(self.confirmation_token, self.email)
+                .confirmation_email(self.confirmation_token, self.email)
   end
 
   private
 
-  def send_new_claim_email
-    ClaimsMailer.delay(retry: false)
-                .new_claim_email(self.id)
+  def send_mail
+    case state
+    when 'draft'
+      ClaimsMailer.delay(retry: false).new_email(self.id)
+    when 'approved'
+      ClaimsMailer.delay(retry: false).approve_email(self.email)
+    when 'rejected'
+      ClaimsMailer.delay(retry: false).reject_email(self.email)
+    end
   end
 
   def update_confirmed_at
