@@ -82,7 +82,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :claims, only: :index do
+    resources :claims, only: [:index, :destroy] do
       member do
         post :approve
         post :reject
