@@ -16,7 +16,7 @@ class ClaimsController < MainController
 
   def confirmation
     @claim = Claim.find_by confirmation_token: params[:confirmation_token]
-    @claim.confirmed! if @claim
+    @claim.confirme! if @claim
   end
 
   def another_confirmation_email; end

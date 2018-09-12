@@ -15,8 +15,16 @@ class Claim < ActiveRecord::Base
     state :approved
     state :rejected
 
-    event :confirmed, after: :send_new_claim_email do
+    event :confirme, after: [:send_new_claim_email, :update_confirmed_at] do
       transitions from: :pending, to: :draft
+    end
+
+    event :approve do
+      transitions from: :draft, to: :approved
+    end
+
+    event :reject do
+      transitions from: :draft, to: :rejected
     end
   end
 
@@ -37,5 +45,10 @@ class Claim < ActiveRecord::Base
   def send_new_claim_email
     ClaimsMailer.delay(retry: false)
                 .new_claim_email(self.id)
+  end
+
+  def update_confirmed_at
+    self.confirmed_at = Time.zone.now
+    save
   end
 end

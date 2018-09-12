@@ -82,6 +82,13 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :claims, only: :index do
+      member do
+        post :approve
+        post :reject
+      end
+    end
+
     resources :doctors
 
     resources :evaluation_registries do

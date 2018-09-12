@@ -1,0 +1,50 @@
+  <h1>
+    Список поданных заявок
+  </h1>
+
+  <table class='table table-bordered'>
+    <thead>
+      <tr>
+        <th>Ф.И.О.</th>
+        <th>Email</th>
+        <th>Дата подтверждения</th>
+        <th>Управление</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @claims.each do |claim| %>
+        <tr>
+          <td><%= claim.fullname %></td>
+          <td><%= claim.email %></td>
+          <td>
+            <%= I18n.l claim.confirmed_at, format: :long if claim.confirmed_at %>
+          </td>
+          <td>
+            <% case claim.state %>
+            <% when 'draft' %>
+              <%= link_to 'Подтвердить',
+                          polymorphic_path([:approve, :manage, claim]),
+                          class: 'btn btn-success',
+                          method: :post %>
+              <%= link_to 'Отклонить',
+                          polymorphic_path([:reject, :manage, claim]),
+                          class: 'btn btn-warning',
+                          method: :post,
+                          data: { confirm: 'Вы уверены, что хотите отклонить заявку?' } %>
+
+            <% when 'pending' %>
+              Ожидает подтверждения email
+            <% when 'approved' %>
+              <span class="label label-success">
+                Заявка подтверждена
+              </span>
+            <% when 'rejected' %>
+              <span class="label label-default">
+                Заявка отклонена
+              </span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
