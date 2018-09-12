@@ -17,5 +17,8 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :users, 'Пользователи', manage_users_path,
       highlights_on: /\A\/manage\/users/ if current_user.admin?
+
+    primary.item :claims, 'Заявки', manage_claims_path,
+      highlights_on: /\A\/manage\/claims/ if current_user.admin?
   end
 end
