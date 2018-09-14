@@ -21,6 +21,7 @@ class ClaimsMailer < ActionMailer::Base
   def approve_email(email, authorize_token)
     @token = authorize_token
     @email = email
+    @test_url = authorize_entry_test_url
 
     mail to: @email,
          subject: 'Ваша заявка одобрена'

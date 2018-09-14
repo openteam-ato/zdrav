@@ -140,6 +140,7 @@ ru:
         surname: 'Фамилия'
         patronymic: 'Отчество'
         email: 'Электронная почта'
+        authorize_token: 'Пароль'
 
       doctor:
         name: "Ф.И.О."
