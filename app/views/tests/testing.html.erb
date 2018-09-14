@@ -1,1 +1,12 @@
-ola
+<%= simple_form_for :test, url: '' do |f| %>
+  <% @questions.each_with_index do |question, index| %>
+    <%= f.input "question_#{index}",
+                collection: question['answers'].map.with_index{ |q, i| [q, i] },
+                as: :radio_buttons,
+                label: "#{index + 1}) #{question['text']}",
+                item_wrapper_tag: :div %>
+  <% end %>
+
+  <%= link_to 'Сохранить результат', '' %>
+  <%= f.submit 'Закончить тестирование', class: 'btn btn-success' %>
+<% end %>

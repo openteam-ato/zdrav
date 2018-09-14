@@ -11,7 +11,8 @@ class TestsController < MainController
       render 'authorize_entry'
     end
 
-
+    file = YAML.load_file('data/tests/personal_control.yml')
+    @questions = file['questions']
   end
 
   private
