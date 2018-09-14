@@ -18,8 +18,11 @@ class ClaimsMailer < ActionMailer::Base
          subject: 'Ваша заявка отклонена'
   end
 
-  def approve_email(email)
-    mail to: email,
+  def approve_email(email, authorize_token)
+    @token = authorize_token
+    @email = email
+
+    mail to: @email,
          subject: 'Ваша заявка одобрена'
   end
 end

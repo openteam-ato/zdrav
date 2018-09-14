@@ -34,6 +34,7 @@ class Claim < ActiveRecord::Base
 
   def confirmation
     self.confirmation_token = SecureRandom.hex
+    self.authorize_token = SecureRandom.hex(6)
     self.confirmation_sent_at = Time.zone.now
 
     ClaimsMailer.delay(retry: false)
@@ -47,7 +48,7 @@ class Claim < ActiveRecord::Base
     when 'draft'
       ClaimsMailer.delay(retry: false).new_email(self.id)
     when 'approved'
-      ClaimsMailer.delay(retry: false).approve_email(self.email)
+      ClaimsMailer.delay(retry: false).approve_email(self.email, self.authorize_token)
     when 'rejected'
       ClaimsMailer.delay(retry: false).reject_email(self.email)
     end
