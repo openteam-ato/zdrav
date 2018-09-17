@@ -77,7 +77,7 @@ Rails.application.routes.draw do
       put 'change' => 'thanks#change', :on => :member, :as => :change
     end
 
-    resources :declaration_supports, only: [:index, :destroy] do
+    resources :declaration_supports, only: [:index, :destroy, :edit, :update] do
       member do
         get :approve
         get :unpublish

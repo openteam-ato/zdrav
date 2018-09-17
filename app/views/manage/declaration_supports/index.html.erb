@@ -23,6 +23,7 @@
               <%= link_to 'Снять с публикации', polymorphic_path([:unpublish, :manage, declaration_support]), class: 'btn btn-warning' %>
             <% end %>
 
+            <%= link_to 'Редактировать', edit_manage_declaration_support_path(declaration_support), class: 'btn btn-primary' %>
             <%= link_to "Удалить",  manage_declaration_support_path(declaration_support),
                                     method: :delete,
                                     data: { confirm: 'Вы уверены?' },
