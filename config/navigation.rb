@@ -1,5 +1,8 @@
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
+    primary.item :declaration_supports, 'Поддержка декларации', manage_declaration_supports_path,
+      highlights_on: /\A\/manage(\z|\/declaration_supports)/ if current_user.manager? || current_user.admin?
+
     primary.item :thanks, 'Благодарности пациентов', manage_thanks_path,
       highlights_on: /\A\/manage(\z|\/thanks)/ if current_user.manager? || current_user.admin?
 
