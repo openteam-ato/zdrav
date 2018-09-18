@@ -1,24 +1,32 @@
-<% if flash[:alert].present? %>
-  <p class='text-danger'><%= flash[:alert] %></p>
-<% end %>
+<div class='content row'>
+  <div class="row">
+    <%= render partial: 'subnavigation' %>
 
-<%= simple_form_for :test, url: finish_test_path do |f| %>
-  <% @questions.each_with_index do |question, index| %>
-    <%= f.input "questions[#{index}]",
-                collection: question['answers'].map.with_index{ |q, i| [q, i] },
-                as: :radio_buttons,
-                label: "#{index + 1}) #{question['text']}",
-                item_wrapper_tag: :div,
-                required: false,
-                checked: @claim.test_result.answers["#{index}"] %>
-  <% end %>
+    <div class="col-xs-8">
+      <% if flash[:alert].present? %>
+        <p class='text-danger'><%= flash[:alert] %></p>
+      <% end %>
 
-  <%= f.input :claim_id, input_html: { value: @claim.id }, as: :hidden %>
-  <%= f.input :test_result_id, input_html: { value: @claim.test_result.id }, as: :hidden %>
+      <%= simple_form_for :test, url: finish_test_path do |f| %>
+        <% @questions.each_with_index do |question, index| %>
+          <%= f.input "questions[#{index}]",
+                      collection: question['answers'].map.with_index{ |q, i| [q, i] },
+                      as: :radio_buttons,
+                      label: "#{index + 1}) #{question['text']}",
+                      item_wrapper_tag: :div,
+                      required: false,
+                      checked: @claim.test_result.answers["#{index}"] %>
+        <% end %>
 
-  <%= f.submit 'Сохранить результат',
-                formaction: update_test_path,
-                class: 'btn btn-primary',
-                method: :post %>
-  <%= f.submit 'Закончить тестирование', class: 'btn btn-success' %>
-<% end %>
+        <%= f.input :claim_id, input_html: { value: @claim.id }, as: :hidden %>
+        <%= f.input :test_result_id, input_html: { value: @claim.test_result.id }, as: :hidden %>
+
+        <%= f.submit 'Сохранить результат',
+                      formaction: update_test_path,
+                      class: 'btn btn-primary',
+                      method: :post %>
+        <%= f.submit 'Закончить тестирование', class: 'btn btn-success' %>
+      <% end %>
+    </div>
+  </div>
+</div>
