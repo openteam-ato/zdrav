@@ -1,27 +1,31 @@
-<div class="row">
-  <div class="col-xs-12">
-    <h1><%= @page.title %></h1>
+<div class='content row'>
+  <div class="row">
+    <%= render partial: 'subnavigation' %>
+
+    <div class="col-xs-6">
+      <h1><%= @page.title %></h1>
+    </div>
+
+    <div class='col-xs-6 margin-top-20'>
+      <% if @claim.errors.present? %>
+        <div class="alert alert-danger">
+          <ul>
+            <% @claim.errors.full_messages.each do |error_message| %>
+              <li>
+                <%= error_message if @claim.errors.full_messages.first == error_message %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= simple_form_for @claim, url: send_another_confirmation_claim_path, method: :post do |f| %>
+        <%= f.input :email %>
+
+        <%= recaptcha_tags %>
+
+        <%= f.submit 'Подтвердить заявку', class: 'btn btn-success' %>
+      <% end %>
+    </div>
   </div>
-
-  <div class='col-xs-6 margin-top-20'>
-    <% if @claim.errors.present? %>
-      <div class="alert alert-danger">
-        <ul>
-          <% @claim.errors.full_messages.each do |error_message| %>
-            <li>
-              <%= error_message if @claim.errors.full_messages.first == error_message %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <%= simple_form_for @claim, url: send_another_confirmation_claim_path, method: :post do |f| %>
-      <%= f.input :email %>
-
-      <%= recaptcha_tags %>
-
-      <%= f.submit 'Подтвердить заявку', class: 'btn btn-success' %>
-    <% end %>
-  </div>
-</div>
+/div>

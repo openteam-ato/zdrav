@@ -1,7 +1,15 @@
-<% if @claim %>
-  Ваша заявка успешно зарегистрирована! Чтобы добавить новую заявку перейдите
-  <%= link_to 'по ссылке.', new_claim_path %>
-<% else %>
-  Не удалось подтвердить вашу заявку, чтобы выслать повторное письмо нажмите
-  <%= link_to 'здесь.', another_confirmation_claim_path %>
-<% end %>
+<div class='content row'>
+  <div class="row">
+    <%= render partial: 'subnavigation' %>
+
+    <div class="col-xs-6">
+      <% if @claim %>
+        Ваша заявка успешно зарегистрирована! Чтобы добавить новую заявку перейдите
+        <%= link_to 'по ссылке.', new_claim_path %>
+      <% else %>
+        Не удалось подтвердить вашу заявку, чтобы выслать повторное письмо нажмите
+        <%= link_to 'здесь.', another_confirmation_claim_path %>
+      <% end %>
+    </div>
+  </div>
+</div>
