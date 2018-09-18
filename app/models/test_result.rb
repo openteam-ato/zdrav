@@ -1,6 +1,8 @@
 class TestResult < ActiveRecord::Base
   belongs_to :claim
 
+  serialize :answers, Hash
+
   before_save :check_right_answers
 
   def check_right_answers

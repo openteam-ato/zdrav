@@ -166,7 +166,7 @@ ActiveRecord::Schema.define(version: 20180918051200) do
 
   create_table "test_results", force: :cascade do |t|
     t.integer  "right_answers"
-    t.jsonb    "answers"
+    t.text     "answers"
     t.integer  "claim_id"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
