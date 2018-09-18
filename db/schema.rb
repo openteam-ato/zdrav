@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180914030135) do
+ActiveRecord::Schema.define(version: 20180918022349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,6 +164,16 @@ ActiveRecord::Schema.define(version: 20180914030135) do
 
   add_index "permissions", ["user_id", "role", "context_id", "context_type"], name: "by_user_and_role_and_context", unique: true, using: :btree
 
+  create_table "test_results", force: :cascade do |t|
+    t.integer  "right_answers"
+    t.jsonb    "answers"
+    t.integer  "claim_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "test_results", ["claim_id"], name: "index_test_results_on_claim_id", using: :btree
+
   create_table "thanks", force: :cascade do |t|
     t.string   "fullname",     limit: 255
     t.string   "email",        limit: 255
@@ -256,4 +266,5 @@ ActiveRecord::Schema.define(version: 20180914030135) do
     t.datetime "published_at"
   end
 
+  add_foreign_key "test_results", "claims"
 end

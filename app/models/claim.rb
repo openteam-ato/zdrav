@@ -7,6 +7,8 @@ class Claim < ActiveRecord::Base
 
   default_scope { order('created_at DESC') }
 
+  has_one :test_result
+
   before_create :confirmation
 
   aasm :state, whiny_transitions: false do
@@ -19,7 +21,7 @@ class Claim < ActiveRecord::Base
       transitions from: :pending, to: :draft
     end
 
-    event :approve, after: :send_mail do
+    event :approve, after: [:send_mail, :create_test_result] do
       transitions from: :draft, to: :approved
     end
 

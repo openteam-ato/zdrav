@@ -5,7 +5,7 @@
   Чтобы начать тестирование используйте данные из письма:
 </h4>
 
-<%= simple_form_for :claim, url: test_path, method: :get do |f| %>
+<%= simple_form_for :claim, url: edit_test_path, method: :get do |f| %>
   <%= f.input :email, label: I18n.t('activerecord.attributes.claim.email') %>
   <%= f.input :authorize_token,
               label: I18n.t('activerecord.attributes.claim.authorize_token'),

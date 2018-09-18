@@ -36,7 +36,8 @@ Rails.application.routes.draw do
     get 'departament/ruk_zdrav/povtornoe_podtverjdenie_emaila', to: 'claims#another_confirmation_email', as: :another_confirmation_claim
     post 'departament/ruk_zdrav/povtornoe_podtverjdenie_emaila', to: 'claims#send_another_confirmation_email', as: :send_another_confirmation_claim
     get 'departament/ruk_zdrav/test_vhod', to: 'tests#authorize_entry', as: :authorize_entry_test
-    get 'departament/ruk_zdrav/test', to: 'tests#testing', as: :test
+    get 'departament/ruk_zdrav/test', to: 'tests#edit', as: :edit_test
+    post 'departament/ruk_zdrav/test', to: 'tests#update', as: :update_test
 
     get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                      => 'thanks#index',   :as => :thanks
     get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov/ostavit-blagodarnost' => 'thanks#new',     :as => :new_thank
