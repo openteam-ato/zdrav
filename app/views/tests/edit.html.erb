@@ -1,4 +1,8 @@
-<%= simple_form_for :test, url: '' do |f| %>
+<% if flash[:alert].present? %>
+  <p class='text-danger'><%= flash[:alert] %></p>
+<% end %>
+
+<%= simple_form_for :test, url: finish_test_path do |f| %>
   <% @questions.each_with_index do |question, index| %>
     <%= f.input "questions[#{index}]",
                 collection: question['answers'].map.with_index{ |q, i| [q, i] },

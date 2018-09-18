@@ -1,6 +1,7 @@
 class TestsController < MainController
   before_action :prepare_cms
-  before_action :set_questions, only: [:edit, :update]
+  before_action :set_questions, only: [:edit, :update, :finish]
+  before_action :set_test_results, only: [:update, :finish]
 
   def authorize_entry; end
 
@@ -14,14 +15,25 @@ class TestsController < MainController
   end
 
   def update
-    @claim = Claim.find_by id: params[:test][:claim_id]
-    test_result = TestResult.find_by id: params[:test][:test_result_id]
-    answers = params[:test][:questions]
+    @test_result.update answers: params[:test][:questions]
 
-    if test_result.update(answers: answers)
-      flash[:success] = 'Результаты успешно сохранены'
+    render 'edit'
+  end
+
+  def finish
+    answers = params[:test][:questions]
+    @test_result.update answers: answers
+
+    question_without_answer = @questions.map.with_index do |question, index|
+      index + 1 unless answers["#{index}"]
+    end.compact
+
+    if question_without_answer.present?
+      flash[:alert] = "Вы не ответили на вопросы под номерами: #{question_without_answer.join(', ')}"
     else
-      flash[:alert] = 'Ошибка сохранения, попробуйте сохранить результат еще раз.'
+      @test_result.update_attribute(:finished, true)
+
+      ClaimsMailer.delay(retry: false).test_results_email(@claim.email, @test_result.right_answers, @questions.count)
     end
 
     render 'edit'
@@ -36,5 +48,10 @@ class TestsController < MainController
   def set_questions
     file = YAML.load_file('data/tests/personal_control.yml')
     @questions = file['questions']
+  end
+
+  def set_test_results
+    @claim = Claim.find_by id: params[:test][:claim_id]
+    @test_result = TestResult.find_by id: params[:test][:test_result_id]
   end
 end

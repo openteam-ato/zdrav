@@ -26,4 +26,12 @@ class ClaimsMailer < ActionMailer::Base
     mail to: @email,
          subject: 'Ваша заявка одобрена'
   end
+
+  def test_results_email(email, test_results, questions_count)
+    @test_results = test_results
+    @questions_count = questions_count
+
+    mail to: email,
+         subject: 'Результаты тестирования'
+  end
 end

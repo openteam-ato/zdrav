@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     get 'departament/ruk_zdrav/test_vhod', to: 'tests#authorize_entry', as: :authorize_entry_test
     get 'departament/ruk_zdrav/test', to: 'tests#edit', as: :edit_test
     post 'departament/ruk_zdrav/test', to: 'tests#update', as: :update_test
+    post 'departament/ruk_zdrav/test/finish', to: 'tests#finish', as: :finish_test
 
     get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov'                      => 'thanks#index',   :as => :thanks
     get  'dlya-naseleniya/obrascheniya-grazhdan/blagodarnosti-patsientov/ostavit-blagodarnost' => 'thanks#new',     :as => :new_thank
