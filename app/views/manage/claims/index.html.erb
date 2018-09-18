@@ -31,10 +31,6 @@
                           class: 'btn btn-warning',
                           method: :post,
                           data: { confirm: 'Вы уверены, что хотите отклонить заявку?' } %>
-            <%= link_to "Удалить",  manage_claim_path(claim),
-                                    method: :delete,
-                                    data: { confirm: 'Вы уверены?' },
-                                    class: 'btn btn-danger pull-right' %>
 
             <% when 'pending' %>
               Ожидает подтверждения email
@@ -47,6 +43,11 @@
                 Заявка отклонена
               </span>
             <% end %>
+
+            <%= link_to "Удалить",  manage_claim_path(claim),
+                                    method: :delete,
+                                    data: { confirm: 'Вы уверены?' },
+                                    class: 'btn btn-danger pull-right' %>
           </td>
         </tr>
       <% end %>
