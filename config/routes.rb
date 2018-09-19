@@ -90,6 +90,8 @@ Rails.application.routes.draw do
       member do
         post :approve
         post :reject
+        post :send_confirmation_email
+        post :send_accept_email
       end
     end
 
