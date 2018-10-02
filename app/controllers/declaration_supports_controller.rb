@@ -6,25 +6,6 @@ class DeclarationSupportsController < MainController
   end
 
   def new
-    url = "#{Settings['cms.url']}/nodes/zdrav/ru/oblastnye-uchrezhdeniya.json"
-
-    @regional_institutions ||= RestClient.get(url, :content_type => :json, :accept => :json) do |response, request, result|
-      begin
-        result = JSON.load(response)['page']['regions']['content_first']['content']['oblastnye-uchrezhdeniya']['children']
-        result_hash = {}
-
-        result.each do |key, value|
-          result_hash[value['title']] = value['children'].map do |sub_key, sub_value|
-            sub_value['title']
-          end
-        end
-
-        result_hash.to_a
-      rescue
-        []
-      end
-    end
-
     @declaration_support = DeclarationSupport.new
   end
 
