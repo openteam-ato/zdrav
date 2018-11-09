@@ -6,6 +6,7 @@ class TestsController < MainController
   def authorize_entry; end
 
   def edit
+    params['claim']['email'] = params['claim']['email'].squish.downcase
     @claim = Claim.find_by claim_params
 
     unless @claim

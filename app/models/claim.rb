@@ -10,6 +10,7 @@ class Claim < ActiveRecord::Base
   has_one :test_result
 
   before_create :confirmation
+  before_validation :downcase_email
 
   aasm :state, whiny_transitions: false do
     state :pending, initial: true
@@ -44,6 +45,10 @@ class Claim < ActiveRecord::Base
   end
 
   private
+
+  def downcase_email
+    self.email = self.email.squish.downcase
+  end
 
   def send_mail
     case state
