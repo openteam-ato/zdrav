@@ -9,6 +9,7 @@
 
       <%= simple_form_for :test, url: finish_test_path do |f| %>
         <% @questions.each_with_index do |question, index| %>
+          <%= f.label question['subtitle'] if question['subtitle'] %>
           <%= f.input "questions[#{index}]",
                       collection: question['answers'].map.with_index{ |q, i| [q, i] },
                       as: :radio_buttons,
@@ -25,7 +26,7 @@
                       formaction: update_test_path,
                       class: 'btn btn-primary',
                       method: :post %>
-        <%= f.submit 'Закончить тестирование', class: 'btn btn-success' %>
+        <%= f.submit 'Закончить тестирование', class: 'btn btn-success' unless @claim.test_result.finished %>
       <% end %>
     </div>
   </div>

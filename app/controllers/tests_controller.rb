@@ -17,6 +17,7 @@ class TestsController < MainController
 
   def update
     @test_result.update answers: params[:test][:questions]
+    flash[:alert] = 'Результаты теста успешно сохранены'
 
     render 'edit'
   end
@@ -47,7 +48,7 @@ class TestsController < MainController
   end
 
   def set_questions
-    file = YAML.load_file('data/tests/personal_control.yml')
+    file = YAML.load_file('data/tests/personal_control_full.yml')
     @questions = file['questions']
   end
 
