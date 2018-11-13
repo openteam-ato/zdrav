@@ -7,7 +7,7 @@ class Claim < ActiveRecord::Base
 
   default_scope { order('created_at DESC') }
 
-  has_one :test_result
+  has_one :test_result, dependent: :destroy
 
   before_create :confirmation
   before_validation :downcase_email
