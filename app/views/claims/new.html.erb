@@ -24,6 +24,7 @@
         <%= f.input :surname %>
         <%= f.input :patronymic %>
         <%= f.input :email %>
+        <%= f.input :regional_institution_job, collection: DeclarationSupport.regional_institutions, as: :grouped_select, group_method: :last %>
 
         <%= recaptcha_tags %>
 

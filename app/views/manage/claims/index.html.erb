@@ -6,30 +6,44 @@
     <thead>
       <tr>
         <th>Ф.И.О.</th>
+        <th style="width: 25%">Место работы</th>
         <th>Email</th>
-        <th>Дата подтверждения</th>
         <th>Результат теста</th>
-        <th>Управление</th>
+        <th style="width: 30%">Управление</th>
       </tr>
     </thead>
     <tbody>
       <% @claims.each do |claim| %>
         <tr>
-          <td><%= claim.fullname %></td>
-          <td><%= claim.email %></td>
           <td>
-            <%= I18n.l claim.confirmed_at, format: :long if claim.confirmed_at %>
-
-            <% case claim.state %>
-            <% when 'pending' %>
-              <%= link_to 'переотправить письмо',
-                          send_confirmation_email_manage_claim_path(claim.id),
-                          method: :post %>
-            <% when 'approved' %>
-              <%= link_to 'переотправить письмо',
-                          send_accept_email_manage_claim_path(claim.id),
-                          method: :post %>
-            <% end %>
+            <%= claim.fullname %>
+            <p>
+              <% if claim.confirmed_at %>
+                (
+                  <%= I18n.l claim.confirmed_at, format: :long %>
+                )
+              <% end %>
+            </p>
+          </td>
+          <td><%= claim.regional_institution_job || 'Не указано' %></td>
+          <td>
+            <p>
+              <%= mail_to claim.email %>
+            </p>
+            <p>
+              <% case claim.state %>
+              <% when 'pending' %>
+                <%= link_to 'переотправить',
+                            send_confirmation_email_manage_claim_path(claim.id),
+                            class: 'btn btn-primary',
+                            method: :post %>
+              <% when 'approved' %>
+                <%= link_to 'переотправить',
+                            send_accept_email_manage_claim_path(claim.id),
+                            class: 'btn btn-primary',
+                            method: :post %>
+              <% end %>
+            </p>
           </td>
           <td>
             <% if claim.try(:test_result).try(:finished) %>
@@ -37,7 +51,7 @@
               из
               <%= claim.test_result.question_count %>
             <% else %>
-              Тест еще не пройден
+              Еще не пройден
             <% end %>
           </td>
           <td>

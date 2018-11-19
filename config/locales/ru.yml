@@ -141,6 +141,7 @@ ru:
         patronymic: 'Отчество'
         email: 'Электронная почта'
         authorize_token: 'Пароль'
+        regional_institution_job: 'Место работы в областных мед.учреждениях'
 
       doctor:
         name: "Ф.И.О."

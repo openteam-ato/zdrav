@@ -44,6 +44,6 @@ class ClaimsController < MainController
   end
 
   def claim_params
-    params.require(:claim).permit(:name, :surname, :patronymic, :email)
+    params.require(:claim).permit(:name, :surname, :patronymic, :email, :regional_institution_job)
   end
 end
