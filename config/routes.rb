@@ -93,6 +93,7 @@ Rails.application.routes.draw do
         post :reject
         post :send_confirmation_email
         post :send_accept_email
+        post :send_test_result_email
       end
     end
 

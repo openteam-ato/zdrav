@@ -44,6 +44,15 @@
                             method: :post %>
               <% end %>
             </p>
+
+            <% if claim.test_result.try(:finished) %>
+              <p>
+                <%= link_to 'переотправить результаты',
+                            send_test_result_email_manage_claim_path(claim.id),
+                            method: :post,
+                            class: 'btn btn-default' %>
+              </p>
+            <% end %>
           </td>
           <td>
             <% if claim.try(:test_result).try(:finished) %>
