@@ -1,0 +1,13 @@
+<div class='content row'>
+  <div class="row">
+    <%= render partial: 'subnavigation' %>
+
+    <div class="col-xs-6">
+      <h1><%= @page.title %></h1>
+    </div>
+
+    <div class='col-xs-6 margin-top-20'>
+      <%= link_to 'Добавить заявку на прохождение теста', new_claim_path, class: 'btn btn-success' %>
+    </div>
+  </div>
+</div>

@@ -54,7 +54,8 @@ class MainController < ApplicationController
       '/ru/departament/ruk_zdrav/povtornoe_podtverjdenie_emaila',
       '/ru/departament/ruk_zdrav/novaya_zayavka',
       '/ru/departament/ruk_zdrav/test_vhod',
-      '/ru/departament/ruk_zdrav/test'
+      '/ru/departament/ruk_zdrav/test',
+      '/ru/departament/ruk_zdrav'
     ].each do |path|
       request_path = path if original_request_path.match(/\A#{path}.*/)
     end
