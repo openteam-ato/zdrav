@@ -37,6 +37,16 @@ class Manage::ClaimsController < Manage::ApplicationController
     redirect_to manage_claims_path
   end
 
+  def add_new_test_result
+    unless @claim.try(:unfinished_test?)
+      @claim.test_results.create
+
+      ClaimsMailer.delay(retry: false).approve_email @claim.email, @claim.authorize_token
+    end
+
+    redirect_to manage_claims_path
+  end
+
   private
 
   def set_claim

@@ -25,20 +25,20 @@
               <% end %>
             </p>
           </td>
+
           <td><%= claim.regional_institution_job || 'Не указано' %></td>
+
           <td>
-            <p>
-              <%= mail_to claim.email %>
-            </p>
+            <p><%= mail_to claim.email %></p>
             <p>
               <% case claim.state %>
               <% when 'pending' %>
-                <%= link_to 'переотправить',
+                <%= link_to 'переотправить письмо',
                             send_confirmation_email_manage_claim_path(claim.id),
                             class: 'btn btn-primary',
                             method: :post %>
               <% when 'approved' %>
-                <%= link_to 'переотправить',
+                <%= link_to 'переотправить письмо',
                             send_accept_email_manage_claim_path(claim.id),
                             class: 'btn btn-primary',
                             method: :post %>
@@ -54,11 +54,26 @@
               </p>
             <% end %>
           </td>
+
           <td>
-            <% if claim.try(:test_result).try(:finished) %>
-              <%= claim.test_result.right_answers %>
-              из
-              <%= claim.test_result.question_count %>
+            <% if claim.try(:test_results).present? %>
+              <% claim.test_results.order(:created_at).each_with_index do |test_result, index| %>
+                <p>
+                  <%= index + 1 %>)
+                  <%= claim.test_result.right_answers %>
+                  из
+                  <%= claim.test_result.question_count %>
+
+                  <% unless test_result.finished %>
+                    (в процессе)
+                  <% end %>
+                </p>
+              <% end %>
+
+              <%= link_to 'новая попытка',
+                          add_new_test_result_manage_claim_path(claim.id) ,
+                          method: :post,
+                          data: { confirm: 'Данное действие необратимо. Вы уверены, что хотите добавить новую попытку?' } unless claim.try(:unfinished_test?) %>
             <% else %>
               Еще не пройден
             <% end %>

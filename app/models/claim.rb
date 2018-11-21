@@ -7,7 +7,7 @@ class Claim < ActiveRecord::Base
 
   default_scope { order('created_at DESC') }
 
-  has_one :test_result, dependent: :destroy
+  has_many :test_results, dependent: :destroy
 
   before_create :confirmation
   before_validation :downcase_email
@@ -42,6 +42,14 @@ class Claim < ActiveRecord::Base
 
     ClaimsMailer.delay(retry: false)
                 .confirmation_email(self.confirmation_token, self.email)
+  end
+
+  def test_result
+    test_results.order(:created_at).last
+  end
+
+  def unfinished_test?
+    test_results.pluck(:finished).include? false
   end
 
   private
