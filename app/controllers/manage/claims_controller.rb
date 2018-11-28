@@ -31,7 +31,7 @@ class Manage::ClaimsController < Manage::ApplicationController
     @questions = file['questions']
 
     if @claim.try(:test_result).present?
-      ClaimsMailer.delay(retry: false).test_results_email @claim.email, claim.test_result.right_answers, @questions.count
+      ClaimsMailer.delay(retry: false).test_results_email @claim.email, @claim.test_result.right_answers, @questions.count
     end
 
     redirect_to manage_claims_path
@@ -39,7 +39,7 @@ class Manage::ClaimsController < Manage::ApplicationController
 
   def add_new_test_result
     unless @claim.try(:unfinished_test?)
-      @claim.test_results.create
+      @claim.create_test_result
 
       ClaimsMailer.delay(retry: false).approve_email @claim.email, @claim.authorize_token
     end

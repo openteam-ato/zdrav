@@ -52,6 +52,10 @@ class Claim < ActiveRecord::Base
     test_results.pluck(:finished).include? false
   end
 
+  def create_test_result
+    test_results.create
+  end
+
   private
 
   def downcase_email
