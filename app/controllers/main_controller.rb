@@ -52,6 +52,7 @@ class MainController < ApplicationController
       '/ru/dlya-naseleniya/obrascheniya-grazhdan/videoobrascheniya-v-departament/spisok-videoobrascheniy',
       '/ru/departament/ruk_zdrav/podtverjdenie_emaila',
       '/ru/departament/ruk_zdrav/povtornoe_podtverjdenie_emaila',
+      '/ru/departament/ruk_zdrav/o_proekte',
       '/ru/departament/ruk_zdrav/novaya_zayavka',
       '/ru/departament/ruk_zdrav/test_vhod',
       '/ru/departament/ruk_zdrav/test',
