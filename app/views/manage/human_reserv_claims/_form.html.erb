@@ -16,7 +16,7 @@
   <%= f.input :old_post %>
   <%= f.input :old_organization, collection: DeclarationSupport.regional_institutions, as: :grouped_select, group_method: :last %>
   <%= f.input :reserv_date, as: :date %>
-  <%= f.input :reserv_level %>
+  <%= f.input :reserv_level, include_blank: false %>
   <%= f.input :curator_fullname %>
 
   <%= f.submit 'Добавить участника', class: 'btn btn-success' %>
