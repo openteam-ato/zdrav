@@ -4,4 +4,8 @@ class HumanReservClaimsController < MainController
   def index
     @human_reserv_claims = HumanReservClaim.draft
   end
+
+  def approved_index
+    @human_reserv_claims = HumanReservClaim.approved
+  end
 end

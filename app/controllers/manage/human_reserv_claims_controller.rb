@@ -18,7 +18,7 @@ class Manage::HumanReservClaimsController < Manage::ApplicationController
   def approve
     @human_reserv_claim.update human_reserv_claim_params
 
-    if @human_reserv_claim.approve
+    if @human_reserv_claim.approve!
       redirect_to manage_human_reserv_claims_path
     else
       render :appoint

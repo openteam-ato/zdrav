@@ -56,6 +56,7 @@ class MainController < ApplicationController
       '/ru/departament/ruk_zdrav/o_proekte',
       '/ru/departament/ruk_zdrav/novaya_zayavka',
       '/ru/departament/ruk_zdrav/reserv',
+      '/ru/departament/ruk_zdrav/v_reserve',
       '/ru/departament/ruk_zdrav/test_vhod',
       '/ru/departament/ruk_zdrav/test',
       '/ru/departament/ruk_zdrav'

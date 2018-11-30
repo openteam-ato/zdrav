@@ -16,7 +16,7 @@
                   <%= I18n.t('activerecord.attributes.human_reserv_claim.fullname') %>
                 </th>
                 <th>
-                  <%= I18n.t('activerecord.attributes.human_reserv_claim.birthdate') %>
+                  <%= I18n.t('activerecord.attributes.human_reserv_claim.reserv_date') %>
                 </th>
                 <th>
                   <%= I18n.t('activerecord.attributes.human_reserv_claim.old_post') %>
@@ -25,13 +25,13 @@
                   <%= I18n.t('activerecord.attributes.human_reserv_claim.old_organization') %>
                 </th>
                 <th>
-                  <%= I18n.t('activerecord.attributes.human_reserv_claim.reserv_date') %>
+                  <%= I18n.t('activerecord.attributes.human_reserv_claim.new_post') %>
                 </th>
                 <th>
-                  <%= I18n.t('activerecord.attributes.human_reserv_claim.reserv_level') %>
+                  <%= I18n.t('activerecord.attributes.human_reserv_claim.new_organization') %>
                 </th>
                 <th>
-                  <%= I18n.t('activerecord.attributes.human_reserv_claim.curator_fullname') %>
+                  <%= I18n.t('activerecord.attributes.human_reserv_claim.appointed_date') %>
                 </th>
               </tr>
             </thead>
@@ -42,7 +42,7 @@
                     <%= human_reserv_claim.fullname %>
                   </td>
                   <td>
-                    <%= I18n.l human_reserv_claim.birthdate, format: :date_for_claim %>
+                    <%= I18n.l human_reserv_claim.reserv_date, format: :date_for_claim %>
                   </td>
                   <td>
                     <%= human_reserv_claim.old_post %>
@@ -51,13 +51,13 @@
                     <%= human_reserv_claim.old_organization %>
                   </td>
                   <td>
-                    <%= I18n.l human_reserv_claim.reserv_date, format: :date_for_claim %>
+                    <%= human_reserv_claim.new_post %>
                   </td>
                   <td>
-                    <%= human_reserv_claim.reserv_level_text %>
+                    <%= human_reserv_claim.new_organization %>
                   </td>
                   <td>
-                    <%= human_reserv_claim.curator_fullname %>
+                    <%= I18n.l human_reserv_claim.appointed_date, format: :date_for_claim %>
                   </td>
                 </tr>
               <% end %>

@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     get 'departament/ruk_zdrav/o_proekte', to: 'human_reserv#about_project', as: :human_reserv_about_project
     get 'departament/ruk_zdrav/dokumenty', to: 'human_reserv#documents', as: :human_reserv_documents
     get 'departament/ruk_zdrav/reserv', to: 'human_reserv_claims#index', as: :human_reserv_claims
+    get 'departament/ruk_zdrav/v_reserve', to: 'human_reserv_claims#approved_index', as: :approved_human_reserv_claims
     get 'departament/ruk_zdrav/novaya_zayavka', to: 'claims#new', as: :new_claim
     post 'departament/ruk_zdrav/novaya_zayavka', to: 'claims#create', as: :claims
     get 'departament/ruk_zdrav/podtverjdenie_emaila', to: 'claims#confirmation', as: :confirmation_claim
