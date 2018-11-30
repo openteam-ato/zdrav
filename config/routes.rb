@@ -100,6 +100,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :human_reserv_claims
+
     resources :doctors
 
     resources :evaluation_registries do

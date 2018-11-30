@@ -1,4 +1,8 @@
 ru:
+  time:
+    formats:
+      date_for_claim: "%d %B %Y"
+
   views:
     pagination:
       previous: '&larr;'
@@ -114,6 +118,12 @@ ru:
         admin: 'Администратор'
         manager: 'Менеджер'
         operator: 'Оператор'
+
+    human_reserv_claim:
+      reserv_level:
+        basic: Базовый
+        middle: Средний
+        high: Высший
 
   video_message:
     kind:
@@ -238,6 +248,20 @@ ru:
         agreement: 'Я поддерживаю декларацию о пациент-ориентированном здравоохранении Томской области'
         email: 'Email'
         regional_institution_job: 'Место работы в областных мед.учреждениях'
+
+      human_reserv_claim:
+        state: Статус
+        fullname: 'Ф.И.О.'
+        birthdate: Дата рождения
+        old_post: Наименование должности на момент включения в резерв
+        old_organization: Наименование организации на момент включения в резерв
+        new_post: Наименование должности в связи с назначением
+        new_organization: Наименование организации в связи с назначением
+        reserv_date: Дата включения в резерв
+        reserv_level: Уровень резерва
+        curator_fullname: Куратор
+        appointed_date: Дата назначения
+
 
   helpers:
     submit:

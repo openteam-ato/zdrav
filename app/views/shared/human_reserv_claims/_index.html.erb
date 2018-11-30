@@ -1,0 +1,58 @@
+<div class='content row'>
+  <div class="row">
+    <table class='table table-bordered'>
+      <thead>
+        <tr>
+          <th>
+            <%= I18n.t('activerecord.attributes.human_reserv_claim.fullname') %>
+          </th>
+          <th>
+            <%= I18n.t('activerecord.attributes.human_reserv_claim.birthdate') %>
+          </th>
+          <th>
+            <%= I18n.t('activerecord.attributes.human_reserv_claim.old_post') %>
+          </th>
+          <th>
+            <%= I18n.t('activerecord.attributes.human_reserv_claim.old_organization') %>
+          </th>
+          <th>
+            <%= I18n.t('activerecord.attributes.human_reserv_claim.reserv_date') %>
+          </th>
+          <th>
+            <%= I18n.t('activerecord.attributes.human_reserv_claim.reserv_level') %>
+          </th>
+          <th>
+            <%= I18n.t('activerecord.attributes.human_reserv_claim.curator_fullname') %>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @human_reserv_claims.each do |human_reserv_claim| %>
+          <tr>
+            <td>
+              <%= human_reserv_claim.fullname %>
+            </td>
+            <td>
+              <%= I18n.l human_reserv_claim.birthdate, format: :date_for_claim %>
+            </td>
+            <td>
+              <%= human_reserv_claim.old_post %>
+            </td>
+            <td>
+              <%= human_reserv_claim.old_organization %>
+            </td>
+            <td>
+              <%= I18n.l human_reserv_claim.reserv_date, format: :date_for_claim %>
+            </td>
+            <td>
+              <%= human_reserv_claim.reserv_level_text %>
+            </td>
+            <td>
+              <%= human_reserv_claim.curator_fullname %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

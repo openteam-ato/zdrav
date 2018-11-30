@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181119052711) do
+ActiveRecord::Schema.define(version: 20181129045007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,22 @@ ActiveRecord::Schema.define(version: 20181119052711) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", unique: true, using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "human_reserv_claims", force: :cascade do |t|
+    t.string   "fullname"
+    t.datetime "birthdate"
+    t.string   "state"
+    t.string   "old_post"
+    t.string   "old_organization"
+    t.string   "new_post"
+    t.string   "new_organization"
+    t.datetime "reserv_date"
+    t.string   "reserv_level"
+    t.string   "curator_fullname"
+    t.datetime "appointed_date"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "medical_institutions", force: :cascade do |t|
     t.string   "title"

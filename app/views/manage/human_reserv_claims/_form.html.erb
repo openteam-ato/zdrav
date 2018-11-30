@@ -1,0 +1,24 @@
+<% if @human_reserv_claim.errors.present? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @human_reserv_claim.errors.full_messages.each do |error_message| %>
+        <li>
+          <%= error_message if @human_reserv_claim.errors.full_messages.first == error_message %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= simple_form_for @human_reserv_claim, url: manage_human_reserv_claims_path do |f| %>
+  <%= f.input :fullname %>
+  <%= f.input :birthdate, as: :date %>
+  <%= f.input :old_post %>
+  <%= f.input :old_organization, collection: DeclarationSupport.regional_institutions, as: :grouped_select, group_method: :last %>
+  <%= f.input :reserv_date, as: :date %>
+  <%= f.input :reserv_level %>
+  <%= f.input :curator_fullname %>
+
+  <%= f.submit 'Добавить участника', class: 'btn btn-success' %>
+  <%= link_to 'Отменить', manage_human_reserv_claims_path, class: 'btn btn-default' %>
+<% end %>
