@@ -101,7 +101,12 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :human_reserv_claims
+    resources :human_reserv_claims do
+      member do
+        get :appoint
+        post :approve
+      end
+    end
 
     resources :doctors
 

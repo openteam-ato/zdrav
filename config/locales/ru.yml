@@ -125,6 +125,10 @@ ru:
         middle: Средний
         high: Высший
 
+      state:
+        draft: В резерве
+        approved: Назначен
+
   video_message:
     kind:
       question_source: 'Загруженное видео обращения'

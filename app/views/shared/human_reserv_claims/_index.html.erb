@@ -24,6 +24,22 @@
           <th>
             <%= I18n.t('activerecord.attributes.human_reserv_claim.curator_fullname') %>
           </th>
+
+          <% if can? :manage, HumanReservClaim %>
+            <th>
+              <%= I18n.t('activerecord.attributes.human_reserv_claim.state') %>
+            </th>
+            <th>
+              <%= I18n.t('activerecord.attributes.human_reserv_claim.new_post') %>
+            </th>
+            <th>
+              <%= I18n.t('activerecord.attributes.human_reserv_claim.new_organization') %>
+            </th>
+            <th>
+              <%= I18n.t('activerecord.attributes.human_reserv_claim.appointed_date') %>
+            </th>
+            <th></th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
@@ -50,6 +66,24 @@
             <td>
               <%= human_reserv_claim.curator_fullname %>
             </td>
+
+            <% if can? :manage, human_reserv_claim %>
+              <td>
+                <%= I18n.t("enumerize.human_reserv_claim.state.#{human_reserv_claim.state}") %>
+              </td>
+              <td>
+                <%= human_reserv_claim.new_post %>
+              </td>
+              <td>
+                <%= human_reserv_claim.new_organization %>
+              </td>
+              <td>
+                <%= I18n.l human_reserv_claim.appointed_date, format: :date_for_claim if human_reserv_claim.appointed_date %>
+              </td>
+              <td>
+                <%= link_to 'назначить', appoint_manage_human_reserv_claim_path(human_reserv_claim) %>
+              </td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
