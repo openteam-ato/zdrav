@@ -9,60 +9,64 @@
     <div class='col-xs-8 margin-left-20'>
       <div class='content row'>
         <div class="row margin-top-20">
-          <table class='table table-bordered'>
-            <thead>
-              <tr>
-                <th>
-                  <%= I18n.t('activerecord.attributes.human_reserv_claim.fullname') %>
-                </th>
-                <th>
-                  <%= I18n.t('activerecord.attributes.human_reserv_claim.reserv_date') %>
-                </th>
-                <th>
-                  <%= I18n.t('activerecord.attributes.human_reserv_claim.old_post') %>
-                </th>
-                <th>
-                  <%= I18n.t('activerecord.attributes.human_reserv_claim.old_organization') %>
-                </th>
-                <th>
-                  <%= I18n.t('activerecord.attributes.human_reserv_claim.new_post') %>
-                </th>
-                <th>
-                  <%= I18n.t('activerecord.attributes.human_reserv_claim.new_organization') %>
-                </th>
-                <th>
-                  <%= I18n.t('activerecord.attributes.human_reserv_claim.appointed_date') %>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @human_reserv_claims.each do |human_reserv_claim| %>
+          <% if @human_reserv_claims.present? %>
+            <table class='table table-bordered'>
+              <thead>
                 <tr>
-                  <td>
-                    <%= human_reserv_claim.fullname %>
-                  </td>
-                  <td>
-                    <%= I18n.l human_reserv_claim.reserv_date, format: :date_for_claim %>
-                  </td>
-                  <td>
-                    <%= human_reserv_claim.old_post %>
-                  </td>
-                  <td>
-                    <%= human_reserv_claim.old_organization %>
-                  </td>
-                  <td>
-                    <%= human_reserv_claim.new_post %>
-                  </td>
-                  <td>
-                    <%= human_reserv_claim.new_organization %>
-                  </td>
-                  <td>
-                    <%= I18n.l human_reserv_claim.appointed_date, format: :date_for_claim %>
-                  </td>
+                  <th>
+                    <%= I18n.t('activerecord.attributes.human_reserv_claim.fullname') %>
+                  </th>
+                  <th>
+                    <%= I18n.t('activerecord.attributes.human_reserv_claim.reserv_date') %>
+                  </th>
+                  <th>
+                    <%= I18n.t('activerecord.attributes.human_reserv_claim.old_post') %>
+                  </th>
+                  <th>
+                    <%= I18n.t('activerecord.attributes.human_reserv_claim.old_organization') %>
+                  </th>
+                  <th>
+                    <%= I18n.t('activerecord.attributes.human_reserv_claim.new_post') %>
+                  </th>
+                  <th>
+                    <%= I18n.t('activerecord.attributes.human_reserv_claim.new_organization') %>
+                  </th>
+                  <th>
+                    <%= I18n.t('activerecord.attributes.human_reserv_claim.appointed_date') %>
+                  </th>
                 </tr>
-              <% end %>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <% @human_reserv_claims.each do |human_reserv_claim| %>
+                  <tr>
+                    <td>
+                      <%= human_reserv_claim.fullname %>
+                    </td>
+                    <td>
+                      <%= I18n.l human_reserv_claim.reserv_date, format: :date_for_claim %>
+                    </td>
+                    <td>
+                      <%= human_reserv_claim.old_post %>
+                    </td>
+                    <td>
+                      <%= human_reserv_claim.old_organization %>
+                    </td>
+                    <td>
+                      <%= human_reserv_claim.new_post %>
+                    </td>
+                    <td>
+                      <%= human_reserv_claim.new_organization %>
+                    </td>
+                    <td>
+                      <%= I18n.l human_reserv_claim.appointed_date, format: :date_for_claim %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% else %>
+            Нет участников
+          <% end %>
         </div>
       </div>
     </div>
