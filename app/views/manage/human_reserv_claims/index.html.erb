@@ -94,6 +94,7 @@
               </td>
               <td>
                 <%= link_to 'назначить', appoint_manage_human_reserv_claim_path(human_reserv_claim) if human_reserv_claim.draft? %>
+                <%= link_to 'редактировать', edit_manage_human_reserv_claim_path(human_reserv_claim) %>
               </td>
             <% end %>
           </tr>
