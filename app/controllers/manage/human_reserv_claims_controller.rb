@@ -1,7 +1,11 @@
 class Manage::HumanReservClaimsController < Manage::ApplicationController
   load_resource
 
-  def index; end
+  def index
+    if params['search'].present?
+      @human_reserv_claims = Searchers::HumanReservClaimSearcher.new(params['search']).collection
+    end
+  end
 
   def create
     @human_reserv_claim = HumanReservClaim.create human_reserv_claim_params

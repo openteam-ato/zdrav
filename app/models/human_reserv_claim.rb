@@ -17,6 +17,10 @@ class HumanReservClaim < ActiveRecord::Base
     end
   end
 
+  searchable do
+    string :state
+  end
+
   def can_approved?
     return false if [self.new_post, self.new_organization, self.appointed_date].include?(nil)
     return true

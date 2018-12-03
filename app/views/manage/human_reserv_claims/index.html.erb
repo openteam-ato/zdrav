@@ -4,102 +4,120 @@
                 new_manage_human_reserv_claim_path,
                 class: 'btn btn-primary' %>
   </div>
+
+  <div class="row margin-top-20">
+    <%= link_to 'Все',
+      manage_human_reserv_claims_path,
+      class: params['search'].present? ? 'btn btn-default' : 'btn btn-primary'  %>
+
+    <%= link_to 'В резерве',
+      manage_human_reserv_claims_path(search: { state: 'draft' }),
+      class: params['search'].try(:[], 'state') == 'draft' ? 'btn btn-primary' : 'btn btn-default'  %>
+
+    <%= link_to 'Назначенные',
+      manage_human_reserv_claims_path(search: { state: 'approved' }),
+      class: params['search'].try(:[], 'state') == 'approved' ? 'btn btn-primary' : 'btn btn-default'  %>
+  </div>
 </div>
 
 <div class='content row'>
   <div class="row margin-top-20">
-    <table class='table table-bordered'>
-      <thead>
-        <tr>
-          <th>№</th>
-          <th>
-            <%= I18n.t('activerecord.attributes.human_reserv_claim.fullname') %>
-          </th>
-          <th>
-            <%= I18n.t('activerecord.attributes.human_reserv_claim.birthdate') %>
-          </th>
-          <th>
-            <%= I18n.t('activerecord.attributes.human_reserv_claim.old_post') %>
-          </th>
-          <th>
-            <%= I18n.t('activerecord.attributes.human_reserv_claim.old_organization') %>
-          </th>
-          <th>
-            <%= I18n.t('activerecord.attributes.human_reserv_claim.reserv_date') %>
-          </th>
-          <th>
-            <%= I18n.t('activerecord.attributes.human_reserv_claim.reserv_level') %>
-          </th>
-          <th>
-            <%= I18n.t('activerecord.attributes.human_reserv_claim.curator_fullname') %>
-          </th>
-
-          <% if can? :manage, HumanReservClaim %>
-            <th>
-              <%= I18n.t('activerecord.attributes.human_reserv_claim.state') %>
-            </th>
-            <th>
-              <%= I18n.t('activerecord.attributes.human_reserv_claim.new_post') %>
-            </th>
-            <th>
-              <%= I18n.t('activerecord.attributes.human_reserv_claim.new_organization') %>
-            </th>
-            <th>
-              <%= I18n.t('activerecord.attributes.human_reserv_claim.appointed_date') %>
-            </th>
-            <th></th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% @human_reserv_claims.each_with_index do |human_reserv_claim, index| %>
+    <% if @human_reserv_claims.present? %>
+      <table class='table table-bordered'>
+        <thead>
           <tr>
-            <td>
-              <%= index + 1 %>
-            </td>
-            <td>
-              <%= human_reserv_claim.fullname %>
-            </td>
-            <td>
-              <%= I18n.l human_reserv_claim.birthdate, format: :date_for_claim %>
-            </td>
-            <td>
-              <%= human_reserv_claim.old_post %>
-            </td>
-            <td>
-              <%= human_reserv_claim.old_organization %>
-            </td>
-            <td>
-              <%= I18n.l human_reserv_claim.reserv_date, format: :date_for_claim %>
-            </td>
-            <td>
-              <%= human_reserv_claim.reserv_level_text %>
-            </td>
-            <td>
-              <%= human_reserv_claim.curator_fullname %>
-            </td>
+            <th>№</th>
+            <th>
+              <%= I18n.t('activerecord.attributes.human_reserv_claim.fullname') %>
+            </th>
+            <th>
+              <%= I18n.t('activerecord.attributes.human_reserv_claim.birthdate') %>
+            </th>
+            <th>
+              <%= I18n.t('activerecord.attributes.human_reserv_claim.old_post') %>
+            </th>
+            <th>
+              <%= I18n.t('activerecord.attributes.human_reserv_claim.old_organization') %>
+            </th>
+            <th>
+              <%= I18n.t('activerecord.attributes.human_reserv_claim.reserv_date') %>
+            </th>
+            <th>
+              <%= I18n.t('activerecord.attributes.human_reserv_claim.reserv_level') %>
+            </th>
+            <th>
+              <%= I18n.t('activerecord.attributes.human_reserv_claim.curator_fullname') %>
+            </th>
 
-            <% if can? :manage, human_reserv_claim %>
-              <td>
-                <%= I18n.t("enumerize.human_reserv_claim.state.#{human_reserv_claim.state}") %>
-              </td>
-              <td>
-                <%= human_reserv_claim.new_post %>
-              </td>
-              <td>
-                <%= human_reserv_claim.new_organization %>
-              </td>
-              <td>
-                <%= I18n.l human_reserv_claim.appointed_date, format: :date_for_claim if human_reserv_claim.appointed_date %>
-              </td>
-              <td>
-                <%= link_to 'назначить', appoint_manage_human_reserv_claim_path(human_reserv_claim) if human_reserv_claim.draft? %>
-                <%= link_to 'редактировать', edit_manage_human_reserv_claim_path(human_reserv_claim) %>
-              </td>
+            <% if can? :manage, HumanReservClaim %>
+              <th>
+                <%= I18n.t('activerecord.attributes.human_reserv_claim.state') %>
+              </th>
+              <th>
+                <%= I18n.t('activerecord.attributes.human_reserv_claim.new_post') %>
+              </th>
+              <th>
+                <%= I18n.t('activerecord.attributes.human_reserv_claim.new_organization') %>
+              </th>
+              <th>
+                <%= I18n.t('activerecord.attributes.human_reserv_claim.appointed_date') %>
+              </th>
+              <th></th>
             <% end %>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @human_reserv_claims.each_with_index do |human_reserv_claim, index| %>
+            <tr>
+              <td>
+                <%= index + 1 %>
+              </td>
+              <td>
+                <%= human_reserv_claim.fullname %>
+              </td>
+              <td>
+                <%= I18n.l human_reserv_claim.birthdate, format: :date_for_claim %>
+              </td>
+              <td>
+                <%= human_reserv_claim.old_post %>
+              </td>
+              <td>
+                <%= human_reserv_claim.old_organization %>
+              </td>
+              <td>
+                <%= I18n.l human_reserv_claim.reserv_date, format: :date_for_claim %>
+              </td>
+              <td>
+                <%= human_reserv_claim.reserv_level_text %>
+              </td>
+              <td>
+                <%= human_reserv_claim.curator_fullname %>
+              </td>
+
+              <% if can? :manage, human_reserv_claim %>
+                <td>
+                  <%= I18n.t("enumerize.human_reserv_claim.state.#{human_reserv_claim.state}") %>
+                </td>
+                <td>
+                  <%= human_reserv_claim.new_post %>
+                </td>
+                <td>
+                  <%= human_reserv_claim.new_organization %>
+                </td>
+                <td>
+                  <%= I18n.l human_reserv_claim.appointed_date, format: :date_for_claim if human_reserv_claim.appointed_date %>
+                </td>
+                <td>
+                  <%= link_to 'назначить', appoint_manage_human_reserv_claim_path(human_reserv_claim) if human_reserv_claim.draft? %>
+                  <%= link_to 'редактировать', edit_manage_human_reserv_claim_path(human_reserv_claim) %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      Ничего не найдено.
+    <% end %>
   </div>
 </div>
