@@ -13,6 +13,14 @@ class Manage::HumanReservClaimsController < Manage::ApplicationController
     end
   end
 
+  def update
+    if @human_reserv_claim.update human_reserv_claim_params
+      redirect_to manage_human_reserv_claims_path
+    else
+      render :edit
+    end
+  end
+
   def appoint; end
 
   def approve

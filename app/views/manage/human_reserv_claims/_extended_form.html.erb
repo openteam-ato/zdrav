@@ -10,7 +10,9 @@
   </div>
 <% end %>
 
-<%= simple_form_for @human_reserv_claim, url: [:manage, @human_reserv_claim] do |f| %>
+<%= simple_form_for @human_reserv_claim,
+  url: params[:action] == 'edit' ? manage_human_reserv_claim_path : approve_manage_human_reserv_claim_path,
+  method: params[:action] == 'edit' ? :patch : :post do |f| %>
   <%= f.input :fullname %>
   <%= f.input :birthdate, as: :date %>
   <%= f.input :old_post %>
@@ -18,6 +20,13 @@
   <%= f.input :reserv_date, as: :date %>
   <%= f.input :reserv_level, include_blank: false %>
   <%= f.input :curator_fullname %>
+  <%= f.input :new_post, required: true %>
+  <%= f.input :new_organization,
+              collection: DeclarationSupport.regional_institutions,
+              as: :grouped_select,
+              group_method: :last,
+              required: true %>
+  <%= f.input :appointed_date, as: :date, required: true %>
 
   <%= f.submit 'Сохранить', class: 'btn btn-success' %>
   <%= link_to 'Отменить', manage_human_reserv_claims_path, class: 'btn btn-default' %>

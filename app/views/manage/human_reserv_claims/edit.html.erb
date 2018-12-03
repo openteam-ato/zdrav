@@ -1,0 +1,6 @@
+<% case @human_reserv_claim.state %>
+<% when 'draft' %>
+  <%= render 'form' %>
+<% when  'approved' %>
+  <%= render 'extended_form' %>
+<% end %>
