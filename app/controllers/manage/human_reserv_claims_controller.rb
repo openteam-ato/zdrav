@@ -37,6 +37,19 @@ class Manage::HumanReservClaimsController < Manage::ApplicationController
     end
   end
 
+  def organization
+    institutions = DeclarationSupport.regional_institutions
+                                     .flat_map(&:second)
+                                     .concat(HumanReservClaim.pluck(:old_organization))
+                                     .concat(HumanReservClaim.pluck(:new_organization))
+                                     .compact
+                                     .uniq
+                                     .sort
+                                     .select{ |obj| obj =~ /#{params[:term]}/i }
+
+    render json: institutions
+  end
+
   private
 
   def human_reserv_claim_params

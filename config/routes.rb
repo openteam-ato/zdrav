@@ -103,6 +103,8 @@ Rails.application.routes.draw do
     end
 
     resources :human_reserv_claims do
+      get :organization, on: :collection
+
       member do
         get :appoint
         post :approve
