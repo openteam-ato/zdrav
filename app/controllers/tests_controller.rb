@@ -6,13 +6,13 @@ class TestsController < MainController
   def authorize_entry; end
 
   def edit
-    params['claim']['email'] = params['claim']['email'].squish.downcase
-    @claim = Claim.find_by claim_params
+    @claim = Claim.find_by email: params['claim']['email'].squish.downcase,
+                           authorize_token: params['claim']['authorize_token']
 
-    unless @claim
-      flash[:alert] = 'Вы ввели неверные данные!'
-      render 'authorize_entry'
-    end
+    @claim.present? ? (flash['alert'] = nil) : raise('error')
+  rescue
+    flash[:alert] = 'Вы ввели неверные данные!'
+    render 'authorize_entry'
   end
 
   def update
@@ -42,10 +42,6 @@ class TestsController < MainController
   end
 
   private
-
-  def claim_params
-    params.require(:claim).permit(:authorize_token, :email)
-  end
 
   def set_questions
     file = YAML.load_file('data/tests/personal_control_full.yml')
