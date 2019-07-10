@@ -58,6 +58,9 @@ Rails.application.routes.draw do
     get  'zdravoohranenie-v-tomskoy-oblasti/novaya-model-tomskogo-zdravoohraneniya/predlagaem-k-obsuzhdeniyu-proekt-novoy-modeli-tomskogo-zdravoohraneniya/otpravit-vopros-ili-predlozhenie' => 'new_model#show'
     post 'zdravoohranenie-v-tomskoy-oblasti/novaya-model-tomskogo-zdravoohraneniya/predlagaem-k-obsuzhdeniyu-proekt-novoy-modeli-tomskogo-zdravoohraneniya/otpravit-vopros-ili-predlozhenie' => 'new_model#create'
 
+    get  'zdravoohranenie-v-tomskoy-oblasti/otraslevoe-razvitie/gosudarstvennaya-programma-razvitie-zdravoohraneniya-tomskoy-oblasti-na-2015-2020-gody/publichnoe-obsuzhdenie-proekta-gosprogrammy/otpravit-predlozhenie' => 'offers#show'
+    post 'zdravoohranenie-v-tomskoy-oblasti/otraslevoe-razvitie/gosudarstvennaya-programma-razvitie-zdravoohraneniya-tomskoy-oblasti-na-2015-2020-gody/publichnoe-obsuzhdenie-proekta-gosprogrammy/otpravit-predlozhenie' => 'offers#create'
+
     get  'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/zemskiy-doktor/uchastniki'     => 'doctors#index', :as => :doctors
     get  'zdravoohranenie-v-tomskoy-oblasti/spetsialistam/zemskiy-doktor/uchastniki/:id' => 'doctors#show',  :as => :doctor
 

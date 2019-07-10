@@ -1,0 +1,45 @@
+<div class='content row'>
+  <div class='col-xs-3'>
+    <div class='subnavigation'>
+      <%= render_partial_for_region(@subnavigation, 'sub') if @subnavigation.present? %>
+      <% if @left_side_links.present? %>
+        <div class='left_side_links'>
+          <%= render_partial_for_region(@left_side_links) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='col-xs-9'>
+    <%= render_partial_for_region(@breadcrumbs) if @breadcrumbs.present? %>
+    <%= render_partial_for_region(@content_first, 'full') if @content_first.present? %>
+    <%= simple_form_for :new_model do |f| %>
+      <% if flash[:notice] %>
+        <p class='notice text-success'><%= flash[:notice] %></p>
+      <% end %>
+      <div class='clearfix'>
+        <%= f.input :surname, :input_html => { :value => params['new_model'].try(:[], 'surname') } %>
+        <%= f.input :name, :input_html => { :value => params['new_model'].try(:[], 'name') } %>
+        <%= f.input :patronymic, :required => false, :input_html => { :value => params['new_model'].try(:[], 'patronymic') } %>
+        <%= f.input :social_status, :required => false, :required => false, :as => :select, :collection => @social_status,  :input_html => { :value => params['new_model'].try(:[], 'social_status') } %>
+      </div>
+      <div class='clearfix'>
+        <%= f.input :email, :input_html => { :value => params['new_model'].try(:[], 'email') } %>
+        <%= f.input :phone, :required => false, :input_html => { :value => params['new_model'].try(:[], 'phone') } %>
+      </div>
+      <div class='clearfix'>
+        <%= f.input :text, :as => :text, :input_html => { :value => params['new_model'].try(:[], 'text') } %>
+      </div>
+      <%= recaptcha_tags :display => { :theme => 'clean' }, :ajax => true %>
+      <% if flash[:alert] %>
+        <p class='recaptcha-alert text-danger'><%= flash[:alert] %></p>
+      <% end %>
+      <div class='actions'>
+        <%= f.button :submit, 'Отправить', class: 'submit' %>
+      </div>
+    <% end %>
+    <div class='row'>
+      <%= render :partial => 'social_likes' %>
+    </div>
+  </div>
+</div>

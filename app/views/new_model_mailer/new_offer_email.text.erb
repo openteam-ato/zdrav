@@ -1,0 +1,14 @@
+Посетитель сайта оставил предложение для биржи идей
+
+==========
+
+Автор: <%= [@new_model['surname'], @new_model['name'], @new_model['patronymic']].delete_if(&:blank?).join(' ') %>
+Социальный статус: <%= @new_model['social_status'] %>
+Электронная почта: <%= @new_model['email'] %>
+Телефон: <%= @new_model['phone'] %>
+
+Текст:
+
+<%= @new_model['text'] %>
+
+==========
