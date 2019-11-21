@@ -43,5 +43,6 @@
  * = require slider
  * = require video_fileupload
  * = require doctors_carousel
+ * = require tooltip
  * = require main
  */

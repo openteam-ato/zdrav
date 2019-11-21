@@ -10,16 +10,7 @@
       <p class='address'>
         <%= I18n.t('address').html_safe %>
       </p>
-      <p class='telegram'>
-        <%= link_to 'https://t.me/Oblast_zdorovya', target: '_blank' do %>
-          Читайте наш канал в Telegram
-        <% end %>
-      </p>
-      <p class='youtube'>
-        <%= link_to 'https://www.youtube.com/channel/UC9klQLiwrtSzKw4iwGU1Mag', target: '_blank' do %>
-          Смотрите видео на канале YouTube
-        <% end %>
-      </p>
+      <%= render partial: 'application/social_links_header' %>
     </div>
     <div class='sitemap col-lg-3 col-md-3'>
       <ul>
@@ -45,11 +36,7 @@
       <p class='address'>
         <%= I18n.t('address').html_safe %>
       </p>
-      <p class='telegram'>
-        <%= link_to 'https://t.me/Oblast_zdorovya', target: '_blank' do %>
-          Читайте наш канал в Telegram
-        <% end %>
-      </p>
+      <%= render partial: 'application/social_links_header' %>
     </div>
   </div>
 </div>
