@@ -17,6 +17,11 @@
           </div>
         </div>
       <% end %>
+      <% if Time.zone.now > DateTime.parse('2020-12-01 00:00') %>
+        <div class='margin-left-20 margin-top-20 margin-bottom-20'>
+          <%= render partial: 'pos_widget' %>
+        </div>
+      <% end %>
     </div>
   </div>
 
